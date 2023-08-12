@@ -9,11 +9,29 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="Assets\" />
-    <Folder Include="Components\" />
-    <Folder Include="Themes\" />
-    <Folder Include="Styles\" />
-    <Folder Include="Pages\" />
+    <None Remove="Assets\StaticImages\IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg" />
+    <None Remove="Assets\StaticImages\MensCategory.png" />
+    <None Remove="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
+    <None Remove="Assets\StaticImages\Remove-bg.ai_1691401602416.png" />
+    <None Remove="Assets\StaticImages\wepik-export-20230809182056drVe.png" />
+    <None Remove="Assets\StaticImages\[removal.ai]_6a713f68-27ba-4cf7-a0a8-9f43b6e7c142-wepik-export-20230807092915h2d0.png" />
+    <None Remove="Assets\StaticImages\[removal.ai]_9fcdf641-cb5c-485b-8842-1f3e4966d719-wepik-export-20230807093931wumk.png" />
+    <None Remove="Assets\StaticImages\[removal.ai]_f0ccacee-32d1-43c9-b368-d06d84fd2f88-wepik-export-20230807093818pkou.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Assets\Gifs\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\StaticImages\IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg" />
+    <Resource Include="Assets\StaticImages\MensCategory.png" />
+    <Resource Include="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
+    <Resource Include="Assets\StaticImages\Remove-bg.ai_1691401602416.png" />
+    <Resource Include="Assets\StaticImages\wepik-export-20230809182056drVe.png" />
+    <Resource Include="Assets\StaticImages\[removal.ai]_6a713f68-27ba-4cf7-a0a8-9f43b6e7c142-wepik-export-20230807092915h2d0.png" />
+    <Resource Include="Assets\StaticImages\[removal.ai]_9fcdf641-cb5c-485b-8842-1f3e4966d719-wepik-export-20230807093931wumk.png" />
+    <Resource Include="Assets\StaticImages\[removal.ai]_f0ccacee-32d1-43c9-b368-d06d84fd2f88-wepik-export-20230807093818pkou.png" />
   </ItemGroup>
 
 </Project>

@@ -4,9 +4,212 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eclo_Desktop"
-        mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
+      mc:Ignorable="d" Name="home"
+        Loaded="Window_Loaded"
+        Title="MainWindow" Height="700" Width="1200"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
+        Background="Transparent" AllowsTransparency="True"
+        ResizeMode="NoResize" FontFamily="Poppins">
 
+    <Grid>
+        <Border Background="{DynamicResource PrimaryBackgroundColor}"
+            CornerRadius="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="250"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Border Grid.Column="1" 
+                    Background="{DynamicResource ThirdBackgroundColor}"
+                    CornerRadius="8 0 0 8"
+                  >
+
+                    <Grid Margin="0 20 0 0" 
+                      >
+                        <Grid>
+                            <Grid.RowDefinitions>
+                                <RowDefinition Height="*"/>
+                                <RowDefinition Height="25"/>
+                                <RowDefinition Height="35"/>
+                            </Grid.RowDefinitions>
+                            <StackPanel Grid.Row="0">
+                                <Border  Margin="5"
+                                     Height="60"
+                                     >
+                                    <Label Content="Eclo"
+                                       HorizontalAlignment="Center"                                       
+                                       Cursor="Hand"
+                                       FontFamily="k"
+                                       Foreground="{DynamicResource FourthIconColor}"
+                                       FontSize="32"
+                                       FontWeight="SemiBold"></Label>
+                                </Border>
+                                <RadioButton x:Name="rbDashboard"
+                                         Margin="0 100 0 0"
+                                         Content="Dashboard"
+                                         IsChecked="True"
+                                         Style="{DynamicResource MenuButton}"
+                                         Click="rbDashboard_Click"
+                                         />
+                                <RadioButton x:Name="rbProducts"
+                                         Content="Products"
+                                         Style="{DynamicResource MenuButton}"
+                                         Click="rbProducts_Click"
+                                         />
+                                <RadioButton x:Name="rbProfile"
+                                         Content="Profile"
+                                         Style="{DynamicResource MenuButton}"
+                                         Click="rbProfile_Click"
+                                         />
+                                <RadioButton x:Name="rbUser"                                         
+                                         Content="Settings"                                         
+                                         Style="{DynamicResource MenuButton}"
+                                         Click="rbUser_Click"
+                                         />
+                                <RadioButton x:Name="rbAboutUs"
+                                         Content="About us"
+                                         Style="{DynamicResource MenuButton}"
+                                         Click="rbAboutUs_Click"
+                                         />
+                                <RadioButton x:Name="rbFaq"
+                                         Content="FAQ"
+                                         Style="{DynamicResource MenuButton}"
+                                         Click="rbFaq_Click"
+                                         />
+                                <RadioButton x:Name="rbHelp"
+                                         Content="Help"
+                                         Style="{DynamicResource MenuButton}"
+                                         Click="rbHelp_Click"
+                                         />
+                            </StackPanel>
+                            <!--Here Dark Ligh Theme Switcher-->
+                            <Button Grid.Row="1"
+                                Visibility="Hidden"></Button>
+                            <!--<Border Grid.Row="2" Width="350" CornerRadius="0 0 0 8">
+                            <Border.Background>
+                                <ImageBrush ImageSource="/Assets/StaticImages/MenuBarPicture2.png"
+                                            Stretch="UniformToFill"/>
+                            </Border.Background>
+                        </Border>-->
+                        </Grid>
+                    </Grid>
+
+
+
+                </Border>
+
+                <Grid Grid.Column="2">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="60"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+
+
+                    <!-- Start: Button Close | Restore | Minimize -->
+                    <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">
+                        <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
+                        <Button x:Name="btnRestore" Margin="5,0" Click="btnRestore_Click">
+                            <Button.Style>
+                                <Style TargetType="{x:Type Button}" BasedOn="{StaticResource IconButtonsStyle}">
+                                    <Setter Property="Content" Value="{DynamicResource maximize}"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding ElementName=home, Path=WindowState}" Value="Maximized">
+                                            <Setter Property="Content" Value="{DynamicResource restore}"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Button.Style>
+                        </Button>
+                        <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
+                    </StackPanel>
+                    <!-- End: Button Close | Restore | Minimize -->
+                    <StackPanel Grid.Row="1" Orientation="Horizontal"   
+                            HorizontalAlignment="Right"
+                            Margin="0 0 20 0"
+                            >
+                        <!--<Button Height="50" Width="50"
+                            Margin="2" Style="{DynamicResource MainThreeStaticButoons}"
+                            Tag="{DynamicResource SearchICon2}"></Button>-->
+                        <!--<Button Height="50" Width="50"
+                            x:Name="UserPagebtn"
+                            Click="UserPagebtn_Click"
+                            Margin="2" Style="{DynamicResource MainThreeStaticButoons}"
+                            Tag="{DynamicResource UserIcon}"></Button>-->
+
+                        <Button Height="50" Width="50"
+                            Margin="2 2 15 2" Style="{DynamicResource MainThreeStaticButoons}"                            
+                            >
+
+                        </Button>
+
+
+                        <Border Background="{DynamicResource ThirdBackgroundColor}"
+                                CornerRadius="5">
+                            <StackPanel Orientation="Horizontal">
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="35"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Grid.Row="0"
+                                   Margin="10 15 10 0"
+                                       Content="MuHammadAliyev "
+                                       
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource FourthIconColor}"
+                                       
+                                       Padding="0"></Label>
+                                    <Label Grid.Row="1"
+                                   Foreground="{DynamicResource FourthIconColor}"
+                                       Content="Uzbekistan"
+                                   Margin="10 0"
+                                       
+                                       Padding="0"
+                                       
+                                       />
+                                </Grid>
+                                <Border     CornerRadius="5"
+                                    Width="50"                                    
+                                    Height="50"   
+                                            Margin="10 0"
+                                    HorizontalAlignment="Right"     
+                                    >
+                                    <Border.Background>
+                                        <ImageBrush ImageSource="/Assets/StaticImages/IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg"/>
+                                    </Border.Background>
+                                </Border>
+                            </StackPanel>
+                        </Border>
+
+
+
+
+                    </StackPanel>
+
+                    <Frame Grid.Row="2"
+                       Name="PageNavigator"
+                       Margin="20 15"
+                       NavigationUIVisibility="Hidden">
+
+                    </Frame>
+
+                </Grid>
+
+            </Grid>
+
+        </Border>
+        <!--<Border Width="150"
+                 x:Name=""
+                    Height="250"
+                        Background="{DynamicResource ThirdBackgroundColor}"
+                            HorizontalAlignment="Right"
+                                VerticalAlignment="Top"
+                                    Margin="0 90 58 0"
+                CornerRadius="15"
+                >
+        </Border>-->
     </Grid>
 </Window>

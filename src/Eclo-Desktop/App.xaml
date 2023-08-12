@@ -4,6 +4,19 @@
              xmlns:local="clr-namespace:Eclo_Desktop"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+
+                <ResourceDictionary Source="Themes/LightTheme.xaml"/>
+
+                <ResourceDictionary Source="Assets/Icons.xaml"/>
+
+                <ResourceDictionary Source="Styles/MainStyle.xaml"/>
+
+                <!--<ResourceDictionary Source="Assets/Fonts/Poppins-Black.ttf"/>-->
+
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary> 
+        
     </Application.Resources>
 </Application>
