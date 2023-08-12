@@ -1,0 +1,56 @@
+﻿<Page x:Class="Eclo_Desktop.Pages.ProductsPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Eclo_Desktop.Pages"
+      mc:Ignorable="d" 
+    d:DesignHeight="800" d:DesignWidth="800"
+      Title="Products">
+    <!--default 450 height-->
+    <ScrollViewer >
+        <Border CornerRadius="5"
+            Margin="20 0 20 0"
+            Background="{DynamicResource PrimaryBackgroundColor}">
+
+            <StackPanel>
+                <Border Margin="15 10" >
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="Choose your"
+                               HorizontalContentAlignment="Center"
+                               FontSize="25" FontWeight="SemiBold"
+                               Foreground="{DynamicResource FourthIconColor}"></Label>
+                        <Label Content="Category"
+                               HorizontalContentAlignment="Center"
+                               FontSize="25" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextTertiaryColor}"></Label>
+                    </StackPanel>
+                </Border>
+                <WrapPanel x:Name="MainWP">
+                    <Button x:Name="MensCategoryBtn"
+                            Content="Mens"                            
+                        Style="{DynamicResource CategoryMensbtn}"     
+                        Tag="{DynamicResource RightArrowIcon}"                            
+                            >
+
+                    </Button>
+                    <Button x:Name="WomensCategoryBtn"
+                            Content="Womens"
+                        Style="{DynamicResource CategoryWomens}"
+                            Tag="{DynamicResource RightArrowIcon}"
+                            >
+
+                    </Button>
+                    <Button x:Name="KidsCategoryBtn"
+                            Content="Kids"
+                        Style="{DynamicResource CategoryKidsbtn}"
+                            Tag="{DynamicResource RightArrowIcon}">
+
+                    </Button>
+
+                </WrapPanel>
+            </StackPanel>
+
+        </Border>
+    </ScrollViewer>
+</Page>
