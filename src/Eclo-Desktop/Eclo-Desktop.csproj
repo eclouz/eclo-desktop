@@ -8,4 +8,12 @@
     <UseWPF>true</UseWPF>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Folder Include="Assets\" />
+    <Folder Include="Components\" />
+    <Folder Include="Themes\" />
+    <Folder Include="Styles\" />
+    <Folder Include="Pages\" />
+  </ItemGroup>
+
 </Project>
