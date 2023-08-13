@@ -374,17 +374,16 @@
                         CornerRadius="15"              
                             BorderThickness="2"
                             BorderBrush="Transparent"                                                       
-                            Height="50"
-                            Width="310"                        
-                            HorizontalAlignment="Center"
-                            Margin="0 0 0 30"
+                            Height="{TemplateBinding Height}"
+                            Width="{TemplateBinding Width}"                        
+                            HorizontalAlignment="Center"                                                       
+                            Background="{TemplateBinding Background}"
                             >
                         <Label x:Name="smaLbl"                               
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                FontWeight="SemiBold"
-                               
-                               
+                               Foreground="{TemplateBinding Foreground}"                               
                                Content="{TemplateBinding Content}">
                         </Label>
 
@@ -396,8 +395,8 @@
                         </Trigger>
 
                         <Trigger Property="IsMouseOver" Value="False">
-                            <Setter TargetName="pictureBorder" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>
-                            <Setter TargetName="smaLbl" Property="Foreground" Value="{DynamicResource SecundaryBackgroundColor}"/>
+                            <!--<Setter TargetName="pictureBorder" Property="Background" Value="{DynamicResource PrimaryBackgroundColor}"/>-->
+                            <!--<Setter TargetName="smaLbl" Property="Foreground" Value="{DynamicResource SecundaryBackgroundColor}"/>-->
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter TargetName="pictureBorder" Property="Background" Value="{DynamicResource ButtonHoverGreyColor}"/>

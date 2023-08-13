@@ -5,7 +5,7 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Eclo_Desktop.Pages"
       mc:Ignorable="d" 
-      d:DesignHeight="900" d:DesignWidth="800"
+      d:DesignHeight="1500" d:DesignWidth="800"
       Title="SettingPage">
     <!--default 450 height-->
     <Grid>
@@ -19,7 +19,7 @@
                             <Label Content="Account settings"
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
-                               Foreground="{DynamicResource FourthIconColor}"></Label>
+                               Foreground="{DynamicResource FourthIconColor}"></Label>                            
                         </StackPanel>
                     </Border>
                     <Grid>
@@ -45,7 +45,11 @@
                            Foreground="{DynamicResource FourthIconColor}"
                            >
                             </Label>
-                            <Button Width="150" Height="35" Content="::::::::">
+                            <Button Width="150" Height="35" 
+                                    Content="Edit image"
+                                    Foreground="{DynamicResource FourthIconColor}"
+                                    Style="{DynamicResource SaveBtn}"
+                                    >
                             </Button>
                         </StackPanel>
                         <Border Grid.Column="1" Margin="50 0"
@@ -96,28 +100,7 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                                 </Border>
-                                <Label HorizontalAlignment="Left"
-                            Margin="20 20 0 0"                           
-                           Content="Phone number"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource FourthIconColor}"
-                           ></Label>
-                                <Border Height="50"
-                             Width="310"
-                             Margin="0 0 0 0"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                                    <TextBox x:Name="tbPhoneNumber"                                                
-                             BorderThickness="0"
-                             Margin="10"
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
-                                </Border>
+                                
                                 <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="Passport serial number"
@@ -232,8 +215,12 @@
                                 </Border>
 
                                 <Button Style="{DynamicResource SaveBtn}"
-                                        Content="Save"                                        
-                                        x:Name="btnSave"
+                                        Content="Save changes"
+                                        Foreground="{DynamicResource FourthIconColor}"
+                                        x:Name="btnSaveSettingsChange"
+                                        Height="50"
+                                        Width="310"
+                                        Margin="0 0 0 15"
                                         >
                                 </Button>
 
@@ -241,6 +228,103 @@
                             </StackPanel>
                         </Border>
                     </Grid>
+                    <Border Margin="15 10" >
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Security settings"
+                               HorizontalContentAlignment="Center"
+                               FontSize="25" FontWeight="SemiBold"
+                               Foreground="{DynamicResource FourthIconColor}"></Label>
+                        </StackPanel>
+                    </Border>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="180"/>
+                            <ColumnDefinition Width="450"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Border Grid.Column="1" Margin="50 0"
+                                CornerRadius="5"
+                                Background="{DynamicResource MainBannerGreen}">
+                            <StackPanel>
+                                <Label HorizontalAlignment="Left"
+                            Margin="20 20 0 0"                           
+                           Content="Old password"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource FourthIconColor}"
+                           ></Label>
+                                <Border Height="50"
+                             Width="310"
+                             Margin="0 0 0 0"
+                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                             CornerRadius="10"
+                             BorderThickness="1"
+                             >
+                                    <TextBox x:Name="tbOldPassword"                                                
+                             BorderThickness="0"
+                             Margin="10"
+                             FontSize="16"
+                             Background="Transparent"
+                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                             Foreground="{DynamicResource FourthIconColor}"
+                             ></TextBox>
+                            </Border>
+                                <Label HorizontalAlignment="Left"
+                            Margin="20 20 0 0"                           
+                           Content="New password"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource FourthIconColor}"
+                           ></Label>
+                                <Border Height="50"
+                             Width="310"
+                             Margin="0 0 0 0"
+                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                             CornerRadius="10"
+                             BorderThickness="1"
+                             >
+                                    <TextBox x:Name="tbNewPassword"                                                
+                             BorderThickness="0"
+                             Margin="10"
+                             FontSize="16"
+                             Background="Transparent"
+                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                             Foreground="{DynamicResource FourthIconColor}"
+                             ></TextBox>
+                                </Border>
+                                <Label HorizontalAlignment="Left"
+                            Margin="20 20 0 0"                           
+                           Content="Phone number"
+                           FontWeight="SemiBold"
+                           Foreground="{DynamicResource FourthIconColor}"
+                           ></Label>
+                                <Border Height="50"
+                             Width="310"
+                             Margin="0 0 0 0"
+                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                             CornerRadius="10"
+                             BorderThickness="1"
+                             >
+                                    <TextBox x:Name="tbPhoneNumber"                                                
+                             BorderThickness="0"
+                             Margin="10"
+                             FontSize="16"
+                             Background="Transparent"
+                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                             Foreground="{DynamicResource FourthIconColor}"
+                             ></TextBox>
+                                </Border>
+                                <Button Style="{DynamicResource SaveBtn}"
+                                        Content="Save security changes"
+                                        Foreground="{DynamicResource FourthIconColor}"
+                                        x:Name="btnSaveSecuritySettingsChange"
+                                        Height="50"
+                                        Width="310"
+                                        Margin="0 25 0 15"
+                                        >
+                                </Button>
+                            </StackPanel>
+                        </Border>
+                    </Grid>
+                    
                 </StackPanel>
 
             </Border>

@@ -71,7 +71,7 @@
                 </StackPanel>
                 <Label Content="Polo T-Shirt" 
                        x:Name="lblClotheName"
-                       Foreground="{DynamicResource TextSecundaryColor}"
+                       Foreground="{DynamicResource FourthIconColor}"
                        FontWeight="SemiBold"
                        Margin="15 0">
                 </Label>
@@ -120,7 +120,7 @@
                 HorizontalAlignment="Right"
                 Margin="10"
                 x:Name="LikeBorder"
-                Background="{DynamicResource SecundaryBackgroundColor}"
+                Background="{DynamicResource PrimaryBackgroundColor}"
                 CornerRadius="20">
 
         </Border>
