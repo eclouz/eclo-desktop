@@ -13,8 +13,10 @@
             <Border Background="{DynamicResource PrimaryBackgroundColor}" 
             CornerRadius="5"
             >
+                <WrapPanel>
                 <StackPanel>
-                    <Border Margin="15 10" >
+                    <Border Margin="15 10" Width="250"
+                            HorizontalAlignment="Left">
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Account settings"
                                HorizontalContentAlignment="Center"
@@ -24,9 +26,8 @@
                     </Border>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="450"/>
-                            <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="180"/>
+                                <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
                         <StackPanel Grid.Column="0">
                             <Border Width="150" Height="150"
@@ -52,10 +53,12 @@
                                     >
                             </Button>
                         </StackPanel>
-                        <Border Grid.Column="1" Margin="50 0"
+                            
+                        <Border Grid.Column="1" 
                                 CornerRadius="5"
                                 Background="{DynamicResource MainBannerGreen}">
-                            <StackPanel >
+                            <WrapPanel >
+                                    <StackPanel Width="350">
                                 <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="Name"
@@ -78,7 +81,9 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                                 </Border>
-                                <Label HorizontalAlignment="Left"
+                                    </StackPanel>
+                                    <StackPanel Width="350">
+                                        <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="Second Name"
                            FontWeight="SemiBold"
@@ -100,8 +105,9 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                                 </Border>
-                                
-                                <Label HorizontalAlignment="Left"
+                                    </StackPanel>
+                                    <StackPanel Width="350">
+                                        <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="Passport serial number"
                            FontWeight="SemiBold"
@@ -123,7 +129,9 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                                 </Border>
-                                <Label HorizontalAlignment="Left"
+                                    </StackPanel>
+                                    <StackPanel Width="350">
+                                        <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="Date birth"
                            FontWeight="SemiBold"
@@ -147,7 +155,9 @@
                                     />
 
                                 </Border>
-                                <Label HorizontalAlignment="Left"
+                                    </StackPanel>
+                                    <StackPanel Width="350">
+                                        <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="Region"
                            FontWeight="SemiBold"
@@ -169,7 +179,9 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                                 </Border>
-                                <Label HorizontalAlignment="Left"
+                                    </StackPanel>
+                                    <StackPanel Width="350">
+                                        <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="District"
                            FontWeight="SemiBold"
@@ -191,7 +203,9 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                                 </Border>
-                                <Label HorizontalAlignment="Left"
+                                    </StackPanel>
+                                    <StackPanel Width="350">
+                                        <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="Adress"
                            FontWeight="SemiBold"
@@ -213,22 +227,27 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                                 </Border>
-
-                                <Button Style="{DynamicResource SaveBtn}"
+                                    </StackPanel>
+                                    <StackPanel Width="350">
+                                        <Button Style="{DynamicResource SaveBtn}"
+                                            
                                         Content="Save changes"
                                         Foreground="{DynamicResource FourthIconColor}"
                                         x:Name="btnSaveSettingsChange"
                                         Height="50"
                                         Width="310"
-                                        Margin="0 0 0 15"
+                                        Margin="0 45 0 15"
                                         >
-                                </Button>
+                                        </Button>
+                                    </StackPanel>
 
-
-                            </StackPanel>
+                                </WrapPanel>
                         </Border>
                     </Grid>
-                    <Border Margin="15 10" >
+                    <StackPanel>
+                    <Border Margin="15 10 0 10" Width="250"
+                            HorizontalAlignment="Left"
+                            >
                         <StackPanel Orientation="Horizontal">
                             <Label Content="Security settings"
                                HorizontalContentAlignment="Center"
@@ -238,15 +257,15 @@
                     </Border>
                     <Grid>
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="180"/>
-                            <ColumnDefinition Width="450"/>
-                            <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="180"/>
+                                    <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <Border Grid.Column="1" Margin="50 0"
+                        <Border Grid.Column="1" 
                                 CornerRadius="5"
                                 Background="{DynamicResource MainBannerGreen}">
-                            <StackPanel>
-                                <Label HorizontalAlignment="Left"
+                            <WrapPanel>
+                                        <StackPanel Width="350">
+                                            <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="Old password"
                            FontWeight="SemiBold"
@@ -268,7 +287,9 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                             </Border>
-                                <Label HorizontalAlignment="Left"
+                                        </StackPanel>
+                                        <StackPanel Width="350">
+                                            <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="New password"
                            FontWeight="SemiBold"
@@ -290,7 +311,9 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                                 </Border>
-                                <Label HorizontalAlignment="Left"
+                                        </StackPanel>
+                                        <StackPanel Width="350">
+                                            <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
                            Content="Phone number"
                            FontWeight="SemiBold"
@@ -312,21 +335,24 @@
                              Foreground="{DynamicResource FourthIconColor}"
                              ></TextBox>
                                 </Border>
-                                <Button Style="{DynamicResource SaveBtn}"
+                                        </StackPanel>
+                                        <StackPanel Width="350">
+                                            <Button Style="{DynamicResource SaveBtn}"
                                         Content="Save security changes"
                                         Foreground="{DynamicResource FourthIconColor}"
                                         x:Name="btnSaveSecuritySettingsChange"
                                         Height="50"
                                         Width="310"
-                                        Margin="0 25 0 15"
+                                        Margin="0 45 0 15"
                                         >
                                 </Button>
-                            </StackPanel>
+                                        </StackPanel>
+                                    </WrapPanel>
                         </Border>
                     </Grid>
-                    
-                </StackPanel>
-
+                        </StackPanel>
+                    </StackPanel>
+                </WrapPanel>
             </Border>
         </ScrollViewer>
     </Grid>
