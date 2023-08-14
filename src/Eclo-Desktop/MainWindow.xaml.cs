@@ -1,4 +1,5 @@
 ﻿using Eclo_Desktop.Pages;
+using Eclo_Desktop.Windows;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -29,6 +30,8 @@ namespace Eclo_Desktop
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            RegiterWindow regiterWindow = new RegiterWindow();
+            regiterWindow.ShowDialog();
             Dashboard dashboard = new Dashboard();
             PageNavigator.Content = dashboard;
         }
