@@ -122,7 +122,13 @@
                 x:Name="LikeBorder"
                 Background="{DynamicResource PrimaryBackgroundColor}"
                 CornerRadius="20">
-
+            <Border Margin="5"  
+                    MouseDown="brLike_MouseDown">
+                <Border.Background>
+                    <ImageBrush x:Name="brLike" ImageSource="/assets/staticimages/love.png"
+                                />
+                </Border.Background>
+            </Border>
         </Border>
     </Grid>
 </UserControl>
