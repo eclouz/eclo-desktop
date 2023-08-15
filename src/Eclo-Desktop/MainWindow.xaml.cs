@@ -29,6 +29,15 @@ namespace Eclo_Desktop
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //RegiterWindow regiterWindow = new RegiterWindow();
+            //regiterWindow.ShowDialog();
+
+            //LoginWindow loginWindow = new LoginWindow();    
+            //loginWindow.ShowDialog();
+
+            //PhoneConfirmWindow phoneConfirmWindow    = new PhoneConfirmWindow(); 
+            //phoneConfirmWindow.ShowDialog();
+
             Dashboard dashboard = new Dashboard();
             PageNavigator.Content = dashboard;
         }

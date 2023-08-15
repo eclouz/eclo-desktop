@@ -9,10 +9,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\StaticImages\add-to-cart.png" />
+    <None Remove="Assets\StaticImages\ClotheGadget.png" />
     <None Remove="Assets\StaticImages\IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg" />
+    <None Remove="Assets\StaticImages\like.png" />
+    <None Remove="Assets\StaticImages\love.png" />
     <None Remove="Assets\StaticImages\MensCategory.png" />
     <None Remove="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
     <None Remove="Assets\StaticImages\Remove-bg.ai_1691401602416.png" />
+    <None Remove="Assets\StaticImages\shopping-bag.png" />
     <None Remove="Assets\StaticImages\wepik-export-20230809182056drVe.png" />
     <None Remove="Assets\StaticImages\[removal.ai]_6a713f68-27ba-4cf7-a0a8-9f43b6e7c142-wepik-export-20230807092915h2d0.png" />
     <None Remove="Assets\StaticImages\[removal.ai]_9fcdf641-cb5c-485b-8842-1f3e4966d719-wepik-export-20230807093931wumk.png" />
@@ -24,10 +29,15 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\StaticImages\add-to-cart.png" />
+    <Resource Include="Assets\StaticImages\ClotheGadget.png" />
     <Resource Include="Assets\StaticImages\IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg" />
+    <Resource Include="Assets\StaticImages\like.png" />
+    <Resource Include="Assets\StaticImages\love.png" />
     <Resource Include="Assets\StaticImages\MensCategory.png" />
     <Resource Include="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
     <Resource Include="Assets\StaticImages\Remove-bg.ai_1691401602416.png" />
+    <Resource Include="Assets\StaticImages\shopping-bag.png" />
     <Resource Include="Assets\StaticImages\wepik-export-20230809182056drVe.png" />
     <Resource Include="Assets\StaticImages\[removal.ai]_6a713f68-27ba-4cf7-a0a8-9f43b6e7c142-wepik-export-20230807092915h2d0.png" />
     <Resource Include="Assets\StaticImages\[removal.ai]_9fcdf641-cb5c-485b-8842-1f3e4966d719-wepik-export-20230807093931wumk.png" />
