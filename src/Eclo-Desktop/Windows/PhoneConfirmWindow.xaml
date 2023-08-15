@@ -11,11 +11,12 @@
         ResizeMode="NoResize">
     <Grid>
         <Border CornerRadius="8"
+                Background="{DynamicResource MainBannerBlue}"
                 >
-            <Border.Background>
+            <!--<Border.Background>
                 <ImageBrush ImageSource="/assets/staticimages/ClotheGadget.png"
                                         Stretch="UniformToFill"/>
-            </Border.Background>
+            </Border.Background>-->
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
@@ -24,95 +25,11 @@
                 <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">
                     <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
 
-                    <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click_1"/>
+                    <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
                 </StackPanel>
                 <Grid Grid.Row="1">
-                    <Border Margin="100 0 100 40">
+                    <Border Margin="100 0 100 0">
                         <StackPanel>
-                            
-                            <StackPanel Orientation="Horizontal"
-                                        Margin="10">
-                             <Border Height="50"                                        
-                             Width="35"                                        
-                             Margin="50 0 5 0"
-                             BorderBrush="{DynamicResource FourthIconColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                                    <TextBox x:Name="tb1"                                                
-                             BorderThickness="0"
-                             Margin="10"                                                
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
-                                </Border>
-                                <Border Height="50"   
-                                        Margin="0 0 5 0"
-                             Width="35"                                                                     
-                             BorderBrush="{DynamicResource FourthIconColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                                    <TextBox x:Name="tb2"                                                
-                             BorderThickness="0"
-                             Margin="10"                                                
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
-                                </Border>
-                                <Border Height="50"   
-                                        Margin="0 0 5 0"
-                             Width="35"                                                                     
-                             BorderBrush="{DynamicResource FourthIconColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                                    <TextBox x:Name="tb3"                                                
-                             BorderThickness="0"
-                             Margin="10"                                                
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
-                                </Border>
-                                <Border Height="50"   
-                                        Margin="0 0 5 0"
-                             Width="35"                                                                     
-                             BorderBrush="{DynamicResource FourthIconColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                                    <TextBox x:Name="tb4"                                                
-                             BorderThickness="0"
-                             Margin="10"                                                
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
-                                </Border>
-                                <Border Height="50"   
-                                        Margin="0 0 5 0"
-                             Width="35"                                                                     
-                             BorderBrush="{DynamicResource FourthIconColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                                    <TextBox x:Name="tb5"                                                
-                             BorderThickness="0"
-                             Margin="10"                                                
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
-                                </Border>
-                            </StackPanel>
                             <Label Content="ECLO"
                                    HorizontalAlignment="Center"
                                    FontSize="32"
@@ -123,7 +40,7 @@
                                    >
                             </Label>
                             <Label HorizontalAlignment="Center"
-                                   Margin="0 0 0 15"
+                                   Margin="0 0 0 5"
                                    FontSize="10"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource FourthIconColor}"
@@ -131,8 +48,64 @@
                                    >
                                 Since 2023
                             </Label>
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="10">
+                                <Border Height="50"                                        
+                             Width="120"                                        
+                             Margin="80 0 5 0"
+                             BorderBrush="{DynamicResource FourthIconColor}"
+                             CornerRadius="10"
+                             BorderThickness="1"
+                             >
+                                    <TextBox x:Name="tb1"                                                
+                             BorderThickness="0"
+                             PreviewTextInput="tb1_PreviewTextInput"
+                             Margin="10 2"      
+                            MaxLength="5"                                             
+                             FontSize="32"
+                                             Padding="0"
+                             Background="Transparent"
+                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                             Foreground="{DynamicResource FourthIconColor}"
+                             ></TextBox>
+                                </Border>
+                            </StackPanel>
+                            <TextBlock Name="tbTime" 
+                                       Text="00:00"
+                                       Width="60"
+                                       Margin="15 0 0 0"
+                                       Foreground="{DynamicResource FourthIconColor}"
+                                       HorizontalAlignment="Center"
+                                       FontSize="16"
+                                       Padding="0"
+                                       FontWeight="SemiBold"/>
+                            <Button Width="150" Height="35" 
+                                    Margin="10"
+                                    Content="Confirm"
+                                    Background="{DynamicResource PrimaryBackgroundColor}"
+                                    Foreground="{DynamicResource FourthIconColor}"
+                                    Style="{DynamicResource SaveBtn}"
+                                    >
+                            </Button>
+                            <Label Hyperlink.Click="Label_Click"
+                                   Cursor="Hand"                                   
+                                   FontSize="10"
+                                   Content="Resend code ?"
+                                   HorizontalAlignment="Center"
+                                   Foreground="{DynamicResource FourthIconColor}"
+                                   FontWeight="SemiBold"
+                                   Padding="0"
+                                   Margin="5"
+                                   
+                                   x:Name="lblResendCode"
+                                   
+                                   >
+                            </Label>
+
                         </StackPanel>
-                    </Border>                    
+                        
+                    </Border>
+                    
                 </Grid>
             </Grid>
         </Border>

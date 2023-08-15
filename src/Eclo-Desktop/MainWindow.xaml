@@ -49,36 +49,43 @@
                                          Margin="0 100 0 0"
                                          Content="Dashboard"
                                          IsChecked="True"
+                                         Tag="{DynamicResource home}"
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbDashboard_Click"
                                          />
                                 <RadioButton x:Name="rbProducts"
+                                         Tag="{DynamicResource products}"
                                          Content="Products"
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbProducts_Click"
                                          />
                                 <RadioButton x:Name="rbProfile"
                                          Content="Profile"
+                                             Tag="{DynamicResource User}"
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbProfile_Click"
                                          />
                                 <RadioButton x:Name="rbUser"                                         
-                                         Content="Settings"                                         
+                                         Content="Settings"    
+                                         Tag="{DynamicResource SettingsIcon}"    
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbUser_Click"
                                          />
                                 <RadioButton x:Name="rbAboutUs"
+                                             Tag="{DynamicResource AboutUsIcon}"
                                          Content="About us"
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbAboutUs_Click"
                                          />
                                 <RadioButton x:Name="rbFaq"
                                          Content="FAQ"
+                                             Tag="{DynamicResource FaqIcon}"
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbFaq_Click"
                                          />
                                 <RadioButton x:Name="rbHelp"
                                          Content="Help"
+                                             Tag="{DynamicResource HelpIcon}"
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbHelp_Click"
                                          />
@@ -140,7 +147,8 @@
 
                         <Button Height="50" Width="50"
                             Margin="2 2 15 2" Style="{DynamicResource MainThreeStaticButoons}"                            
-                            >
+                            Tag="{DynamicResource car}"
+                                >
 
                         </Button>
 
