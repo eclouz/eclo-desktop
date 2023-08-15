@@ -15,10 +15,6 @@
         <ScrollViewer Margin="5">
 
             <StackPanel>
-                <!--<Border Margin="15"   
-                        >
-                    <MediaElement  Source="/Assets/Gifs/BeatifulColorAndClothe.gif"/>
-                </Border>-->
                 <Border Margin="15 10" >
                     <StackPanel Orientation="Horizontal">
                         <Label Content="Discover more."
@@ -239,10 +235,51 @@
 
                 </Border>
 
-                <WrapPanel x:Name="SecondWp">
+                <Border Background="{DynamicResource PrimaryBackgroundColor}"
+                            CornerRadius="25"
+                        Margin="15"
+                        Height="50"
+                                Width="600"  
+                            >
+                    <Border.Effect>
+                        <DropShadowEffect ShadowDepth="0.1" 
+                                              Opacity="0.5"/>
+                    </Border.Effect>
+                    <StackPanel Orientation="Horizontal"
+                                Height="50"
+                                Width="600"                                        
+                                >
+                        <RadioButton Style="{DynamicResource MenWomenKidsSorterSwitch}"
+                                    Content="All"
+                                     x:Name="rbAll"
+                                     IsChecked="True">
 
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MenWomenKidsSorterSwitch}"
+                                    Content="Mens"
+                                     x:Name="rbMens">
+
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MenWomenKidsSorterSwitch}"
+                                     Content="Womens"
+                                     x:Name="rbWomens">
+
+                        </RadioButton>
+                        <RadioButton Style="{DynamicResource MenWomenKidsSorterSwitch}"
+                                     Content="Kids"
+                                     x:Name="rbKids">
+
+                        </RadioButton>
+                    </StackPanel>
+                </Border>
+                <Border Margin="5"
+                        Background="{DynamicResource NewItemsBackgroundSomeGrey}"
+                        CornerRadius="15">
+                <WrapPanel x:Name="SecondWp"
+                           >
+                    
                 </WrapPanel>
-
+                </Border>
             </StackPanel>
         </ScrollViewer>
     </Border>
