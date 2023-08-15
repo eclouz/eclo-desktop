@@ -20,6 +20,7 @@
                                Foreground="{DynamicResource FourthIconColor}"></Label>
                         <Label Content="Eclo is a budget-friendly clothing store that has colorful and trendy pieces for men , women and kids."                    
                                FontWeight="SemiBold"
+                               FontSize="16"
                                Foreground="{DynamicResource TextTertiaryColor}"></Label>
                     </StackPanel>
                 </Border>

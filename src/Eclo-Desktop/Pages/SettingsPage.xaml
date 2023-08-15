@@ -39,8 +39,8 @@
                                 </Border.Background>
                             </Border>
                             <Label HorizontalAlignment="Left"
-                            Margin="50 5 0 0"
-                           
+                            Margin="45 5 0 0"
+                           FontSize="16"
                            Content="Profile image"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
@@ -61,7 +61,7 @@
                                     <StackPanel Width="350">
                                 <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Name"
+                           Content="Name" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
@@ -85,7 +85,7 @@
                                     <StackPanel Width="350">
                                         <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Second Name"
+                           Content="Second Name" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
@@ -108,7 +108,7 @@
                                     </StackPanel>
                                     <StackPanel Width="350">
                                         <Label HorizontalAlignment="Left"
-                            Margin="20 20 0 0"                           
+                            Margin="20 20 0 0"      FontSize="16"                      
                            Content="Passport serial number"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
@@ -133,7 +133,7 @@
                                     <StackPanel Width="350">
                                         <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Date birth"
+                           Content="Date birth" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
@@ -159,7 +159,7 @@
                                     <StackPanel Width="350">
                                         <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Region"
+                           Content="Region" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
@@ -183,7 +183,7 @@
                                     <StackPanel Width="350">
                                         <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="District"
+                           Content="District" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
@@ -206,7 +206,7 @@
                                     </StackPanel>
                                     <StackPanel Width="350">
                                         <Label HorizontalAlignment="Left"
-                            Margin="20 20 0 0"                           
+                            Margin="20 20 0 0"     FontSize="16"                       
                            Content="Adress"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
@@ -267,7 +267,7 @@
                                         <StackPanel Width="350">
                                             <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Old password"
+                           Content="Old password" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
@@ -291,7 +291,7 @@
                                         <StackPanel Width="350">
                                             <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="New password"
+                           Content="New password" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
@@ -315,11 +315,11 @@
                                         <StackPanel Width="350">
                                             <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Phone number"
+                           Content="Phone number" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
-                                <Border Height="50"
+                                <Border Height="50" 
                              Width="310"
                              Margin="0 0 0 0"
                              BorderBrush="{DynamicResource TextTertiaryColor}"

@@ -170,6 +170,7 @@
 
                                     <Label Grid.Row="0"
                                    Margin="10 15 10 0"
+                                           FontSize="16"
                                        Content="MuHammadAliyev "
                                        
                                        FontWeight="SemiBold"
@@ -177,6 +178,7 @@
                                        
                                        Padding="0"></Label>
                                     <Label Grid.Row="1"
+                                           
                                    Foreground="{DynamicResource FourthIconColor}"
                                        Content="Uzbekistan"
                                    Margin="10 0"
