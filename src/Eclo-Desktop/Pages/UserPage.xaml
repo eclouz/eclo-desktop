@@ -41,8 +41,8 @@
                                 </Border.Background>
                             </Border>
                             <Label HorizontalAlignment="Left"
-                            Margin="50 5 0 0"
-                           
+                            Margin="45 5 0 0"
+                           FontSize="16"
                            Content="Profile image"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
@@ -59,14 +59,14 @@
                                
                                 <StackPanel Width="250" HorizontalAlignment="Left">
                                 <Label 
-                            Margin="20 20 0 0"                           
+                            Margin="20 20 0 0"       FontSize="16"                    
                            Content="Name"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                 <Label HorizontalAlignment="Left"
                                    x:Name="lblName"
-                            Margin="20 0 0 0"                           
+                            Margin="20 0 0 0"        FontSize="16"                  
                            Content="MuhammadUlug'bek"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextTertiaryColor}"
@@ -74,14 +74,14 @@
                                 </StackPanel>
                                 <StackPanel Width="250" HorizontalAlignment="Left">
                                 <Label HorizontalAlignment="Left"
-                            Margin="20 20 0 0"                           
+                            Margin="20 20 0 0"    FontSize="16"                       
                            Content="Second Name"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                 <Label HorizontalAlignment="Left"
                                    x:Name="lblSecondName"
-                            Margin="20 0 0 0"                           
+                            Margin="20 0 0 0"         FontSize="16"                  
                            Content="MuhammadAliyev"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextTertiaryColor}"
@@ -90,13 +90,13 @@
                                 <StackPanel Width="250" HorizontalAlignment="Left">
                                     <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Phone number"
+                           Content="Phone number" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                     <Label HorizontalAlignment="Left"
                                    x:Name="lblPhoneNumber"
-                            Margin="20 0 0 0"                           
+                            Margin="20 0 0 0"         FontSize="16"                   
                            Content="+998902723595"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextTertiaryColor}"
@@ -104,7 +104,7 @@
                                 </StackPanel>
                                 <StackPanel Width="250" HorizontalAlignment="Left">
                                     <Label HorizontalAlignment="Left"
-                            Margin="20 20 0 0"                           
+                            Margin="20 20 0 0"  FontSize="16"                          
                            Content="Passport serial number"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
@@ -112,7 +112,7 @@
                                     <Label HorizontalAlignment="Left"
                                    x:Name="lblPassportSerialNUmber"
                             Margin="20 0 0 0"                           
-                           Content="AC1234567"
+                           Content="AC1234567" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextTertiaryColor}"
                            ></Label>
@@ -120,13 +120,13 @@
                                 <StackPanel Width="250" HorizontalAlignment="Left">
                                     <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Phone number"
+                           Content="Phone number" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                     <Label HorizontalAlignment="Left"
                                    x:Name="lblBirthDate"
-                            Margin="20 0 0 0"                           
+                            Margin="20 0 0 0"         FontSize="16"                   
                            Content="8/10/2000"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextTertiaryColor}"
@@ -135,14 +135,14 @@
                                 <StackPanel Width="250" HorizontalAlignment="Left">
                                     <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Region"
+                           Content="Region" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                     <Label HorizontalAlignment="Left"
                                    x:Name="lblRegion"
                             Margin="20 0 0 0"                           
-                           Content="Toshkent"
+                           Content="Toshkent" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextTertiaryColor}"
                            ></Label>
@@ -150,14 +150,14 @@
                                 <StackPanel Width="250" HorizontalAlignment="Left">
                                     <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="District"
+                           Content="District" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                     <Label HorizontalAlignment="Left"
                                    x:Name="lblDistrict"
                             Margin="20 0 0 0"                           
-                           Content="Chilonzor"
+                           Content="Chilonzor" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextTertiaryColor}"
                            ></Label>
@@ -165,13 +165,13 @@
                                 <StackPanel Width="250" HorizontalAlignment="Left">
                                     <Label HorizontalAlignment="Left"
                             Margin="20 20 0 0"                           
-                           Content="Adress"
+                           Content="Adress" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                     <Label HorizontalAlignment="Left"
                                    x:Name="lblAdress"
-                            Margin="20 0 0 0"                           
+                            Margin="20 0 0 0"     FontSize="16"                       
                            Content="Do'stlik district NO 1"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextTertiaryColor}"
@@ -179,14 +179,14 @@
                                 </StackPanel>
                                 <StackPanel Width="250" HorizontalAlignment="Left">
                                     <Label HorizontalAlignment="Left"
-                            Margin="20 20 0 0"                           
+                            Margin="20 20 0 0"     FontSize="16"                      
                            Content="Registred at"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                     <Label HorizontalAlignment="Left"
                                    x:Name="lblRegisterDate"
-                            Margin="20 0 0 30"                           
+                            Margin="20 0 0 30" FontSize="16"                          
                            Content="8/10/2023 pm 7:33"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource TextTertiaryColor}"

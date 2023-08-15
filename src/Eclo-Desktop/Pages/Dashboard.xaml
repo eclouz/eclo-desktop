@@ -53,6 +53,7 @@
                                            HorizontalAlignment="Center"
                                            FontFamily="a"
                                            
+                                           
                                            Margin="0 25 40 0"></Label>
                                     <TextBlock Text="Shop the latest from top brands"
                                            TextWrapping="Wrap"

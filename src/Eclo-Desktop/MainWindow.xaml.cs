@@ -31,6 +31,7 @@ namespace Eclo_Desktop
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             //RegiterWindow regiterWindow = new RegiterWindow();
+            //this.Hide();
             //regiterWindow.ShowDialog();
 
             //LoginWindow loginWindow = new LoginWindow();    
@@ -99,6 +100,12 @@ namespace Eclo_Desktop
         private void btnMinimize_Click(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void rbSaveLists_Click(object sender, RoutedEventArgs e)
+        {
+            SaveListPage saveListPage   = new SaveListPage();
+            PageNavigator.Content = saveListPage;
         }
     }
 }
