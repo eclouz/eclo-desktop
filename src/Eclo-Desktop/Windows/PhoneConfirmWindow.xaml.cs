@@ -71,15 +71,15 @@ namespace Eclo_Desktop.Windows
         {
        
         }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+     
+        private void btnMinimize_Click_1(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
+        }
+
+        private void btnClose_Click_1(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
