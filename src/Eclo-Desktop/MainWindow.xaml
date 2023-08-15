@@ -69,7 +69,7 @@
                                          Content="Save list"
                                              Tag="{DynamicResource SaveListIcon}"
                                          Style="{DynamicResource MenuButton}"
-                                         Click="rbProfile_Click"
+                                         Click="rbSaveLists_Click"
                                          />
                                 <RadioButton x:Name="rbUser"                                         
                                          Content="Settings"    

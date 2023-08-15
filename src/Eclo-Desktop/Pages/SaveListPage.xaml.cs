@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eclo_Desktop.Components.Dashboards;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,22 @@ namespace Eclo_Desktop.Pages
         public SaveListPage()
         {
             InitializeComponent();
+        }
+
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+            NewItemsUserControl newItemsUserControl = new NewItemsUserControl();
+            MainWP.Children .Add(newItemsUserControl);
+            NewItemsUserControl newItemsUserControl2 = new NewItemsUserControl();
+            MainWP.Children.Add(newItemsUserControl2);
+            NewItemsUserControl newItemsUserControl3 = new NewItemsUserControl();
+            MainWP.Children.Add(newItemsUserControl3);
+            NewItemsUserControl newItemsUserControl4 = new NewItemsUserControl();
+            MainWP.Children.Add(newItemsUserControl4);
+            NewItemsUserControl newItemsUserControl5 = new NewItemsUserControl();
+            MainWP.Children.Add(newItemsUserControl5);
+            NewItemsUserControl newItemsUserControl6 = new NewItemsUserControl();
+            MainWP.Children.Add(newItemsUserControl6);
         }
     }
 }

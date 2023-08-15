@@ -6,7 +6,8 @@
       xmlns:local="clr-namespace:Eclo_Desktop.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
-      Title="SaveListPage">
+      Title="SaveListPage"
+      Loaded="Page_Loaded">
 
     <Grid>
         <ScrollViewer >
@@ -14,9 +15,22 @@
             Margin="20 0 20 0"
             Background="{DynamicResource PrimaryBackgroundColor}">
 
-                
+                <StackPanel>
+                    <Border Margin="15 10" >
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="List of saved products"
+                               HorizontalContentAlignment="Center"
+                               FontSize="25" FontWeight="SemiBold"
+                               Foreground="{DynamicResource FourthIconColor}"></Label>
+                        </StackPanel>
+                    </Border>
+                    <WrapPanel x:Name="MainWP">
+                        
+                    </WrapPanel>
+                </StackPanel>
 
             </Border>
+
         </ScrollViewer>
     </Grid>
 </Page>

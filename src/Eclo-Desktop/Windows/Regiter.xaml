@@ -28,10 +28,11 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                     <Border Grid.Column="1"
-                            Margin="40 60 210 90">
+                            Margin="40 60 210 70">
                         <StackPanel>
                             <Label HorizontalAlignment="Left"
-                            Margin="30 20 0 0"                           
+                            Margin="30 20 0 0"    
+                                   FontSize="16"
                            Content="Name"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
@@ -55,7 +56,7 @@
                             <Label HorizontalAlignment="Left"
                             Margin="30 20 0 0"                           
                            Content="Second Name"
-                           FontWeight="SemiBold"
+                           FontWeight="SemiBold" FontSize="16"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                             <Border Height="50"
@@ -77,7 +78,7 @@
                             <Label HorizontalAlignment="Left"
                             Margin="30 20 0 0"                           
                            Content="Password"
-                           FontWeight="SemiBold"
+                           FontWeight="SemiBold" FontSize="16"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                             <Border Height="50"
@@ -98,11 +99,11 @@
                             </Border>
                             <Label HorizontalAlignment="Left"
                             Margin="30 20 0 0"                           
-                           Content="Phone"
+                           Content="Phone" FontSize="16"
                            FontWeight="SemiBold"
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
-                            <Border Height="50"
+                            <Border Height="50" 
                              Width="300"
                              Margin="0 0 0 0"
                              BorderBrush="{DynamicResource TextTertiaryColor}"
