@@ -1,4 +1,5 @@
 ﻿using Eclo_Desktop.Pages;
+using Eclo_Desktop.Themes;
 using Eclo_Desktop.Windows;
 using System;
 using System.Collections.Generic;
@@ -106,6 +107,19 @@ namespace Eclo_Desktop
         {
             SaveListPage saveListPage   = new SaveListPage();
             PageNavigator.Content = saveListPage;
+        }
+
+        private void chkbox_Click(object sender, RoutedEventArgs e)
+        {
+            //if (chkbox.IsChecked == true)
+            //{
+            //    AppTheme.ChangeTheme(new Uri("/Themes/DarkTheme.xaml", UriKind.Relative));
+
+            //}
+            //else
+            //{
+            //    AppTheme.ChangeTheme(new Uri("/Themes/LightTheme.xaml", UriKind.Relative));
+            //}
         }
     }
 }

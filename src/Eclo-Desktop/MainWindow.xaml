@@ -30,7 +30,7 @@
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="*"/>
-                                <RowDefinition Height="25"/>
+                                
                                 <RowDefinition Height="35"/>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0">
@@ -96,15 +96,11 @@
                                          Click="rbHelp_Click"
                                          />
                             </StackPanel>
-                            <!--Here Dark Ligh Theme Switcher-->
-                            <Button Grid.Row="1"
-                                Visibility="Hidden"></Button>
-                            <!--<Border Grid.Row="2" Width="350" CornerRadius="0 0 0 8">
-                            <Border.Background>
-                                <ImageBrush ImageSource="/Assets/StaticImages/MenuBarPicture2.png"
-                                            Stretch="UniformToFill"/>
-                            </Border.Background>
-                        </Border>-->
+                        
+                            <!--<Grid Margin="190 610 0 0">
+                                <CheckBox x:Name="chkbox" Style="{DynamicResource SwitchButton}" Click="chkbox_Click"/>
+                            </Grid>-->
+                        
                         </Grid>
                     </Grid>
 
