@@ -9,7 +9,8 @@
     <SolidColorBrush x:Key="ThirdBackgroundColor" Color="#e3ffe6"/>
     <SolidColorBrush x:Key="ButtonHoverGreyColor" Color="#f3f4f6"/>
     <SolidColorBrush x:Key="NetItemsBackgroundColor" Color="#cbd5e1"/>
-
+    <SolidColorBrush x:Key="RegisterBackgroudnColor" Color="#e1e4e3"/>
+    <SolidColorBrush x:Key="RegisterDarkGreenBackgroudnColor" Color="#69726d"/>
     <!-- Primary Colors -->
     <SolidColorBrush x:Key="PrimaryBlueColor" Color="#0eA5e9"/>
 

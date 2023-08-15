@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -20,6 +21,7 @@ namespace Eclo_Desktop.Components.Dashboards
     /// </summary>
     public partial class NewItemsUserControl : UserControl
     {
+        public bool Liked { get; set; } = false;
         public NewItemsUserControl()
         {
             InitializeComponent();
@@ -32,6 +34,21 @@ namespace Eclo_Desktop.Components.Dashboards
 
         private void btnQuickView_Click(object sender, RoutedEventArgs e)
         {
+
+        }
+
+        private void brLike_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (!Liked)
+            {             
+                brLike.ImageSource = new BitmapImage(new  System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));                        
+                Liked = true;
+            }
+            else
+            {
+                brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));                
+                Liked = false;
+            }
 
         }
     }
