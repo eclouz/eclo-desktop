@@ -69,7 +69,8 @@ namespace Eclo_Desktop
 
         private void rbAboutUs_Click(object sender, RoutedEventArgs e)
         {
-
+            AboutUsPage aboutUsPage = new AboutUsPage();
+            PageNavigator.Content = aboutUsPage;
         }
 
         private void rbFaq_Click(object sender, RoutedEventArgs e)
