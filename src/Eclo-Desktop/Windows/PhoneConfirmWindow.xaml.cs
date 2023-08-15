@@ -20,7 +20,7 @@ namespace Eclo_Desktop.Windows
     /// Interaction logic for PhoneConfirmPage.xaml
     /// </summary>
     public partial class PhoneConfirmWindow : Window
-    {
+    {       
         DispatcherTimer _timer;
         TimeSpan _time;
         public  PhoneConfirmWindow()

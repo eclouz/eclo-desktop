@@ -50,7 +50,7 @@
                             </Label>
                             <StackPanel Orientation="Horizontal"
                                         Margin="10">
-                             <Border Height="50"                                        
+                                <Border Height="50"                                        
                              Width="120"                                        
                              Margin="80 0 5 0"
                              BorderBrush="{DynamicResource FourthIconColor}"
@@ -74,48 +74,37 @@
                                        Text="00:00"
                                        Width="60"
                                        Margin="15 0 0 0"
-                             Foreground="{DynamicResource FourthIconColor}"
+                                       Foreground="{DynamicResource FourthIconColor}"
                                        HorizontalAlignment="Center"
-                             FontSize="16"
+                                       FontSize="16"
                                        Padding="0"
                                        FontWeight="SemiBold"/>
                             <Button Width="150" Height="35" 
-                             Margin="10"                                                
+                                    Margin="10"
                                     Content="Confirm"
                                     Background="{DynamicResource PrimaryBackgroundColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
+                                    Foreground="{DynamicResource FourthIconColor}"
                                     Style="{DynamicResource SaveBtn}"
-                             >
+                                    >
                             </Button>
                             <Label Hyperlink.Click="Label_Click"
                                    Cursor="Hand"                                   
                                    FontSize="10"
                                    Content="Resend code ?"
                                    HorizontalAlignment="Center"
-                                   FontSize="32"
-                                   FontWeight="SemiBold"
-                                   Margin="0 0 0 0"
-                                   Padding="0"
                                    Foreground="{DynamicResource FourthIconColor}"
-                                   >
-                            </Label>
-                            <Label HorizontalAlignment="Center"
-                                   Margin="0 0 0 15"
-                                   FontSize="10"
                                    FontWeight="SemiBold"
-                                   Foreground="{DynamicResource FourthIconColor}"
                                    Padding="0"
                                    Margin="5"
                                    
                                    x:Name="lblResendCode"
                                    
                                    >
-                                Since 2023
                             </Label>
 
                         </StackPanel>
                         
-                    </Border>                    
+                    </Border>
                     
                 </Grid>
             </Grid>
