@@ -65,6 +65,12 @@
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbProfile_Click"
                                          />
+                                <RadioButton x:Name="rbSaveLists"
+                                         Content="Save list"
+                                             Tag="{DynamicResource SaveListIcon}"
+                                         Style="{DynamicResource MenuButton}"
+                                         Click="rbProfile_Click"
+                                         />
                                 <RadioButton x:Name="rbUser"                                         
                                          Content="Settings"    
                                          Tag="{DynamicResource SettingsIcon}"    
