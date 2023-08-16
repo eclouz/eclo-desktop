@@ -30,7 +30,8 @@ namespace Eclo_Desktop.Pages
         {
             NewItemsUserControl newItemsUserControl = new NewItemsUserControl();
             SecondWp.Children.Add(newItemsUserControl);
-
+            ProductDarkClothesUserControl product = new ProductDarkClothesUserControl();
+            SecondWp.Children.Add(product);
 
 
         }

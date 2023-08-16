@@ -29,16 +29,22 @@ namespace Eclo_Desktop.Pages
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
             NewItemsUserControl newItemsUserControl = new NewItemsUserControl();
-            MainWP.Children .Add(newItemsUserControl);
+            newItemsUserControl.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
+            MainWP.Children.Add(newItemsUserControl);
             NewItemsUserControl newItemsUserControl2 = new NewItemsUserControl();
+            newItemsUserControl2.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
             MainWP.Children.Add(newItemsUserControl2);
             NewItemsUserControl newItemsUserControl3 = new NewItemsUserControl();
+            newItemsUserControl3.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
             MainWP.Children.Add(newItemsUserControl3);
             NewItemsUserControl newItemsUserControl4 = new NewItemsUserControl();
+            newItemsUserControl4.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
             MainWP.Children.Add(newItemsUserControl4);
             NewItemsUserControl newItemsUserControl5 = new NewItemsUserControl();
+            newItemsUserControl5.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
             MainWP.Children.Add(newItemsUserControl5);
             NewItemsUserControl newItemsUserControl6 = new NewItemsUserControl();
+            newItemsUserControl6.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
             MainWP.Children.Add(newItemsUserControl6);
         }
     }

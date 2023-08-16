@@ -27,7 +27,7 @@ namespace Eclo_Desktop.Windows
         {
             InitializeComponent();
 
-             _time = TimeSpan.FromSeconds(15);
+             _time = TimeSpan.FromSeconds(8);
 
 
 

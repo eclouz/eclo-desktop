@@ -12,7 +12,7 @@
                 <ResourceDictionary Source="Assets/Icons.xaml"/>
 
                 <ResourceDictionary Source="Styles/MainStyle.xaml"/>
-
+                <ResourceDictionary Source="Styles/CheckBoxStyle.xaml"/>
                 <!--<ResourceDictionary Source="Assets/Fonts/Poppins-Black.ttf"/>-->
 
             </ResourceDictionary.MergedDictionaries>

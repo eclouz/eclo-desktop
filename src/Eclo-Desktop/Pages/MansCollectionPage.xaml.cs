@@ -16,19 +16,13 @@ using System.Windows.Shapes;
 namespace Eclo_Desktop.Pages
 {
     /// <summary>
-    /// Interaction logic for ProductsPage.xaml
+    /// Interaction logic for MansCollectionPage.xaml
     /// </summary>
-    public partial class ProductsPage : Page
+    public partial class MansCollectionPage : Page
     {
-        public ProductsPage()
+        public MansCollectionPage()
         {
             InitializeComponent();
-        }
-
-        private void MensCategoryBtn_Click(object sender, RoutedEventArgs e)
-        {
-            MansCollectionPage mansCollectionPage = new MansCollectionPage();
-            
         }
     }
 }

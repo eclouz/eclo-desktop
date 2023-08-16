@@ -11,6 +11,7 @@
     <SolidColorBrush x:Key="NetItemsBackgroundColor" Color="#cbd5e1"/>
     <SolidColorBrush x:Key="RegisterBackgroudnColor" Color="#e1e4e3"/>
     <SolidColorBrush x:Key="RegisterDarkGreenBackgroudnColor" Color="#69726d"/>
+    <SolidColorBrush x:Key="NewItemsBackgroundSomeGrey" Color="#f7f7f9"/>
     <!-- Primary Colors -->
     <SolidColorBrush x:Key="PrimaryBlueColor" Color="#0eA5e9"/>
 
