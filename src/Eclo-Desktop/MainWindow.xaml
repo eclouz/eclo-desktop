@@ -147,11 +147,9 @@
                             Margin="2" Style="{DynamicResource MainThreeStaticButoons}"
                             Tag="{DynamicResource UserIcon}"></Button>-->
 
-                        <Button Height="50" Width="50"
-                            Margin="2 2 15 2" Style="{DynamicResource MainThreeStaticButoons}"                            
-                            Tag="{DynamicResource car}"
+                        <Button Height="50" Width="50"                                
+                            Margin="2 2 15 2" Style="{DynamicResource MainThreeStaticButoons}"                                                        
                                 >
-
                         </Button>
 
 

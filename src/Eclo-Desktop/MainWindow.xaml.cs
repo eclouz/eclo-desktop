@@ -31,18 +31,20 @@ namespace Eclo_Desktop
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
             //RegiterWindow regiterWindow = new RegiterWindow();
             //this.Hide();
             //regiterWindow.ShowDialog();
 
-            //LoginWindow loginWindow = new LoginWindow();    
+            //LoginWindow loginWindow = new LoginWindow();
             //loginWindow.ShowDialog();
 
-            //PhoneConfirmWindow phoneConfirmWindow    = new PhoneConfirmWindow(); 
-            //phoneConfirmWindow.ShowDialog();
+            //PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
+            //phoneConfirmWindow.ShowDialog();            
 
             Dashboard dashboard = new Dashboard();
             PageNavigator.Content = dashboard;
+            //this.ShowDialog();
         }
 
         private void rbDashboard_Click(object sender, RoutedEventArgs e)

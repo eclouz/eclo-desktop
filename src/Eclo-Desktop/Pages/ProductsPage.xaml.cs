@@ -24,5 +24,11 @@ namespace Eclo_Desktop.Pages
         {
             InitializeComponent();
         }
+
+        private void MensCategoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            MansCollectionPage mansCollectionPage = new MansCollectionPage();
+            
+        }
     }
 }

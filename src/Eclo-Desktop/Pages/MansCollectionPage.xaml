@@ -15,20 +15,30 @@
             <StackPanel>
                 <Border Margin="15 10" >
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="Mens collection"
+                        <Label Content="Men's collection"
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
                                Foreground="{DynamicResource SecundaryBackgroundColor}"></Label>
                     </StackPanel>
 
                 </Border>
+                
+                <Border Height="1"
+                        Width="750"
+                        Background="{DynamicResource NewItemsBackgroundSomeGrey}">
+                </Border>
+                
                 <WrapPanel x:Name="MainWp">
                     <Grid>
                         <StackPanel Orientation="Horizontal"
                                     >
-                            <Button>
+                            <CheckBox Style="{DynamicResource SwitchButton}"
+                                      Content="Categories"  
+                                      Tag="{DynamicResource CategoriesIcon}"
+                                      
+                                      >
                                 
-                            </Button>                            
+                            </CheckBox>                            
                         </StackPanel>
                     </Grid>
                 </WrapPanel>

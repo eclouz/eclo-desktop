@@ -28,21 +28,22 @@
                 </Border>
                 <WrapPanel x:Name="MainWP">
                     <Button x:Name="MensCategoryBtn"
-                            Content="Mens"                            
+                            Content="Men's"   
+                            Click="MensCategoryBtn_Click"
                         Style="{DynamicResource CategoryMensbtn}"     
                         Tag="{DynamicResource RightArrowIcon}"                            
                             >
 
                     </Button>
                     <Button x:Name="WomensCategoryBtn"
-                            Content="Womens"
+                            Content="Women's"
                         Style="{DynamicResource CategoryWomens}"
                             Tag="{DynamicResource RightArrowIcon}"
                             >
 
                     </Button>
                     <Button x:Name="KidsCategoryBtn"
-                            Content="Kids"
+                            Content="Kid's"
                         Style="{DynamicResource CategoryKidsbtn}"
                             Tag="{DynamicResource RightArrowIcon}">
 
