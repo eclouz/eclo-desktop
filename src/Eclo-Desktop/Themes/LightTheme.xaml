@@ -14,6 +14,8 @@
     <SolidColorBrush x:Key="NewItemsBackgroundSomeGrey" Color="#f7f7f9"/>
     <!-- Primary Colors -->
     <SolidColorBrush x:Key="PrimaryBlueColor" Color="#0eA5e9"/>
+    <SolidColorBrush x:Key="SecondaryBlueColor" Color="#f0f9ff"/>
+    
 
     <!-- Typograhy Colors -->
     <SolidColorBrush x:Key="PrimaryTextColor" Color="#FFFFFF"/>

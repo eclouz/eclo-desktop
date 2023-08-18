@@ -26,10 +26,7 @@ namespace Eclo_Desktop.Windows
         public  PhoneConfirmWindow()
         {
             InitializeComponent();
-
              _time = TimeSpan.FromSeconds(8);
-
-
 
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {

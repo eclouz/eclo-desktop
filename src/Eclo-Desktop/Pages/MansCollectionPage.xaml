@@ -7,9 +7,9 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MansCollectionPage">
-
+    <Grid>
     <Border CornerRadius="5" Background="{DynamicResource PrimaryBackgroundColor}">
-
+    
         <ScrollViewer Margin="5">
 
             <StackPanel>
@@ -24,25 +24,125 @@
                 </Border>
                 
                 <Border Height="1"
-                        Width="750"
-                        Background="{DynamicResource NewItemsBackgroundSomeGrey}">
+                        Width="1100"
+                        Background="LightGray">
                 </Border>
-                
-                <WrapPanel x:Name="MainWp">
-                    <Grid>
-                        <StackPanel Orientation="Horizontal"
-                                    >
-                            <CheckBox Style="{DynamicResource SwitchButton}"
-                                      Content="Categories"  
+
+                    <StackPanel Orientation="Horizontal">
+                    <Grid HorizontalAlignment="Left" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                            <Button Style="{DynamicResource SwitchButton}"
+                                      Content="Categories"
+                                      Click="RadioButton_Click"
                                       Tag="{DynamicResource CategoriesIcon}"
-                                      
+                                      VerticalAlignment="Top"
+                                         Margin="15 0 100 0"
+                                          Grid.Row="0"
                                       >
                                 
-                            </CheckBox>                            
-                        </StackPanel>
+                            </Button>
+
+
+                        <Border Width="250" Margin="0 5"
+                                Height="300"
+                                x:Name="brCategories"
+                                CornerRadius="15"
+                                Grid.Row="1"
+                                
+                                Background="{DynamicResource PrimaryBackgroundColor}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0.1" 
+                                              Opacity="0.3"/>
+                            </Border.Effect>
+                            <WrapPanel x:Name="WpCategory"
+                                       Margin="10">
+                                <Button Height="35" Width="35">
+                                    
+                                </Button>
+                            </WrapPanel>
+                        </Border>
+                        
                     </Grid>
-                </WrapPanel>
-            </StackPanel>
+                    <Grid HorizontalAlignment="Left" >
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="45"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Button Style="{DynamicResource SwitchButton}"
+                                      Content="Cost"
+                                      Click="RadioButton_Click"
+                                      Tag="{DynamicResource CategoriesIcon}"                                      
+                                         Margin="15 0 100 0"
+                                          Grid.Row="0"
+                                      >
+
+                        </Button>
+
+
+                        <Border Width="250" Margin="0 5"
+                                Height="300"
+                                x:Name="brCost"
+                                CornerRadius="15"
+                                Grid.Row="1"
+                                
+                                Background="{DynamicResource PrimaryBackgroundColor}">
+                            <Border.Effect>
+                                <DropShadowEffect ShadowDepth="0.1" 
+                                              Opacity="0.3"/>
+                            </Border.Effect>
+                            <WrapPanel x:Name="WpCost"
+                                       Margin="10">
+                                <Button Height="35" Width="35">
+
+                                </Button>
+                            </WrapPanel>
+                        </Border>
+
+                    </Grid>
+
+                    </StackPanel>
+
+                    <!--<Border Margin="15"
+                            Width="450"
+                            Height="35"
+                            CornerRadius="15"
+                            
+                            HorizontalAlignment="Left">
+                       
+                        <Menu Background="Transparent">
+                            <MenuItem Header="Categories"
+                                      
+                                      Height="35"
+                                      Width="135"                                      
+                                      Style="{DynamicResource Main_MenuItem}">
+                                <MenuItem Header="All categories"
+                                          Height="35"
+                                          Width="175"
+                                          Style="{DynamicResource Services_MenuItem_With_Dropdown}">
+                                </MenuItem>
+                                <MenuItem Header="T-Shirts"
+                                          Height="35"
+                                          Width="175"
+                                          Style="{DynamicResource Services_MenuItem_With_Dropdown}">
+
+                                </MenuItem>
+                                
+                            </MenuItem>
+                            
+                        </Menu>
+                        
+                        
+                    </Border>-->
+                    
+                
+                    </StackPanel>
+            
         </ScrollViewer>
     </Border>
+      
+    
+    </Grid>
 </Page>

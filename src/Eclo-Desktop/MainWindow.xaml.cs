@@ -51,6 +51,7 @@ namespace Eclo_Desktop
         {
             Dashboard dashboard = new Dashboard();
             PageNavigator.Content = dashboard;
+            //PageNavigator.Navigate(new Uri("Men.xaml", UriKind.Relative));
         }
 
         private void rbProducts_Click(object sender, RoutedEventArgs e)

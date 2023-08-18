@@ -45,6 +45,7 @@
                              BorderThickness="1"
                              >
                                 <TextBox x:Name="tbName"                                                
+                                         MaxLength="32"
                              BorderThickness="0"
                              Margin="10"
                              FontSize="16"
@@ -68,7 +69,7 @@
                              >
                                 <TextBox x:Name="tbSecondName"                                                
                              BorderThickness="0"
-                             Margin="10"
+                             Margin="10" MaxLength="32"
                              FontSize="16"
                              Background="Transparent"
                              BorderBrush="{DynamicResource TextTertiaryColor}"
@@ -90,7 +91,7 @@
                              >
                                 <TextBox x:Name="tbPassword"                                                
                              BorderThickness="0"
-                             Margin="10"
+                             Margin="10"  MaxLength="32"
                              FontSize="16"
                              Background="Transparent"
                              BorderBrush="{DynamicResource TextTertiaryColor}"
@@ -113,7 +114,7 @@
                                 <TextBox x:Name="tbPhone"                                                
                              BorderThickness="0"
                              Margin="10"
-                             FontSize="16"
+                             FontSize="16"  MaxLength="13"
                              Background="Transparent"
                              BorderBrush="{DynamicResource TextTertiaryColor}"
                              Foreground="{DynamicResource FourthIconColor}"
@@ -131,6 +132,7 @@
                                         Background="{DynamicResource btnClose}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}"
                                         x:Name="btnCancel"
+                                        Click="btnCancel_Click"
                                         >
                                 </Button>
                                 <Button Style="{DynamicResource SaveBtn}"
@@ -139,6 +141,7 @@
                                         Height="50"
                                         Width="145"                                                             
                                         x:Name="btnSave"
+                                        Click="btnSave_Click"
                                         Background="{DynamicResource FourthIconColor}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}"
                                         >
@@ -194,6 +197,7 @@
                                         Width="200"                                                             
                                         HorizontalAlignment="Center"
                                         x:Name="btnToLogin"
+                                        Click="btnToLogin_Click"
                                         Background="{DynamicResource FourthIconColor}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}"
                                         >

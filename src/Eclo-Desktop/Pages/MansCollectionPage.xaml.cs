@@ -20,9 +20,26 @@ namespace Eclo_Desktop.Pages
     /// </summary>
     public partial class MansCollectionPage : Page
     {
+        public bool clicked { get; set; } = false;
         public MansCollectionPage()
         {
             InitializeComponent();
         }
+
+        private void RadioButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (!clicked)
+            {
+                brCategories.Visibility = Visibility.Visible;
+                clicked = true;
+            }
+            else
+            {
+                brCategories.Visibility = Visibility.Collapsed;
+                clicked = false;
+            }
+        }
+        
+
     }
 }

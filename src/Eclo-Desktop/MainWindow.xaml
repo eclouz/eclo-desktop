@@ -203,7 +203,7 @@
                        Name="PageNavigator"
                        Margin="20 15"
                        NavigationUIVisibility="Hidden">
-
+                        
                     </Frame>
 
                 </Grid>
