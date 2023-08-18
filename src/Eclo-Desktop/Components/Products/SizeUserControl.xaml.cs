@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -14,21 +13,16 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Eclo_Desktop.Pages
+namespace Eclo_Desktop.Components.Products
 {
     /// <summary>
-    /// Interaction logic for ProductsPage.xaml
+    /// Interaction logic for SizeUserControl.xaml
     /// </summary>
-    public partial class ProductsPage : Page
+    public partial class SizeUserControl : UserControl
     {
-        public ProductsPage()
+        public SizeUserControl()
         {
             InitializeComponent();
-        }
-
-        private void MensCategoryBtn_Click(object sender, RoutedEventArgs e)
-        {
-            NavigationService?.Navigate(new MansCollectionPage());
         }
     }
 }

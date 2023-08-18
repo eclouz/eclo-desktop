@@ -33,5 +33,21 @@ namespace Eclo_Desktop.Windows
         {
             WindowState = WindowState.Minimized;
         }
+
+        private void btnCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnToLogin_Click(object sender, RoutedEventArgs e)
+        {
+            RegiterWindow regiterWindow = new RegiterWindow();
+            regiterWindow.ShowDialog();
+        }
+
+        private void btnSave_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

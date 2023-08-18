@@ -6,9 +6,12 @@
       xmlns:local="clr-namespace:Eclo_Desktop.Pages"
       mc:Ignorable="d" 
     d:DesignHeight="800" d:DesignWidth="800"
-      Title="Products">
+      Title="Products"
+      >
     <!--default 450 height-->
+    <Grid>
     <ScrollViewer >
+        
         <Border CornerRadius="5"
             Margin="20 0 20 0"
             Background="{DynamicResource PrimaryBackgroundColor}">
@@ -54,4 +57,6 @@
 
         </Border>
     </ScrollViewer>
+        <ContentControl x:Name="contentControl" />
+    </Grid>
 </Page>

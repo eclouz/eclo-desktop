@@ -89,6 +89,7 @@
                                         Background="{DynamicResource btnClose}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}"
                                         x:Name="btnCancel"
+                                        Click="btnCancel_Click"
                                         >
                                 </Button>
                                 <Button Style="{DynamicResource SaveBtn}"
@@ -97,6 +98,7 @@
                                         Height="50"
                                         Width="145"                                                             
                                         x:Name="btnSave"
+                                        Click="btnSave_Click"
                                         Background="{DynamicResource FourthIconColor}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}"
                                         >
@@ -152,6 +154,7 @@
                                         Width="200"                                                             
                                         HorizontalAlignment="Center"
                                         x:Name="btnToLogin"
+                                        Click="btnToLogin_Click"
                                         Background="{DynamicResource FourthIconColor}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}"
                                         >
