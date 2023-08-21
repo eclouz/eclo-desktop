@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\StaticImages\add %282%29.png" />
     <None Remove="Assets\StaticImages\add-to-cart.png" />
     <None Remove="Assets\StaticImages\ClotheGadget.png" />
     <None Remove="Assets\StaticImages\down.png" />
@@ -19,6 +20,7 @@
     <None Remove="Assets\StaticImages\love.png" />
     <None Remove="Assets\StaticImages\MensCategory.png" />
     <None Remove="Assets\StaticImages\MenuBarPicture.png" />
+    <None Remove="Assets\StaticImages\minus.png" />
     <None Remove="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
     <None Remove="Assets\StaticImages\Remove-bg.ai_1691401602416.png" />
     <None Remove="Assets\StaticImages\right.png" />
@@ -39,6 +41,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Dtos\Dtos.csproj" />
+    <ProjectReference Include="..\Integrated\Integrated.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\StaticImages\add (2).png" />
     <Resource Include="Assets\StaticImages\add-to-cart.png" />
     <Resource Include="Assets\StaticImages\ClotheGadget.png" />
     <Resource Include="Assets\StaticImages\down.png" />
@@ -49,6 +57,7 @@
     <Resource Include="Assets\StaticImages\love.png" />
     <Resource Include="Assets\StaticImages\MensCategory.png" />
     <Resource Include="Assets\StaticImages\MenuBarPicture.png" />
+    <Resource Include="Assets\StaticImages\minus.png" />
     <Resource Include="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
     <Resource Include="Assets\StaticImages\Remove-bg.ai_1691401602416.png" />
     <Resource Include="Assets\StaticImages\right.png" />

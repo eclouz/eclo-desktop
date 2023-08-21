@@ -20,7 +20,9 @@ namespace Eclo_Desktop.Windows
     /// </summary>
     public partial class QuickView1Window : Window
     {
+        private bool isDescripitonPressed { get; set; } = false;
         private bool liked { get; set; } =  false;
+        int count = 0;
         public QuickView1Window()
         {
             InitializeComponent();
@@ -54,12 +56,8 @@ namespace Eclo_Desktop.Windows
         {
             SizeUserControl sizeUserControl = new SizeUserControl();
             SPSize.Children.Add(sizeUserControl);SizeUserControl sizeUserControl2 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl2);SizeUserControl sizeUserControl3 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl3);SizeUserControl sizeUserControl4 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl4);SizeUserControl sizeUserControl5 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl5);SizeUserControl sizeUserControl6 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl6);SizeUserControl sizeUserControl7 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl7);
+            lblRating2.Content = lblRating.Content;
+            lblReviewCount2.Content = lblReviewCount.Content;   
         }
 
         private void LeftBorder_MouseDown(object sender, MouseButtonEventArgs e)
@@ -70,6 +68,50 @@ namespace Eclo_Desktop.Windows
         private void RightBorder_MouseDown(object sender, MouseButtonEventArgs e)
         {
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnMinus_Click(object sender, RoutedEventArgs e)
+        {
+            if(0>int.Parse(lblItemCount.Text.ToString()))
+            {
+                lblItemCount.Text = 0.ToString();
+            }
+
+            if(0!=int.Parse(lblItemCount.Text.ToString()) && 0< int.Parse(lblItemCount.Text.ToString()))
+            {
+                count--;
+                lblItemCount.Text = count.ToString();
+            }
+            
+        }
+
+        private void btnPlus_Click(object sender, RoutedEventArgs e)
+        {
+            
+            count++;
+            lblItemCount.Text = count.ToString();
+
+        }
+
+        private void brDescription_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if(!isDescripitonPressed)
+            {
+                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\minus.png"));
+                brDescription2.Visibility = Visibility.Visible;
+                isDescripitonPressed=true;
+            }
+            else
+            {
+                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\add (2).png"));
+                brDescription2.Visibility= Visibility.Collapsed;
+                isDescripitonPressed=false;
+            }
         }
     }
 }

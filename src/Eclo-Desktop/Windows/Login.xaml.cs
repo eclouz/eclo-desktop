@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Xml.Linq;
 
 namespace Eclo_Desktop.Windows
 {
@@ -41,13 +42,19 @@ namespace Eclo_Desktop.Windows
 
         private void btnToLogin_Click(object sender, RoutedEventArgs e)
         {
-            RegiterWindow regiterWindow = new RegiterWindow();
+            RegisterWindow regiterWindow = new RegisterWindow();
             regiterWindow.ShowDialog();
         }
 
         private void btnSave_Click(object sender, RoutedEventArgs e)
         {
-
+            int count = 0;
+            if (tbPhone.Text.Length > 0 && tbPhone.Text.Length <= 13) { count++; }
+            if (tbPassword.Text.Length >= 8 && tbPassword.Text.Length <= 32) { count++; }            
+            if (count == 2)
+            {
+                this.Close();
+            }
         }
     }
 }

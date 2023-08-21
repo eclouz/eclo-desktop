@@ -15,10 +15,13 @@
         <Border Background="{DynamicResource PrimaryBackgroundColor}"
                 CornerRadius="15"
                 >
-            <Grid Grid.Column="2" >
+            <ScrollViewer Grid.Column="2">
+                <StackPanel>
+            <Grid  >
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="*"/>
+                    
                 </Grid.RowDefinitions>
 
 
@@ -28,10 +31,9 @@
                     <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
                 </StackPanel>
                 <!-- End: Button Close | Restore | Minimize -->
-                <ScrollViewer Grid.Row="1">
-                <Grid 
+                
+                    <Grid Grid.Row="1"
                       Margin="10 0"
-                      Height="400"
                       VerticalAlignment="Top">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
@@ -232,12 +234,191 @@ Foreground="{DynamicResource FourthIconColor}"
                                         
                                     </StackPanel>
                                 </ScrollViewer>
+                                <StackPanel Orientation="Horizontal"
+                                            Margin="5 15">
+                                    <Border Height="60" 
+                                            Width="150"
+                                            Margin="0 0 25 0"
+                                            Background="{DynamicResource ButtonHoverGreyColor}"
+                                            BorderBrush="{DynamicResource TextTertiaryColor}"
+                                        
+                                            CornerRadius="30">
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <Button Style="{DynamicResource PlusMinusBtn}"
+                                                    Width="35"
+                                                     Grid.Column="0" 
+                                                    Height="35"
+                                                    x:Name="btnMinus"
+                                                    Click="btnMinus_Click"
+                                                    HorizontalAlignment="Left"
+                                                    Background="{DynamicResource PrimaryBackgroundColor}"
+                                                    Margin="10 0 0 0">
+                                                <Button.Tag>
+                                                    <ImageSource>
+                                                        /assets/staticimages/minus.png
+                                                    </ImageSource>
+                                                </Button.Tag>
+                                            </Button>
+                                            <TextBox Text="0"
+                                                     Grid.Column="1" 
+                                                     MaxLength="3"
+                                                     Background="Transparent"
+                                                     BorderThickness="0"
+                                                   FontSize="20"
+                                                   x:Name="lblItemCount"
+                                                   Padding="0"
+                                                   Foreground="{DynamicResource FourthIconColor}"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Center"
+                                                   Margin="5 0 5 0">
+                                                
+                                            </TextBox>
+                                            <Button Style="{DynamicResource PlusMinusBtn}"
+                                                    Width="35"
+                                                    Grid.Column="2" 
+                                                    Height="35"
+                                                    x:Name="btnPlus"
+                                                    Click="btnPlus_Click"
+                                                    
+                                                    Background="{DynamicResource PrimaryBackgroundColor}"
+                                                    Margin="0 0 0 0">
+                                                <Button.Tag>
+                                                    <ImageSource>
+                                                        /assets/staticimages/add (2).png
+                                                    </ImageSource>
+                                                </Button.Tag>
+                                            </Button>
+                                        </Grid>
+                                    </Border>
+                                    <Button Style="{DynamicResource MainBigAddTocarButton}"
+                                            Width="190"
+                                            Height="50"   
+                                            
+                                            Content="Add to cart" Click="Button_Click"
+                                            >
+                                        
+                                    </Button>
+                                </StackPanel>
+
+                                <Border Background="LightGray"
+                                        Margin="5 0 5 15"
+                                        Height="1">
+                                    
+                                </Border>
+
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="45"/>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <Border Grid.Row="0"
+                                            Background="{DynamicResource ButtonHoverGreyColor}"
+                                            CornerRadius="15"
+                                            x:Name="brDescription"
+                                            MouseDown="brDescription_MouseDown">
+                                        <StackPanel Orientation="Horizontal">
+                                        <Label Content="Description"
+                                               FontSize="16"
+                                               Foreground="{DynamicResource FourthIconColor}"
+                                               FontWeight="SemiBold"
+                                               VerticalAlignment="Center"
+                                               Margin="15 0 0 0">
+                                            
+                                        </Label>
+                                            <Border Width="15"
+                                                    
+                                                    Height="15"
+                                                    Margin="245 0 0 0">
+                                                <Border.Background>
+                                                    <ImageBrush x:Name="brPlusForDescription" ImageSource="/assets/staticimages/add (2).png"
+                                                                Stretch="UniformToFill"/>
+                                                </Border.Background>
+                                            </Border>
+                                            
+                                        </StackPanel>
+                                    </Border>
+                                    <Border  Margin="15"
+                                Visibility="Collapsed"
+                                x:Name="brDescription2"
+                                
+                                Grid.Row="1"
+                                
+                                Background="{DynamicResource PrimaryBackgroundColor}">
+                                        
+                                        <TextBlock FontSize="16"
+                                                   Foreground="{DynamicResource FourthIconColor}"
+                                                   TextWrapping="Wrap"
+                                                   >
+                                            <TextBlock.Text>
+                                                This is Nike Zoom x New For new Generation.
+                                                This product is limited Edition product
+                                                
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                    </Border>
+
+                                </Grid>
                             </StackPanel>
                             
                         </Grid>
+                        
                     </Grid>
-                </ScrollViewer>
-            </Grid>
+                        
+                    </Grid>
+                    <Border Margin="15 30"
+                            Height="1"
+                                Background="LightGray">
+                    </Border>
+                    <StackPanel Orientation="Horizontal" Margin="15 0">
+                        <Path Data="M12,18 L7.91561963,20.1472858 C7.42677504,20.4042866 6.82214789,20.2163401 6.56514708,19.7274955 C6.46280801,19.5328351 6.42749334,19.309867 6.46467018,19.0931094 L7.24471742,14.545085 L3.94038429,11.3241562 C3.54490071,10.938655 3.5368084,10.3055417 3.92230962,9.91005817 C4.07581822,9.75257453 4.27696063,9.65008735 4.49459766,9.61846284 L9.06107374,8.95491503 L11.1032639,4.81698575 C11.3476862,4.32173209 11.9473121,4.11839309 12.4425657,4.36281539 C12.6397783,4.46014562 12.7994058,4.61977315 12.8967361,4.81698575 L14.9389263,8.95491503 L19.5054023,9.61846284 C20.0519472,9.69788046 20.4306287,10.2053233 20.351211,10.7518682 C20.3195865,10.9695052 20.2170993,11.1706476 20.0596157,11.3241562 L16.7552826,14.545085 L17.5353298,19.0931094 C17.6286908,19.6374458 17.263103,20.1544017 16.7187666,20.2477627 C16.5020089,20.2849396 16.2790408,20.2496249 16.0843804,20.1472858 L12,18 Z"
+                                              Fill="DarkOrange"
+                              Width="25" Height="25"
+                                              Stretch="Fill"></Path>
+                        <Label x:Name="lblRating2"
+                                           Foreground="{DynamicResource FourthIconColor}"
+                                           Content="0"
+                                           FontSize="16"
+                               
+                               FontWeight="SemiBold"
+                                           VerticalAlignment="Center">
+                        </Label>
+                        <Label  Padding="0"
+                                Margin="10 0"
+                                           Content="."
+                                        FontWeight="Bold"
+                                           FontSize="16"
+                                           >
+                        </Label>
+                        <Label x:Name="lblReviewCount2"
+                                           Content="0"
+                                           VerticalAlignment="Center"
+                                           FontSize="16"
+                               Margin="5 0 0 0"
+                               FontWeight="SemiBold"
+Foreground="{DynamicResource FourthIconColor}"
+                                           Padding="0"
+                                           >
+                        </Label>
+                        <Label FontWeight="SemiBold"
+                                           Content="reviews"
+                                           VerticalAlignment="Center"
+                                           FontSize="16"
+                                        Foreground="{DynamicResource FourthIconColor}"
+                                           >
+                        </Label>
+                    </StackPanel>
+                    <WrapPanel Margin="15" x:Name="ReviewsWp">
+                        
+                    </WrapPanel>
+                </StackPanel>
+                
+            </ScrollViewer>
+            
         </Border>
     </Grid>
 </Window>
