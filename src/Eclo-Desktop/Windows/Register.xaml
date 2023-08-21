@@ -89,14 +89,14 @@
                              CornerRadius="10"
                              BorderThickness="1"
                              >
-                                <TextBox x:Name="tbPassword"                                                
+                                <PasswordBox x:Name="tbPassword"                                                
                              BorderThickness="0"
                              Margin="10"  MaxLength="32"
                              FontSize="16"
                              Background="Transparent"
                              BorderBrush="{DynamicResource TextTertiaryColor}"
                              Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
+                             ></PasswordBox>
                             </Border>
                             <Label HorizontalAlignment="Left"
                             Margin="30 20 0 0"                           

@@ -49,7 +49,7 @@ namespace Eclo_Desktop.Windows
         {
             int count = 0;
             if(tbPhone.Text.Length > 0 && tbPhone.Text.Length <= 13) { count++;  }
-            if (tbPassword.Text.Length >= 8 && tbPassword.Text.Length <=32 ) { count++; }
+            if (tbPassword.Password.ToString().Length >= 8 && tbPassword.Password.ToString().Length <=32 ) { count++; }
             if (tbSecondName.Text.Length > 0) { count++; }
             if (tbName.Text.Length > 1 && tbName.Text.Length<=32) { count++; }
             if(count == 4 )
@@ -59,7 +59,7 @@ namespace Eclo_Desktop.Windows
                     FirstName = tbName.Text.ToString(),
                     LastName= tbSecondName.Text.ToString(),
                     PhoneNumber=tbPhone.Text.ToString(),
-                    Password=tbPassword.Text.ToString()
+                    Password=tbPassword.Password.ToString()
                 };
                 bool response = await userService.CreateUser(registerDto);
                 if (response == true)
