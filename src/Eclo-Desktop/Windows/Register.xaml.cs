@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Dtos.Auth;
+using Integrated.ServiceLayer.User;
+using Integrated.ServiceLayer.User.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,12 +20,15 @@ namespace Eclo_Desktop.Windows
     /// <summary>
     /// Interaction logic for Regiter.xaml
     /// </summary>
-    public partial class RegiterWindow : Window
+    public partial class RegisterWindow : Window
     {
-        public RegiterWindow()
+        IUserService userService = new UserService();
+        public RegisterWindow()
         {
             InitializeComponent();
+            
         }        
+        
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -39,7 +45,7 @@ namespace Eclo_Desktop.Windows
             this.Close();
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             int count = 0;
             if(tbPhone.Text.Length > 0 && tbPhone.Text.Length <= 13) { count++;  }
@@ -48,9 +54,29 @@ namespace Eclo_Desktop.Windows
             if (tbName.Text.Length > 1 && tbName.Text.Length<=32) { count++; }
             if(count == 4 )
             {
-                PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
-                phoneConfirmWindow.ShowDialog();
+                RegisterDto registerDto = new RegisterDto()
+                {
+                    FirstName = tbName.Text.ToString(),
+                    LastName= tbSecondName.Text.ToString(),
+                    PhoneNumber=tbPhone.Text.ToString(),
+                    Password=tbPassword.Text.ToString()
+                };
+                bool response = await userService.CreateUser(registerDto);
+                if (response == true)
+                {
+                    MessageBox.Show("Successfully");
+                    PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
+                    phoneConfirmWindow.ShowDialog();
+                }
+                else
+                {
+                    MessageBox.Show("Something wrong !!");
+                }
+
+                
             }
+             
+
         }
 
         private void btnToLogin_Click(object sender, RoutedEventArgs e)
