@@ -8,6 +8,7 @@ namespace Integrated.ServiceLayer;
 
 public class API
 {
-    public static readonly string BASE_URL = "https://localhost:7190/api/";
+    public static readonly string BASE_URL = "http://eclo.uz:8080/api/";
     public static readonly string CREATE_USER = BASE_URL + "auth/register";
+    public static readonly string SEND_CODE_REGISTER = BASE_URL + "auth/register/send-code";
 }

@@ -1,0 +1,51 @@
+﻿<Page x:Class="Eclo_Desktop.Pages.HelpPage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:Eclo_Desktop.Pages"
+      mc:Ignorable="d" 
+     d:DesignHeight="800" d:DesignWidth="800"
+      Title="Help"
+      >
+    <!--default 450 height-->
+    <Grid>
+        <ScrollViewer >
+
+            <Border CornerRadius="5"
+            Margin="20 0 20 0"
+            Background="{DynamicResource PrimaryBackgroundColor}">
+                <StackPanel>
+                    <Border Margin="15 10" >
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="Tel : "
+                               HorizontalContentAlignment="Center"
+                               FontSize="25" FontWeight="SemiBold"
+                               Foreground="{DynamicResource SecundaryBackgroundColor}"></Label>
+                            <Label Content="+998902723595"
+                               HorizontalContentAlignment="Center"
+                               FontSize="25" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextTertiaryColor}"></Label>
+                        </StackPanel>
+
+                    </Border>
+                    
+                    <Border Margin="15 10" >
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="GitHub :"
+                               HorizontalContentAlignment="Center"
+                               FontSize="25" FontWeight="SemiBold"
+                               Foreground="{DynamicResource SecundaryBackgroundColor}"></Label>
+                            <Label Content=""
+                               HorizontalContentAlignment="Center"
+                               FontSize="25" FontWeight="SemiBold"
+                               Foreground="{DynamicResource TextTertiaryColor}"></Label>
+                        </StackPanel>
+
+                    </Border>
+                </StackPanel>
+            </Border>
+        </ScrollViewer>
+        <ContentControl x:Name="contentControl" />
+    </Grid>
+</Page>

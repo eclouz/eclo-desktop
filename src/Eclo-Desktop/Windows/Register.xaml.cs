@@ -62,7 +62,9 @@ namespace Eclo_Desktop.Windows
                     Password=tbPassword.Password.ToString()
                 };
                 bool response = await userService.CreateUser(registerDto);
-                if (response == true)
+                bool response2 = await userService.SendCodeRegister(tbPhone.Text.ToString());
+                if (response2 == false) { MessageBox.Show("SMS not sended"); }
+                if (response == true && response2 == true)//
                 {
                     MessageBox.Show("Successfully");
                     PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
