@@ -11,4 +11,6 @@ namespace Integrated.ServiceLayer.User;
 {
     Task<bool> CreateUser(RegisterDto registerDto);
     Task<bool> SendCodeRegister(string phone);
+    Task<bool> VerifyRegister(VerifyRegisterDto verifyRegisterDto);
+    Task<bool> Login(LoginDto loginDto);
 }
