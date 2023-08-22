@@ -67,14 +67,14 @@
                              CornerRadius="10"
                              BorderThickness="1"
                              >
-                                <TextBox x:Name="tbPassword"                                                
+                                <PasswordBox x:Name="tbPassword"                                                
                              BorderThickness="0"
                              Margin="10"
                              FontSize="16"
                              Background="Transparent"
                              BorderBrush="{DynamicResource TextTertiaryColor}"
                              Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
+                             ></PasswordBox>
                             </Border>
                             
                             <StackPanel Orientation="Horizontal"
