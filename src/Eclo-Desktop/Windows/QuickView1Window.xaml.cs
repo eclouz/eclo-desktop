@@ -55,7 +55,15 @@ namespace Eclo_Desktop.Windows
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             SizeUserControl sizeUserControl = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl);SizeUserControl sizeUserControl2 = new SizeUserControl();
+            SPSize.Children.Add(sizeUserControl);
+            SizeUserControl sizeUserControl2 = new SizeUserControl();
+            SPSize.Children.Add(sizeUserControl2);SizeUserControl sizeUserControl3 = new SizeUserControl();
+            SPSize.Children.Add(sizeUserControl3);SizeUserControl sizeUserControl4 = new SizeUserControl();
+            SPSize.Children.Add(sizeUserControl4);SizeUserControl sizeUserControl5 = new SizeUserControl();
+            SPSize.Children.Add(sizeUserControl5);SizeUserControl sizeUserControl6 = new SizeUserControl();
+            SPSize.Children.Add(sizeUserControl6);SizeUserControl sizeUserControl7 = new SizeUserControl();
+            SPSize.Children.Add(sizeUserControl7);
+
             lblRating2.Content = lblRating.Content;
             lblReviewCount2.Content = lblReviewCount.Content;   
         }

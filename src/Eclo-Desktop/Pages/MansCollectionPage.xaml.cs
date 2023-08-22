@@ -28,16 +28,16 @@ namespace Eclo_Desktop.Pages
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
-            if (!clicked)
-            {
-                brCategories.Visibility = Visibility.Visible;
-                clicked = true;
-            }
-            else
-            {
-                brCategories.Visibility = Visibility.Collapsed;
-                clicked = false;
-            }
+            //if (!clicked)
+            //{
+            //    brCategories.Visibility = Visibility.Visible;
+            //    clicked = true;
+            //}
+            //else
+            //{
+            //    brCategories.Visibility = Visibility.Collapsed;
+            //    clicked = false;
+            //}
         }
         
 

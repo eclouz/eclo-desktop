@@ -57,6 +57,6 @@
 
         </Border>
     </ScrollViewer>
-        <ContentControl x:Name="contentControl" />
+        
     </Grid>
 </Page>

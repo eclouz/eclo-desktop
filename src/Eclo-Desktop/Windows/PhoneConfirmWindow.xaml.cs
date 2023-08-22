@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Dtos.Auth;
+using Integrated.ServiceLayer.User.Concrete;
+using Integrated.ServiceLayer.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,11 +25,14 @@ namespace Eclo_Desktop.Windows
     public partial class PhoneConfirmWindow : Window
     {       
         DispatcherTimer _timer;
+        VerifyRegisterDto verifyRegisterDto = new VerifyRegisterDto();
+        string TEL_NUMBER = string.Empty;
+        IUserService userService = new UserService();
         TimeSpan _time;
         public  PhoneConfirmWindow()
         {
             InitializeComponent();
-             _time = TimeSpan.FromSeconds(8);
+             _time = TimeSpan.FromSeconds(300);
 
             _timer = new DispatcherTimer(new TimeSpan(0, 0, 1), DispatcherPriority.Normal, delegate
             {
@@ -77,6 +83,26 @@ namespace Eclo_Desktop.Windows
         private void btnClose_Click_1(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        public void GetPhone(string phone)
+        {
+            verifyRegisterDto.PhoneNumber = phone;
+        }
+        private async void Button_Click(object sender, RoutedEventArgs e)
+        {            
+            
+            if(tb1.Text.Length > 0 & tb1.Text.Length < 6 )
+            {
+                
+                verifyRegisterDto.Code = int.Parse(tb1.Text);
+                bool response = await userService.VerifyRegister(verifyRegisterDto);
+                if (response==true)
+                {
+                    MessageBox.Show("You are Veerified !!");
+                    Close();
+                }
+            }
         }
     }
 }

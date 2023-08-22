@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Dtos.Auth;
+using Integrated.ServiceLayer.User;
+using Integrated.ServiceLayer.User.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,6 +23,7 @@ namespace Eclo_Desktop.Windows
     /// </summary>
     public partial class LoginWindow : Window
     {
+        IUserService userService = new UserService();
         public LoginWindow()
         {
             InitializeComponent();
@@ -46,14 +50,27 @@ namespace Eclo_Desktop.Windows
             regiterWindow.ShowDialog();
         }
 
-        private void btnSave_Click(object sender, RoutedEventArgs e)
+        private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
             int count = 0;
             if (tbPhone.Text.Length > 0 && tbPhone.Text.Length <= 13) { count++; }
-            if (tbPassword.Text.Length >= 8 && tbPassword.Text.Length <= 32) { count++; }            
+            if (tbPassword.Password.ToString().Length >= 8 && tbPassword.Password.ToString().Length <= 32) { count++; }            
             if (count == 2)
             {
-                this.Close();
+                LoginDto loginDto = new LoginDto()
+                {
+                    PhoneNumber = tbPhone.Text,
+                    Password = tbPassword.Password
+                };
+                bool response = await userService.Login(loginDto);
+                if (response)
+                {
+                    MessageBox.Show("You are logged in ");
+                }
+                else
+                {
+                    MessageBox.Show("Something wrong !!");
+                }
             }
         }
     }
