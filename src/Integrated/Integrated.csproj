@@ -13,6 +13,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Dtos\Dtos.csproj" />
+    <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
   </ItemGroup>
 
 </Project>
