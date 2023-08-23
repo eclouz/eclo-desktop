@@ -23,4 +23,8 @@ public class API
     //Brand Urls
     public static readonly string COMMON_BRANDS = BASE_URL + "common/brands";
     //Brand Urls
+
+    //Products
+    public static readonly string GET_ALL_PRODUCTS = BASE_URL + "common/products";
+    //Products
 }
