@@ -1,45 +1,52 @@
-﻿using Newtonsoft.Json;
+﻿using Eclo.Domain.Entities.Brands;
+using Eclo.Domain.Entities.Products;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels.Brands;
 using ViewModels.Products;
 
 namespace Integrated.ServiceLayer.Product.Concrete;
 
 public class ProductService : IProductService
 {
-    public async Task<List<ProductViewModels>> GetAllProducts(int page)
+    public async Task<List<ProductViewModels>> GetAllProducts(int page=1)
     {
         using (var client = new HttpClient())
-        {            
-            var request = new HttpRequestMessage(HttpMethod.Get, API.GET_ALL_PRODUCTS+$"?page={page}");
-            var content = new StringContent("", null, "text/plain");
-            request.Content = content;
-                        
-            var result = await client.GetAsync(client.BaseAddress);
-            string response = await result.Content.ReadAsStringAsync();
-            IEnumerable<ProductViewModels> products = JsonConvert.DeserializeObject<List<ProductViewModels>>(response);
-            
-            List<ProductViewModels> productViewModelsList = new List<ProductViewModels>();                                    
-            foreach (var i in products)
+        {
+            var response = await client.GetAsync(API.GET_ALL_PRODUCTS + $"?page={page}");
+            response.EnsureSuccessStatusCode();
+
+            if (response.IsSuccessStatusCode)
             {
-                productViewModelsList.Add(new ProductViewModels()
+                var responseData = await response.Content.ReadAsStringAsync();
+                IEnumerable<ProductViewModels> readProducts = JsonConvert.DeserializeObject<IEnumerable<ProductViewModels>>(responseData);
+                List<ProductViewModels> productList = new List<ProductViewModels>();
+                foreach (var i in readProducts)
                 {
-                    Id = i.Id,
-                    ProductName=i.ProductName,
-                    BrandName=i.BrandName,
-                    ProductImagePath=i.ProductImagePath,
-                    ProductColor=i.ProductColor,
-                    ProductPrice=i.ProductPrice,
-                    ProductDiscount=i.ProductDiscount,
-                    ProductDescription=i.ProductDescription,
-                    ProductSize=i.ProductSize,
-                    ProductLiked=i.ProductLiked,
-                });
+                    productList.Add(new ProductViewModels()
+                    {
+                        Id = i.Id,
+                        ProductName=i.ProductName,
+                        BrandId=i.BrandId,
+                        Brand=i.Brand,
+                        ProductDetail= i.ProductDetail,
+                        ProductPrice =i.ProductPrice,
+                        ProductDiscount =i.ProductDiscount,
+                        ProductLiked =i.ProductLiked,
+                    });
+                }
+                return productList;
+                // Process the itemList as needed
             }
-            return productViewModelsList;
+            else
+            {
+                // Handle the response error accordingly
+                // For example, throw an exception or return a default value
+                return new List<ProductViewModels>();
+            }
         }
-    }
 }
