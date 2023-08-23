@@ -12,35 +12,40 @@ public class BrandService : IBrandService
 {
     public async Task<IList<MensBrandsViewModels>> GetAllBrands(int page=1)
     {
+
         using (var client = new HttpClient())
-        {            
-            var request = new HttpRequestMessage(HttpMethod.Get, API.COMMON_BRANDS+
+        {
+            var response = await client.GetAsync(API.COMMON_BRANDS +
                 $"?page={page}");
-            var content = new StringContent("", null, "text/plain");
-            request.Content = content;
+            response.EnsureSuccessStatusCode();
 
-            var res = await client.GetAsync(client.BaseAddress);
-
-            string rsp = await res.Content.ReadAsStringAsync();
-
-            var response = await client.SendAsync(request);
-
-            IEnumerable<MensBrandsViewModels> readBrands = JsonConvert.DeserializeObject<IEnumerable<MensBrandsViewModels>>(rsp);
-
-            List<MensBrandsViewModels> mensBrandsViewModels = new List<MensBrandsViewModels>();
-
-            foreach(var i in readBrands)
+            if (response.IsSuccessStatusCode)
             {
-                mensBrandsViewModels.Add(new MensBrandsViewModels()
+                var responseData = await response.Content.ReadAsStringAsync();
+                IEnumerable<MensBrandsViewModels> readBrands = JsonConvert.DeserializeObject<IEnumerable<MensBrandsViewModels>>(responseData);
+                List<MensBrandsViewModels> mensBrandsViewModels = new List<MensBrandsViewModels>();
+                foreach (var i in readBrands)
                 {
-                    Name = i.Name,
-                    BrandIconPath = i.BrandIconPath,
-                    CreatedAt = i.CreatedAt,
-                    UpdatedAt = i.UpdatedAt,
-                    Id = i.Id
-                });
+                    mensBrandsViewModels.Add(new MensBrandsViewModels()
+                    {
+                        Name = i.Name,
+                        BrandIconPath = i.BrandIconPath,
+                        CreatedAt = i.CreatedAt,
+                        UpdatedAt = i.UpdatedAt,
+                        Id = i.Id
+                    });
+                }
+                return mensBrandsViewModels;
+                // Process the itemList as needed
             }
-            return mensBrandsViewModels;
+            else
+            {
+                // Handle the response error accordingly
+                // For example, throw an exception or return a default value
+                return null;
+            }
+
+        }
         }
     }
-}
+

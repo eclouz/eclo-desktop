@@ -61,18 +61,18 @@ namespace Eclo_Desktop.Windows
                     PhoneNumber=tbPhone.Text.ToString(),
                     Password=tbPassword.Password.ToString()
                 };
-
-                bool response = await userService.CreateUser(registerDto);
-                bool response2 = await userService.SendCodeRegister(tbPhone.Text.ToString());
-
-                //64269
-                if (response2 == false) { MessageBox.Show("SMS not sended"); }
-                if (response == true && response2 == true)//
+                bool response = await userService.CreateUser(registerDto);                
+                if (response == true)//
                 {
                     MessageBox.Show("Successfully");
-                    PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
-                    phoneConfirmWindow.GetPhone(tbPhone.Text.ToString());
-                    phoneConfirmWindow.ShowDialog();
+                    bool response2 = await userService.SendCodeRegister(tbPhone.Text.ToString());
+                    if (response2 == false) { MessageBox.Show("SMS not sended"); }
+                    else
+                    {
+                        PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
+                        phoneConfirmWindow.GetPhone(tbPhone.Text.ToString());
+                        phoneConfirmWindow.ShowDialog();
+                    }                    
                 }
                 else
                 {

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModels.Brands;
 
 namespace Eclo_Desktop.Components.Products
 {
@@ -20,9 +21,17 @@ namespace Eclo_Desktop.Components.Products
     /// </summary>
     public partial class BrandsUserControl : UserControl
     {
+        
         public BrandsUserControl()
         {
             InitializeComponent();
         }
+        public void setData(MensBrandsViewModels mensBrandsViewModels)
+        {
+            string imageUrl = "http://eclo.uz:8080/" + mensBrandsViewModels.BrandIconPath;
+            Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
+            ImgBrands.ImageSource = new BitmapImage(imageUri);
+        }
+
     }
 }

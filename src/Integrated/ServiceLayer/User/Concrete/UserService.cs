@@ -9,25 +9,25 @@ namespace Integrated.ServiceLayer.User.Concrete;
 public class UserService : IUserService
 {
     public async Task<bool> CreateUser(RegisterDto registerDto)
-    {        
-        var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, API.CREATE_USER);
-        var content = new MultipartFormDataContent();
-        content.Add(new StringContent(registerDto.FirstName), "FirstName");
-        content.Add(new StringContent(registerDto.LastName), "LastName");
-        content.Add(new StringContent(registerDto.PhoneNumber), "PhoneNumber");
-        content.Add(new StringContent(registerDto.Password), "Password");
-        request.Content = content;
-        var response = await client.SendAsync(request);
-        if (response.StatusCode == System.Net.HttpStatusCode.OK)
-        {
-            string response2 = await response.Content.ReadAsStringAsync();
-            var res = JsonConvert.DeserializeObject<RegisterCheckDto>(response2);
-
-            return res.Result == true;
+    {
+        using (var client = new HttpClient())
+        {            
+            var request = new HttpRequestMessage(HttpMethod.Post, API.CREATE_USER);
+            var content = new MultipartFormDataContent();
+            content.Add(new StringContent(registerDto.FirstName), "FirstName");
+            content.Add(new StringContent(registerDto.LastName), "LastName");
+            content.Add(new StringContent(registerDto.PhoneNumber), "PhoneNumber");
+            content.Add(new StringContent(registerDto.Password), "Password");
+            request.Content = content;
+            var response = await client.SendAsync(request);
+            if (response.StatusCode == System.Net.HttpStatusCode.OK)
+            {
+                string response2 = await response.Content.ReadAsStringAsync();
+                var res = JsonConvert.DeserializeObject<RegisterCheckDto>(response2);                
+                return res.Result == true;
+            }
+            return false;
         }
-        return false;
-
     }
 
     public async Task<bool> Login(LoginDto loginDto)

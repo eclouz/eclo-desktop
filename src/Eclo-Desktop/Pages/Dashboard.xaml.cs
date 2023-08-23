@@ -1,4 +1,7 @@
 ﻿using Eclo_Desktop.Components.Dashboards;
+using Eclo_Desktop.Utilities;
+using Integrated.ServiceLayer.Product;
+using Integrated.ServiceLayer.Product.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,18 +24,34 @@ namespace Eclo_Desktop.Pages
     /// </summary>
     public partial class Dashboard : Page
     {
+        private readonly IProductService _productService;
         public Dashboard()
         {
             InitializeComponent();
+            this._productService = new ProductService();
         }
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            NewItemsUserControl newItemsUserControl = new NewItemsUserControl();
-            SecondWp.Children.Add(newItemsUserControl);
-            ProductDarkClothesUserControl product = new ProductDarkClothesUserControl();
-            SecondWp.Children.Add(product);
+            ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+            SecondWp.Children.Add(productLightClothesUserControl);
+        }
+        public async Task refreshAsync()
+        {
+            SecondWp.Children.Clear();
+            //Paginations paginations = new Paginations()
+            //{
+            //    PageNumber = 1,
+            //    PageSize = 30 
+            //};
+            var products = await _productService.GetAllProducts(1);
+            foreach ( var product in products )
+            {
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(product);
+                SecondWp.Children.Add(productLightClothesUserControl);
 
+            }
 
         }
     }

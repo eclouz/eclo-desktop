@@ -6,16 +6,15 @@
              xmlns:local="clr-namespace:Eclo_Desktop.Components.Products"
              mc:Ignorable="d" 
              Height="35" Width="35"
-             Margin="15 0">
+             Margin="55 0">
     <Grid >
         <Border CornerRadius="25"
-                Background="Blue">
-            <!--<Border.Background>
-                <ImageBrush x:Name="ImgBrands"
-                    ImageSource="/assets/staticimages/down.png"
-                            Stretch="Uniform"/>
+                >
+            <Border.Background>
+                <ImageBrush x:Name="ImgBrands"                    
+                            Stretch="UniformToFill"/>
                 
-            </Border.Background>-->   
+            </Border.Background>   
         </Border>   
     </Grid>
 </UserControl>
