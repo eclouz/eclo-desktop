@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eclo_Desktop.Components.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -39,7 +40,11 @@ namespace Eclo_Desktop.Pages
             //    clicked = false;
             //}
         }
-        
 
+        private void Page_Loaded(object sender, RoutedEventArgs e)
+        {
+           
+        }
     }
 }
+    
