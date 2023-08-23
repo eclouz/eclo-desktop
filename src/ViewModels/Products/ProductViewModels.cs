@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Eclo.Domain.Entities.Brands;
+using Eclo.Domain.Entities.Products;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,19 +14,18 @@ public class ProductViewModels
 
     public string ProductName { get; set; } = String.Empty;
 
-    public string BrandName { get; set; } = String.Empty;
+    public long BrandId { get; set; }
 
-    public string ProductImagePath { get; set; } = String.Empty;
+    public List<Brand> Brand { get; set; }
+        = new List<Brand>();
 
-    public string ProductColor { get; set; } = String.Empty;
+    public List<ProductDetail> ProductDetail { get; set; }
+        = new List<ProductDetail>();
 
     public double ProductPrice { get; set; }
 
-    public int ProductDiscount { get; set; }
-
-    public string ProductDescription { get; set; } = String.Empty;
-
-    public string ProductSize { get; set; } = String.Empty;
+    public List<float> ProductDiscount { get; set; }
+        = new List<float>();
 
     public bool ProductLiked { get; set; } = false;
 }
