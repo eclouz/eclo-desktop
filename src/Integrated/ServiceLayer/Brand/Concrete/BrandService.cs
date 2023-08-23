@@ -18,13 +18,9 @@ public class BrandService : IBrandService
                 $"?page={page}");
             var content = new StringContent("", null, "text/plain");
             request.Content = content;
-
             var res = await client.GetAsync(client.BaseAddress);
-
             string rsp = await res.Content.ReadAsStringAsync();
-
             var response = await client.SendAsync(request);
-
             IEnumerable<MensBrandsViewModels> readBrands = JsonConvert.DeserializeObject<IEnumerable<MensBrandsViewModels>>(rsp);
 
             List<MensBrandsViewModels> mensBrandsViewModels = new List<MensBrandsViewModels>();
