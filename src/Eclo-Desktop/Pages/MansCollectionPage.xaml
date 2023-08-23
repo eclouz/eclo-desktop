@@ -34,17 +34,18 @@
                     <Grid Height="80" Margin="20 0">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <!--<ScrollViewer Grid.Row="0" HorizontalScrollBarVisibility="Visible"
-                                        Height="80"      VerticalScrollBarVisibility="Disabled">
+                        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Visible"
+                                        Height="60"      VerticalScrollBarVisibility="Disabled">
                             <StackPanel Orientation="Horizontal" x:Name="SPSize">
 
                             </StackPanel>
-                        </ScrollViewer>-->
+                        </ScrollViewer>
                         <Border 
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
-                            Grid.Column="0"
+                            Grid.Column="1"
                              Height="40"
                            
                              Width="400"
