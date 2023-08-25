@@ -1,4 +1,6 @@
 ﻿using Eclo_Desktop.Components.Products;
+using Integrated.ServiceLayer.Product.Concrete;
+using Integrated.ServiceLayer.Product;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ViewModels.Products;
 
 namespace Eclo_Desktop.Windows
 {
@@ -21,6 +24,8 @@ namespace Eclo_Desktop.Windows
     public partial class QuickView1Window : Window
     {
         private bool isDescripitonPressed { get; set; } = false;
+        IProductService productService = new ProductService();
+        
         private bool liked { get; set; } =  false;
         int count = 0;
         public QuickView1Window()
@@ -53,18 +58,7 @@ namespace Eclo_Desktop.Windows
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
-        {
-            SizeUserControl sizeUserControl = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl);
-            SizeUserControl sizeUserControl2 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl2);SizeUserControl sizeUserControl3 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl3);SizeUserControl sizeUserControl4 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl4);SizeUserControl sizeUserControl5 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl5);SizeUserControl sizeUserControl6 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl6);SizeUserControl sizeUserControl7 = new SizeUserControl();
-            SPSize.Children.Add(sizeUserControl7);
-
-            lblRating2.Content = lblRating.Content;
+        {                                    
             lblReviewCount2.Content = lblReviewCount.Content;   
         }
 
@@ -120,6 +114,34 @@ namespace Eclo_Desktop.Windows
                 brDescription2.Visibility= Visibility.Collapsed;
                 isDescripitonPressed=false;
             }
+        }
+        public async void setData(ProductGetViewModel productGetViewModel)
+        {
+            int countComments = 0;
+            //var getProductById = await productService.GetByIdProducts(id);
+            
+            lblProductName.Content = productGetViewModel.ProductName;
+            foreach (var i in productGetViewModel.ProductDetail)
+            {
+                lblColor.Content = i.Color;
+                string imageUrl = "http://eclo.uz:8080/" + i.ImagePath;
+                Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
+                imageQuickview.ImageSource = new BitmapImage(imageUri);
+                
+            }
+            foreach (var i in productGetViewModel.ProductComments)
+            {
+                countComments++;
+                ReviewsUserControl reviewsUserControl = new ReviewsUserControl();
+                reviewsUserControl.setData(i.UserId, i.Comment, (i.CreatedAt).ToString());
+                ReviewsWp.Children.Add(reviewsUserControl); 
+            }
+            lblReviewCount2.Content = countComments.ToString();
+            lblReviewCount.Content = lblReviewCount2.Content;
+            lblPrice.Content = (productGetViewModel.ProductPrice).ToString();
+            tbDescription.Text=(productGetViewModel.ProductDescription).ToString();
+
+
         }
     }
 }

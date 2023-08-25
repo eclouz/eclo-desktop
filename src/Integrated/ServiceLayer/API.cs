@@ -26,5 +26,10 @@ public class API
 
     //Products
     public static readonly string GET_ALL_PRODUCTS = BASE_URL + "common/products";
+    public static readonly string GET_ALL_BY_ID = BASE_URL + "common/products/view";
     //Products
+
+    //User
+    public static readonly string GET_USER_BY_ID = BASE_URL + "admin/users";
+    //User
 }

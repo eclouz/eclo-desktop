@@ -72,6 +72,7 @@ namespace Eclo_Desktop.Windows
                         PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
                         phoneConfirmWindow.GetPhone(tbPhone.Text.ToString());
                         phoneConfirmWindow.ShowDialog();
+
                     }                    
                 }
                 else

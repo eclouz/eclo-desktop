@@ -31,19 +31,15 @@ namespace Eclo_Desktop.Pages
             this._productService = new ProductService();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
-            SecondWp.Children.Add(productLightClothesUserControl);
+            //ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+            //SecondWp.Children.Add(productLightClothesUserControl);
+            await refreshAsync();
         }
         public async Task refreshAsync()
         {
-            SecondWp.Children.Clear();
-            //Paginations paginations = new Paginations()
-            //{
-            //    PageNumber = 1,
-            //    PageSize = 30 
-            //};
+            SecondWp.Children.Clear();            
             var products = await _productService.GetAllProducts(1);
             foreach ( var product in products )
             {

@@ -10,7 +10,7 @@
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize">
     <Grid>
-        <Border                 CornerRadius="8"
+        <Border CornerRadius="8"
                 >
             <Grid>
                 <Grid.RowDefinitions>

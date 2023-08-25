@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace ViewModels.Entities;
+﻿namespace Eclo.Domain.Entities;
 
 public abstract class Auditable : BaseEntity
 {
@@ -12,4 +6,3 @@ public abstract class Auditable : BaseEntity
 
     public DateTime UpdatedAt { get; set; }
 }
-

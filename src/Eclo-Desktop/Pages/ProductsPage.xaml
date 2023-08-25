@@ -40,6 +40,7 @@
                     </Button>
                     <Button x:Name="WomensCategoryBtn"
                             Content="Women's"
+                            Click="WomensCategoryBtn_Click"
                         Style="{DynamicResource CategoryWomens}"
                             Tag="{DynamicResource RightArrowIcon}"
                             >
@@ -47,6 +48,7 @@
                     </Button>
                     <Button x:Name="KidsCategoryBtn"
                             Content="Kid's"
+                            Click="KidsCategoryBtn_Click"
                         Style="{DynamicResource CategoryKidsbtn}"
                             Tag="{DynamicResource RightArrowIcon}">
 

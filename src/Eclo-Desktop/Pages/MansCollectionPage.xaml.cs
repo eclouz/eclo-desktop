@@ -45,14 +45,14 @@ namespace Eclo_Desktop.Pages
         {
             //BrandsUserControl brandsUserControl = new BrandsUserControl();
             //SPSize.Children.Add(brandsUserControl);
-            var brands = await _brandService.GetAllBrands(1);
-            foreach (var brend in brands)
-            {
-                BrandsUserControl brandsUserControl = new BrandsUserControl();
-                brandsUserControl.setData(brend);
-                SPSize.Children.Add(brandsUserControl);
+            //var brands = await _brandService.GetAllBrands(1);
+            //foreach (var brend in brands)
+            //{
+            //    BrandsUserControl brandsUserControl = new BrandsUserControl();
+            //    brandsUserControl.setData(brend);
+            //    SPSize.Children.Add(brandsUserControl);
 
-            }
+            //}
         }
 
     }

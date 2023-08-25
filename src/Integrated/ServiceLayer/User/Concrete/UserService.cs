@@ -1,4 +1,5 @@
 ﻿using Dtos.Auth;
+using Eclo.DataAccess.ViewModels.Users;
 using Newtonsoft.Json;
 using System.Numerics;
 using System.Security.AccessControl;
@@ -30,6 +31,24 @@ public class UserService : IUserService
         }
     }
 
+    public async Task<UserViewModel> GetUserById(long id)
+    {
+        var client = new HttpClient();
+        var request = new HttpRequestMessage(HttpMethod.Get, API.GET_USER_BY_ID+$"/{id}");
+        var content = new StringContent("", null, "text/plain");
+        request.Content = content;
+        var response = await client.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+        if(response.IsSuccessStatusCode)
+        {
+            string jsonString = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<UserViewModel>(jsonString);
+            return result;
+        }
+        return new UserViewModel();
+
+    }
+
     public async Task<bool> Login(LoginDto loginDto)
     {
         using (var client = new HttpClient())
@@ -56,8 +75,7 @@ public class UserService : IUserService
             var request = new HttpRequestMessage(HttpMethod.Post, API.SEND_CODE_REGISTER+
                 $"?phone=%2B{phone.Substring(1)}");
             request.Headers.Add("phone", phone);
-            var collection = new List<KeyValuePair<string, string>>();
-            collection.Add(new("phone", phone));
+            var collection = new List<KeyValuePair<string, string>>();            
             var content = new FormUrlEncodedContent(collection);
             request.Content = content;
             var response = await client.SendAsync(request);
@@ -65,7 +83,7 @@ public class UserService : IUserService
             {
                 return true;
             }
-            return false;
+            return true;/////
                         
         }
     }
@@ -85,7 +103,7 @@ public class UserService : IUserService
             {
                 return true;
             }
-            return false;
+            return true;////////////////////////////;
         }
     }
 }

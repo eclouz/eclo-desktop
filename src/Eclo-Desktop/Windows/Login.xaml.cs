@@ -66,6 +66,8 @@ namespace Eclo_Desktop.Windows
                 if (response)
                 {
                     MessageBox.Show("You are logged in ");
+                    MainWindow mainWindow = new MainWindow();   
+                    mainWindow.ShowDialog();
                 }
                 else
                 {

@@ -32,7 +32,7 @@ namespace Eclo_Desktop
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            //RegiterWindow regiterWindow = new RegiterWindow();
+            //RegisterWindow regiterWindow = new RegisterWindow();
             //this.Hide();
             //regiterWindow.ShowDialog();
 

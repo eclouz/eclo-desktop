@@ -10,4 +10,5 @@ namespace Integrated.ServiceLayer.Product;
 public interface IProductService
 {
     Task<List<ProductViewModels>> GetAllProducts(int page);
+    Task<ProductGetViewModel> GetByIdProducts(long id);
 }
