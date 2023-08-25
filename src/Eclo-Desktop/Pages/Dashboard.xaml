@@ -257,7 +257,9 @@
                         </RadioButton>
                         <RadioButton Style="{DynamicResource MenWomenKidsSorterSwitch}"
                                     Content="Mens"
-                                     x:Name="rbMens">
+                                     x:Name="rbMens"
+                                     Click="rbMens_Click"
+                                     >
 
                         </RadioButton>
                         <RadioButton Style="{DynamicResource MenWomenKidsSorterSwitch}"

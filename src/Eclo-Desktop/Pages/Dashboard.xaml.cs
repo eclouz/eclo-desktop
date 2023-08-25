@@ -25,6 +25,7 @@ namespace Eclo_Desktop.Pages
     public partial class Dashboard : Page
     {
         private readonly IProductService _productService;
+
         public Dashboard()
         {
             InitializeComponent();
@@ -35,6 +36,7 @@ namespace Eclo_Desktop.Pages
         {
             //ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
             //SecondWp.Children.Add(productLightClothesUserControl);
+
             await refreshAsync();
         }
         public async Task refreshAsync()
@@ -48,6 +50,12 @@ namespace Eclo_Desktop.Pages
                 SecondWp.Children.Add(productLightClothesUserControl);
 
             }
+
+        }
+
+        private void rbMens_Click(object sender, RoutedEventArgs e)
+        {
+            SecondWp.Children.Clear();
 
         }
     }

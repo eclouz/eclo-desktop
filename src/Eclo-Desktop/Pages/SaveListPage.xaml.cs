@@ -1,4 +1,7 @@
 ﻿using Eclo_Desktop.Components.Dashboards;
+using Integrated.ServiceLayer.Product;
+using Integrated.ServiceLayer.Product.Concrete;
+using Integrated.ServiceLayer.User;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,31 +24,36 @@ namespace Eclo_Desktop.Pages
     /// </summary>
     public partial class SaveListPage : Page
     {
+        private readonly IProductService _productService;
         public SaveListPage()
         {
             InitializeComponent();
+            this._productService = new ProductService();
         }
 
-        private void Page_Loaded(object sender, RoutedEventArgs e)
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            //var product = await _productService.GetAllProducts(1);
+
             ProductLightClothesUserControl newItemsUserControl = new ProductLightClothesUserControl();
             newItemsUserControl.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
-            MainWP.Children.Add(newItemsUserControl);
-            ProductLightClothesUserControl newItemsUserControl2 = new ProductLightClothesUserControl();
-            newItemsUserControl2.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
-            MainWP.Children.Add(newItemsUserControl2);
-            ProductLightClothesUserControl newItemsUserControl3 = new ProductLightClothesUserControl();
-            newItemsUserControl3.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
-            MainWP.Children.Add(newItemsUserControl3);
-            ProductLightClothesUserControl newItemsUserControl4 = new ProductLightClothesUserControl();
-            newItemsUserControl4.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
-            MainWP.Children.Add(newItemsUserControl4);
-            ProductLightClothesUserControl newItemsUserControl5 = new ProductLightClothesUserControl();
-            newItemsUserControl5.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
-            MainWP.Children.Add(newItemsUserControl5);
-            ProductLightClothesUserControl newItemsUserControl6 = new ProductLightClothesUserControl();
-            newItemsUserControl6.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
-            MainWP.Children.Add(newItemsUserControl6);
+
+            //MainWP.Children.Add(newItemsUserControl);
+            //ProductLightClothesUserControl newItemsUserControl2 = new ProductLightClothesUserControl();
+            //newItemsUserControl2.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
+            //MainWP.Children.Add(newItemsUserControl2);
+            //ProductLightClothesUserControl newItemsUserControl3 = new ProductLightClothesUserControl();
+            //newItemsUserControl3.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
+            //MainWP.Children.Add(newItemsUserControl3);
+            //ProductLightClothesUserControl newItemsUserControl4 = new ProductLightClothesUserControl();
+            //newItemsUserControl4.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
+            //MainWP.Children.Add(newItemsUserControl4);
+            //ProductLightClothesUserControl newItemsUserControl5 = new ProductLightClothesUserControl();
+            //newItemsUserControl5.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
+            //MainWP.Children.Add(newItemsUserControl5);
+            //ProductLightClothesUserControl newItemsUserControl6 = new ProductLightClothesUserControl();
+            //newItemsUserControl6.brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
+            //MainWP.Children.Add(newItemsUserControl6);
         }
     }
 }
