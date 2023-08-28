@@ -35,9 +35,9 @@
                                 <RowDefinition Height="35"/>
                             </Grid.RowDefinitions>
                             <StackPanel Grid.Row="0">
-                                <Border  Margin="5"
+                                <Border  Margin="5 15 0 0"
                                          
-                                     Height="50"
+                                     Height="60"
                                      >
                                     
                                     <!--<Border.Background>
@@ -96,12 +96,12 @@
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbAboutUs_Click"
                                          />
-                                <RadioButton x:Name="rbFaq"
+                                <!--<RadioButton x:Name="rbFaq"
                                          Content="FAQ"
                                              Tag="{DynamicResource FaqIcon}"
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbFaq_Click"
-                                         />
+                                         />-->
                                 <RadioButton x:Name="rbHelp"
                                          Content="Help"
                                              Tag="{DynamicResource HelpIcon}"
@@ -160,14 +160,17 @@
                             Margin="2" Style="{DynamicResource MainThreeStaticButoons}"
                             Tag="{DynamicResource UserIcon}"></Button>-->
 
-                        <Button Height="50" Width="50"                                
+                        <Button Height="50" Width="50"   
+                                Cursor="Hand"
                             Margin="2 2 15 2" Style="{DynamicResource MainThreeStaticButoons}"                                                        
                                 >
                         </Button>
 
 
                         <Border Background="{DynamicResource ThirdBackgroundColor}"
-                                CornerRadius="5">
+                                Cursor="Hand"
+                                CornerRadius="5"
+                                MouseDown="Border_MouseDown">
                             <StackPanel Orientation="Horizontal">
                                 <Grid>
                                     <Grid.RowDefinitions>
@@ -178,6 +181,7 @@
                                     <Label Grid.Row="0"
                                    Margin="10 15 10 0"
                                            FontSize="16"
+                                           x:Name="lblUserName"
                                        Content="MuHammadAliyev "
                                        
                                        FontWeight="SemiBold"
@@ -185,7 +189,7 @@
                                        
                                        Padding="0"></Label>
                                     <Label Grid.Row="1"
-                                           
+                                           x:Name="lblCountry"
                                    Foreground="{DynamicResource FourthIconColor}"
                                        Content="Uzbekistan"
                                    Margin="10 0"
@@ -201,7 +205,7 @@
                                     HorizontalAlignment="Right"     
                                     >
                                     <Border.Background>
-                                        <ImageBrush ImageSource="/Assets/StaticImages/IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg"/>
+                                        <ImageBrush x:Name="brUserImage" ImageSource="/Assets/StaticImages/IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg"/>
                                     </Border.Background>
                                 </Border>
                             </StackPanel>

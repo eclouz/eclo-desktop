@@ -36,7 +36,7 @@
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
                                Foreground="{DynamicResource SecundaryBackgroundColor}"></Label>
-                            <Label Content=""
+                            <Label Content="https://github.com/eclouz"
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
                                Foreground="{DynamicResource TextTertiaryColor}"></Label>

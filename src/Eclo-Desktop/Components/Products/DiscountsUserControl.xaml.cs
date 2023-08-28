@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Eclo.Domain.Entities.Discounts;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,26 +13,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ViewModels.Brands;
 
 namespace Eclo_Desktop.Components.Products
 {
     /// <summary>
-    /// Interaction logic for BrandsUserControl.xaml
+    /// Interaction logic for DiscountsUserControl.xaml
     /// </summary>
-    public partial class BrandsUserControl : UserControl
+    public partial class DiscountsUserControl : UserControl
     {
-        
-        public BrandsUserControl()
+  
+        public DiscountsUserControl()
         {
             InitializeComponent();
         }
-        public void setData(MensBrandsViewModels mensBrandsViewModels)
-        {
-            string imageUrl = "https://localhost:7190/" + mensBrandsViewModels.BrandIconPath;
-            Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
-            ImgBrands.ImageSource = new BitmapImage(imageUri);
-        }
 
+        public void setData(Discount discount)
+        {
+            lblDiscountName.Content = discount.Name;
+            lblDiscountPersentage.Content = discount.Percentage + "%";
+            tbDescription.Text = discount.Description;
+        }
     }
 }

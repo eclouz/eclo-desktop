@@ -30,4 +30,5 @@ public class ProductViewModels : Auditable
         = new List<float>();
 
     public bool ProductLiked { get; set; } = false;
+    public long likedId { get; set; }
 }

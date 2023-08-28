@@ -15,5 +15,7 @@ namespace Integrated.ServiceLayer.User;
     Task<bool> VerifyRegister(VerifyRegisterDto verifyRegisterDto);
     Task<bool> Login(LoginDto loginDto);
     Task<UserViewModel> GetUserById(long id);
+    Task<UserViewModel> GetUserByPhoneNumber(string phone);
+    Task<bool> UserUpdateSettings(UserViewModel userViewModel);
 
 }

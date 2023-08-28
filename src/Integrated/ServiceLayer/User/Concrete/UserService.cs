@@ -13,7 +13,7 @@ public class UserService : IUserService
     {
         using (var client = new HttpClient())
         {            
-            var request = new HttpRequestMessage(HttpMethod.Post, API.CREATE_USER);
+            var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "auth/register");//API.CREATE_USER
             var content = new MultipartFormDataContent();
             content.Add(new StringContent(registerDto.FirstName), "FirstName");
             content.Add(new StringContent(registerDto.LastName), "LastName");
@@ -49,17 +49,40 @@ public class UserService : IUserService
 
     }
 
+    public async Task<UserViewModel> GetUserByPhoneNumber(string phone)
+    {
+        var client = new HttpClient();
+        var request = new HttpRequestMessage(HttpMethod.Get,
+            API.BASE_URL + $"admin/users/userPhoneNumber?userPhoneNumber=%2B{(phone).Substring(1)}");
+        var content = new StringContent("", null, "text/plain");
+        request.Content = content;
+        var response = await client.SendAsync(request);
+        if(response.IsSuccessStatusCode)
+        {
+            var jsonstring = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<UserViewModel>(jsonstring);
+            return result;
+        }
+        return new UserViewModel();
+    }
+
     public async Task<bool> Login(LoginDto loginDto)
     {
         using (var client = new HttpClient())
-        {            
-            var request = new HttpRequestMessage(HttpMethod.Post, API.LOGIN);            
-            var content = new StringContent($"{{\r\n  \"phoneNumber\": \"{loginDto.PhoneNumber}\"," +
-                $"\r\n  \"code\": {loginDto.Password}\r\n}}", null, "application/json");
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "auth/login");
+            var content = new StringContent(JsonConvert.SerializeObject(loginDto), null, "application/json");
             request.Content = content;
             var response = await client.SendAsync(request);
+
             if (response.IsSuccessStatusCode)
             {
+                //var token = IdentitySingleton.GetInstance();
+
+                string responseContent = await response.Content.ReadAsStringAsync();
+                dynamic jsonResponse = JsonConvert.DeserializeObject(responseContent)!;
+                //token.Token = jsonResponse.token.ToString();
+
                 return true;
             }
             return false;
@@ -69,23 +92,63 @@ public class UserService : IUserService
     public async Task<bool> SendCodeRegister(string phone)
     {
         using(var client = new HttpClient())
-        {            
-                       
-            var phoneNumber = Uri.EscapeDataString(phone);
-            var request = new HttpRequestMessage(HttpMethod.Post, API.SEND_CODE_REGISTER+
-                $"?phone=%2B{phone.Substring(1)}");
-            request.Headers.Add("phone", phone);
-            var collection = new List<KeyValuePair<string, string>>();            
-            var content = new FormUrlEncodedContent(collection);
+        {
+            
+            var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "auth/register/send-code" + $"?phone=%2B{phone.Substring(1)}");
+            var content = new StringContent("", null, "text/plain");
             request.Content = content;
             var response = await client.SendAsync(request);
+
+        
             if (response.IsSuccessStatusCode)
             {
                 return true;
             }
-            return true;/////
+            return false;/////
                         
         }
+    }
+
+    public async Task<bool> UserUpdateSettings(UserViewModel dto)
+    {
+        //var client = new HttpClient();
+        //var request = new HttpRequestMessage(HttpMethod.Put,
+        //    $"http://eclo.uz:8080/api/user/profile/phoneNumber?phoneNumber=%2B{(dto.PhoneNumber).Substring(1)}");
+
+        //var content = new MultipartFormDataContent();
+        //content.Add(new StringContent(dto.FirstName), "FirstName");
+        //content.Add(new StringContent(dto.LastName), "LastName");
+        //content.Add(new StreamContent(File.OpenRead(dto.ImagePath)), "ImagePath", dto.ImagePath);
+        //content.Add(new StringContent(dto.PhoneNumber), "PhoneNumber");
+        //content.Add(new StringContent(dto.PassportSerialNumber), "PassportSerialNumber");
+        //content.Add(new StringContent((dto.BirthDate).ToString()), "BirthDate");
+        //content.Add(new StringContent(dto.District), "District");
+        //content.Add(new StringContent(dto.Address), "Address");
+
+        //request.Content = content;
+
+        var client = new HttpClient();
+        var request = new HttpRequestMessage(HttpMethod.Put, API.BASE_URL + $"user/profile/phoneNumber?phoneNumber=%2B{(dto.PhoneNumber).Substring(1)}");
+        var content = new MultipartFormDataContent();
+        content.Add(new StringContent($"{dto.FirstName}"), "FirstName");
+        content.Add(new StringContent($"{dto.LastName}"), "LastName");
+        content.Add(new StreamContent(File.OpenRead($"{dto.ImagePath}")), "ImagePath", $"{dto.ImagePath}");
+        content.Add(new StringContent($"{dto.PhoneNumber}"), "PhoneNumber");
+        content.Add(new StringContent($"{dto.PassportSerialNumber}"), "PassportSerialNumber");
+        content.Add(new StringContent($"{dto.BirthDate}"), "BirthDate");
+        content.Add(new StringContent($"{dto.Region}"), "Region");
+        content.Add(new StringContent($"{dto.District}"), "District");
+        content.Add(new StringContent($"{dto.Address}"), "Address");
+        request.Content = content;
+        var response = await client.SendAsync(request);
+        
+        if (response.IsSuccessStatusCode)
+        {
+            var res = await response.Content.ReadAsStringAsync();
+            return true;
+        }
+        var res1 = await response.Content.ReadAsStringAsync();
+        return false;
     }
 
     public async Task<bool> VerifyRegister(VerifyRegisterDto verifyRegisterDto)
@@ -93,7 +156,7 @@ public class UserService : IUserService
         using (var client = new HttpClient())
         {            
             var request = new HttpRequestMessage(HttpMethod.Post,
-                API.VERIFY_REGISTER+$"?phoneNumber=%2B" +
+                API.BASE_URL + "auth/register/verify" + $"?phoneNumber=%2B" +//API.VERIFY_REGISTER
                 $"{(verifyRegisterDto.PhoneNumber).Substring(1)}&code={verifyRegisterDto.Code}");
             var content = new StringContent($"{{\r\n  \"phoneNumber\": \"{verifyRegisterDto.PhoneNumber}\"," +
                 $"\r\n  \"code\": {verifyRegisterDto.Code}\r\n}}", null, "application/json");
@@ -103,7 +166,7 @@ public class UserService : IUserService
             {
                 return true;
             }
-            return true;////////////////////////////;
+            return false;////////////////////////////;
         }
     }
 }

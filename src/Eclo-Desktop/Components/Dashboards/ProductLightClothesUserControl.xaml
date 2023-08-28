@@ -6,7 +6,8 @@
              xmlns:local="clr-namespace:Eclo_Desktop.Components.Dashboards"
              mc:Ignorable="d" 
              Width="250"
-             Height="420"
+             Loaded="UserControl_Loaded"
+             Height="450"
              Margin="15">
     <Grid>
 
@@ -15,7 +16,7 @@
                 >
             <StackPanel>
                 <Border Width="250"                        
-                        Height="260"    
+                        Height="280"    
                         x:Name="myBorder"
                         CornerRadius="15"
                         Background="{DynamicResource NetItemsBackgroundColor}"
@@ -24,52 +25,19 @@
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*"/>
-                            
                         </Grid.ColumnDefinitions>
 
-                        <!--<Button x:Name="btnAddToBag"
-                                Click="btnAddToBag_Click"
-                        Grid.Column="0"
-                        Style="{DynamicResource NewItemsComponentsButton}"
-                        Content="Add to cart"
-                        >
-                        </Button>-->
-                        <Button x:Name="btnQuickView"
-                                Click="btnQuickView_Click"
-                        Grid.Column="1"
-                                
-                        Style="{DynamicResource NewItemsComponentsButton}"
-                        Content="Quick view"  
-                        >
-                        </Button>
+
                     </Grid>
 
                 </Border>
                 <StackPanel Orientation="Horizontal"                            
-                            Height="40"                            
-                            Width="200"
-                            Margin="0 5">
-                    <RadioButton  x:Name="rbPurple"
-                                  
-                                  Background="#a78bfa"
-                                  Style="{DynamicResource ColorClothes}">
-                    </RadioButton>
-                    <RadioButton  x:Name="rbYellow"
-                                  Background="#facc15"
-                                  Style="{DynamicResource ColorClothes}">
-                    </RadioButton>
-                    <RadioButton  x:Name="rbOrange"
-                                  Background="#fb923c"
-                                  Style="{DynamicResource ColorClothes}">
-                    </RadioButton>
-                    <RadioButton  x:Name="rbGreen"
-                                  Background="#4ade80"
-                                  Style="{DynamicResource ColorClothes}">
-                    </RadioButton>
-                    <RadioButton  x:Name="rbRed"
-                                  Background="Red"
-                                  Style="{DynamicResource ColorClothes}">
-                    </RadioButton>
+                            Height="50"                            
+                            Width="200"                            
+                            Margin="0 5"
+                            x:Name="SPLittlePictures">
+                    
+                   
                 </StackPanel>
                 <Label Content="Polo T-Shirt" 
                        x:Name="lblClotheName"
@@ -136,7 +104,7 @@
 
         </Border>
         <Border Width="200"
-                Height="200"
+                Height="260"
                 VerticalAlignment="Top"
                 Margin="0 10"
                 x:Name="ImageBorder">
@@ -163,5 +131,12 @@
                 </Border.Background>
             </Border>
         </Border>
+        <Button x:Name="btnQuickView"
+                Margin="0 0 0 180"
+                                Click="btnQuickView_Click"
+                                Grid.Column="0"                                
+                                Style="{DynamicResource NewItemsComponentsButton}"
+                                Content="Quick view">
+        </Button>
     </Grid>
 </UserControl>

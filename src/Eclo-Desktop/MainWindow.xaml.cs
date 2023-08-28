@@ -1,6 +1,9 @@
 ﻿using Eclo_Desktop.Pages;
+using Eclo_Desktop.Security;
 using Eclo_Desktop.Themes;
 using Eclo_Desktop.Windows;
+using Integrated.ServiceLayer.User;
+using Integrated.ServiceLayer.User.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -24,13 +27,31 @@ namespace Eclo_Desktop
     /// </summary>
     public partial class MainWindow : Window
     {
+        private readonly IUserService _userService;
         public MainWindow()
         {
             InitializeComponent();
+            this._userService = new UserService();
+        }
+        public async  Task refreshAsync()
+        {
+            var identity = IdentitySingleton.GetInstance();
+            var result = await _userService.GetUserById(identity.UserId);
+
+            lblUserName.Content = result.FirstName;
+            lblCountry.Content = result.Region;
+
+            string imageUrl = "http://eclo.uz:8080/" + result.ImagePath;
+            Uri uri = new Uri(imageUrl, UriKind.Absolute);
+            brUserImage.ImageSource = new BitmapImage(uri);
+
+            Dashboard dashboard = new Dashboard();
+            PageNavigator.Content = dashboard;
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            await refreshAsync();
 
             //RegisterWindow regiterWindow = new RegisterWindow();
             //this.Hide();
@@ -41,9 +62,7 @@ namespace Eclo_Desktop
 
             //PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
             //phoneConfirmWindow.ShowDialog();            
-
-            Dashboard dashboard = new Dashboard();
-            PageNavigator.Content = dashboard;
+            
             //this.ShowDialog();
         }
 
@@ -78,10 +97,10 @@ namespace Eclo_Desktop
             PageNavigator.Content = aboutUsPage;
         }
 
-        private void rbFaq_Click(object sender, RoutedEventArgs e)
-        {
+        //private void rbFaq_Click(object sender, RoutedEventArgs e)
+        //{
 
-        }
+        //}
 
         private void rbHelp_Click(object sender, RoutedEventArgs e)
         {
@@ -89,9 +108,10 @@ namespace Eclo_Desktop
             PageNavigator.Content = helpPage;
         }
 
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        
+        private async void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            Close();
+            Application.Current.Shutdown();            
         }
 
         private void btnRestore_Click(object sender, RoutedEventArgs e)
@@ -125,5 +145,11 @@ namespace Eclo_Desktop
             //    AppTheme.ChangeTheme(new Uri("/Themes/LightTheme.xaml", UriKind.Relative));
             //}
         }
+
+        private async void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            await refreshAsync();
+        }
+        
     }
 }

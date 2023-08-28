@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Dtos.Product;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,22 @@ namespace Eclo_Desktop.Components.Products
     /// </summary>
     public partial class SizeUserControl : UserControl
     {
+
+         ProductGetSizeDto ProductGetSizeDtoMain2 { get ; set; } 
+        public Func<ProductGetSizeDto,Task> ProductGetSize { get; set; }
         public SizeUserControl()
         {
             InitializeComponent();
+        }
+        public void setData(ProductGetSizeDto dto)
+        {
+            ProductGetSizeDtoMain2 = dto;
+            lblSizeSpace.Content = dto.Size;
+        }
+
+        private async void SizeButton_Click(object sender, RoutedEventArgs e)
+        {
+            await ProductGetSize(ProductGetSizeDtoMain2);
         }
     }
 }

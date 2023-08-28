@@ -1,4 +1,5 @@
 ﻿using Eclo_Desktop.Components.Dashboards;
+using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
 using System;
@@ -35,22 +36,27 @@ namespace Eclo_Desktop.Pages
 
         public async Task refreshAsync()
         {
-            //wpGirls.Children.Clear();
-            //roductViewModelsList = await _productService.GetAllProducts(1);
-            ////var result = roductViewModelsList.Where(r=> r.c)
-            //foreach (var product in roductViewModelsList)
-            //{
-            //    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
-            //    productLightClothesUserControl.setData(product);
-            //    wpGirls.Children.Add(productLightClothesUserControl);
+            wpWomen.Children.Clear();
+            var identity = IdentitySingleton.GetInstance();
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Women", 1);
+            foreach (var product in mensCategoryProducts)
+            {
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(product);
+                wpWomen.Children.Add(productLightClothesUserControl);
 
-            //}
+            }
 
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             await refreshAsync();
+        }
+        
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new ProductsPage());
         }
     }
 }

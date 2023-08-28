@@ -8,7 +8,7 @@
              Margin="15"
              Width="450" >
     <Grid>
-        <Border Background="{DynamicResource ThirdBackgroundColor}"
+        <Border Background="{DynamicResource PrimaryBackgroundColor}"
                 CornerRadius="25">
             <Border.Effect>
                 <DropShadowEffect ShadowDepth="0.1"

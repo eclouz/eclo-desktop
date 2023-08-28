@@ -56,6 +56,7 @@ namespace Eclo_Desktop.Windows
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Shutdown();
             Close();
         }
 

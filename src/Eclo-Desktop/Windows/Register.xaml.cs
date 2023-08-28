@@ -1,4 +1,5 @@
 ﻿using Dtos.Auth;
+using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using System;
@@ -28,10 +29,11 @@ namespace Eclo_Desktop.Windows
             InitializeComponent();
             
         }        
+                
         
-
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Shutdown();
             Close();
         }
 
@@ -42,6 +44,7 @@ namespace Eclo_Desktop.Windows
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Shutdown();
             this.Close();
         }
 
@@ -69,8 +72,19 @@ namespace Eclo_Desktop.Windows
                     if (response2 == false) { MessageBox.Show("SMS not sended"); }
                     else
                     {
+
                         PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
                         phoneConfirmWindow.GetPhone(tbPhone.Text.ToString());
+                        this.Hide();
+
+                        var res = await userService.GetUserByPhoneNumber(tbPhone.Text);
+                        if (res != null)
+                        {
+                            var identity = IdentitySingleton.GetInstance();
+                            identity.UserId = res.Id;
+                            MessageBox.Show((identity.UserId).ToString());
+                        }
+
                         phoneConfirmWindow.ShowDialog();
 
                     }                    
@@ -89,6 +103,7 @@ namespace Eclo_Desktop.Windows
         private void btnToLogin_Click(object sender, RoutedEventArgs e)
         {
             LoginWindow loginWindow = new LoginWindow();
+            this.Hide();
             loginWindow.ShowDialog();
         }
     }

@@ -24,49 +24,20 @@
                     <Border Margin="15 10" >
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="50"/>
                                 <ColumnDefinition Width="*"/>
                             </Grid.ColumnDefinitions>
+                            <Button Style="{DynamicResource GoBackButton}"
+                                    Click="Button_Click">
+                                
+                            </Button>
                             <Label Content="Men's collection"
+                                   Grid.Column="1"
+                                   Margin="10 0"
                                HorizontalContentAlignment="Left"
                                FontSize="25" FontWeight="SemiBold"
                                Foreground="{DynamicResource SecundaryBackgroundColor}"></Label>
-                            <Border 
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Grid.Column="1"
-                             Height="40"
                             
-                             Width="350"
-                             Margin="0 0 10 0"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="40"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Path  Margin="20 5 0 0"
-                                      Width="30"
-                                       
-                                          Height="30"
-                                      Grid.Column="0"
-                                      Data="{DynamicResource SearchICon2}"
-                                       Fill="{DynamicResource FourthIconColor}"/>
-                                    <TextBox x:Name="tbSecondName"   
-                                         Grid.Column="1"
-                             BorderThickness="0"
-                                     VerticalAlignment="Center"
-                             Margin="6" MaxLength="32"
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
-                                </Grid>
-                            </Border>
                         </Grid>
 
                     </Border>
@@ -78,7 +49,7 @@
                     </Border>
                 </StackPanel>
                 <ScrollViewer Grid.Row="1">
-                    <WrapPanel>
+                    <WrapPanel x:Name="wpMens">
 
                     </WrapPanel>
                 </ScrollViewer>

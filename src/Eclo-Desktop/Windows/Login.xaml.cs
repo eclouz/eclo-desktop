@@ -1,4 +1,5 @@
 ﻿using Dtos.Auth;
+using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using System;
@@ -31,6 +32,7 @@ namespace Eclo_Desktop.Windows
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Shutdown();
             Close();
         }
 
@@ -41,6 +43,7 @@ namespace Eclo_Desktop.Windows
 
         private void btnCancel_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Shutdown();
             this.Close();
         }
 
@@ -66,6 +69,14 @@ namespace Eclo_Desktop.Windows
                 if (response)
                 {
                     MessageBox.Show("You are logged in ");
+                    this.Hide();
+                    var res = await userService.GetUserByPhoneNumber(tbPhone.Text);
+                    if (res != null) 
+                    {
+                        var identity = IdentitySingleton.GetInstance();
+                        identity.UserId = res.Id;
+                        //MessageBox.Show((identity.UserId).ToString());
+                    }
                     MainWindow mainWindow = new MainWindow();   
                     mainWindow.ShowDialog();
                 }

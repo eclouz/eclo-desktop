@@ -34,9 +34,14 @@ public class ProductGetViewModel : Auditable
         = new List<ProductDiscount>();
     [JsonPropertyName("productLiked")]
     public bool ProductLiked { get; set; } = false;
+    [JsonPropertyName("likedId")]
+    public long likedId { get; set; }
     [JsonPropertyName("productComments")]
+
     public List<ProductComment> ProductComments { get; set; }
       = new List<ProductComment>();
+
+
     //public string productName { get; set; } = String.Empty;
 
     //public long BrandId { get; set; }

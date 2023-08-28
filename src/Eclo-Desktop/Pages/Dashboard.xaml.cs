@@ -1,4 +1,6 @@
-﻿using Eclo_Desktop.Components.Dashboards;
+﻿using Eclo.Domain.Entities.Products;
+using Eclo_Desktop.Components.Dashboards;
+using Eclo_Desktop.Security;
 using Eclo_Desktop.Utilities;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
@@ -32,31 +34,120 @@ namespace Eclo_Desktop.Pages
             this._productService = new ProductService();
         }
 
-        private async void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            //ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
-            //SecondWp.Children.Add(productLightClothesUserControl);
-
-            await refreshAsync();
-        }
+       
+        //public async Task setDataForDashboard()
+        //{
+        //    await refreshAsync();
+        //}
+        //public async Task RefreshWithLike()
+        //{
+        //    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+        //    productLightClothesUserControl.RefreshDashboard = refreshAsync;
+            
+        //}
         public async Task refreshAsync()
         {
+            //await RefreshWithLike();
+
+            var identity = IdentitySingleton.GetInstance();
             SecondWp.Children.Clear();            
-            var products = await _productService.GetAllProducts(1);
+            var products = await _productService.GetAllProducts(identity.UserId, 1);
             foreach ( var product in products )
+            {
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(product);
+                SecondWp.Children.Add(productLightClothesUserControl);
+                productLightClothesUserControl.RefreshPage = RefreshPageHandler;
+            }
+
+        }
+        private async void RefreshPageHandler()
+        {
+            await refreshAsync();
+        }
+        
+        private async void rbMens_Click_1(object sender, RoutedEventArgs e)
+        {
+            SecondWp.Children.Clear();
+            var identity = IdentitySingleton.GetInstance();
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId , "Men", 1);
+            foreach (var product in mensCategoryProducts)
+            {
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(product);
+                
+                SecondWp.Children.Add(productLightClothesUserControl);
+                
+            }
+        }
+
+        private async void rbWomens_Click(object sender, RoutedEventArgs e)
+        {
+            SecondWp.Children.Clear();
+            var identity = IdentitySingleton.GetInstance();
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Women", 1);
+            foreach (var product in mensCategoryProducts)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
                 productLightClothesUserControl.setData(product);
                 SecondWp.Children.Add(productLightClothesUserControl);
 
             }
-
         }
 
-        private void rbMens_Click(object sender, RoutedEventArgs e)
+        private async void rbKids_Click(object sender, RoutedEventArgs e)
         {
             SecondWp.Children.Clear();
+            var identity = IdentitySingleton.GetInstance();
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Kids", 1);
+            foreach (var product in mensCategoryProducts)
+            {
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(product);
+                SecondWp.Children.Add(productLightClothesUserControl);
 
+            }
+        }
+
+        private async void rbAll_Click(object sender, RoutedEventArgs e)
+        {
+            var identity = IdentitySingleton.GetInstance();
+            SecondWp.Children.Clear();
+            var products = await _productService.GetAllProducts(identity.UserId, 1);
+            foreach (var product in products)
+            {
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(product);
+                SecondWp.Children.Add(productLightClothesUserControl);
+
+            }
+        }
+
+        private void btnShowMeAll_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new MansCollectionPage());
+        }
+
+        private void btnShowMeAll2_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new MansCollectionPage());
+        }
+
+        private void btnShowMeAll3_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new DiscountsPage());
+        }
+
+        private void btnShowMeAll4_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new DiscountsPage());
+        }
+
+        private async void Page_Loaded_1(object sender, RoutedEventArgs e)
+        {
+            await refreshAsync();
+            //ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+            //SecondWp.Children.Add(productLightClothesUserControl);
         }
     }
 }
