@@ -1,5 +1,6 @@
 ﻿using Eclo_Desktop.Components.Dashboards;
 using Eclo_Desktop.Components.Products;
+using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.Brand;
 using Integrated.ServiceLayer.Brand.Concrete;
 using Integrated.ServiceLayer.Product;
@@ -28,12 +29,14 @@ namespace Eclo_Desktop.Pages
     public partial class MansCollectionPage : Page
     {
         private readonly IBrandService _brandService;
+        private readonly IProductService _productService;
 
         public bool clicked { get; set; } = false;
         public MansCollectionPage()
         {
             InitializeComponent();
             this._brandService = new BrandService();
+            this._productService = new ProductService();
         }
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)
@@ -42,19 +45,23 @@ namespace Eclo_Desktop.Pages
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
-        {
-            //BrandsUserControl brandsUserControl = new BrandsUserControl();
-            //SPSize.Children.Add(brandsUserControl);
-            var brands = await _brandService.GetAllBrands(1);
-            foreach (var brend in brands)
+        {            
+            wpMens.Children.Clear();
+            var identity = IdentitySingleton.GetInstance();
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", 1);
+            foreach (var product in mensCategoryProducts)
             {
-                BrandsUserControl brandsUserControl = new BrandsUserControl();
-                brandsUserControl.setData(brend);
-                SPSize.Children.Add(brandsUserControl);
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(product);
+                wpMens.Children.Add(productLightClothesUserControl);
 
             }
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new ProductsPage());
+        }
     }
 }
     

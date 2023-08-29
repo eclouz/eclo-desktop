@@ -5,15 +5,57 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eclo_Desktop.Components.Products"
              mc:Ignorable="d" 
-             Width="250" Height="120">
+             Margin="15"
+             Width="450" >
     <Grid>
-        <Border Background="{DynamicResource PrimaryBackgroundColor}">
-            <Grid>
+        <Border Background="{DynamicResource PrimaryBackgroundColor}"
+                CornerRadius="25">
+            <Border.Effect>
+                <DropShadowEffect ShadowDepth="0.1"
+                                              Opacity="0.1"
+                                              />
+            </Border.Effect>
+            <!--<Grid Margin="5">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35"/>
                     <RowDefinition Height="*"/>
-                </Grid.RowDefinitions>
-            </Grid>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>-->
+            <StackPanel Margin="5">
+                            
+                <Label Content="Asadbek Solijonov"
+                       x:Name="lblCommentOwer"
+                       Grid.Row="0"
+                       Foreground="{DynamicResource FourthIconColor}"
+                       FontSize="16"
+                       FontWeight="SemiBold"
+                       >
+                    
+                </Label>
+                    
+                
+                <TextBlock Text="Salom Men bu mahsultoni sifatiga qoyil qoldim . O'zini narxiga arziydi . Tavsiya qilaman."
+                           TextWrapping="Wrap"
+                           Margin="5"
+                           x:Name="tbCommentText"
+                           Foreground="{DynamicResource TextFourthColor}"
+                       Grid.Row="1"
+                       FontSize="14"
+                       
+                       >
+
+                </TextBlock>
+                <Label FontSize="10"    
+                       Grid.Row="2"
+                           FontWeight="SemiBold"
+                           VerticalContentAlignment="Center"
+                           Foreground="{DynamicResource FourthIconColor}"
+                           x:Name="lblReviewTime"
+                           Content="1:53 am 8/25/2023">
+
+                </Label>
+            </StackPanel>
+            <!--</Grid>-->
         </Border>
     </Grid>
 </UserControl>

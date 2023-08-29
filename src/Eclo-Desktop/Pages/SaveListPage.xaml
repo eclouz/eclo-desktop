@@ -24,9 +24,10 @@
                                Foreground="{DynamicResource FourthIconColor}"></Label>
                         </StackPanel>
                     </Border>
-                    <WrapPanel x:Name="MainWP">
+                    <WrapPanel x:Name="MainWP123">
                         
                     </WrapPanel>
+                    
                 </StackPanel>
 
             </Border>

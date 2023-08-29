@@ -10,206 +10,52 @@
       Title="MansCollectionPage">
     <Grid>
     <Border CornerRadius="5" Background="{DynamicResource PrimaryBackgroundColor}">
-    
-        
 
-            
-                <Grid>
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="130"/>
-                        <RowDefinition Height="*"/>
-                    </Grid.RowDefinitions>
-                    <StackPanel Grid.Row="0">
-                
-                <Border Margin="15 10" >
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="Men's collection"
-                               HorizontalContentAlignment="Center"
-                               FontSize="25" FontWeight="SemiBold"
-                               Foreground="{DynamicResource SecundaryBackgroundColor}"></Label>
-                    </StackPanel>
 
-                </Border>
 
-                    <Grid Height="80" Margin="20 0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-                        <ScrollViewer Grid.Column="0" HorizontalScrollBarVisibility="Visible"
-                                        Height="60"      VerticalScrollBarVisibility="Disabled">
-                            <StackPanel Orientation="Horizontal" x:Name="SPSize">
 
-                            </StackPanel>
-                        </ScrollViewer>
-                        <Border 
-                            HorizontalAlignment="Right"
-                            VerticalAlignment="Center"
-                            Grid.Column="1"
-                             Height="40"
-                           
-                             Width="400"
-                             Margin="0 0 10 0"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                            <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="40"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <Path  Margin="20 5 0 0"
-                                      Width="30"
-                                       
-                                          Height="30"
-                                      Grid.Column="0"
-                                      Data="{DynamicResource SearchICon2}"
-                                       Fill="{DynamicResource FourthIconColor}"/>
-                                <TextBox x:Name="tbSecondName"   
-                                         Grid.Column="1"
-                             BorderThickness="0"
-                                     VerticalAlignment="Center"
-                             Margin="6" MaxLength="32"
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
-                            </Grid>
-                        </Border>
-                    </Grid>               
-                    
-                    
-                        
-                        
-                    <!--<Grid HorizontalAlignment="Left" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="45"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                            <Button Style="{DynamicResource SwitchButton}"
-                                      Content="Categories"
-                                      Click="RadioButton_Click"
-                                      Tag="{DynamicResource CategoriesIcon}"
-                                      VerticalAlignment="Top"
-                                         Margin="15 0 100 0"
-                                          Grid.Row="0"
-                                      >
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Row="0">
+
+                    <Border Margin="15 10" >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <Button Style="{DynamicResource GoBackButton}"
+                                    Click="Button_Click">
                                 
                             </Button>
+                            <Label Content="Men's collection"
+                                   Grid.Column="1"
+                                   Margin="10 0"
+                               HorizontalContentAlignment="Left"
+                               FontSize="25" FontWeight="SemiBold"
+                               Foreground="{DynamicResource SecundaryBackgroundColor}"></Label>
+                            
+                        </Grid>
 
-
-                        <Border Width="250" Margin="0 5"
-                                Height="300"
-                                x:Name="brCategories"
-                                CornerRadius="15"
-                                Grid.Row="1"
-                                Visibility="Collapsed"
-                                Background="{DynamicResource PrimaryBackgroundColor}">
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0.1" 
-                                              Opacity="0.3"/>
-                            </Border.Effect>
-                            <WrapPanel x:Name="WpCategory"
-                                       Margin="10">
-                                <Button Height="35" Width="35">
-                                    
-                                </Button>
-                            </WrapPanel>
-                        </Border>
-                        
-                    </Grid>-->
-                       
-                        
-                        
-                        <!--<Grid HorizontalAlignment="Left" >
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="45"/>
-                            <RowDefinition Height="*"/>
-                        </Grid.RowDefinitions>
-                        <Button Style="{DynamicResource SwitchButton}"
-                                      Content="Cost"
-                                      Click="RadioButton_Click"
-                                      Tag="{DynamicResource CategoriesIcon}"                                      
-                                         Margin="15 0 100 0"
-                                          Grid.Row="0"
-                                      >
-
-                        </Button>
-
-
-                        <Border Width="250" Margin="0 5"
-                                Height="300"
-                                x:Name="brCost"
-                                CornerRadius="15"
-                                Grid.Row="1"
-                                
-                                Background="{DynamicResource PrimaryBackgroundColor}">
-                            <Border.Effect>
-                                <DropShadowEffect ShadowDepth="0.1" 
-                                              Opacity="0.3"/>
-                            </Border.Effect>
-                            <WrapPanel x:Name="WpCost"
-                                       Margin="10">
-                                <Button Height="35" Width="35">
-
-                                </Button>
-                            </WrapPanel>
-                        </Border>
-
-                    </Grid>-->
-                        <Border Height="1"
+                    </Border>
+                    <Border Height="1"
                         Width="1100"
                             Margin="15"
                             
                         Background="LightGray">
-                        </Border>
-                    
-                    
+                    </Border>
                 </StackPanel>
-                
                 <ScrollViewer Grid.Row="1">
-                    <WrapPanel>
+                    <WrapPanel x:Name="wpMens">
 
                     </WrapPanel>
                 </ScrollViewer>
-                <!--<Border Margin="15"
-                            Width="450"
-                            Height="35"
-                            CornerRadius="15"
-                            
-                            HorizontalAlignment="Left">
-                       
-                        <Menu Background="Transparent">
-                            <MenuItem Header="Categories"
-                                      
-                                      Height="35"
-                                      Width="135"                                      
-                                      Style="{DynamicResource Main_MenuItem}">
-                                <MenuItem Header="All categories"
-                                          Height="35"
-                                          Width="175"
-                                          Style="{DynamicResource Services_MenuItem_With_Dropdown}">
-                                </MenuItem>
-                                <MenuItem Header="T-Shirts"
-                                          Height="35"
-                                          Width="175"
-                                          Style="{DynamicResource Services_MenuItem_With_Dropdown}">
 
-                                </MenuItem>
-                                
-                            </MenuItem>
-                            
-                        </Menu>
-                        
-                        
-                    </Border>-->
-                </Grid>
-            
-            
-        
-    </Border>
+            </Grid>
+        </Border>
       
     
     </Grid>

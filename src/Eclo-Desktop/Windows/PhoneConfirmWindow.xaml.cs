@@ -56,6 +56,7 @@ namespace Eclo_Desktop.Windows
 
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
+            Application.Current.Shutdown();
             Close();
         }
 
@@ -100,6 +101,8 @@ namespace Eclo_Desktop.Windows
                 if (response==true)
                 {
                     MessageBox.Show("You are Veerified !!");
+                    MainWindow mainWindow = new MainWindow();
+                    mainWindow.ShowDialog();
                     Close();
                 }
             }

@@ -1,4 +1,5 @@
 ﻿using Dtos.Auth;
+using Eclo.DataAccess.ViewModels.Users;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,4 +14,8 @@ namespace Integrated.ServiceLayer.User;
     Task<bool> SendCodeRegister(string phone);
     Task<bool> VerifyRegister(VerifyRegisterDto verifyRegisterDto);
     Task<bool> Login(LoginDto loginDto);
+    Task<UserViewModel> GetUserById(long id);
+    Task<UserViewModel> GetUserByPhoneNumber(string phone);
+    Task<bool> UserUpdateSettings(UserViewModel userViewModel);
+
 }

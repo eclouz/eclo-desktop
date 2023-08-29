@@ -1,4 +1,7 @@
-﻿using System;
+﻿using Eclo_Desktop.Security;
+using Integrated.ServiceLayer.User;
+using Integrated.ServiceLayer.User.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +23,33 @@ namespace Eclo_Desktop.Pages
     /// </summary>
     public partial class UserPage : Page
     {
+        private readonly IUserService _userService;
+
         public UserPage()
         {
             InitializeComponent();
+            this._userService = new UserService();
+
+        }
+
+        private async void Page_Loaded(object sender, RoutedEventArgs e)
+        {            
+            var identity = IdentitySingleton.GetInstance();
+            var result = await _userService.GetUserById(identity.UserId);
+
+
+            string imageUrl = "http://eclo.uz:8080/" + result.ImagePath;
+            Uri uri = new Uri(imageUrl, UriKind.Absolute);            
+            brProfileImage.ImageSource = new BitmapImage(uri);
+
+            lblName.Content = result.FirstName;
+            lblSecondName.Content = result.LastName;
+            lblPhoneNumber.Content = result.PhoneNumber;
+            lblPassportSerialNUmber.Content = result.PassportSerialNumber;
+            lblBirthDate.Content = result.BirthDate;
+            lblDistrict.Content = result.District;
+            lblAdress.Content = result.Address;
+            
         }
     }
 }

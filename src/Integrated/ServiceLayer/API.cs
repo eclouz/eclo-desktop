@@ -11,7 +11,7 @@ namespace Integrated.ServiceLayer;
 public class API
 {
     //Base Url
-    public static readonly string BASE_URL = "http://eclo.uz:8080/api/";
+    public static readonly string BASE_URL = "https://localhost:7190/api/";
     
     //Login Register Confirm Password URLs
     public static readonly string CREATE_USER = BASE_URL + "auth/register";
@@ -25,6 +25,13 @@ public class API
     //Brand Urls
 
     //Products
-    public static readonly string GET_ALL_PRODUCTS = BASE_URL + "common/products";
+    
+    public static readonly string GET_ALL_PRODUCTS = BASE_URL + "common/products/view";
+    public static readonly string GET_ALL_BY_ID = BASE_URL + "common/products/view";
+    public static readonly string FILTER_BY_CATEGORY = BASE_URL + "common/products/filter?category=";
     //Products
+
+    //User
+    public static readonly string GET_USER_BY_ID = BASE_URL + "admin/users";
+    //User
 }

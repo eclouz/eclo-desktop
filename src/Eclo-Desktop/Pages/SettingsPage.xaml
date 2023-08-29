@@ -6,6 +6,7 @@
       xmlns:local="clr-namespace:Eclo_Desktop.Pages"
       mc:Ignorable="d" 
       d:DesignHeight="1500" d:DesignWidth="800"
+      Loaded="Page_Loaded"
       Title="SettingPage">
     <!--default 450 height-->
     <Grid>
@@ -35,7 +36,8 @@
                             Margin="20 0 0 0"
                             CornerRadius="5">
                                 <Border.Background>
-                                    <ImageBrush ImageSource="/Assets/StaticImages/IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg"/>
+                                    <ImageBrush x:Name="UserImage"
+                                        ImageSource="/Assets/StaticImages/IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg"/>
                                 </Border.Background>
                             </Border>
                             <Label HorizontalAlignment="Left"
@@ -47,6 +49,8 @@
                            >
                             </Label>
                             <Button Width="150" Height="35" 
+                                    x:Name="updateImage"
+                                    Click="updateImage_Click"
                                     Content="Edit image"
                                     Foreground="{DynamicResource FourthIconColor}"
                                     Style="{DynamicResource SaveBtn}"
@@ -237,6 +241,7 @@
                                         Height="50"
                                         Width="310"
                                         Margin="0 45 0 15"
+                                                Click="btnSaveSettingsChange_Click"
                                         >
                                         </Button>
                                     </StackPanel>
@@ -342,6 +347,7 @@
                                         Foreground="{DynamicResource FourthIconColor}"
                                         x:Name="btnSaveSecuritySettingsChange"
                                         Height="50"
+                                                    Click="btnSaveSecuritySettingsChange_Click"
                                         Width="310"
                                         Margin="0 45 0 15"
                                         >

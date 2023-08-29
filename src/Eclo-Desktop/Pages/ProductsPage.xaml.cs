@@ -30,5 +30,15 @@ namespace Eclo_Desktop.Pages
         {
             NavigationService?.Navigate(new MansCollectionPage());
         }
+
+        private void WomensCategoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new Women_sCollection());
+        }
+
+        private void KidsCategoryBtn_Click(object sender, RoutedEventArgs e)
+        {
+            NavigationService?.Navigate(new Kid_sCollection());
+        }
     }
 }

@@ -1,4 +1,8 @@
-﻿using Eclo_Desktop.Windows;
+﻿using Eclo_Desktop.Components.Products;
+using Eclo_Desktop.Security;
+using Eclo_Desktop.Windows;
+using Integrated.ServiceLayer.Product;
+using Integrated.ServiceLayer.Product.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,6 +18,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using ViewModels.Brands;
 using ViewModels.Products;
 
 namespace Eclo_Desktop.Components.Dashboards
@@ -23,10 +28,15 @@ namespace Eclo_Desktop.Components.Dashboards
     /// </summary>
     public partial class ProductLightClothesUserControl : UserControl
     {
-        public bool Liked { get; set; } = false;
+        ProductViewModels productViewModels = new ProductViewModels();
+
+        private IProductService _productService;
+        //public bool Liked { get; set; } 
+        IProductService productService = new ProductService();
         public ProductLightClothesUserControl()
         {
             InitializeComponent();
+            this._productService = new ProductService();
         }
 
         private void btnAddToBag_Click(object sender, RoutedEventArgs e)
@@ -34,44 +44,202 @@ namespace Eclo_Desktop.Components.Dashboards
 
         }
 
-        private void btnQuickView_Click(object sender, RoutedEventArgs e)
+        private async void btnQuickView_Click(object sender, RoutedEventArgs e)
         {
             QuickView1Window quickView1Window = new QuickView1Window();
-            //setDataToQucikViewWindow
+            var identity = IdentitySingleton.GetInstance();
+            var result = await productService.GetByIdProducts(identity.UserId, productViewModels.Id);            
+            quickView1Window.setData(result);                            
             quickView1Window.ShowDialog();
         }
 
-        private void brLike_MouseDown(object sender, MouseButtonEventArgs e)
+        //public Func<Task> RefreshDashboard { get ; set; }
+            public delegate void RefreshDelegate();
+        public RefreshDelegate RefreshPage { get; set; }
+        private async void brLike_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            if (!Liked)
-            {             
-                //brLike.ImageSource = new BitmapImage(new  System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));                        
-                //Liked = true;
+            //await RefreshDashboard();
+            
+            int page = 1;
+            var getUserProductLikesList = await productService.getUserProductLikes(page);
+            var identity = IdentitySingleton.GetInstance();
+            string pathRedLike = "C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png";
+
+            for (int i = 0; i < getUserProductLikesList.Count; i++)
+            {
+                if (getUserProductLikesList[i].productId == productViewModels.Id && getUserProductLikesList[i].userId == identity.UserId
+                    && getUserProductLikesList[i].isLiked == true)
+                {
+                    //Oq like                
+                    brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));
+                    var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id, 
+                        identity.UserId, productViewModels.Id, false);
+                    //var isDelete = await _productService.DeleteLike(productViewModels.likedId);
+                    //productViewModels.ProductLiked = false;
+                    if (likeUpdate == true)
+                    {
+                        MessageBox.Show("Removed from cart");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Not Removed from cart. Something wrong 🥱");
+                    }
+                    break;
+                }
+                else if (getUserProductLikesList[i].productId == productViewModels.Id && getUserProductLikesList[i].userId == identity.UserId
+                    && getUserProductLikesList[i].isLiked == false)
+                {
+                    // Qizil like
+                    brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
+                    var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id, 
+                        identity.UserId, productViewModels.Id, true);
+
+                    var identity2 = IdentitySingleton.GetInstance();
+                    //var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
+                    //productViewModels.ProductLiked = true;
+                    if (likeUpdate == true)
+                    {
+                        MessageBox.Show("Successfully saved to savelist");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Not Saved to cart. Something wrong 🥱");
+                    }
+                    break;
+                }
+                if(i == getUserProductLikesList.Count-1)
+                {
+                    var identity2 = IdentitySingleton.GetInstance();
+                    var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
+                    // Qizil like
+                    brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
+
+                    //var identity2 = IdentitySingleton.GetInstance();
+                    //var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
+                    //productViewModels.ProductLiked = true;
+                    if (likeIt == true)
+                    {
+                        MessageBox.Show("Successfully saved to savelist");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Not Saved to cart. Something wrong 🥱");
+                    }
+                    break;
+                }
+            }
+            if (getUserProductLikesList.Count==0)
+            {
+                var identity2 = IdentitySingleton.GetInstance();
+                var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
+                // Qizil like
+                brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
+
+                //var identity2 = IdentitySingleton.GetInstance();
+                //var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
+                //productViewModels.ProductLiked = true;
+                if (likeIt == true)
+                {
+                    MessageBox.Show("Successfully saved to savelist");
+                }
+                else
+                {
+                    MessageBox.Show("Not Saved to cart. Something wrong 🥱");
+                }
+            }
+
+            RefreshPage?.Invoke();
+
+
+
+            //if (productViewModels.ProductLiked == true)
+            //{
+            //    //Oq like                
+            //    brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));                
+            //    var isDelete = await _productService.DeleteLike(productViewModels.likedId);
+            //    //productViewModels.ProductLiked = false;
+            //    if (isDelete == true)
+            //    {
+            //        MessageBox.Show("Removed from cart");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Not Removed from cart. Something wrong 🥱");
+            //    }
+            //}
+            //else
+            //{
+            //    // Qizil like
+            //    brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
+
+            //    var identity2 = IdentitySingleton.GetInstance();
+            //    var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
+            //    //productViewModels.ProductLiked = true;
+            //    if (likeIt == true)
+            //    {
+            //        MessageBox.Show("Successfully saved to savelist");
+            //    }
+            //    else
+            //    {
+            //        MessageBox.Show("Not Saved to cart. Something wrong 🥱");
+            //    }
+            //}
+
+        }
+        public async void setData(ProductViewModels productViewModels)
+        {            
+            lblClotheName.Content = productViewModels.ProductName;            
+            foreach ( var i in productViewModels.ProductDetail)
+            {
+                lblClotheColorDescription.Content = i.Color;
+                string imageUrl = "https://localhost:7190/" + i.ImagePath;
+                Uri imageUri = new Uri(imageUrl, UriKind.Absolute);                
+                imgProduct.ImageSource = new BitmapImage(imageUri);
+            }
+            //viewModel.Id = productViewModels.Id;
+            this.productViewModels.Id = productViewModels.Id;
+            this.productViewModels.ProductLiked = productViewModels.ProductLiked;
+            this.productViewModels.likedId = productViewModels.likedId;
+            this.productViewModels.ProductDetail=productViewModels.ProductDetail;
+
+            string pathRedLike = "C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png";
+            if (productViewModels.ProductLiked==true)
+            {
+                brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
             }
             else
             {
-                //brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));                
-                //Liked = false;
+                brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));                
             }
 
+            lblPproductPrice.Content = (productViewModels.ProductPrice).ToString();
+                   
         }
-        public void setData(ProductViewModels productViewModels)
+
+        private void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
-            lblClotheName.Content = productViewModels.ProductName;
-            lblClotheColorDescription.Content = productViewModels.ProductColor;
-            lblPproductPrice.Content = productViewModels.ProductPrice;
-            //lblRating.Content = productViewModels.
-            if(productViewModels.ProductLiked==true)
+            int countItem = 0;
+            foreach (var item in this.productViewModels.ProductDetail)
             {
-                brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
-                Liked = true;
+                if (countItem == 5) 
+                {
+                    break;
+                }
+                countItem++;
+                SmallProductPicturesUserControl smallProductPicturesUserControl = new SmallProductPicturesUserControl();
+                string imageUrl = "https://localhost:7190/" + item.ImagePath;
+                Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
+                smallProductPicturesUserControl.setData(item.Color,imageUri);
+                smallProductPicturesUserControl.SetDataToComponent = setDataToComponent;
+                SPLittlePictures.Children.Add(smallProductPicturesUserControl);
             }
-            else
-            {
-                brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));
-                Liked = false;
-            }
-        }
 
+        }
+        public async Task setDataToComponent(string colorName,Uri imageUri)
+        {
+            lblClotheColorDescription.Content = colorName;
+            imgProduct.ImageSource = new BitmapImage(imageUri);
+
+        }
     }
 }

@@ -5,21 +5,31 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eclo_Desktop.Components.Products"
              mc:Ignorable="d" 
-             Width="65" Height="35"
+             Width="60" Height="45"
              Margin="5 10">
     <Grid >
-        <Border Background="{DynamicResource PrimaryBackgroundColor}"
-                CornerRadius="15"
+        <Button Background="{DynamicResource PrimaryBackgroundColor}"                
                 BorderBrush="{DynamicResource TextTertiaryColor}"
+                Style="{DynamicResource SizeButton}"
+                Width="60"
+                Height="40"
+                x:Name="SizeButton"
+                Click="SizeButton_Click"
                 BorderThickness="0.5">
-            <Label FontSize="16"
-                   x:Name="lblSizeSpace"
-                   Content="X"
-                   VerticalAlignment="Center"
-                   HorizontalAlignment="Center"
-                   FontWeight="SemiBold">
-                
-            </Label>
-        </Border> 
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0"
+                       Content="X"
+                       x:Name="lblSizeSpace"
+                       HorizontalAlignment="Center"
+                       VerticalAlignment="Center">
+                    
+                </Label>
+            </Grid>
+            
+        </Button> 
     </Grid>
 </UserControl>

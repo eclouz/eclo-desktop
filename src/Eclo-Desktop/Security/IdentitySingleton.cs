@@ -10,10 +10,10 @@ public class IdentitySingleton
 {
     private static IdentitySingleton _identitySingleton;
     //properties 
-    public long UserId { get; set; }
+    public long UserId { get; set; } 
     private IdentitySingleton()
     {
-        _identitySingleton = new IdentitySingleton();
+        
     }
     public static IdentitySingleton GetInstance()
     {

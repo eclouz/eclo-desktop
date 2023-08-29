@@ -5,13 +5,13 @@ VisualStudioVersion = 17.6.33717.318
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5369A74A-86DE-44CD-AC42-A5AAA7081F4B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Eclo-Desktop", "src\Eclo-Desktop\Eclo-Desktop.csproj", "{C35D7EEC-9498-4E40-906F-A7777E766528}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Eclo-Desktop", "src\Eclo-Desktop\Eclo-Desktop.csproj", "{C35D7EEC-9498-4E40-906F-A7777E766528}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Integrated", "src\Integrated\Integrated.csproj", "{33FAEF75-E61A-48F2-99B1-E8E3867A4D56}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Integrated", "src\Integrated\Integrated.csproj", "{33FAEF75-E61A-48F2-99B1-E8E3867A4D56}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dtos", "src\Dtos\Dtos.csproj", "{37532C32-9B0F-4FDF-96AA-6BFB455594ED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dtos", "src\Dtos\Dtos.csproj", "{37532C32-9B0F-4FDF-96AA-6BFB455594ED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ViewModels", "src\ViewModels\ViewModels.csproj", "{2B6E761D-7C3E-4D8C-80DA-3BF21B0DD125}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ViewModels", "src\ViewModels\ViewModels.csproj", "{2B6E761D-7C3E-4D8C-80DA-3BF21B0DD125}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

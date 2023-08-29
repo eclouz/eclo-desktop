@@ -28,7 +28,7 @@ namespace Eclo_Desktop.Components.Products
         }
         public void setData(MensBrandsViewModels mensBrandsViewModels)
         {
-            string imageUrl = "http://eclo.uz:8080/" + mensBrandsViewModels.BrandIconPath;
+            string imageUrl = "https://localhost:7190/" + mensBrandsViewModels.BrandIconPath;
             Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
             ImgBrands.ImageSource = new BitmapImage(imageUri);
         }
