@@ -72,7 +72,6 @@ public class ProductService : IProductService
 
     public async Task<List<ProductViewModels>> GetAllProducts(long id,int page = 1)
     {
-        //http://eclo.uz:8080/api/common/products/view/user?userId=1&page=7
         using (var client = new HttpClient())
         {
             var response = await client.GetAsync(API.BASE_URL + $"common/products/view/user?userId={id}&page={page}");

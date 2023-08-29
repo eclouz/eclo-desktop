@@ -31,10 +31,11 @@ namespace Eclo_Desktop.Windows
         }        
                 
         
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        private async void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
             Close();
+            
         }
 
         private void btnMinimize_Click_1(object sender, RoutedEventArgs e)
