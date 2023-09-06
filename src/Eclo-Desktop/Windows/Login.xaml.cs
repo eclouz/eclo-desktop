@@ -49,6 +49,7 @@ namespace Eclo_Desktop.Windows
 
         private void btnToLogin_Click(object sender, RoutedEventArgs e)
         {
+            this.Hide();
             RegisterWindow regiterWindow = new RegisterWindow();
             regiterWindow.ShowDialog();
         }
@@ -67,15 +68,13 @@ namespace Eclo_Desktop.Windows
                 };
                 bool response = await userService.Login(loginDto);
                 if (response)
-                {
-                    MessageBox.Show("You are logged in ");
+                {                   
                     this.Hide();
                     var res = await userService.GetUserByPhoneNumber(tbPhone.Text);
                     if (res != null) 
                     {
                         var identity = IdentitySingleton.GetInstance();
                         identity.UserId = res.Id;
-                        //MessageBox.Show((identity.UserId).ToString());
                     }
                     MainWindow mainWindow = new MainWindow();   
                     mainWindow.ShowDialog();

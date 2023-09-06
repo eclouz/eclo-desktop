@@ -30,9 +30,12 @@ namespace Eclo_Desktop.Pages
     {
         IUserService userService = new UserService();
         UserViewModel userViewModel = new UserViewModel();
-        public SettingsPage()
+        private RefreshPageHandlerDelegate refreshDelegate;
+
+        public SettingsPage(RefreshPageHandlerDelegate refreshPageHandlerDelegate)
         {
             InitializeComponent();
+            this.refreshDelegate = refreshPageHandlerDelegate;
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -44,7 +47,7 @@ namespace Eclo_Desktop.Pages
             tbPassportSerialNumber.Text = getUserInfo?.PassportSerialNumber;
             //if (DateBirthdp.SelectedDate is not null) { getUserInfo.BirthDate = DateBirthdp.SelectedDate.Value; }
 
-            string imageUrl = "http://eclo.uz:8080/" + getUserInfo?.ImagePath;
+            string imageUrl = "https://localhost:7190/" + getUserInfo?.ImagePath;
             Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
             UserImage.ImageSource = new BitmapImage(imageUri);
             tbRegion.Text = getUserInfo?.Region;
@@ -77,7 +80,7 @@ namespace Eclo_Desktop.Pages
             if(updateUserInfo==true)
             {
                 MessageBox.Show("Your informations are updated");
-
+                refreshDelegate();
             }
             else
             {

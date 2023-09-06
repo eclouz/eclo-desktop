@@ -31,7 +31,7 @@ namespace Eclo_Desktop.Windows
         }        
                 
         
-        private async void btnClose_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
             Close();
@@ -101,10 +101,10 @@ namespace Eclo_Desktop.Windows
 
         }
 
-        private void btnToLogin_Click(object sender, RoutedEventArgs e)
+        private async void btnToLogin_Click(object sender, RoutedEventArgs e)
         {
+            this.Close();
             LoginWindow loginWindow = new LoginWindow();
-            this.Hide();
             loginWindow.ShowDialog();
         }
     }

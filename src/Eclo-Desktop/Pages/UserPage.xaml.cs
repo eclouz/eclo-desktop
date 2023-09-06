@@ -38,7 +38,7 @@ namespace Eclo_Desktop.Pages
             var result = await _userService.GetUserById(identity.UserId);
 
 
-            string imageUrl = "http://eclo.uz:8080/" + result.ImagePath;
+            string imageUrl = "https://localhost:7190/" + result.ImagePath;
             Uri uri = new Uri(imageUrl, UriKind.Absolute);            
             brProfileImage.ImageSource = new BitmapImage(uri);
 

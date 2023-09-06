@@ -19,19 +19,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Eclo_Desktop.Components.Dashboards.ProductLightClothesUserControl;
 
 namespace Eclo_Desktop
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    public delegate void RefreshPageHandlerDelegate();
+
     public partial class MainWindow : Window
     {
         private readonly IUserService _userService;
+        private readonly RefreshPageHandlerDelegate refreshDelegate;
+
         public MainWindow()
         {
             InitializeComponent();
             this._userService = new UserService();
+            refreshDelegate = new RefreshPageHandlerDelegate(RefreshPageHandler);
         }
         public async  Task refreshAsync()
         {
@@ -41,12 +47,16 @@ namespace Eclo_Desktop
             lblUserName.Content = result.FirstName;
             lblCountry.Content = result.Region;
 
-            string imageUrl = "http://eclo.uz:8080/" + result.ImagePath;
+            string imageUrl = "https://localhost:7190/" + result.ImagePath;
             Uri uri = new Uri(imageUrl, UriKind.Absolute);
             brUserImage.ImageSource = new BitmapImage(uri);
 
             Dashboard dashboard = new Dashboard();
             PageNavigator.Content = dashboard;
+        }
+        public async void RefreshPageHandler()
+        {
+            await refreshAsync();
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
@@ -87,7 +97,7 @@ namespace Eclo_Desktop
 
         private void rbUser_Click(object sender, RoutedEventArgs e)
         {
-            SettingsPage page = new SettingsPage();
+            SettingsPage page = new SettingsPage(refreshDelegate);
             PageNavigator.Content = page;
         }
 
