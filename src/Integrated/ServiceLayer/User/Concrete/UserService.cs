@@ -111,22 +111,6 @@ public class UserService : IUserService
 
     public async Task<bool> UserUpdateSettings(UserViewModel dto)
     {
-        //var client = new HttpClient();
-        //var request = new HttpRequestMessage(HttpMethod.Put,
-        //    $"http://eclo.uz:8080/api/user/profile/phoneNumber?phoneNumber=%2B{(dto.PhoneNumber).Substring(1)}");
-
-        //var content = new MultipartFormDataContent();
-        //content.Add(new StringContent(dto.FirstName), "FirstName");
-        //content.Add(new StringContent(dto.LastName), "LastName");
-        //content.Add(new StreamContent(File.OpenRead(dto.ImagePath)), "ImagePath", dto.ImagePath);
-        //content.Add(new StringContent(dto.PhoneNumber), "PhoneNumber");
-        //content.Add(new StringContent(dto.PassportSerialNumber), "PassportSerialNumber");
-        //content.Add(new StringContent((dto.BirthDate).ToString()), "BirthDate");
-        //content.Add(new StringContent(dto.District), "District");
-        //content.Add(new StringContent(dto.Address), "Address");
-
-        //request.Content = content;
-
         var client = new HttpClient();
         var request = new HttpRequestMessage(HttpMethod.Put, API.BASE_URL + $"user/profile/phoneNumber?phoneNumber=%2B{(dto.PhoneNumber).Substring(1)}");
         var content = new MultipartFormDataContent();
