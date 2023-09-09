@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
+using Eclo_Desktop.Security;
 
 namespace Eclo_Desktop.Windows
 {
@@ -101,6 +102,12 @@ namespace Eclo_Desktop.Windows
                 if (response==true)
                 {
                     MessageBox.Show("You are Veerified !!");
+                    var res = await userService.GetUserByPhoneNumber(verifyRegisterDto.PhoneNumber);
+                    if (res != null)
+                    {
+                        var identity = IdentitySingleton.GetInstance();
+                        identity.UserId = res.Id;
+                    }
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.ShowDialog();
                     Close();
