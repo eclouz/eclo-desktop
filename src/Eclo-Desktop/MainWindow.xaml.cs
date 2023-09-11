@@ -160,6 +160,15 @@ namespace Eclo_Desktop
         {
             await refreshAsync();
         }
+
+       
+
         
+
+        private void btShoppingChart(object sender, RoutedEventArgs e)
+        {
+            ShoppingChartPage shoppingChartPage = new ShoppingChartPage();
+            PageNavigator.Content = shoppingChartPage;
+        }
     }
 }

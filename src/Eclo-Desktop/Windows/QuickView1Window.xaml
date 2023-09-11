@@ -48,7 +48,7 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
                             <StackPanel Grid.Column="0">
-                        <Border  Height="600"
+                        <Border  Height="420"
                                 Width="480"
                                 VerticalAlignment="Top"
                                 CornerRadius="15">
@@ -56,6 +56,7 @@
                                 
                                 <ImageBrush
                                     x:Name="imageQuickview"
+                                    Stretch="UniformToFill"
                                     ImageSource="/assets/staticimages/Krossovka.jpg"/>
                             </Border.Background>
                             <Grid>
@@ -125,8 +126,9 @@
                                         CornerRadius="15">
                                         <Border.Background>
                                             <ImageBrush
-                                    x:Name="imageQuickview2"
-                                    ImageSource="/assets/staticimages/Krossovka.jpg"/>
+                                                Stretch="UniformToFill"
+                                                x:Name="imageQuickview2"
+                                                ImageSource="/assets/staticimages/Krossovka.jpg"/>
                                         </Border.Background>
                                     </Border>
                                     <Border Width="230" Height="300"
@@ -136,8 +138,9 @@
                                         <Border.Background>
 
                                             <ImageBrush
-                                    x:Name="imageQuickview3"
-                                    ImageSource="/assets/staticimages/Krossovka.jpg"/>
+                                                Stretch="UniformToFill"
+                                                x:Name="imageQuickview3"
+                                                ImageSource="/assets/staticimages/Krossovka.jpg"/>
                                         </Border.Background>
                                     </Border>
                                 </StackPanel>

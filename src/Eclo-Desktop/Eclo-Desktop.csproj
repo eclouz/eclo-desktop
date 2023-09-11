@@ -38,11 +38,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LoadingSpinner.WPF" Version="1.0.0" />
-    <PackageReference Include="Svg.Skia" Version="1.0.0" />
-  </ItemGroup>
-
-  <ItemGroup>
     <ProjectReference Include="..\Dtos\Dtos.csproj" />
     <ProjectReference Include="..\Integrated\Integrated.csproj" />
     <ProjectReference Include="..\ViewModels\ViewModels.csproj" />
