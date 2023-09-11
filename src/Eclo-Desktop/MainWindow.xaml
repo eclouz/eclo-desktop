@@ -162,6 +162,8 @@
 
                         <Button Height="50" Width="50"   
                                 Cursor="Hand"
+                                Click="btShoppingChart"
+                                
                             Margin="2 2 15 2" Style="{DynamicResource MainThreeStaticButoons}"                                                        
                                 >
                         </Button>

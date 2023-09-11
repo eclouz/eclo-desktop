@@ -14,10 +14,12 @@
                 <ResourceDictionary Source="Styles/MainStyle.xaml"/>
                 <ResourceDictionary Source="Styles/CheckBoxStyle.xaml"/>
                 <ResourceDictionary Source="Styles/MenuStyle.xaml"/>
+                <ResourceDictionary Source="Styles/ShoppingChartStyle.xaml"/>
                 <!--<ResourceDictionary Source="Assets/Fonts/Poppins-Black.ttf"/>-->
 
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary> 
+        
         
     </Application.Resources>
 </Application>
