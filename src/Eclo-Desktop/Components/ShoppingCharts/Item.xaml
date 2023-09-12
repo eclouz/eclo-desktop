@@ -4,10 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Eclo_Desktop.Components.ShoppingCharts"
-             mc:Ignorable="d" 
+             mc:Ignorable="d" Height="180"
              >
 
-    <Grid Background="#E5E9EA" Margin="0 15 0 0" HorizontalAlignment="Center">
+    <Grid Background="#E5E9EA" Margin="0 0 0 0" HorizontalAlignment="Center">
+        
+        <!--begin:: Grid Column in Component-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="150"/>
             <ColumnDefinition Width="150"/>
@@ -17,20 +19,47 @@
             <ColumnDefinition Width="110"/>
             <ColumnDefinition Width="50"/>
         </Grid.ColumnDefinitions>
+        <!--end:: Grid Column in Component-->
+        
+        <!--begin:: CheckBox and Image-->
+        <StackPanel Orientation="Horizontal">
+            
+            <!--begin:: CheckBox-->
+            <CheckBox VerticalAlignment="Center"
+                      x:Name="chbSelect">
+                
+            </CheckBox>
+            <!--end:: CheckBox-->
 
-        <Ellipse Height="80" Width="80" Margin="25 10 0 10" HorizontalAlignment="Left">
-            <Ellipse.Fill>
-                <ImageBrush ImageSource="{Binding Path=Source,ElementName=item}"/>
-            </Ellipse.Fill>
-        </Ellipse>
+            <!--begin:: Image Border-->
+            <Border  Height="150" Width="110" 
+                     Margin="10 15 0 10" 
+                     HorizontalAlignment="Left"
+                     x:Name="ImageBorder">
+                <Border.Background>
+                    <ImageBrush
+                        Stretch="Uniform"
+                        x:Name="imageProduct">
+                        
+                    </ImageBrush>
+                </Border.Background>
+            </Border>
+            <!--end:: Image Border-->
+            
+        </StackPanel>
+        <!--end:: CheckBox and Image-->
+       
+        <!--begin:: Labels For Product Data-->
+        <TextBlock x:Name="tbProductName" Text="Polo Futbolka" Grid.Column="1"  FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
+        <TextBlock x:Name="tbDescription" Text="Juda ham zo'r futbolka" Grid.Column="1" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>
 
-        <TextBlock Grid.Column="1" Text="{Binding Path=Title,ElementName=item}" FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center"/>
-        <TextBlock Grid.Column="1" Text="{Binding Path=Ref,ElementName=item}" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>
+        <TextBlock x:Name="tbProductColor" Text="White" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+        <TextBlock x:Name="tbProductSize" Text="XL" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="12" Margin="0 38 0 0"/>
 
-        <TextBlock Grid.Column="2" Text="{Binding Path=Color,ElementName=item}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
-
-        <TextBlock Grid.Column="3" Text="{Binding Path=Count,ElementName=item}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
-
+        <TextBlock x:Name="tbProductQuantity" Text="1" Grid.Column="3" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+        <!--begin:: Labels For Product Data-->
+        
+        <!--begin:: Plus and Minus Button-->
         <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">
             <Button Style="{StaticResource buttonCounter}">
                 <Image Source="/Assets/StaticImages/ShoppingChartImages/add.png" />
@@ -42,12 +71,19 @@
 
             </Button>
         </StackPanel>
-
-        <TextBlock Grid.Column="5" Text="{Binding Path=Price,ElementName=item}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
-
-        <Button Style="{StaticResource buttonDelete}" Grid.Column="6">
+        <!--end:: Plus and Minus Button-->
+        
+        <!--begin:: Product Price-->
+        <TextBlock x:Name="tbProductPrice" Text="350 000 so'm" Grid.Column="5" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+        <!--end:: Product Price-->
+        
+        <!--begin:: Delete button-->
+        <Button Click="btProductDelete" 
+                x:Name="Delete" 
+                Style="{StaticResource buttonDelete}" 
+                Grid.Column="6">
             <Image Source="/Assets/StaticImages/ShoppingChartImages/remove.png" />
-
         </Button>
+        <!--end:: Delete button-->
     </Grid>
 </UserControl>
