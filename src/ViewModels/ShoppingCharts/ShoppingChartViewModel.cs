@@ -12,6 +12,9 @@ public class ShoppingChartViewModel
 
     public int ProductQuantity { get; set;}
 
+    public int ItemCount { get; set;}
+
     public string ProductSize { get; set; } = String.Empty;
+    public bool IsChecked=false;
 
 }
