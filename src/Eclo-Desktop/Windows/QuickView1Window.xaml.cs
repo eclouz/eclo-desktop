@@ -126,24 +126,24 @@ namespace Eclo_Desktop.Windows
 
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
-            if (0 > int.Parse(lblItemCount.Text.ToString()))
+            int productCount = int.Parse(lblItemCount.Text);
+            if (productCount >1)
             {
-                lblItemCount.Text = 0.ToString();
-            }
-
-            if (0 != int.Parse(lblItemCount.Text.ToString()) && 0 < int.Parse(lblItemCount.Text.ToString()))
-            {
-                count--;
-                lblItemCount.Text = count.ToString();
+                productCount -= 1;
+                lblItemCount.Text = productCount.ToString();
             }
 
         }
 
-        private void btnPlus_Click(object sender, RoutedEventArgs e)
+        private async void btnPlus_Click(object sender, RoutedEventArgs e)
         {
-
-            count++;
-            lblItemCount.Text = count.ToString();
+            int productCount = int.Parse(lblItemCount.Text);
+            if (productCount < int.Parse(lblQuantity.Content.ToString())) 
+            {
+                productCount += 1;
+                lblItemCount.Text =productCount.ToString();
+            }
+            
 
         }
 
@@ -274,7 +274,8 @@ namespace Eclo_Desktop.Windows
                     ProductName = lblProductName.Content.ToString(),
                     ProductColor = lblColor.Content.ToString(),
                     ProductSize = lblSize.Content.ToString(),
-                    ProductQuantity = int.Parse(lblItemCount.Text),
+                    ProductQuantity=int.Parse(lblQuantity.Content.ToString()),
+                    ItemCount = int.Parse(lblItemCount.Text),
                     ProductDescription = tbDescription.Text.ToString(),
                     ProductPrice = double.Parse(lblPrice.Content.ToString()),
                     ProductImage = imagePath,
