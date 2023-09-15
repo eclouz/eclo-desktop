@@ -9,6 +9,8 @@ public class IdentitySingleton
     private static IdentitySingleton _identitySingleton;
     //properties 
     public long UserId { get; set; }
+    public double TotalPrice { get; set; }
+    public string Token {get;set; }
     public IList<ShoppingChartViewModel> ShoppingChartProducts { get; set; }= new List<ShoppingChartViewModel>();
     private IdentitySingleton()
     {

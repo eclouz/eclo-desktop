@@ -41,7 +41,7 @@ namespace Eclo_Desktop.Pages
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var identity = IdentitySingleton.GetInstance();
-            var getUserInfo = await userService.GetUserById(identity.UserId);
+            var getUserInfo = await userService.GetUserById(identity.UserId, identity.Token);
             tbName.Text = getUserInfo?.FirstName;
             tbSecondName.Text = getUserInfo?.LastName;
             tbPassportSerialNumber.Text = getUserInfo?.PassportSerialNumber;
@@ -59,7 +59,7 @@ namespace Eclo_Desktop.Pages
         private async void btnSaveSettingsChange_Click(object sender, RoutedEventArgs e)
         {
             var identity = IdentitySingleton.GetInstance();
-            var getUserInfo = await userService.GetUserById(identity.UserId);
+            var getUserInfo = await userService.GetUserById(identity.UserId, identity.Token);
             
             userViewModel.FirstName = tbName.Text;
             userViewModel.LastName = tbSecondName.Text;
@@ -75,8 +75,8 @@ namespace Eclo_Desktop.Pages
             {
                 userViewModel.ImagePath = image_path;
             }
-
-            var updateUserInfo = await userService.UserUpdateSettings(userViewModel);
+            
+            var updateUserInfo = await userService.UserUpdateSettings(userViewModel,identity.Token);
             if(updateUserInfo==true)
             {
                 MessageBox.Show("Your informations are updated");
@@ -89,21 +89,7 @@ namespace Eclo_Desktop.Pages
 
 
         }
-        //private async Task<string> CopyImageAsync(string imgPath, string destinationDirectory)
-        //{
-        //    if (!Directory.Exists(destinationDirectory))
-        //        Directory.CreateDirectory(destinationDirectory);
-
-        //    var imageName = ContentNameMaker.GetImageName(imgPath);
-
-        //    string path = System.IO.Path.Combine(destinationDirectory, imageName);
-
-        //    byte[] image = await File.ReadAllBytesAsync(imgPath);
-
-        //    await File.WriteAllBytesAsync(path, image);
-
-        //    return path;
-        //}
+        
 
         private void updateImage_Click(object sender, RoutedEventArgs e)
         {

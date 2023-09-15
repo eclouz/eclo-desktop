@@ -66,16 +66,19 @@ namespace Eclo_Desktop.Windows
                     PhoneNumber = tbPhone.Text,
                     Password = tbPassword.Password
                 };
-                bool response = await userService.Login(loginDto);
-                if (response)
-                {                   
-                    this.Hide();
-                    var res = await userService.GetUserByPhoneNumber(tbPhone.Text);
+                var response = await userService.Login(loginDto);
+                if (response.result)
+                {
+                    var identity = IdentitySingleton.GetInstance();
+                    identity.Token = response.token;
+
+                    var res = await userService.GetUserByPhoneNumber(tbPhone.Text,identity.Token);
                     if (res != null) 
                     {
-                        var identity = IdentitySingleton.GetInstance();
+                        
                         identity.UserId = res.Id;
                     }
+                    this.Hide();
                     MainWindow mainWindow = new MainWindow();   
                     mainWindow.ShowDialog();
                 }
