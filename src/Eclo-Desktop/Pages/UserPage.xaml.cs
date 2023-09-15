@@ -35,7 +35,7 @@ namespace Eclo_Desktop.Pages
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {            
             var identity = IdentitySingleton.GetInstance();
-            var result = await _userService.GetUserById(identity.UserId);
+            var result = await _userService.GetUserById(identity.UserId, identity.Token);
 
 
             string imageUrl = "https://localhost:7190/" + result.ImagePath;

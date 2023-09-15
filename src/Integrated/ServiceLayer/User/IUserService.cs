@@ -13,9 +13,9 @@ namespace Integrated.ServiceLayer.User;
     Task<bool> CreateUser(RegisterDto registerDto);
     Task<bool> SendCodeRegister(string phone);
     Task<bool> VerifyRegister(VerifyRegisterDto verifyRegisterDto);
-    Task<bool> Login(LoginDto loginDto);
-    Task<UserViewModel> GetUserById(long id);
-    Task<UserViewModel> GetUserByPhoneNumber(string phone);
-    Task<bool> UserUpdateSettings(UserViewModel userViewModel);
+    Task<(bool result, string token)> Login(LoginDto loginDto);
+    Task<UserViewModel> GetUserById(long id,string token);
+    Task<UserViewModel> GetUserByPhoneNumber(string phone,string token);
+    Task<bool> UserUpdateSettings(UserViewModel userViewModel,string token);
 
 }

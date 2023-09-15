@@ -77,11 +77,11 @@ namespace Eclo_Desktop.Windows
                         PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
                         phoneConfirmWindow.GetPhone(tbPhone.Text.ToString());
                         this.Hide();
-
-                        var res = await userService.GetUserByPhoneNumber(tbPhone.Text);
+                        var identity = IdentitySingleton.GetInstance();
+                        var res = await userService.GetUserByPhoneNumber(tbPhone.Text, identity.Token);
                         if (res != null)
                         {
-                            var identity = IdentitySingleton.GetInstance();
+                           
                             identity.UserId = res.Id;
                             MessageBox.Show((identity.UserId).ToString());
                         }

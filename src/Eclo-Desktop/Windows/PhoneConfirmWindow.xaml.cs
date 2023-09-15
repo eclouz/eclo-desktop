@@ -101,11 +101,13 @@ namespace Eclo_Desktop.Windows
                 bool response = await userService.VerifyRegister(verifyRegisterDto);
                 if (response==true)
                 {
+                    
                     MessageBox.Show("You are Veerified !!");
-                    var res = await userService.GetUserByPhoneNumber(verifyRegisterDto.PhoneNumber);
+                    var identity = IdentitySingleton.GetInstance();
+                    var res = await userService.GetUserByPhoneNumber(verifyRegisterDto.PhoneNumber,identity.Token);
                     if (res != null)
                     {
-                        var identity = IdentitySingleton.GetInstance();
+                        
                         identity.UserId = res.Id;
                     }
                     MainWindow mainWindow = new MainWindow();
