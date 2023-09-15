@@ -32,7 +32,7 @@ namespace Eclo_Desktop.Components.ShoppingCharts
         public Item(UpdateTotalPriceDelegate updateTotalPriceDelegate)
         {
             InitializeComponent();
-
+            //Fieldga konstruktor orqali kirib kelayotgan delegat olayabmiz
             this.updatePriceDelgate = updateTotalPriceDelegate;
         }
 
@@ -89,6 +89,7 @@ namespace Eclo_Desktop.Components.ShoppingCharts
             
            
             identity.TotalPrice += productPrice*int.Parse(tbProductQuantity.Text);
+            //Delegatni qiymatlarni berib yuboryapmiz
             Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, (int)identity.TotalPrice));
 
 
@@ -101,6 +102,7 @@ namespace Eclo_Desktop.Components.ShoppingCharts
 
             identity.TotalPrice -= productPrice*int.Parse(tbProductQuantity.Text); ;
 
+            //Delegatga qiymatlarni berib yuboryapmiz
             Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, int.Parse(tbProductQuantity.Text.ToString())));
 
 

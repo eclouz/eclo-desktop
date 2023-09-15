@@ -24,14 +24,19 @@ namespace Eclo_Desktop.Pages
     
     public partial class ShoppingChartPage : Page
     {
+        //Price ni update qilib turish uchun Delegat yartib olyabmiz
         public delegate void UpdateTotalPriceDelegate(double totalPrice, int intValue);
         public ShoppingChartPage()
         {
             InitializeComponent();
-            // Delegatni yaratish
+            
+            //Delegatga funksiyani bog'lash
             updateTotalPriceDelegate = UpdateTotalPrice;
         }
+        // Delegatni oz'garuvchi yaratish
+        public UpdateTotalPriceDelegate updateTotalPriceDelegate;
 
+        //Delegat bog'lanadigan  funksiya
         private void UpdateTotalPrice(double totalPrice, int intValue)
         {
             // O'zgaruvchilarni qabul qiling
@@ -39,8 +44,7 @@ namespace Eclo_Desktop.Pages
             tbTotalPrice.Text = (totalPrice).ToString("0.00") + " so'm";
         }
 
-        // Delegatni o'zlashtirish
-        public UpdateTotalPriceDelegate updateTotalPriceDelegate;
+        
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
@@ -65,6 +69,7 @@ namespace Eclo_Desktop.Pages
             var List = identity.ShoppingChartProducts;
             foreach(var item in List)
             {
+                //Delegatni UserControlga konstruktor orqali berib yuborayapmiz
                 Item charts = new Item(updateTotalPriceDelegate);
                 charts.SetData(item);
                 sPanelCharts.Children.Add(charts);

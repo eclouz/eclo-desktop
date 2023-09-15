@@ -42,7 +42,7 @@ namespace Eclo_Desktop
         public async  Task refreshAsync()
         {
             var identity = IdentitySingleton.GetInstance();
-            var result = await _userService.GetUserById(identity.UserId);
+            var result = await _userService.GetUserById(identity.UserId, identity.Token);
 
             lblUserName.Content = result.FirstName;
             lblCountry.Content = result.Region;
