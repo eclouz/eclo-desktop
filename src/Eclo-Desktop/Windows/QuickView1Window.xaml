@@ -58,7 +58,8 @@
                                 <ImageBrush
                                     x:Name="imageQuickview"
                                     Stretch="Uniform"
-                                    ImageSource="/assets/staticimages/Krossovka.jpg"/>
+                                    />
+                                    <!--ImageSource="/assets/staticimages/Krossovka.jpg"-->
                             </Border.Background>
                             <Grid>
                                 <!--<Border Width="35"
@@ -129,7 +130,8 @@
                                             <ImageBrush
                                                 Stretch="UniformToFill"
                                                 x:Name="imageQuickview2"
-                                                ImageSource="/assets/staticimages/Krossovka.jpg"/>
+                                                />
+                                                <!--ImageSource="/assets/staticimages/Krossovka.jpg"-->
                                         </Border.Background>
                                     </Border>
                                     <Border Width="205" Height="220"
@@ -141,7 +143,8 @@
                                             <ImageBrush
                                                 Stretch="UniformToFill"
                                                 x:Name="imageQuickview3"
-                                                ImageSource="/assets/staticimages/Krossovka.jpg"/>
+                                                />
+                                                <!--ImageSource="/assets/staticimages/Krossovka.jpg"-->
                                         </Border.Background>
                                     </Border>
                                 </StackPanel>

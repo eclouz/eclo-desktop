@@ -68,9 +68,12 @@ namespace Eclo_Desktop.Pages
         
         private async void rbMens_Click_1(object sender, RoutedEventArgs e)
         {
+            int min = int.Parse(tbMin.Text);
+            int max = int.Parse(tbMax.Text);
+            List<string> subCategoryName = new List<string>();
             SecondWp.Children.Clear();
             var identity = IdentitySingleton.GetInstance();
-            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId , "Men", 1);
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId , "Woomwn", min, max, subCategoryName, 1);
             foreach (var product in mensCategoryProducts)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
@@ -83,9 +86,12 @@ namespace Eclo_Desktop.Pages
 
         private async void rbWomens_Click(object sender, RoutedEventArgs e)
         {
+            int min = int.Parse(tbMin.Text);
+            int max = int.Parse(tbMax.Text);
+            List<string> subCategoryName = new List<string>();
             SecondWp.Children.Clear();
             var identity = IdentitySingleton.GetInstance();
-            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Women", 1);
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Women", min, max, subCategoryName, 1);
             foreach (var product in mensCategoryProducts)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
@@ -97,9 +103,12 @@ namespace Eclo_Desktop.Pages
 
         private async void rbKids_Click(object sender, RoutedEventArgs e)
         {
+            int min = int.Parse(tbMin.Text);
+            int max = int.Parse(tbMax.Text);
+            List<string> subCategoryName = new List<string>();
             SecondWp.Children.Clear();
             var identity = IdentitySingleton.GetInstance();
-            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Kids", 1);
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Kids", min, max, subCategoryName, 1);
             foreach (var product in mensCategoryProducts)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
@@ -148,6 +157,16 @@ namespace Eclo_Desktop.Pages
             await refreshAsync();
             //ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
             //SecondWp.Children.Add(productLightClothesUserControl);
+        }
+
+        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void ComboBox_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+
         }
     }
 }

@@ -40,12 +40,12 @@ namespace Eclo_Desktop.Components.Dashboards
         {
             if (!Liked)
             {
-                    brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
+                    brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\Victus\\OneDrive\\Рабочий стол\\Eclo Desktop\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
                 Liked = true;
             }
             else
             {
-                brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));
+                brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\Victus\\OneDrive\\Рабочий стол\\Eclo Desktop\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));
                 Liked = false;
             }
 
