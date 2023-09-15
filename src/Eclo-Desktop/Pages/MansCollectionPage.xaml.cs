@@ -45,10 +45,13 @@ namespace Eclo_Desktop.Pages
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
-        {            
+        {
+            //int min = int.Parse(tbMin.Text);
+            //int max = int.Parse(tbMax.Text);
+            List<string> subCategoryName = new List<string>();
             wpMens.Children.Clear();
             var identity = IdentitySingleton.GetInstance();
-            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", 1);
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", 0, 9999999, subCategoryName, 1);
             foreach (var product in mensCategoryProducts)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();

@@ -33,9 +33,10 @@ namespace Eclo_Desktop.Pages
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            List<string> subCategoryName = new List<string>();
             var identity = IdentitySingleton.GetInstance();
             wpKids.Children.Clear();
-            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId,"Kids", 1);
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Kids", 0, 9999999, subCategoryName, 1);
             foreach (var product in mensCategoryProducts)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
