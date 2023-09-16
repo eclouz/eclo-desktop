@@ -41,7 +41,7 @@ namespace Eclo_Desktop.Pages
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var identity = IdentitySingleton.GetInstance();
-            var getUserInfo = await userService.GetUserById(identity.UserId, identity.Token);
+            var getUserInfo = await userService.GetUserById(identity.Token);
             tbName.Text = getUserInfo?.FirstName;
             tbSecondName.Text = getUserInfo?.LastName;
             tbPassportSerialNumber.Text = getUserInfo?.PassportSerialNumber;
@@ -59,7 +59,7 @@ namespace Eclo_Desktop.Pages
         private async void btnSaveSettingsChange_Click(object sender, RoutedEventArgs e)
         {
             var identity = IdentitySingleton.GetInstance();
-            var getUserInfo = await userService.GetUserById(identity.UserId, identity.Token);
+            var getUserInfo = await userService.GetUserById(identity.Token);
             
             userViewModel.FirstName = tbName.Text;
             userViewModel.LastName = tbSecondName.Text;

@@ -42,7 +42,7 @@ namespace Eclo_Desktop
         public async  Task refreshAsync()
         {
             var identity = IdentitySingleton.GetInstance();
-            var result = await _userService.GetUserById(identity.UserId, identity.Token);
+            var result = await _userService.GetUserById(identity.Token);
 
             lblUserName.Content = result.FirstName;
             lblCountry.Content = result.Region;
@@ -63,17 +63,7 @@ namespace Eclo_Desktop
         {
             await refreshAsync();
 
-            //RegisterWindow regiterWindow = new RegisterWindow();
-            //this.Hide();
-            //regiterWindow.ShowDialog();
-
-            //LoginWindow loginWindow = new LoginWindow();
-            //loginWindow.ShowDialog();
-
-            //PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
-            //phoneConfirmWindow.ShowDialog();            
             
-            //this.ShowDialog();
         }
 
         private void rbDashboard_Click(object sender, RoutedEventArgs e)
