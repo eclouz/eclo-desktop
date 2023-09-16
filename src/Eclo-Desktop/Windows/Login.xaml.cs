@@ -19,6 +19,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Linq;
 using Eclo_Desktop.Utilities;
+using Microsoft.Extensions.Logging;
 
 namespace Eclo_Desktop.Windows
 {
@@ -52,13 +53,23 @@ namespace Eclo_Desktop.Windows
 
         private void btnToLogin_Click(object sender, RoutedEventArgs e)
         {
+            var loader = btnToLogin.Template.FindName("loader", btnToLogin) as FontAwesome.WPF.ImageAwesome;
+            loader.Visibility = Visibility.Visible;
+            btnToLogin.IsEnabled = false;
             this.Hide();
             RegisterWindow regiterWindow = new RegisterWindow();
             regiterWindow.ShowDialog();
+            loader.Visibility = Visibility.Collapsed;
+            btnSave.IsEnabled = true;
         }
 
         private async void btnSave_Click(object sender, RoutedEventArgs e)
         {
+            var loader = btnSave.Template.FindName("loader", btnSave) as FontAwesome.WPF.ImageAwesome;
+            loader.Visibility = Visibility.Visible;
+            btnSave.IsEnabled = false;
+           
+
             int count = 0;
             
             //PhoneNumber Validation
@@ -92,18 +103,30 @@ namespace Eclo_Desktop.Windows
                         // Foydalanuvchi ID'sini olish
                         identity.UserId  =int.Parse( jwtToken.Claims.First(claim => claim.Type == "Id").Value);
                         
-                    }            
+                    }
                     //end:: Tokendan ID ni yechib olish
-                    
-                    
+                    loader.Visibility = Visibility.Collapsed;
+                    btnSave.IsEnabled = true;
                     this.Hide();
                     MainWindow mainWindow = new MainWindow();   
                     mainWindow.ShowDialog();
                 }
                 else
                 {
+                    loader.Visibility = Visibility.Collapsed;
+                    btnSave.IsEnabled = true;
                     MessageBox.Show("Something wrong !!");
+                   
+                   
                 }
+            }
+            else
+            {
+                loader.Visibility = Visibility.Collapsed;
+                btnSave.IsEnabled = true;
+                MessageBox.Show("Something wrong !!");
+
+
             }
         }
     }

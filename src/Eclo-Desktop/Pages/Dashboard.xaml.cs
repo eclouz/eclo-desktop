@@ -52,6 +52,7 @@ namespace Eclo_Desktop.Pages
             var identity = IdentitySingleton.GetInstance();
             SecondWp.Children.Clear();            
             var products = await _productService.GetAllProducts(identity.UserId, 1);
+            loader.Visibility = Visibility.Collapsed;
             foreach ( var product in products )
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();

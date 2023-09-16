@@ -26,20 +26,21 @@ namespace Eclo_Desktop
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public delegate void RefreshPageHandlerDelegate();
+    public delegate void RefreshPageHandlerDelegate(Page page);
 
     public partial class MainWindow : Window
     {
         private readonly IUserService _userService;
+
         private readonly RefreshPageHandlerDelegate refreshDelegate;
 
         public MainWindow()
         {
             InitializeComponent();
             this._userService = new UserService();
-            refreshDelegate = new RefreshPageHandlerDelegate(RefreshPageHandler);
+            refreshDelegate = RefreshPageHandler;
         }
-        public async  Task refreshAsync()
+        public async  Task refreshAsync(Page page)
         {
             var identity = IdentitySingleton.GetInstance();
             var result = await _userService.GetUserById(identity.Token);
@@ -51,17 +52,18 @@ namespace Eclo_Desktop
             Uri uri = new Uri(imageUrl, UriKind.Absolute);
             brUserImage.ImageSource = new BitmapImage(uri);
 
-            Dashboard dashboard = new Dashboard();
-            PageNavigator.Content = dashboard;
+            //Dashboard dashboard = new Dashboard();
+            PageNavigator.Content = page;
         }
-        public async void RefreshPageHandler()
+        public async void RefreshPageHandler(Page page)
         {
-            await refreshAsync();
+            await refreshAsync(page);
         }
 
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            await refreshAsync();
+            Dashboard dashboard = new Dashboard();
+            await refreshAsync(dashboard);
 
             
         }
@@ -148,7 +150,8 @@ namespace Eclo_Desktop
 
         private async void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            await refreshAsync();
+            Dashboard dashboard = new Dashboard();
+            await refreshAsync(dashboard);
         }
 
        

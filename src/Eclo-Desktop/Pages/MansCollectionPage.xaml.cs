@@ -52,6 +52,7 @@ namespace Eclo_Desktop.Pages
             wpMens.Children.Clear();
             var identity = IdentitySingleton.GetInstance();
             var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", 0, 9999999, subCategoryName, 1);
+            loader.Visibility = Visibility.Collapsed;
             foreach (var product in mensCategoryProducts)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
