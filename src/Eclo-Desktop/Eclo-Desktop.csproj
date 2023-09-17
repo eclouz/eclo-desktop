@@ -47,7 +47,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FontAwesome.WPF" Version="4.7.0.9" />
     <PackageReference Include="MaterialDesignColors" Version="2.1.4" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="7.0.0" />
   </ItemGroup>
 
   <ItemGroup>

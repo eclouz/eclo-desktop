@@ -33,7 +33,7 @@ namespace Eclo_Desktop.Components.Products
         public async void setData(long userId,string commentText,string dateTime)
         {
             var identity = IdentitySingleton.GetInstance();
-            var User = await _userService.GetUserById(userId,identity.Token);
+            var User = await _userService.GetUserById(identity.Token);
             lblCommentOwer.Content = User.FirstName;
             tbCommentText.Text = commentText;
             lblReviewTime.Content = dateTime;

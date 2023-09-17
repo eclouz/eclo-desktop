@@ -52,6 +52,7 @@ namespace Eclo_Desktop.Pages
             var identity = IdentitySingleton.GetInstance();
             SecondWp.Children.Clear();            
             var products = await _productService.GetAllProducts(identity.UserId, 1);
+            loader.Visibility = Visibility.Collapsed;
             foreach ( var product in products )
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
@@ -73,7 +74,7 @@ namespace Eclo_Desktop.Pages
             List<string> subCategoryName = new List<string>();
             SecondWp.Children.Clear();
             var identity = IdentitySingleton.GetInstance();
-            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId , "Woomwn", min, max, subCategoryName, 1);
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId , "Men", min, max, subCategoryName, 1);
             foreach (var product in mensCategoryProducts)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();

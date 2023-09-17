@@ -40,12 +40,12 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<UserViewModel> GetUserById(long id, string token)
+    public async Task<UserViewModel> GetUserById(string token)
     {        
         var client = new HttpClient();
         
         //Create request
-        var request = new HttpRequestMessage(HttpMethod.Get, API.GET_USER_BY_ID+$"/{id}");
+        var request = new HttpRequestMessage(HttpMethod.Get, API.GET_USER_BY_ID);
         
         //Add head Autharation token
         request.Headers.Add("Authorization", $"Bearer {token}");
@@ -144,10 +144,10 @@ public class UserService : IUserService
     {
         var client = new HttpClient();
 
-        var request = new HttpRequestMessage(HttpMethod.Put, API.BASE_URL + $"user/profile/phoneNumber?phoneNumber=%2B" +
-            $"{(dto.PhoneNumber).Substring(1)}");
-        
+        var request = new HttpRequestMessage(HttpMethod.Put, API.BASE_URL + $"user/profile");
+
         request.Headers.Add("Authorization", $"Bearer {token}");
+        
         var content = new MultipartFormDataContent();
         content.Add(new StringContent($"{dto.FirstName}"), "FirstName");
         content.Add(new StringContent($"{dto.LastName}"), "LastName");
