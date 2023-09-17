@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels.Common;
 using ViewModels.Products;
 
 namespace Integrated.ServiceLayer.Product;
 
 public interface IProductService
 {
-    Task<List<ProductViewModels>> GetAllProducts(long id ,int page);
+    Task<(List<ProductViewModels> productViewModels, Pagination pageData)> GetAllProducts(long id ,int page);
     Task<ProductGetViewModel> GetByIdProducts(long userId , long id, string token);
     Task<List<ProductViewModels>> FilterBYCategories(long userId,string categoryString, int min, int max, List<string> subCategoriesName, int page);
     Task<bool> UserSetLikeTrue(long userId,long productId,bool isLiked=true);

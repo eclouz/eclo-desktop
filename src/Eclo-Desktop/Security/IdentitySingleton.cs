@@ -1,5 +1,6 @@
 ﻿using Eclo.Domain.Entities.Categories;
 using System.Collections.Generic;
+using ViewModels.Common;
 using ViewModels.ShoppingCharts;
 
 namespace Eclo_Desktop.Security;
@@ -12,6 +13,7 @@ public class IdentitySingleton
     public double TotalPrice { get; set; }
     public string Token {get;set; }
     public IList<ShoppingChartViewModel> ShoppingChartProducts { get; set; }= new List<ShoppingChartViewModel>();
+    public Pagination pagination { get; set; }
     private IdentitySingleton()
     {
 
