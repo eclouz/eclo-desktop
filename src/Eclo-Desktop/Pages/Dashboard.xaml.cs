@@ -50,8 +50,12 @@ namespace Eclo_Desktop.Pages
             //await RefreshWithLike();
 
             var identity = IdentitySingleton.GetInstance();
-            SecondWp.Children.Clear();            
-            var products = await _productService.GetAllProducts(identity.UserId, 1);
+            SecondWp.Children.Clear();
+            int page = int.Parse(tbPage.Text);
+            var result = await _productService.GetAllProducts(identity.UserId, page);
+            identity.pagination = result.pageData;
+            tbTotalPage.Text = result.pageData.TotalPages.ToString() ;
+            var products = result.productViewModels;
             loader.Visibility = Visibility.Collapsed;
             foreach ( var product in products )
             {
@@ -123,7 +127,10 @@ namespace Eclo_Desktop.Pages
         {
             var identity = IdentitySingleton.GetInstance();
             SecondWp.Children.Clear();
-            var products = await _productService.GetAllProducts(identity.UserId, 1);
+            int page = int.Parse(tbPage.Text);
+            var result = await _productService.GetAllProducts(identity.UserId, page);
+            identity.pagination = result.pageData;
+            var products = result.productViewModels;
             foreach (var product in products)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
@@ -167,6 +174,40 @@ namespace Eclo_Desktop.Pages
 
         private void ComboBox_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
         {
+
+        }
+
+        private async void PreviousPage_Click(object sender, RoutedEventArgs e)
+        {
+            loader.Visibility = Visibility.Visible;
+            btnPervouce.IsEnabled = false;
+            int page = int.Parse(tbPage.Text);
+            if (page > 1)
+            {
+                page -= 1;
+                tbPage.Text=page.ToString();
+                await refreshAsync();
+            }
+            loader.Visibility = Visibility.Collapsed;
+            btnPervouce.IsEnabled = true;
+
+        }
+            
+
+        private async void NextPage_Click(object sender, RoutedEventArgs e)
+        {
+            loader.Visibility = Visibility.Visible;
+            btnPervouce.IsEnabled = false;
+            var identity = IdentitySingleton.GetInstance();
+            int page = int.Parse(tbPage.Text);
+            if (page < identity.pagination.TotalPages)
+            {
+                page += 1;
+                tbPage.Text = page.ToString();
+                await refreshAsync();
+            }
+            loader.Visibility = Visibility.Collapsed;
+            btnPervouce.IsEnabled = true;
 
         }
     }

@@ -11,6 +11,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModels;
 using ViewModels.Brands;
+using ViewModels.Common;
 using ViewModels.Products;
 
 namespace Integrated.ServiceLayer.Product.Concrete;
@@ -120,15 +121,24 @@ public class ProductService : IProductService
 
     }
 
-    public async Task<List<ProductViewModels>> GetAllProducts(long id,int page = 1)
+    public async Task<(List<ProductViewModels> productViewModels,Pagination pageData)> GetAllProducts(long id,int page = 1)
     {
         using (var client = new HttpClient())
         {
+            Pagination pagination = new Pagination();
             var response = await client.GetAsync(API.BASE_URL + $"common/products/view/user?userId={id}&page={page}");
             response.EnsureSuccessStatusCode();
+         
 
             if (response.IsSuccessStatusCode)
             {
+                if (response.Headers.TryGetValues("x-pagination", out var headerValues))
+                {
+                    string headerValue = headerValues.FirstOrDefault();
+                    pagination = Newtonsoft.Json.JsonConvert.DeserializeObject<Pagination>(headerValue);
+                    
+                }
+               
                 var responseData = await response.Content.ReadAsStringAsync();
                 IEnumerable<ProductViewModels> readProducts = JsonConvert.DeserializeObject<IEnumerable<ProductViewModels>>(responseData);
                 List<ProductViewModels> productList = new List<ProductViewModels>();
@@ -147,11 +157,11 @@ public class ProductService : IProductService
                         likedId = i.likedId
                     }) ;
                 }
-                return productList;
+                return (productViewModels:productList,pageData:pagination);
             }
             else
             {
-                return new List<ProductViewModels>();
+                return (new List<ProductViewModels>(),new Pagination());
             }
         }
 
