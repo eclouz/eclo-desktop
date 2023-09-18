@@ -65,7 +65,7 @@ namespace Eclo_Desktop.Components.Dashboards
             int page = 1;
             var getUserProductLikesList = await productService.getUserProductLikes(page,token);
             var identity = IdentitySingleton.GetInstance();
-            string pathRedLike = "D:\\AMALIYOT\\imtihon_proyekt 4-oy\\desktop_eclo\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png";
+            string pathRedLike = "Assets\\StaticImages\\like.png";
 
             for (int i = 0; i < getUserProductLikesList.Count; i++)
             {
@@ -73,7 +73,7 @@ namespace Eclo_Desktop.Components.Dashboards
                     && getUserProductLikesList[i].isLiked == true)
                 {
                     //Oq like                
-                    brLike.ImageSource = new BitmapImage(new System.Uri("D:\\AMALIYOT\\imtihon_proyekt 4-oy\\desktop_eclo\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));
+                    brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\love.png", UriKind.Relative));
                     var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id, 
                         identity.UserId, productViewModels.Id, false,token);
                     //var isDelete = await _productService.DeleteLike(productViewModels.likedId);
@@ -204,14 +204,14 @@ namespace Eclo_Desktop.Components.Dashboards
             this.productViewModels.likedId = productViewModels.likedId;
             this.productViewModels.ProductDetail=productViewModels.ProductDetail;
 
-            string pathRedLike = "D:\\AMALIYOT\\imtihon_proyekt 4-oy\\desktop_eclo\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png";
+            string pathRedLike = "Assets\\StaticImages\\like.png";
             if (productViewModels.ProductLiked==true)
             {
                 brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
             }
             else
             {
-                brLike.ImageSource = new BitmapImage(new System.Uri("D:\\AMALIYOT\\imtihon_proyekt 4-oy\\desktop_eclo\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));                
+                brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\love.png", UriKind.Relative));                
             }
 
             lblPproductPrice.Content = (productViewModels.ProductPrice).ToString();
