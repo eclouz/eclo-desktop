@@ -152,13 +152,13 @@ namespace Eclo_Desktop.Windows
             if (!isDescripitonPressed)
             {
 
-                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("D:\\AMALIYOT\\imtihon_proyekt 4-oy\\desktop_eclo\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\minus.png"));
+                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\minus.png"));
                 brDescription2.Visibility = Visibility.Visible;
                 isDescripitonPressed = true;
             }
             else
             {
-                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("D:\\AMALIYOT\\imtihon_proyekt 4-oy\\desktop_eclo\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\add (2).png"));
+                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\add (2).png"));
                 brDescription2.Visibility = Visibility.Collapsed;
                 isDescripitonPressed = false;
             }

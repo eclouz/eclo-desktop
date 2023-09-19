@@ -17,6 +17,9 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Threading;
 using Eclo_Desktop.Security;
+using Eclo_Desktop.Utilities;
+using System.IdentityModel.Tokens.Jwt;
+using Notification.Wpf;
 
 namespace Eclo_Desktop.Windows
 {
@@ -30,6 +33,8 @@ namespace Eclo_Desktop.Windows
         string TEL_NUMBER = string.Empty;
         IUserService userService = new UserService();
         TimeSpan _time;
+        
+        // Konstruktor
         public  PhoneConfirmWindow()
         {
             InitializeComponent();
@@ -40,7 +45,7 @@ namespace Eclo_Desktop.Windows
                 tbTime.Text = _time.ToString(@"mm\:ss");
                 if (_time == TimeSpan.Zero)
                 { 
-                    _timer.Stop();
+                    _timer!.Stop();
                     lblResendCode.Visibility = Visibility.Visible;
                 }
                 else lblResendCode.Visibility = Visibility.Hidden;
@@ -52,20 +57,21 @@ namespace Eclo_Desktop.Windows
             _timer.Start();
            
         }
-       
 
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
+        // For Close Button
+        private void btnClose_Click_1(object sender, RoutedEventArgs e)
         {
             Application.Current.Shutdown();
             Close();
         }
 
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
+        // For Minimize Button
+        private void btnMinimize_Click_1(object sender, RoutedEventArgs e)
         {
             WindowState = WindowState.Minimized;
         }
 
+        // For TextBox Input
         private void tb1_PreviewTextInput(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("[^0-9]+");
@@ -77,43 +83,81 @@ namespace Eclo_Desktop.Windows
        
         }
      
-        private void btnMinimize_Click_1(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void btnClose_Click_1(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
-
+        // For get phone number
         public void GetPhone(string phone)
         {
             verifyRegisterDto.PhoneNumber = phone;
         }
+
+        // For Confirm Button
         private async void Button_Click(object sender, RoutedEventArgs e)
-        {            
-            
-            if(tb1.Text.Length > 0 & tb1.Text.Length < 6 )
-            {
-                
+        {
+            // We can get an object from the loader inside the Login button
+            var loader = btnConfirm.Template.FindName("loader", btnConfirm) as FontAwesome.WPF.ImageAwesome;
+
+            // For the Loader to run
+            loader!.Visibility = Visibility.Visible;
+
+            // button to disable
+            btnConfirm.IsEnabled = false;
+            if (tb1.Text.Length > 0 & tb1.Text.Length < 6 )
+            {                
                 verifyRegisterDto.Code = int.Parse(tb1.Text);
-                bool response = await userService.VerifyRegister(verifyRegisterDto);
-                if (response==true)
+                var response = await userService.VerifyRegister(verifyRegisterDto);
+                if (response.result==true)
                 {
-                    
-                    MessageBox.Show("You are Veerified !!");
+                    // For Notification Success
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Success!", "Success register", NotificationType.Success);
+
+                    //For get Singleton data
                     var identity = IdentitySingleton.GetInstance();
-                    var res = await userService.GetUserByPhoneNumber(verifyRegisterDto.PhoneNumber,identity.Token);
-                    if (res != null)
+                    // Save Singleton Token
+                    identity.Token = response.token;
+
+                    // begin:: Tokendan ID ni yechib olish
+                    var tokenInfo = DecodeJwtToken.DecodeToken(response.token);
+
+                    if (tokenInfo.success)
                     {
-                        
-                        identity.UserId = res.Id;
+                        var jwtToken = tokenInfo.token as JwtSecurityToken;
+
+                        // Get User id
+                        identity.UserId = int.Parse(jwtToken.Claims.First(claim => claim.Type == "Id").Value);
                     }
+                    // end:: Tokendan ID ni yechib olish
+
+                    // For Show Main Window
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.ShowDialog();
-                    Close();
+
+                    // For Close PhoneConfirm Window
+                    this.Close();
                 }
+                else
+                {
+                    // For the Loader to stop
+                    loader.Visibility = Visibility.Collapsed;
+
+                    // button to enable
+                    btnConfirm.IsEnabled = true;
+
+                    // For Notification Warning!
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Warning!", "Code Wrong", NotificationType.Warning);
+                }
+            }
+            else
+            {
+                // For the Loader to stop
+                loader.Visibility = Visibility.Collapsed;
+
+                // button to enable
+                btnConfirm.IsEnabled = true;
+
+                // For Notification Warning
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", "Code Wrong", NotificationType.Warning);
             }
         }
     }

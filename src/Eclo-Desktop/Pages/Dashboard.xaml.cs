@@ -179,6 +179,8 @@ namespace Eclo_Desktop.Pages
 
         private async void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
+            var loader_button = btnPervouce.Template.FindName("loader", btnPervouce) as FontAwesome.WPF.ImageAwesome;
+            loader_button!.Visibility = Visibility.Visible;
             loader.Visibility = Visibility.Visible;
             btnPervouce.IsEnabled = false;
             int page = int.Parse(tbPage.Text);
@@ -189,6 +191,7 @@ namespace Eclo_Desktop.Pages
                 await refreshAsync();
             }
             loader.Visibility = Visibility.Collapsed;
+            loader_button.Visibility = Visibility.Collapsed;
             btnPervouce.IsEnabled = true;
 
         }
@@ -196,7 +199,10 @@ namespace Eclo_Desktop.Pages
 
         private async void NextPage_Click(object sender, RoutedEventArgs e)
         {
+            var loader_button = btnNext.Template.FindName("loader", btnNext) as FontAwesome.WPF.ImageAwesome;
+            loader_button!.Visibility = Visibility.Visible;
             loader.Visibility = Visibility.Visible;
+
             btnPervouce.IsEnabled = false;
             var identity = IdentitySingleton.GetInstance();
             int page = int.Parse(tbPage.Text);
@@ -207,6 +213,7 @@ namespace Eclo_Desktop.Pages
                 await refreshAsync();
             }
             loader.Visibility = Visibility.Collapsed;
+            loader_button.Visibility = Visibility.Collapsed;
             btnPervouce.IsEnabled = true;
 
         }
