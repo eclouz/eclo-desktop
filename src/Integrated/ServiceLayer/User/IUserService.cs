@@ -12,7 +12,7 @@ namespace Integrated.ServiceLayer.User;
 {
     Task<bool> CreateUser(RegisterDto registerDto);
     Task<bool> SendCodeRegister(string phone);
-    Task<bool> VerifyRegister(VerifyRegisterDto verifyRegisterDto);
+    Task<(bool result, string token)> VerifyRegister(VerifyRegisterDto verifyRegisterDto);
     Task<(bool result, string token)> Login(LoginDto loginDto);
     Task<UserViewModel> GetUserById(string token);
     Task<UserViewModel> GetUserByPhoneNumber(string phone,string token);

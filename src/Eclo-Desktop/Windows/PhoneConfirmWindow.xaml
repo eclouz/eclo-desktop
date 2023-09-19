@@ -6,70 +6,119 @@
         xmlns:local="clr-namespace:Eclo_Desktop.Windows"
         mc:Ignorable="d"
         Title="PhoneConfirmPage" Height="300" Width="500"
-        WindowStartupLocation="CenterScreen" WindowStyle="None"
-        Background="Transparent" AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen" 
+        WindowStyle="None"
+        Background="Transparent" 
+        AllowsTransparency="True"
         ResizeMode="NoResize">
+    <!--begin:: Main Grid-->
     <Grid>
-        <Border CornerRadius="8"
-                Background="{DynamicResource MainBannerBlue}"
-                >
-            <!--<Border.Background>
-                <ImageBrush ImageSource="/assets/staticimages/ClotheGadget.png"
-                                        Stretch="UniformToFill"/>
-            </Border.Background>-->
+        <!--begin:: Main Border-->
+        <Border CornerRadius="8">
+            
+            <!--begin:: Background Main Border-->
+            <Border.Background>
+                <ImageBrush ImageSource="/Assets/StaticImages/phone_confirmed_background.png"
+                 Stretch="UniformToFill"/>
+            </Border.Background>
+            <!--begin:: Background Main Border-->
+            
+            <!--begin:: Grid 1-->
             <Grid>
+                <!--begin:: Split Grid 1-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="35"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">
-                    <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click_1" Tag="IsCloseButton"/>
-
-                    <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click_1"/>
+                <!--end:: Split Grid 1-->
+                
+                <!--begin:: StackPanel 1-->
+                <StackPanel Grid.Row="0" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Top" 
+                            Margin="0,5,10,0" 
+                            Height="30" 
+                            Orientation="Horizontal" 
+                            FlowDirection="RightToLeft" 
+                            Grid.RowSpan="2">
+                    <!--begin:: Button Close-->
+                    <Button x:Name="btnClose" 
+                            Style="{StaticResource IconButtonsStyle}" 
+                            Content="{DynamicResource close}" 
+                            Click="btnClose_Click_1" 
+                            Tag="IsCloseButton"/>
+                    <!--end:: Button Close-->
+                    
+                    <!--begin:: Button Minimie-->
+                    <Button x:Name="btnMinimize" 
+                            Style="{DynamicResource IconButtonsStyle}" 
+                            Content="{DynamicResource minimize}" 
+                            Click="btnMinimize_Click_1"/>
+                    <!--end:: Button Minimize-->
+                    
                 </StackPanel>
+                <!--end:: StackPanel 1-->
+                
+                <!--begin:: Grid 2-->
                 <Grid Grid.Row="1">
+                    
+                    <!--begin:: Border 1-->
                     <Border Margin="100 0 100 0">
+                        <!--begin:: StackPanel 2-->
                         <StackPanel>
+                            <!--begin:: Label ECLO-->
                             <Label Content="ECLO"
                                    HorizontalAlignment="Center"
                                    FontSize="32"
                                    FontWeight="SemiBold"
                                    Margin="0 0 0 0"
                                    Padding="0"
-                                   Foreground="{DynamicResource FourthIconColor}"
-                                   >
+                                   Foreground="{DynamicResource FourthIconColor}">
                             </Label>
-                            <Label HorizontalAlignment="Center"
-                                   
+                            <!--end:: Label ECLO-->
+                            
+                            <!--begin:: Label Since 2023 -->
+                            <Label HorizontalAlignment="Center"                                  
                                    FontSize="16"
                                    FontWeight="SemiBold"
                                    Foreground="{DynamicResource FourthIconColor}"
-                                   Padding="0"
-                                   >
+                                   Padding="0">
                                 Since 2023
                             </Label>
+                            <!--end:: Label Since 2023-->
+                            
+                            <!--begin:: StackPanel 3-->
                             <StackPanel Orientation="Horizontal"
                                         Margin="10">
+                                <!--begin:: Border 1.1-->
                                 <Border Height="50"                                        
-                             Width="120"                                        
-                             Margin="80 0 5 0"
-                             BorderBrush="{DynamicResource FourthIconColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
+                                        Width="120"                                        
+                                        Margin="80 0 5 0"
+                                        BorderBrush="{DynamicResource FourthIconColor}"
+                                        CornerRadius="10"
+                                        BorderThickness="1">
+                                    
+                                    <!--begin:: TextBox Code-->
                                     <TextBox x:Name="tb1"                                                
-                             BorderThickness="0"
-                             PreviewTextInput="tb1_PreviewTextInput"
-                             Margin="10 2"      
-                            MaxLength="5"                                             
-                             FontSize="32"
+                                             BorderThickness="0"
+                                             PreviewTextInput="tb1_PreviewTextInput"
+                                             Margin="10 2"      
+                                             MaxLength="5"                                             
+                                             FontSize="32"
                                              Padding="0"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
+                                             Background="Transparent"
+                                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                                             Foreground="{DynamicResource FourthIconColor}" >
+                                    </TextBox>
+                                    <!--end:: TextBox Code-->
+                                    
                                 </Border>
+                                <!--end:: Border 1.1-->
+                                
                             </StackPanel>
+                            <!--end:: StackPanel 3-->
+                            
+                            <!--begin:: TextBlock Time-->
                             <TextBlock Name="tbTime" 
                                        Text="00:00"
                                        Width="60"
@@ -79,16 +128,23 @@
                                        FontSize="16"
                                        Padding="0"
                                        FontWeight="SemiBold"/>
-                            <Button Width="120" Height="50" 
+                            <!--end:: TextBlock Time-->
+                            
+                            <!--begin:: Button Confirm-->
+                            <Button x:Name="btnConfirm"
+                                    Width="120" Height="50" 
                                     Margin="10"
                                     Click="Button_Click"
                                     Content="Confirm"
                                     Background="{DynamicResource PrimaryBackgroundColor}"
                                     Foreground="{DynamicResource FourthIconColor}"
-                                    Style="{DynamicResource SaveBtn}"
-                                    >
+                                    Style="{DynamicResource SaveBtn}">
                             </Button>
-                            <Label Hyperlink.Click="Label_Click"
+                            <!--end:: Buton Confirm-->
+                            
+                            <!--begin:: Label Resend Code-->
+                            <Label x:Name="lblResendCode"
+                                   Hyperlink.Click="Label_Click"
                                    Cursor="Hand"                                   
                                    FontSize="16"
                                    Content="Resend code ?"
@@ -96,19 +152,25 @@
                                    Foreground="{DynamicResource FourthIconColor}"
                                    FontWeight="SemiBold"
                                    Padding="0"
-                                   Margin="0"
-                                   
-                                   x:Name="lblResendCode"
-                                   
-                                   >
+                                   Margin="0">
                             </Label>
+                            <!--end:: Label Resend Code-->
 
                         </StackPanel>
+                        <!--end:: Stack Panel 2-->
                         
                     </Border>
+                    <!--end:: Border 1-->
                     
                 </Grid>
+                <!--end:: Grid 2-->
+                
             </Grid>
+            <!--end:: Grid 1-->
         </Border>
+        <!--end:: Main Border-->
+        
     </Grid>
+    <!--end:: Grid Main-->
+    
 </Window>

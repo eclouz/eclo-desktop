@@ -407,13 +407,13 @@
                     </WrapPanel>
                 </Border>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button 
+                    <Button  x:Name="btnPervouce"
                         Foreground="{StaticResource FourthIconColor}"
                         Style="{StaticResource SaveBtn}"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"
                         Content="Pervouce"
-                        x:Name="btnPervouce"
+                        BorderThickness="0"
                         Click="PreviousPage_Click" Margin="5"
                         Background="{StaticResource ThirdBackgroundColor}"/>
                     <TextBlock Foreground="{StaticResource FourthIconColor}" x:Name="tbPage" Text="1" VerticalAlignment="Center" FontSize="20"/>
@@ -424,7 +424,8 @@
                         Foreground="{StaticResource FourthIconColor}"
                         Background="{StaticResource ThirdBackgroundColor}"
                         Width="80" 
-                        Content="Next" 
+                        Content="Next"
+                        BorderThickness="0"
                         Click="NextPage_Click" 
                         Margin="5" />
                 </StackPanel>

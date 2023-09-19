@@ -15,7 +15,7 @@ public class UserService : IUserService
         using (var client = new HttpClient())
         {
             //API.CREATE_USER
-            var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "auth/register");
+            var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "user/auth/register");
             var content = new MultipartFormDataContent();
 
             content.Add(new StringContent(registerDto.FirstName), "FirstName");
@@ -122,7 +122,7 @@ public class UserService : IUserService
     {
         using(var client = new HttpClient())
         {            
-            var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "auth/register/send-code" + 
+            var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "user/auth/register/send-code" + 
                 $"?phone=%2B{phone.Substring(1)}");
             
             var content = new StringContent("", null, "text/plain");
@@ -172,12 +172,12 @@ public class UserService : IUserService
         return false;
     }
 
-    public async Task<bool> VerifyRegister(VerifyRegisterDto verifyRegisterDto)
+    public async Task<(bool result, string token)> VerifyRegister(VerifyRegisterDto verifyRegisterDto)
     {
         using (var client = new HttpClient())
         {            
             var request = new HttpRequestMessage(HttpMethod.Post,
-                API.BASE_URL + "auth/register/verify" + $"?phoneNumber=%2B" +//API.VERIFY_REGISTER
+                API.BASE_URL + "user/auth/register/verify" + $"?phoneNumber=%2B" +//API.VERIFY_REGISTER
                     $"{(verifyRegisterDto.PhoneNumber).Substring(1)}&code={verifyRegisterDto.Code}");
 
             var content = new StringContent($"{{\r\n  \"phoneNumber\": \"{verifyRegisterDto.PhoneNumber}\"," +
@@ -187,10 +187,14 @@ public class UserService : IUserService
             var response = await client.SendAsync(request);
             if(response.IsSuccessStatusCode)
             {
-                return true;
+                string responseContent = await response.Content.ReadAsStringAsync();
+                dynamic jsonResponse = JsonConvert.DeserializeObject(responseContent)!;
+                string Token = jsonResponse.token.ToString();
+
+                return (result: true, token: Token);
             }
             
-            return false;
+            return (result: false, token: "");
         }
     }
 }
