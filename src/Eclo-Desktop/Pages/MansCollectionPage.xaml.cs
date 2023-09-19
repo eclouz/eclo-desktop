@@ -45,22 +45,72 @@ namespace Eclo_Desktop.Pages
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
-        {            
-            wpMens.Children.Clear();
-            var identity = IdentitySingleton.GetInstance();
-            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", 1);
-            foreach (var product in mensCategoryProducts)
-            {
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
-                productLightClothesUserControl.setData(product);
-                wpMens.Children.Add(productLightClothesUserControl);
+        {
+            tbMin.Text = "2000";
+            tbMax.Text = "7500000";
+            int min = int.Parse(tbMin.Text);
+            int max = int.Parse(tbMax.Text);
 
+            List<string> subCategoryName = new List<string>();
+
+            var identity = IdentitySingleton.GetInstance();
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", min, max, subCategoryName, 1);
+
+            wpMens.Children.Clear();
+
+            for (int i = 0; i < mensCategoryProducts.Count; i++)
+            {
+                subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(mensCategoryProducts[i]);
+                wpMens.Children.Add(productLightClothesUserControl);
+            }
+            subCategoryName = subCategoryName.Distinct().ToList();
+
+            cbSubCategories.Items.Clear();
+            for (int i = 0; i < subCategoryName.Count; i++)
+            {
+                CheckBox checkBox = new CheckBox();
+                checkBox.Content = subCategoryName[i];
+                cbSubCategories.Items.Add(checkBox);
             }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new ProductsPage());
+        }
+
+        private async void bApply_Click(object sender, RoutedEventArgs e)
+        {
+            if (int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
+            {
+                int min = int.Parse(tbMin.Text);
+                int max = int.Parse(tbMax.Text);
+                if (min == 0) min += 1;
+                List<string> subCategoryName = new List<string>();
+
+                foreach (var item in cbSubCategories.Items)
+                {
+                    if (item is CheckBox checkbox && checkbox.IsChecked == true)
+                    {
+                        subCategoryName.Add(checkbox.Content.ToString());
+                    }
+                }
+
+                var identity = IdentitySingleton.GetInstance();
+                var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", min, max, subCategoryName, 1);
+
+
+
+                wpMens.Children.Clear();
+                for (int i = 0; i < mensCategoryProducts.Count; i++)
+                {
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    productLightClothesUserControl.setData(mensCategoryProducts[i]);
+                    wpMens.Children.Add(productLightClothesUserControl);
+                }
+            }
         }
     }
 }

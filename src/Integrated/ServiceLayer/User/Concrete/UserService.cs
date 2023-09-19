@@ -31,22 +31,42 @@ public class UserService : IUserService
         }
     }
 
-    public async Task<UserViewModel> GetUserById(long id)
+    public async Task<UserViewModel> GetUserById(long id, string token)
     {
-        var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Get, API.GET_USER_BY_ID+$"/{id}");
-        var content = new StringContent("", null, "text/plain");
-        request.Content = content;
-        var response = await client.SendAsync(request);
-        response.EnsureSuccessStatusCode();
-        if(response.IsSuccessStatusCode)
+        try
         {
-            string jsonString = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<UserViewModel>(jsonString);
-            return result;
-        }
-        return new UserViewModel();
+            var client = new HttpClient();
 
+            //Create request
+            var request = new HttpRequestMessage(HttpMethod.Get, API.GET_USER_BY_ID + $"/{id}");
+
+            //Add head Autharation token
+            request.Headers.Add("Authorization", $"Bearer {token}");
+
+            //Create content
+            var content = new StringContent("", null, "text/plain");
+
+            //Add content in request
+            request.Content = content;
+
+            //Send request
+            var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            if (response.IsSuccessStatusCode)
+            {
+                string jsonString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<UserViewModel>(jsonString);
+                return result;
+            }
+        }
+        catch
+        {
+
+            return new UserViewModel();
+        }
+
+
+        return new UserViewModel();
     }
 
     public async Task<UserViewModel> GetUserByPhoneNumber(string phone)

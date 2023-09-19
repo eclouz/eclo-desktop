@@ -16,7 +16,8 @@
 
             <Grid>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="90"/>
+                    <RowDefinition Height="50"/>
+                    <RowDefinition Height="70"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
                 <StackPanel Grid.Row="0">
@@ -47,7 +48,134 @@
                         Background="LightGray">
                     </Border>
                 </StackPanel>
-                <ScrollViewer Grid.Row="1">
+                <StackPanel Grid.Row="1">
+                    <Border Background="{DynamicResource PrimaryBackgroundColor}"
+                        CornerRadius="25"
+                        Margin="10 5 0 0"
+                        Height="50"
+                        Width="765"
+                        HorizontalAlignment="Center">
+                        <DockPanel  Height="50"
+                                Width="765"
+                                HorizontalAlignment="Left">
+                            <Border Height="50" 
+                                Width="330" 
+                                CornerRadius="25" 
+                                Background="#FFE9E9E9" 
+                                BorderThickness="2"
+                                HorizontalAlignment="Left">
+                                <DockPanel>
+                                    <TextBox x:Name="tbMin"
+                                         MaxLength="7" 
+                                         Text="2000" 
+                                         Margin="10,0,0,0" 
+                                         Foreground="#323B4B" 
+                                         BorderThickness="0" 
+                                         Background="#FFE9E9E9" 
+                                         FontSize="16" 
+                                         Width="70" 
+                                         FontWeight="SemiBold" 
+                                         HorizontalAlignment="Left" 
+                                         VerticalAlignment="Center" 
+                                         VerticalContentAlignment="Center" 
+                                         HorizontalContentAlignment="Right"/>
+                                    <Label  
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" 
+                                       Width="45" 
+                                       Margin="0,0,0,0" 
+                                       Content="sum" 
+                                       FontSize="15" 
+                                       FontWeight="SemiBold"
+                                       Foreground="#323B4B" />
+                                    <Label Content="-" 
+                                       FontFamily="Cascadia Mono" 
+                                       HorizontalAlignment="Center" 
+                                       VerticalAlignment="Center" 
+                                       FontSize="16"/>
+                                    <TextBox x:Name="tbMax"
+                                         MaxLength="7" 
+                                         Text="7500000" 
+                                         Margin="5,0,0,0" 
+                                         Foreground="#323B4B" 
+                                         BorderThickness="0" 
+                                         Background="#FFE9E9E9" 
+                                         FontSize="16" 
+                                         FontWeight="SemiBold" 
+                                         HorizontalAlignment="Left" 
+                                         VerticalAlignment="Center" 
+                                         VerticalContentAlignment="Center"
+                                         HorizontalContentAlignment="Left"/>
+                                    <Label  
+                                       HorizontalAlignment="Left" 
+                                       VerticalAlignment="Center" 
+                                       FontWeight="SemiBold"
+                                       Width="45" 
+                                       Margin="0,0,0,0" 
+                                       Content="sum" 
+                                       FontSize="15" 
+                                       Foreground="#323B4B" />
+
+                                </DockPanel>
+                            </Border>
+                            <Border Height="50" 
+                                Width="200" 
+                                Margin="15,0,0,0" 
+                                CornerRadius="25" 
+                                Background="#FFE9E9E9"
+                                BorderThickness="2">
+                                <DockPanel>
+                                    <Grid>
+                                        <Label Content="v"
+                                           FontWeight="SemiBold"
+                                           FontSize="10"
+                                           Foreground="#323B4B"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <Label Content="Categories"
+                                           FontWeight="SemiBold"
+                                           FontSize="16"
+                                           Foreground="#323B4B"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center" Margin="0,0,54,0"/>
+                                        <ComboBox 
+                                          x:Name="cbSubCategories"
+                                          Foreground="#323B4B"
+                                          Margin="8"
+                                          FontWeight="SemiBold"
+                                          FontSize="13"
+                                          BorderThickness="0"
+                                          Background="Transparent"
+                                          Opacity="0">
+                                            <CheckBox/>
+                                        </ComboBox>
+
+
+
+                                    </Grid>
+                                </DockPanel>
+                            </Border>
+                            <Border Height="50" 
+                                Width="200" 
+                                Margin="15,0,0,0" 
+                                CornerRadius="25" 
+                                Background="#FFE9E9E9"
+                                BorderThickness="2">
+                                <Button Style="{DynamicResource bApply}"
+                                    x:Name="bApply"
+                                    Click="bApply_Click"/>
+                            </Border>
+                        </DockPanel>
+                    </Border>
+                    <Border Height="1"
+                        Width="1100"
+                            Margin="10"
+                            
+                        Background="LightGray">
+
+                    </Border>
+                </StackPanel>
+                <ScrollViewer Grid.Row="2">
                     <WrapPanel x:Name="wpWomen">
 
                     </WrapPanel>

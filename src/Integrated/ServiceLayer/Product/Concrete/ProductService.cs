@@ -37,35 +37,79 @@ public class ProductService : IProductService
     public async Task<List<ProductViewModels>> FilterBYCategories(long userId,string categoryString,int page)
     {
         var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Get, API.BASE_URL + $"common/products/filter/category?userId={userId}&categoryName={categoryString}&page={page}");
-        var content = new StringContent("", null, "text/plain");
-        request.Content = content;
-        var response = await client.SendAsync(request);
-        if(response.IsSuccessStatusCode)
+        if (subCategoriesString.Length > 0)
         {
-            var jsonString = await response.Content.ReadAsStringAsync();
-            var result = JsonConvert.DeserializeObject<List<ProductViewModels>>(jsonString);
-            List<ProductViewModels> productViewModelsList = new List<ProductViewModels>();
-            foreach (var i in result)
+            var request = new HttpRequestMessage(HttpMethod.Get, API.BASE_URL + $"common/products/filter/category?userId={userId}&categoryName={categoryString}&min={min}&max={max}&{subCategoriesString}page={page}");
+            var content = new StringContent("", null, "text/plain");
+            var response = await client.SendAsync(request);
+            request.Content = content;
+            if (response.IsSuccessStatusCode)
             {
-                productViewModelsList.Add(new ProductViewModels()
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<List<ProductViewModels>>(jsonString);
+                List<ProductViewModels> productViewModelsList = new List<ProductViewModels>();
+                foreach (var i in result)
                 {
-                    Id = i.Id,
-                    ProductName = i.ProductName,
-                    BrandId = i.BrandId,
-                    Brand = i.Brand,
-                    ProductDetail = i.ProductDetail,
-                    ProductPrice = i.ProductPrice,
-                    ProductDiscount = i.ProductDiscount,
-                    ProductLiked = i.ProductLiked,
-                    likedId = i.likedId
-                }) ;
+                    productViewModelsList.Add(new ProductViewModels()
+                    {
+                        Id = i.Id,
+                        ProductName = i.ProductName,
+                        BrandId = i.BrandId,
+                        Brand = i.Brand,
+                        ProductDetail = i.ProductDetail,
+                        ProductPrice = i.ProductPrice,
+                        ProductDiscount = i.ProductDiscount,
+                        ProductLiked = i.ProductLiked,
+                        likedId = i.likedId,
+                        SubCategory = i.SubCategory
+
+                    });
+                }
+                return productViewModelsList;
             }
-            return productViewModelsList;
+            else
+            {
+                return new List<ProductViewModels>();
+            }
         }
         else
         {
-            return new List<ProductViewModels>();
+            var request = new HttpRequestMessage(HttpMethod.Get, API.BASE_URL + $"common/products/filter/category?userId={userId}&categoryName={categoryString}&min={min}&max={max}&page={page}");
+            var content = new StringContent("", null, "text/plain");
+            request.Content = content;
+            var response = await client.SendAsync(request);
+            if (response.IsSuccessStatusCode)
+            {
+                var jsonString = await response.Content.ReadAsStringAsync();
+                var result = JsonConvert.DeserializeObject<List<ProductViewModels>>(jsonString);
+                List<ProductViewModels> productViewModelsList = new List<ProductViewModels>();
+                foreach (var i in result)
+                {
+                    List<float> list = new List<float>();
+                    foreach (var j in i.ProductDiscount)
+                    {
+                        list.Add(j);
+                    }
+                    productViewModelsList.Add(new ProductViewModels()
+                    {
+                        Id = i.Id,
+                        ProductName = i.ProductName,
+                        BrandId = i.BrandId,
+                        Brand = i.Brand,
+                        ProductDetail = i.ProductDetail,
+                        ProductPrice = i.ProductPrice,
+                        ProductDiscount = i.ProductDiscount,
+                        ProductLiked = i.ProductLiked,
+                        likedId = i.likedId,
+                        SubCategory = i.SubCategory
+                    });
+                }
+                return productViewModelsList;
+            }
+            else
+            {
+                return new List<ProductViewModels>();
+            }
         }
 
     }
@@ -94,7 +138,9 @@ public class ProductService : IProductService
                         ProductPrice = i.ProductPrice,
                         ProductDiscount = i.ProductDiscount,
                         ProductLiked = i.ProductLiked,
-                        likedId = i.likedId
+                        likedId = i.likedId,
+                        SubCategory = i.SubCategory
+
                     }) ;
                 }
                 return productList;
@@ -130,7 +176,6 @@ public class ProductService : IProductService
                 i.SubCategory = readProducts.SubCategory;
                 i.ProductDiscount = readProducts.ProductDiscount;
                 i.likedId = readProducts.likedId;
-                
                 i.ProductLiked = readProducts.ProductLiked;
                 i.ProductComments = readProducts.ProductComments;
                 

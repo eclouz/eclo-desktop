@@ -1,5 +1,6 @@
 ﻿using Eclo.Domain.Entities;
 using Eclo.Domain.Entities.Brands;
+using Eclo.Domain.Entities.Categories;
 using Eclo.Domain.Entities.Products;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,9 @@ public class ProductViewModels : Auditable
 
     public List<float> ProductDiscount { get; set; }
         = new List<float>();
+
+    public List<SubCategory> SubCategory { get; set; }
+       = new List<SubCategory>();
 
     public bool ProductLiked { get; set; } = false;
     public long likedId { get; set; }
