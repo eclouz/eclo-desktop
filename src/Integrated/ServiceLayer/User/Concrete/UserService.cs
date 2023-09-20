@@ -22,74 +22,61 @@ public class UserService : IUserService
             content.Add(new StringContent(registerDto.LastName), "LastName");
             content.Add(new StringContent(registerDto.PhoneNumber), "PhoneNumber");
             content.Add(new StringContent(registerDto.Password), "Password");
-            
+
             request.Content = content;
-            
+
             //Send Request
             var response = await client.SendAsync(request);
-            
+
             if (response.StatusCode == System.Net.HttpStatusCode.OK)
             {
                 string responseRead = await response.Content.ReadAsStringAsync();
-                var responsJson = JsonConvert.DeserializeObject<RegisterCheckDto>(responseRead);                
-                
+                var responsJson = JsonConvert.DeserializeObject<RegisterCheckDto>(responseRead);
+
                 return responsJson.Result == true;
             }
-            
+
             return false;
         }
     }
 
     public async Task<UserViewModel> GetUserById(string token)
-    {        
+    {
         var client = new HttpClient();
-        
+
         //Create request
         var request = new HttpRequestMessage(HttpMethod.Get, API.GET_USER_BY_ID);
-        
+
         //Add head Autharation token
         request.Headers.Add("Authorization", $"Bearer {token}");
 
-            //Create request
-            var request = new HttpRequestMessage(HttpMethod.Get, API.GET_USER_BY_ID + $"/{id}");
+        //Create content
+        var content = new StringContent("", null, "text/plain");
 
-            //Add head Autharation token
-            request.Headers.Add("Authorization", $"Bearer {token}");
+        //Add content in request
+        request.Content = content;
 
-            //Create content
-            var content = new StringContent("", null, "text/plain");
-
-            //Add content in request
-            request.Content = content;
-
-            //Send request
-            var response = await client.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            if (response.IsSuccessStatusCode)
-            {
-                string jsonString = await response.Content.ReadAsStringAsync();
-                var result = JsonConvert.DeserializeObject<UserViewModel>(jsonString);
-                return result;
-            }
-        }
-        catch
+        //Send request
+        var response = await client.SendAsync(request);
+        response.EnsureSuccessStatusCode();
+        if (response.IsSuccessStatusCode)
         {
-
-            return new UserViewModel();
+            string jsonString = await response.Content.ReadAsStringAsync();
+            var result = JsonConvert.DeserializeObject<UserViewModel>(jsonString);
+            return result;
         }
-
-
         return new UserViewModel();
+
     }
 
-    public async Task<UserViewModel> GetUserByPhoneNumber(string phone,string token)
+    public async Task<UserViewModel> GetUserByPhoneNumber(string phone, string token)
     {
         var client = new HttpClient();
 
         //Create token
         var request = new HttpRequestMessage(HttpMethod.Get,
             API.BASE_URL + $"admin/users/userPhoneNumber?userPhoneNumber=%2B{(phone).Substring(1)}");
-        
+
         //Add token
         request.Headers.Add("Authorization", $"Bearer {token}");
 
@@ -97,7 +84,7 @@ public class UserService : IUserService
         request.Content = content;
         var response = await client.SendAsync(request);
 
-        if(response.IsSuccessStatusCode)
+        if (response.IsSuccessStatusCode)
         {
             var jsonstring = await response.Content.ReadAsStringAsync();
             var result = JsonConvert.DeserializeObject<UserViewModel>(jsonstring);
@@ -123,44 +110,44 @@ public class UserService : IUserService
                 dynamic jsonResponse = JsonConvert.DeserializeObject(responseContent)!;
                 string Token = jsonResponse.token.ToString();
 
-                return (result:true,token:Token);
-            
+                return (result: true, token: Token);
+
             }
-            
-            return (result:false,token:"");
+
+            return (result: false, token: "");
         }
     }
 
     public async Task<bool> SendCodeRegister(string phone)
     {
-        using(var client = new HttpClient())
-        {            
-            var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "user/auth/register/send-code" + 
+        using (var client = new HttpClient())
+        {
+            var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "user/auth/register/send-code" +
                 $"?phone=%2B{phone.Substring(1)}");
-            
+
             var content = new StringContent("", null, "text/plain");
             request.Content = content;
             var response = await client.SendAsync(request);
 
-        
+
             if (response.IsSuccessStatusCode)
             {
                 return true;
             }
 
             return false;
-                        
+
         }
     }
 
-    public async Task<bool> UserUpdateSettings(UserViewModel dto,string token)
+    public async Task<bool> UserUpdateSettings(UserViewModel dto, string token)
     {
         var client = new HttpClient();
 
         var request = new HttpRequestMessage(HttpMethod.Put, API.BASE_URL + $"user/profile/userId");
 
         request.Headers.Add("Authorization", $"Bearer {token}");
-        
+
         var content = new MultipartFormDataContent();
         content.Add(new StringContent($"{dto.FirstName}"), "FirstName");
         content.Add(new StringContent($"{dto.LastName}"), "LastName");
@@ -173,31 +160,32 @@ public class UserService : IUserService
         content.Add(new StringContent($"{dto.Address}"), "Address");
         request.Content = content;
         var response = await client.SendAsync(request);
-        
+
         if (response.IsSuccessStatusCode)
         {
             var res = await response.Content.ReadAsStringAsync();
-            
+
             return true;
         }
         var res1 = await response.Content.ReadAsStringAsync();
-        
+
         return false;
     }
 
     public async Task<(bool result, string token)> VerifyRegister(VerifyRegisterDto verifyRegisterDto)
     {
         using (var client = new HttpClient())
-        {            
+        {
             var request = new HttpRequestMessage(HttpMethod.Post,
                 API.BASE_URL + "user/auth/register/verify" + $"?phoneNumber=%2B" +//API.VERIFY_REGISTER
                     $"{(verifyRegisterDto.PhoneNumber).Substring(1)}&code={verifyRegisterDto.Code}");
+
             var content = new StringContent($"{{\r\n  \"phoneNumber\": \"{verifyRegisterDto.PhoneNumber}\"," +
                 $"\r\n  \"code\": {verifyRegisterDto.Code}\r\n}}", null, "application/json");
 
             request.Content = content;
             var response = await client.SendAsync(request);
-            if(response.IsSuccessStatusCode)
+            if (response.IsSuccessStatusCode)
             {
                 string responseContent = await response.Content.ReadAsStringAsync();
                 dynamic jsonResponse = JsonConvert.DeserializeObject(responseContent)!;
@@ -205,8 +193,9 @@ public class UserService : IUserService
 
                 return (result: true, token: Token);
             }
-            
+
             return (result: false, token: "");
         }
     }
 }
+
