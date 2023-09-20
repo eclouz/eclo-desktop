@@ -107,6 +107,7 @@ namespace Eclo_Desktop.Windows
                 var response = await userService.VerifyRegister(verifyRegisterDto);
                 if (response.result==true)
                 {
+
                     // For Notification Success
                     var notificationManager = new NotificationManager();
                     notificationManager.Show("Success!", "Success register", NotificationType.Success);

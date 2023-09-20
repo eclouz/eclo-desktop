@@ -1,7 +1,11 @@
-﻿using Eclo.Domain.Entities.Products;
+﻿using Eclo.Domain.Entities.Categories;
+using Eclo.Domain.Entities.Products;
+using Eclo.Domain.Entities.Users;
 using Eclo_Desktop.Components.Dashboards;
 using Eclo_Desktop.Security;
 using Eclo_Desktop.Utilities;
+using Integrated.ServiceLayer.Categories;
+using Integrated.ServiceLayer.Categories.Concrete;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
 using System;
@@ -27,11 +31,13 @@ namespace Eclo_Desktop.Pages
     public partial class Dashboard : Page
     {
         private readonly IProductService _productService;
+        private readonly ISubCategoryService _subCategoryService;
 
         public Dashboard()
         {
             InitializeComponent();
             this._productService = new ProductService();
+            this._subCategoryService = new SubCategoryService();
         }
 
        
@@ -72,7 +78,24 @@ namespace Eclo_Desktop.Pages
                 SecondWp.Children.Add(productLightClothesUserControl);
                 productLightClothesUserControl.RefreshPage = RefreshPageHandler;
             }
-
+            
+            cbSubCategories.Items.Clear();
+            var subCategories = await _subCategoryService.GetAllSubCategories(1);
+            
+            List<string> subCategoryName = new List<string>();
+            for (int i = 0; i < subCategories.Count; i++)
+            {
+                subCategoryName.Add(subCategories[i].Name);
+            }
+            
+            subCategoryName = subCategoryName.Distinct().ToList();
+            
+            for (int i = 0; i < subCategoryName.Count; i++)
+            {
+                CheckBox checkBox = new CheckBox();
+                checkBox.Content = subCategoryName[i];
+                cbSubCategories.Items.Add(checkBox);
+            }
         }
         private async void RefreshPageHandler()
         {
@@ -81,53 +104,97 @@ namespace Eclo_Desktop.Pages
         
         private async void rbMens_Click_1(object sender, RoutedEventArgs e)
         {
+            tbMin.Text = "2000";
+            tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
             int max = int.Parse(tbMax.Text);
+           
             List<string> subCategoryName = new List<string>();
-            SecondWp.Children.Clear();
+            
             var identity = IdentitySingleton.GetInstance();
             var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId , "Men", min, max, subCategoryName, 1);
-            foreach (var product in mensCategoryProducts)
+
+            SecondWp.Children.Clear();
+
+            for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
+                subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
-                productLightClothesUserControl.setData(product);
-                
+                productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 SecondWp.Children.Add(productLightClothesUserControl);
-                
+            }
+            subCategoryName = subCategoryName.Distinct().ToList();
+
+            cbSubCategories.Items.Clear();
+            for (int i = 0; i < subCategoryName.Count; i++)
+            {
+                CheckBox checkBox = new CheckBox();
+                checkBox.Content = subCategoryName[i];
+                cbSubCategories.Items.Add(checkBox);
             }
         }
 
         private async void rbWomens_Click(object sender, RoutedEventArgs e)
         {
+            tbMin.Text = "2000";
+            tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
             int max = int.Parse(tbMax.Text);
+
             List<string> subCategoryName = new List<string>();
-            SecondWp.Children.Clear();
+
             var identity = IdentitySingleton.GetInstance();
             var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Women", min, max, subCategoryName, 1);
-            foreach (var product in mensCategoryProducts)
-            {
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
-                productLightClothesUserControl.setData(product);
-                SecondWp.Children.Add(productLightClothesUserControl);
 
+            SecondWp.Children.Clear();
+
+            for (int i = 0; i < mensCategoryProducts.Count; i++)
+            {
+                subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(mensCategoryProducts[i]);
+                SecondWp.Children.Add(productLightClothesUserControl);
+            }
+            subCategoryName = subCategoryName.Distinct().ToList();
+
+            cbSubCategories.Items.Clear();
+            for (int i = 0; i < subCategoryName.Count; i++)
+            {
+                CheckBox checkBox = new CheckBox();
+                checkBox.Content = subCategoryName[i];
+                cbSubCategories.Items.Add(checkBox);
             }
         }
 
         private async void rbKids_Click(object sender, RoutedEventArgs e)
         {
+            tbMin.Text = "2000";
+            tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
             int max = int.Parse(tbMax.Text);
+
             List<string> subCategoryName = new List<string>();
-            SecondWp.Children.Clear();
+
             var identity = IdentitySingleton.GetInstance();
             var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Kids", min, max, subCategoryName, 1);
-            foreach (var product in mensCategoryProducts)
-            {
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
-                productLightClothesUserControl.setData(product);
-                SecondWp.Children.Add(productLightClothesUserControl);
 
+            SecondWp.Children.Clear();
+
+            for (int i = 0; i < mensCategoryProducts.Count; i++)
+            {
+                subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                productLightClothesUserControl.setData(mensCategoryProducts[i]);
+                SecondWp.Children.Add(productLightClothesUserControl);
+            }
+            subCategoryName = subCategoryName.Distinct().ToList();
+
+            cbSubCategories.Items.Clear();
+            for (int i = 0; i < subCategoryName.Count; i++)
+            {
+                CheckBox checkBox = new CheckBox();
+                checkBox.Content = subCategoryName[i];
+                cbSubCategories.Items.Add(checkBox);
             }
         }
 
@@ -144,7 +211,21 @@ namespace Eclo_Desktop.Pages
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
                 productLightClothesUserControl.setData(product);
                 SecondWp.Children.Add(productLightClothesUserControl);
+            }
 
+            cbSubCategories.Items.Clear();
+            var subCategories = await _subCategoryService.GetAllSubCategories(1);
+            List<string> subCategoryName = new List<string>();
+            for (int i = 0; i < subCategories.Count; i++)
+            {
+                subCategoryName.Add(subCategories[i].Name);
+            }
+            subCategoryName = subCategoryName.Distinct().ToList();
+            for (int i = 0; i < subCategoryName.Count; i++)
+            {
+                CheckBox checkBox = new CheckBox();
+                checkBox.Content = subCategoryName[i];
+                cbSubCategories.Items.Add(checkBox);
             }
         }
 
@@ -185,6 +266,122 @@ namespace Eclo_Desktop.Pages
 
         }
 
+        private async void bApply_Click(object sender, RoutedEventArgs e)
+        {
+            if(rbAll.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
+            {
+                int min = int.Parse(tbMin.Text);
+                int max = int.Parse(tbMax.Text);
+                if (min == 0) min += 1;
+                List<string> subCategoryName = new List<string>();
+
+                foreach (var item in cbSubCategories.Items)
+                {
+                    if (item is CheckBox checkbox && checkbox.IsChecked == true)
+                    {
+                        subCategoryName.Add(checkbox.Content.ToString());
+                    }
+                }
+
+                var identity = IdentitySingleton.GetInstance();
+                var allCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "All", min, max, subCategoryName, 1);
+
+
+
+                SecondWp.Children.Clear();
+                for (int i = 0; i < allCategoryProducts.Count; i++)
+                {
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    productLightClothesUserControl.setData(allCategoryProducts[i]);
+                    SecondWp.Children.Add(productLightClothesUserControl);
+                }
+            }
+            else if(rbMens.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
+            {
+                int min = int.Parse(tbMin.Text);
+                int max = int.Parse(tbMax.Text);
+                if (min == 0) min += 1;
+                List<string> subCategoryName = new List<string>();
+
+                foreach (var item in cbSubCategories.Items)
+                {
+                    if (item is CheckBox checkbox && checkbox.IsChecked == true)
+                    {
+                        subCategoryName.Add(checkbox.Content.ToString());
+                    }
+                }
+
+                var identity = IdentitySingleton.GetInstance();
+                var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", min, max, subCategoryName, 1);
+
+
+
+                SecondWp.Children.Clear();
+                for (int i = 0; i < mensCategoryProducts.Count; i++)
+                {
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    productLightClothesUserControl.setData(mensCategoryProducts[i]);
+                    SecondWp.Children.Add(productLightClothesUserControl);
+                }
+            }
+            else if(rbWomens.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
+            {
+                int min = int.Parse(tbMin.Text);
+                int max = int.Parse(tbMax.Text);
+                if (min == 0) min += 1;
+
+                List<string> subCategoryName = new List<string>();
+
+                foreach (var item in cbSubCategories.Items)
+                {
+                    if (item is CheckBox checkbox && checkbox.IsChecked == true)
+                    {
+                        subCategoryName.Add(checkbox.Content.ToString());
+                    }
+                }
+
+                var identity = IdentitySingleton.GetInstance();
+                var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Women", min, max, subCategoryName, 1);
+
+
+
+                SecondWp.Children.Clear();
+                for (int i = 0; i < mensCategoryProducts.Count; i++)
+                {
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    productLightClothesUserControl.setData(mensCategoryProducts[i]);
+                    SecondWp.Children.Add(productLightClothesUserControl);
+                }
+            }
+            else if(rbKids.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
+            {
+                int min = int.Parse(tbMin.Text);
+                int max = int.Parse(tbMax.Text);
+                if (min == 0) min += 1;
+
+                List<string> subCategoryName = new List<string>();
+
+                foreach (var item in cbSubCategories.Items)
+                {
+                    if (item is CheckBox checkbox && checkbox.IsChecked == true)
+                    {
+                        subCategoryName.Add(checkbox.Content.ToString());
+                    }
+                }
+
+                var identity = IdentitySingleton.GetInstance();
+                var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Kids", min, max, subCategoryName, 1);
+
+
+
+                SecondWp.Children.Clear();
+                for (int i = 0; i < mensCategoryProducts.Count; i++)
+                {
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    productLightClothesUserControl.setData(mensCategoryProducts[i]);
+                    SecondWp.Children.Add(productLightClothesUserControl);
+                }
+            }
         private async void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
             var loader_button = btnPervouce.Template.FindName("loader", btnPervouce) as FontAwesome.WPF.ImageAwesome;

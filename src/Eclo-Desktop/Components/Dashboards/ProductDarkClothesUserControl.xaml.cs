@@ -41,7 +41,7 @@ namespace Eclo_Desktop.Components.Dashboards
             if (!Liked)
             {
                     brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\like.png", UriKind.Relative));
-                Liked = true;
+                    Liked = true;
             }
             else
             {

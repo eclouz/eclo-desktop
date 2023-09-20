@@ -40,4 +40,32 @@ public class ProductGetViewModel : Auditable
 
     public List<ProductComment> ProductComments { get; set; }
       = new List<ProductComment>();
+
+
+    //public string productName { get; set; } = String.Empty;
+
+    //public long BrandId { get; set; }
+
+    //public List<Brand> Brand { get; set; }
+    //    = new List<Brand>();
+
+    //public List<ProductDetail> ProductDetail { get; set; }
+    //    = new List<ProductDetail>();
+
+    //public double ProductPrice { get; set; }
+
+    //public double ProductDescription { get; set; }
+
+    //public long SubCategoryId { get; set; }
+
+    //public List<SubCategory> SubCategory { get; set; }
+    //    = new List<SubCategory>();
+
+    //public List<ProductDiscount> ProductDiscount { get; set; }
+    //    = new List<ProductDiscount>();
+
+    //public bool ProductLiked { get; set; } = false;
+
+    //public List<ProductComment> ProductComments { get; set; }
+    //  = new List<ProductComment>();
 }

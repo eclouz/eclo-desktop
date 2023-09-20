@@ -45,6 +45,7 @@ namespace Eclo_Desktop.Pages
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var identity = IdentitySingleton.GetInstance();
+
             var getUserInfo = await userService.GetUserById(identity.Token);
             tbName.Text = getUserInfo?.FirstName;
             tbSecondName.Text = getUserInfo?.LastName;
@@ -62,6 +63,26 @@ namespace Eclo_Desktop.Pages
         }
         private async void btnSaveSettingsChange_Click(object sender, RoutedEventArgs e)
         {
+            var identity = IdentitySingleton.GetInstance();
+            var getUserInfo = await userService.GetUserById(identity.UserId);
+            
+            userViewModel.FirstName = tbName.Text;
+            userViewModel.LastName = tbSecondName.Text;
+            userViewModel.PassportSerialNumber = tbPassportSerialNumber.Text;
+            if (DateBirthdp.SelectedDate is not null) { userViewModel.BirthDate = DateBirthdp.SelectedDate.Value; }
+            userViewModel.Region = tbRegion.Text;
+            userViewModel.District = tbDistric.Text;
+            userViewModel.Address = tbAdress.Text;
+            userViewModel.PhoneNumber = getUserInfo.PhoneNumber;
+
+            string image_path = UserImage.ImageSource.ToString();
+            if (!String.IsNullOrEmpty(image_path))
+            {
+                userViewModel.ImagePath = image_path;
+            }
+
+            var updateUserInfo = await userService.UserUpdateSettings(userViewModel);
+            if(updateUserInfo==true)
             var loader = btnSaveSettingsChange.Template.FindName("loader", btnSaveSettingsChange) as FontAwesome.WPF.ImageAwesome;
             loader.Visibility = Visibility.Visible;
             btnSaveSettingsChange.IsEnabled = false;
@@ -113,7 +134,21 @@ namespace Eclo_Desktop.Pages
 
 
         }
-        
+        //private async Task<string> CopyImageAsync(string imgPath, string destinationDirectory)
+        //{
+        //    if (!Directory.Exists(destinationDirectory))
+        //        Directory.CreateDirectory(destinationDirectory);
+
+        //    var imageName = ContentNameMaker.GetImageName(imgPath);
+
+        //    string path = System.IO.Path.Combine(destinationDirectory, imageName);
+
+        //    byte[] image = await File.ReadAllBytesAsync(imgPath);
+
+        //    await File.WriteAllBytesAsync(path, image);
+
+        //    return path;
+        //}
 
         private void updateImage_Click(object sender, RoutedEventArgs e)
         {

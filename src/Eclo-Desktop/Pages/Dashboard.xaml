@@ -16,7 +16,7 @@
 
             <StackPanel>
                 <Border Margin="15 10" >
-                    <!--<StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
                         <Label Content="Discover more."
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
@@ -26,12 +26,14 @@
                                FontSize="25" FontWeight="SemiBold"
                                Foreground="{DynamicResource TextTertiaryColor}"></Label>
 
-                    </StackPanel>-->
+                    </StackPanel>
 
                 </Border>
-                <!--<WrapPanel  x:Name="MainWP" >
+                <WrapPanel  x:Name="MainWP" >
 
-                    --><!--<WrapPanel>--><!--
+                    -->
+                <!--<WrapPanel>-->
+                <!--
                     <Border Margin="15 20 15 20"
                         CornerRadius="15"
                         Background="{DynamicResource MainBannerYellow}">
@@ -220,19 +222,21 @@
 
                         </StackPanel>
                     </Border>
-                    --><!--</WrapPanel>--><!--
+                    -->
+                <!--</WrapPanel>-->
+                <!--
 
-                </WrapPanel>-->
+                </WrapPanel>
                 <Border Margin="15 10" >
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="New Products."
+                        <Label Content="New Arrivals."
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
                                Foreground="{DynamicResource SecundaryBackgroundColor}"></Label>
-                        <!--<Label Content="REY backpacks and bags"
+                        <Label Content="REY backpacks and bags"
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
-                               Foreground="{DynamicResource TextTertiaryColor}"></Label>-->
+                               Foreground="{DynamicResource TextTertiaryColor}"></Label>
 
 
                     </StackPanel>
@@ -241,7 +245,7 @@
 
                 <Border Background="{DynamicResource PrimaryBackgroundColor}"
                             CornerRadius="25"
-                        Margin="15,15,15,0"
+                        Margin="15"
                         Height="50"
                                 Width="600"  
                             >
@@ -328,7 +332,7 @@
                                        FontSize="16"/>
                                 <TextBox x:Name="tbMax"
                                          MaxLength="7" 
-                                         Text="9999999" 
+                                         Text="7500000" 
                                          Margin="5,0,0,0" 
                                          Foreground="#323B4B" 
                                          BorderThickness="0" 
@@ -359,20 +363,31 @@
                                 BorderThickness="2">
                             <DockPanel>
                                 <Grid>
-                                    <ComboBox FontFamily="Cascadia Mono"
-                                          FontSize="16" 
-                                          Foreground="Transparent"
-                                          BorderThickness="0"
-                                          VerticalContentAlignment="Center"
-                                          Background="#F7F7F9" 
-                                          Margin="8">
-                                    </ComboBox>
+                                    <Label Content="v"
+                                           FontWeight="SemiBold"
+                                           FontSize="10"
+                                           Foreground="#323B4B"
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center" Margin="0,0,5,0"/>
                                     <Label Content="Categories"
                                            FontWeight="SemiBold"
                                            FontSize="16"
                                            Foreground="#323B4B"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
+                                           HorizontalAlignment="Right"
+                                           VerticalAlignment="Center" Margin="0,0,54,0"/>
+                                    <ComboBox 
+                                          x:Name="cbSubCategories"
+                                          Foreground="#323B4B"
+                                          Margin="8"
+                                          FontWeight="SemiBold"
+                                          FontSize="13"
+                                          BorderThickness="0"
+                                          Background="Transparent"
+                                          Opacity="0">
+                                    </ComboBox>
+
+
+
                                 </Grid>
                             </DockPanel>
                         </Border>
@@ -382,7 +397,9 @@
                                 CornerRadius="25" 
                                 Background="#FFE9E9E9"
                                 BorderThickness="2">
-                            <Button Style="{DynamicResource bApply}"/>
+                            <Button Style="{DynamicResource bApply}"
+                                    x:Name="bApply"
+                                    Click="bApply_Click"/>
                         </Border>
                     </DockPanel>
                 </Border>
@@ -403,8 +420,10 @@
                 <Border Margin="5"
                         Background="{DynamicResource NewItemsBackgroundSomeGrey}"
                         CornerRadius="15">
-                    <WrapPanel x:Name="SecondWp">
-                    </WrapPanel>
+                <WrapPanel x:Name="SecondWp"
+                           >
+                    
+                </WrapPanel>
                 </Border>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button  x:Name="btnPervouce"

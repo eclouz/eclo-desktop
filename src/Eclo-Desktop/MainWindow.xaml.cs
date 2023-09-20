@@ -1,7 +1,12 @@
-﻿using Eclo_Desktop.Pages;
+using Eclo.Domain.Entities.Categories;
+using Eclo_Desktop.Pages;
 using Eclo_Desktop.Security;
 using Eclo_Desktop.Themes;
 using Eclo_Desktop.Windows;
+using Integrated.ServiceLayer.Categories;
+using Integrated.ServiceLayer.Categories.Concrete;
+using Integrated.ServiceLayer.Product;
+using Integrated.ServiceLayer.Product.Concrete;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using System;
@@ -30,6 +35,7 @@ namespace Eclo_Desktop
 
     public partial class MainWindow : Window
     {
+        private readonly ISubCategoryService _subCategoryService;
         private readonly IUserService _userService;
 
         private readonly RefreshPageHandlerDelegate refreshDelegate;
@@ -38,6 +44,7 @@ namespace Eclo_Desktop
         {
             InitializeComponent();
             this._userService = new UserService();
+            this._subCategoryService = new SubCategoryService();
             refreshDelegate = RefreshPageHandler;
         }
         public async  Task refreshAsync(Page page)
@@ -68,11 +75,22 @@ namespace Eclo_Desktop
             
         }
 
-        private void rbDashboard_Click(object sender, RoutedEventArgs e)
+        private async void rbDashboard_Click(object sender, RoutedEventArgs e)
         {
             Dashboard dashboard = new Dashboard();
             PageNavigator.Content = dashboard;
             //PageNavigator.Navigate(new Uri("Men.xaml", UriKind.Relative));
+            dashboard.cbSubCategories.Items.Clear();
+            var identity = IdentitySingleton.GetInstance();
+            var subCategories = await _subCategoryService.GetAllSubCategories(1);
+
+            for (int i = 0; i < subCategories.Count; i++)
+            {
+                CheckBox checkBox = new CheckBox();
+                checkBox.Content = subCategories[i].Name;
+
+                dashboard.cbSubCategories.Items.Add(checkBox);
+            }
         }
 
         private void rbProducts_Click(object sender, RoutedEventArgs e)

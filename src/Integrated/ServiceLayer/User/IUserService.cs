@@ -1,4 +1,4 @@
-﻿using Dtos.Auth;
+using Dtos.Auth;
 using Eclo.DataAccess.ViewModels.Users;
 using System;
 using System.Collections.Generic;
@@ -17,5 +17,4 @@ namespace Integrated.ServiceLayer.User;
     Task<UserViewModel> GetUserById(string token);
     Task<UserViewModel> GetUserByPhoneNumber(string phone,string token);
     Task<bool> UserUpdateSettings(UserViewModel userViewModel,string token);
-
 }

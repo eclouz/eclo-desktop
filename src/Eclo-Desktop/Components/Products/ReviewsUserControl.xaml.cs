@@ -1,5 +1,4 @@
-﻿using Eclo_Desktop.Security;
-using Integrated.ServiceLayer.User;
+﻿using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using System;
 using System.Collections.Generic;

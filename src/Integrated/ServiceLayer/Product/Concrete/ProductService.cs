@@ -37,15 +37,8 @@ public class ProductService : IProductService
         return false;
     }
 
-    public async Task<List<ProductViewModels>> FilterBYCategories(long userId, string categoryString, int min, int max, List<string> subCategoriesName, int page)
+    public async Task<List<ProductViewModels>> FilterBYCategories(long userId,string categoryString,int page)
     {
-        string subCategoriesString = "";
-        for (int i = 0; i < subCategoriesName.Count; i++)
-        {
-            subCategoriesString += "subCategoriesName=";
-            subCategoriesString += subCategoriesName[i];
-            subCategoriesString += "&";
-        }
         var client = new HttpClient();
         if (subCategoriesString.Length > 0)
         {
@@ -70,7 +63,9 @@ public class ProductService : IProductService
                         ProductPrice = i.ProductPrice,
                         ProductDiscount = i.ProductDiscount,
                         ProductLiked = i.ProductLiked,
-                        likedId = i.likedId
+                        likedId = i.likedId,
+                        SubCategory = i.SubCategory
+
                     });
                 }
                 return productViewModelsList;
@@ -108,7 +103,8 @@ public class ProductService : IProductService
                         ProductPrice = i.ProductPrice,
                         ProductDiscount = i.ProductDiscount,
                         ProductLiked = i.ProductLiked,
-                        likedId = i.likedId
+                        likedId = i.likedId,
+                        SubCategory = i.SubCategory
                     });
                 }
                 return productViewModelsList;
@@ -154,7 +150,9 @@ public class ProductService : IProductService
                         ProductPrice = i.ProductPrice,
                         ProductDiscount = i.ProductDiscount,
                         ProductLiked = i.ProductLiked,
-                        likedId = i.likedId
+                        likedId = i.likedId,
+                        SubCategory = i.SubCategory
+
                     }) ;
                 }
                 return (productViewModels:productList,pageData:pagination);
@@ -191,7 +189,6 @@ public class ProductService : IProductService
                 i.SubCategory = readProducts.SubCategory;
                 i.ProductDiscount = readProducts.ProductDiscount;
                 i.likedId = readProducts.likedId;
-                
                 i.ProductLiked = readProducts.ProductLiked;
                 i.ProductComments = readProducts.ProductComments;
                 

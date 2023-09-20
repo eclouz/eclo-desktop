@@ -1,6 +1,4 @@
-﻿using Eclo_Desktop.Pages;
-using Eclo_Desktop.Security;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +12,6 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using ViewModels.ShoppingCharts;
-using static Eclo_Desktop.Pages.ShoppingChartPage;
 
 namespace Eclo_Desktop.Components.ShoppingCharts
 {
@@ -24,38 +20,23 @@ namespace Eclo_Desktop.Components.ShoppingCharts
     /// </summary>
     public partial class Item : UserControl
     {
-
-        private int productQuantity = 0;
-        private double productPrice;
-        private UpdateTotalPriceDelegate updatePriceDelgate;
-
-        public Item(UpdateTotalPriceDelegate updateTotalPriceDelegate)
+        public Item()
         {
             InitializeComponent();
-            //Fieldga konstruktor orqali kirib kelayotgan delegat olayabmiz
-            this.updatePriceDelgate = updateTotalPriceDelegate;
+        }
+        public ImageSource Source
+        {
+            get { return (ImageSource)GetValue(SourceProperty); }
+            set { SetValue(SourceProperty, value); }
         }
 
+        public static readonly DependencyProperty SourceProperty = DependencyProperty.Register("Source", typeof(ImageSource), typeof(Item));
 
-        private void btProductDelete(object sender, RoutedEventArgs e)
-        {
 
-        }
-        public async void SetData(ShoppingChartViewModel shoppingChartView)
+        public string Title
         {
-            tbProductName.Text = shoppingChartView.ProductName;
-            tbDescription.Text = shoppingChartView.ProductDescription;
-            tbProductColor.Text=shoppingChartView.ProductColor;
-            tbProductPrice.Text = shoppingChartView.ProductPrice.ToString()+" so'm";
-            tbProductQuantity.Text = shoppingChartView.ItemCount.ToString();
-            tbProductSize.Text=shoppingChartView.ProductSize.ToString();
-            tbQuantity.Text = "Quantity: " + shoppingChartView.ProductQuantity.ToString();
-            string imageUrl = "https://localhost:7190/" + shoppingChartView.ProductImage;
-            Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
-            imageProduct.ImageSource = new BitmapImage(imageUri);
-            productQuantity = shoppingChartView.ProductQuantity;
-            productPrice = shoppingChartView.ProductPrice;
-            
+            get { return (string)GetValue(TitleProperty); }
+            set { SetValue(TitleProperty, value); }
         }
 
         private async void plus_Click(object sender, RoutedEventArgs e)
@@ -89,7 +70,8 @@ namespace Eclo_Desktop.Components.ShoppingCharts
            
         }
 
-        private async void minus_Click(object sender, RoutedEventArgs e)
+
+        public string Ref
         {
             var identity = IdentitySingleton.GetInstance();
             if (chbSelect.IsChecked == true)
@@ -121,33 +103,33 @@ namespace Eclo_Desktop.Components.ShoppingCharts
            
         }
 
-      
+        public static readonly DependencyProperty RefProperty = DependencyProperty.Register("Ref", typeof(string), typeof(Item));
 
-        private async void chbSelect_Checked(object sender, RoutedEventArgs e)
+
+        public string Color
         {
-
-            var identity = IdentitySingleton.GetInstance();
-            
-           
-            identity.TotalPrice += productPrice*int.Parse(tbProductQuantity.Text);
-            //Delegatni qiymatlarni berib yuboryapmiz
-            Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, (int)identity.TotalPrice));
-
-
-
+            get { return (string)GetValue(ColorProperty); }
+            set { SetValue(ColorProperty, value); }
         }
 
-        private async void chbSelect_Unchecked(object sender, RoutedEventArgs e)
+        public static readonly DependencyProperty ColorProperty = DependencyProperty.Register("Color", typeof(string), typeof(Item));
+
+
+        public string Count
         {
-            var identity = IdentitySingleton.GetInstance();
-
-            identity.TotalPrice -= productPrice*int.Parse(tbProductQuantity.Text); ;
-
-            //Delegatga qiymatlarni berib yuboryapmiz
-            Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, int.Parse(tbProductQuantity.Text.ToString())));
-
-
+            get { return (string)GetValue(CountProperty); }
+            set { SetValue(CountProperty, value); }
         }
+
+        public static readonly DependencyProperty CountProperty = DependencyProperty.Register("Count", typeof(string), typeof(Item));
+
+
+        public string Price
+        {
+            get { return (string)GetValue(PriceProperty); }
+            set { SetValue(PriceProperty, value); }
+        }
+
+        public static readonly DependencyProperty PriceProperty = DependencyProperty.Register("Price", typeof(string), typeof(Item));
     }
-
 }

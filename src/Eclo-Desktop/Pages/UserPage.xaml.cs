@@ -1,4 +1,4 @@
-﻿using Eclo_Desktop.Security;
+using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using System;
@@ -35,6 +35,7 @@ namespace Eclo_Desktop.Pages
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {            
             var identity = IdentitySingleton.GetInstance();
+
             var result = await _userService.GetUserById(identity.Token);
 
 

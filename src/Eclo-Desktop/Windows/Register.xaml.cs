@@ -1,4 +1,4 @@
-﻿using Dtos.Auth;
+using Dtos.Auth;
 using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
@@ -131,7 +131,6 @@ namespace Eclo_Desktop.Windows
 
                         // For Hide RegisterWindow
                         this.Hide();
-
                         // For Show PhoneConfirm Window
                         phoneConfirmWindow.ShowDialog();
 

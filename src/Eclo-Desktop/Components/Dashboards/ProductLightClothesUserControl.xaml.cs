@@ -66,13 +66,14 @@ namespace Eclo_Desktop.Components.Dashboards
             var getUserProductLikesList = await productService.getUserProductLikes(page,token);
             var identity = IdentitySingleton.GetInstance();
             string pathRedLike = "Assets\\StaticImages\\like.png";
-
+            
             for (int i = 0; i < getUserProductLikesList.Count; i++)
             {
                 if (getUserProductLikesList[i].productId == productViewModels.Id && getUserProductLikesList[i].userId == identity.UserId
                     && getUserProductLikesList[i].isLiked == true)
                 {
                     //Oq like                
+
                     brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\love.png", UriKind.Relative));
                     var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id, 
                         identity.UserId, productViewModels.Id, false,token);
