@@ -1,5 +1,6 @@
 ﻿using Eclo_Desktop.Security;
 using System;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -13,21 +14,37 @@ namespace Eclo_Desktop.Components.ShoppingCharts
     /// </summary>
     public partial class Item : UserControl
     {
-
+        string Id;
         private int productQuantity = 0;
         private double productPrice;
         private UpdateTotalPriceDelegate updatePriceDelgate;
+        private RefreshShoppingChart refreshPage;
 
-        public Item(UpdateTotalPriceDelegate updateTotalPriceDelegate)
+        public Item(UpdateTotalPriceDelegate updateTotalPriceDelegate, RefreshShoppingChart refreshShoppingChart)
         {
             InitializeComponent();
             //Fieldga konstruktor orqali kirib kelayotgan delegat olayabmiz
             this.updatePriceDelgate = updateTotalPriceDelegate;
+            this.refreshPage = refreshShoppingChart;
         }
 
+       
 
-        private void btProductDelete(object sender, RoutedEventArgs e)
+        private async void btProductDelete(object sender, RoutedEventArgs e)
         {
+            IdentitySingleton identity = IdentitySingleton.GetInstance();
+            var products = identity.ShoppingChartProducts;
+            identity.ShoppingChartProducts= products.Where(x => x.Id != Id).ToList();
+            if (chbSelect.IsChecked == true)
+            {
+                int productCount = int.Parse(tbProductQuantity.Text);
+
+                identity.TotalPrice -= productPrice*productCount;
+
+                //Delegatga qiymatlarni berib yuboryapmiz
+                Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, int.Parse(tbProductQuantity.Text.ToString())));
+            }
+            refreshPage();
 
         }
         public async void SetData(ShoppingChartViewModel shoppingChartView)
@@ -44,6 +61,7 @@ namespace Eclo_Desktop.Components.ShoppingCharts
             imageProduct.ImageSource = new BitmapImage(imageUri);
             productQuantity = shoppingChartView.ProductQuantity;
             productPrice = shoppingChartView.ProductPrice;
+            Id = shoppingChartView.Id;
 
         }
 
@@ -53,18 +71,18 @@ namespace Eclo_Desktop.Components.ShoppingCharts
 
             if (chbSelect.IsChecked == true)
             {
-                identity.TotalPrice -= productPrice * int.Parse(tbProductQuantity.Text);
-
                 int productCount = int.Parse(tbProductQuantity.Text);
                 if (productCount < productQuantity)
                 {
                     productCount += 1;
                     tbProductQuantity.Text = productCount.ToString();
+
+                    identity.TotalPrice += productPrice;
+                    //Delegatni qiymatlarni berib yuboryapmiz
+                    Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, (int)identity.TotalPrice));
                 }
 
-                identity.TotalPrice += productPrice * int.Parse(tbProductQuantity.Text);
-                //Delegatni qiymatlarni berib yuboryapmiz
-                Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, (int)identity.TotalPrice));
+               
             }
             else
             {
@@ -83,21 +101,19 @@ namespace Eclo_Desktop.Components.ShoppingCharts
             var identity = IdentitySingleton.GetInstance();
             if (chbSelect.IsChecked == true)
             {
-                identity.TotalPrice += productPrice * int.Parse(tbProductQuantity.Text); ;
                 int productCount = int.Parse(tbProductQuantity.Text);
                 if (productCount > 1)
                 {
                     productCount -= 1;
                     tbProductQuantity.Text = productCount.ToString();
+
+                    identity.TotalPrice -= productPrice;
+
+                    //Delegatga qiymatlarni berib yuboryapmiz
+                    Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, int.Parse(tbProductQuantity.Text.ToString())));
                 }
-
-
-
-                identity.TotalPrice -= productPrice * int.Parse(tbProductQuantity.Text); ;
-
-                //Delegatga qiymatlarni berib yuboryapmiz
-                Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, int.Parse(tbProductQuantity.Text.ToString())));
             }
+                
             else
             {
                 int productCount = int.Parse(tbProductQuantity.Text);
