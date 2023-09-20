@@ -24,6 +24,21 @@
                             <Setter TargetName="bApply" Property="Cursor" Value="Hand" />
                         </Trigger>-->
 
+                        <Trigger Property="IsMouseOver" Value="False">
+                            <Setter TargetName="bApply" Property="Background" Value="#323B4B"/>
+                        </Trigger>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter TargetName="bApply" Property="Background" Value="#414D62"/>
+                        </Trigger>
+                        <Trigger Property="IsPressed" Value="True">
+                            <Setter TargetName="bApply" Property="Background" Value="#4B5870"/>
+                        </Trigger>
+
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="SizeButton" TargetType="Button">
         <Setter Property="Template">
 

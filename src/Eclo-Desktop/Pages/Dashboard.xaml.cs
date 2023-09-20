@@ -268,7 +268,7 @@ namespace Eclo_Desktop.Pages
 
         private async void bApply_Click(object sender, RoutedEventArgs e)
         {
-            if(rbAll.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
+            if (rbAll.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
                 int min = int.Parse(tbMin.Text);
                 int max = int.Parse(tbMax.Text);
@@ -296,7 +296,7 @@ namespace Eclo_Desktop.Pages
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
             }
-            else if(rbMens.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
+            else if (rbMens.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
                 int min = int.Parse(tbMin.Text);
                 int max = int.Parse(tbMax.Text);
@@ -324,7 +324,7 @@ namespace Eclo_Desktop.Pages
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
             }
-            else if(rbWomens.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
+            else if (rbWomens.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
                 int min = int.Parse(tbMin.Text);
                 int max = int.Parse(tbMax.Text);
@@ -353,7 +353,7 @@ namespace Eclo_Desktop.Pages
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
             }
-            else if(rbKids.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
+            else if (rbKids.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
                 int min = int.Parse(tbMin.Text);
                 int max = int.Parse(tbMax.Text);
@@ -382,6 +382,7 @@ namespace Eclo_Desktop.Pages
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
             }
+        }
         private async void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
             var loader_button = btnPervouce.Template.FindName("loader", btnPervouce) as FontAwesome.WPF.ImageAwesome;
