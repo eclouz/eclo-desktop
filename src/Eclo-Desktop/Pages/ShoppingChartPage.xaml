@@ -9,59 +9,94 @@
       d:DesignHeight="1500" d:DesignWidth="800"
       Title="ShoppingChartPage"
       Background="Transparent"
-      Loaded="Page_Loaded"
-      >
-    <Border CornerRadius="10">
+      Loaded="Page_Loaded">
+
+    <!--begin:: Grid Main-->
     <Grid>
+
+        <!--begin:: Split Column Grid Main-->
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="300"/>
         </Grid.ColumnDefinitions>
+        <!--end:: Split Column Grid Main-->
 
+        <!--begin:: Split Row Grid Main-->
         <Grid.RowDefinitions>
             <RowDefinition Height="20"/>
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+        <!--end:: Split Row Grid Main-->
 
-        <!--TitleBar-->
-        
-        <StackPanel Grid.ColumnSpan="2" 
+        <!--begin:: StackPanel 1 TitleBar-->
+        <Border Grid.ColumnSpan="2" 
+                BorderThickness="0"
+                CornerRadius="10 10 0 0"
+                Background="{DynamicResource ThirdBackgroundColor}" >
+            <StackPanel 
                     Orientation="Horizontal" 
-                    Background="{DynamicResource ThirdBackgroundColor}" 
                     Panel.ZIndex="1" 
                     FlowDirection="RightToLeft" 
-                    MouseDown="StackPanel_MouseDown">
-                    
-        </StackPanel>
+                    MouseDown="StackPanel_MouseDown"
+                    >
+            </StackPanel>
+        </Border>
+        <!--end:: StackPanel 1 TitleBar-->
 
-        <!--Products Section-->
+        <!--begin:: Grid-1 Products Section-->
         <Grid Background="#ECF0F1" Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="49*"/>
+                <ColumnDefinition Width="201*"/>
+            </Grid.ColumnDefinitions>
+
+            <!--begin:: Split Row Grid-1 -->
             <Grid.RowDefinitions>
                 <RowDefinition Height="auto"/>
                 <RowDefinition Height="*"/>
                 <RowDefinition Height="auto"/>
             </Grid.RowDefinitions>
+            <!--end:: Split Row Grid-1 -->
 
-            <!--Title-->
-            <StackPanel Orientation="Horizontal" Margin="0 0 0 0">
-                <TextBlock Text="ECLO" FontSize="28" FontWeight="SemiBold" FontFamily="Trebuchet MS" VerticalAlignment="Center" Margin="10 0 0 0"/>
-                <Rectangle VerticalAlignment="Stretch" Fill="#808080" Width="0.7" Margin="20 5 20 5"/>
-                <TextBlock Text="Your Shopping Cart" FontSize="26" VerticalAlignment="Center"/>
+            <!--begin:: StackPanel 2 Titles-->
+            <StackPanel Orientation="Horizontal" Margin="0,0,0,1330" Grid.ColumnSpan="2" Grid.RowSpan="2">
+
+                <TextBlock Text="ECLO" 
+                           FontSize="28" 
+                           FontWeight="SemiBold" 
+                           FontFamily="Trebuchet MS" 
+                           VerticalAlignment="Center" 
+                           Margin="10 0 0 0"/>
+
+                <Rectangle VerticalAlignment="Stretch" 
+                           Fill="#808080" 
+                           Width="0.7" 
+                           Margin="20 5 20 5"/>
+
+                <TextBlock Text="Your Shopping Cart" 
+                           FontSize="26" 
+                           VerticalAlignment="Center"/>
             </StackPanel>
+            <!--end:: StackPanel 2 Titles-->
 
-            <!--Products-->
-            <ScrollViewer Grid.Row="1">
+            <!--begin:: Scroll 1 Products-->
+
+            <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,115" Grid.RowSpan="2">
+
+                <!--begin:: Stack Panel 3-->
                 <StackPanel x:Name="sPanelCharts">
-
                 </StackPanel>
-            </ScrollViewer>
-            
+                <!--end:: Stack Panel 3-->
 
-            <!--Bottom Section-->
-            <Grid Grid.Row="2" Margin="80 40 150 40">
+            </ScrollViewer>
+            <!--end:: Scroll 1 Products-->
+
+
+            <!--begin:: Grid-2 Bottom Section-->
+            <Grid Grid.Row="2" Margin="80,40,150,40" Grid.ColumnSpan="2">
                 <Button Style="{StaticResource buttonBack}">
                     <StackPanel Orientation="Horizontal">
-                            <Image  Source="/Assets/StaticImages/ShoppingChartImages/left.png" Width="20"/>
+                        <Image  Source="/Assets/StaticImages/ShoppingChartImages/left.png" Width="20"/>
                         <TextBlock Text="Back to Shop" VerticalAlignment="Center" Margin="15 0 0 0"/>
                     </StackPanel>
                 </Button>
@@ -71,14 +106,24 @@
                     <TextBlock x:Name="tbTotalPrice" Text="0.00 so'm" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0"/>
                 </StackPanel>
             </Grid>
+            <Border Grid.Row="2"                    
+                    BorderThickness="0"
+                    CornerRadius="10"
+                    Grid.ColumnSpan="1"
+                    >
+                    
+            </Border>
+            <!--end:: Grid-2 Bottom Section-->
+
         </Grid>
+        <!--end:: Grid-1 Products Section-->
 
         <!--Card Section-->
-       
+
         <Grid Grid.Column="1" 
               Background="{DynamicResource ThirdBackgroundColor}" 
               Grid.Row="1">
-           
+
             <!--Inputs-->
             <StackPanel Margin="50 100 50 0" 
                         VerticalAlignment="Top">
@@ -107,11 +152,11 @@
                         <Image  Source="/Assets/StaticImages/ShoppingChartImages/credit.png"/>
                     </Button>
 
-                    
+
                 </Grid>
 
                 <TextBlock Text="Card Number" Style="{StaticResource titleText}"/>
-                <TextBox  Style="{StaticResource ResourceKey=textBoxStyle}" Margin="0 5 0 30"/>
+                <TextBox  MaxLength="16" Style="{StaticResource ResourceKey=textBoxStyle}" Margin="0 5 0 30"/>
 
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -120,13 +165,13 @@
                     </Grid.ColumnDefinitions>
 
                     <StackPanel>
-                        <TextBlock Text="Expire Date" Style="{StaticResource titleText}"/>
-                        <TextBox Style="{StaticResource ResourceKey=textBoxStyle}" Margin="0 5 0 0"/>
+                        <TextBlock  Text="Expire Date" Style="{StaticResource titleText}"/>
+                        <TextBox MaxLength="4" Background="#F8FCFD" Style="{StaticResource ResourceKey=textBoxStyle}" Margin="0 5 0 0"/>
                     </StackPanel>
 
                     <StackPanel Grid.Column="1" Margin="30 0 0 0" Width="50">
                         <TextBlock Text="CVV" Style="{StaticResource titleText}"/>
-                        <TextBox Style="{StaticResource ResourceKey=textBoxStyle}" Margin="0 5 0 0"/>
+                        <TextBox MaxLength="3" Background="#F8FCFD" Style="{StaticResource ResourceKey=textBoxStyle}" Margin="0 5 0 0"/>
                     </StackPanel>
                 </Grid>
             </StackPanel>
@@ -135,5 +180,4 @@
         </Grid>
 
     </Grid>
-    </Border>
 </Page>

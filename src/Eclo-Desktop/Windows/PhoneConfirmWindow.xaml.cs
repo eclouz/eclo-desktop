@@ -61,6 +61,7 @@ namespace Eclo_Desktop.Windows
         // For Close Button
         private void btnClose_Click_1(object sender, RoutedEventArgs e)
         {
+            _timer.Stop();
             Application.Current.Shutdown();
             Close();
         }
@@ -127,12 +128,15 @@ namespace Eclo_Desktop.Windows
                     }
                     // end:: Tokendan ID ni yechib olish
 
+                    _timer.Stop();
+                    // For Close PhoneConfirm Window
+                    this.Close();
+
                     // For Show Main Window
                     MainWindow mainWindow = new MainWindow();
                     mainWindow.ShowDialog();
 
-                    // For Close PhoneConfirm Window
-                    this.Close();
+                   
                 }
                 else
                 {

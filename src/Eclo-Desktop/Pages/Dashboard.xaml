@@ -417,7 +417,7 @@
                         Click="PreviousPage_Click" Margin="5"
                         Background="{StaticResource ThirdBackgroundColor}"/>
                     <TextBlock Foreground="{StaticResource FourthIconColor}" x:Name="tbPage" Text="1" VerticalAlignment="Center" FontSize="20"/>
-                    <TextBlock  Foreground="{StaticResource FourthIconColor}" Text="/" VerticalAlignment="Center" FontSize="20"/>
+                    <TextBlock  Foreground="{StaticResource FourthIconColor}" x:Name="tbbackslash" Text="/" VerticalAlignment="Center" FontSize="20"/>
                     <TextBlock  Foreground="{StaticResource FourthIconColor}" x:Name="tbTotalPage" Text="1" VerticalAlignment="Center" FontSize="20"/>
                     <Button Style="{StaticResource SaveBtn}"
                         x:Name="btnNext"
