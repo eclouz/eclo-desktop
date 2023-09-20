@@ -256,10 +256,11 @@ public class ProductService : IProductService
 
     }
 
-    public async Task<bool> UserSetLikeTrue(long userId, long productId, bool isLiked = true)
+    public async Task<bool> UserSetLikeTrue(long userId, long productId,string token, bool isLiked = true)
     {
         var client = new HttpClient();
         var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "user/product/likes");
+        request.Headers.Add("Authorization", $"Bearer {token}");
         var content = new MultipartFormDataContent();
         content.Add(new StringContent($"{userId}"), "UserId");
         content.Add(new StringContent($"{productId}"), "ProductId");

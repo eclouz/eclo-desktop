@@ -111,7 +111,7 @@ namespace Eclo_Desktop.Components.Dashboards
                 if(i == getUserProductLikesList.Count-1)
                 {
                     var identity2 = IdentitySingleton.GetInstance();
-                    var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
+                    var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, identity2.Token, true);
                     // Qizil like
                     brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
 
@@ -129,7 +129,7 @@ namespace Eclo_Desktop.Components.Dashboards
             if (getUserProductLikesList.Count==0)
             {
                 var identity2 = IdentitySingleton.GetInstance();
-                var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
+                var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id,identity2.Token, true);
                 // Qizil like
                 brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
                
