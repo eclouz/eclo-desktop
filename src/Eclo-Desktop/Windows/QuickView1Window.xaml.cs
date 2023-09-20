@@ -135,7 +135,7 @@ namespace Eclo_Desktop.Windows
 
         }
 
-        private async void btnPlus_Click(object sender, RoutedEventArgs e)
+        private  void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             int productCount = int.Parse(lblItemCount.Text);
             if (productCount < int.Parse(lblQuantity.Content.ToString())) 
@@ -163,7 +163,7 @@ namespace Eclo_Desktop.Windows
                 isDescripitonPressed = false;
             }
         }
-        public async void setData(ProductGetViewModel productGetViewModel)
+        public  void setData(ProductGetViewModel productGetViewModel)
         {
             // Thisvariable for counting reviews
             int countComments = 0;
@@ -263,21 +263,23 @@ namespace Eclo_Desktop.Windows
 
         }
 
-        private async void btAddCart(object sender, RoutedEventArgs e)
+        private void btAddCart(object sender, RoutedEventArgs e)
         {
             if (lblProductName.Content != null && lblColor.Content != null && lblSize.Content != null && lblItemCount.Text != null
                 && tbDescription.Text != null && lblPrice.Content != null && imagePath != null)
             {
-                
+                Guid newGuid = Guid.NewGuid();
                 ShoppingChartViewModel shoppingChartViewModel = new ShoppingChartViewModel()
                 {
-                    ProductName = lblProductName.Content.ToString(),
-                    ProductColor = lblColor.Content.ToString(),
-                    ProductSize = lblSize.Content.ToString(),
-                    ProductQuantity=int.Parse(lblQuantity.Content.ToString()),
-                    ItemCount = int.Parse(lblItemCount.Text),
+
+                    Id=newGuid.ToString(),
+                    ProductName = lblProductName.Content.ToString()!,
+                    ProductColor = lblColor.Content.ToString()!,
+                    ProductSize = lblSize.Content.ToString()!,
+                    ProductQuantity=int.Parse(lblQuantity.Content.ToString()!),
+                    ItemCount = int.Parse(lblItemCount.Text!),
                     ProductDescription = tbDescription.Text.ToString(),
-                    ProductPrice = double.Parse(lblPrice.Content.ToString()),
+                    ProductPrice = double.Parse(lblPrice.Content.ToString()!),
                     ProductImage = imagePath,
                     ProductDiscount = 10,
 
