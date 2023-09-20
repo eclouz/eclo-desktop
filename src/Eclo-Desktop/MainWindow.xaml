@@ -207,7 +207,7 @@
                                     HorizontalAlignment="Right"     
                                     >
                                     <Border.Background>
-                                        <ImageBrush x:Name="brUserImage" ImageSource="/Assets/StaticImages/IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg"/>
+                                        <ImageBrush Stretch="UniformToFill" x:Name="brUserImage" ImageSource="/Assets/StaticImages/IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg"/>
                                     </Border.Background>
                                 </Border>
                             </StackPanel>

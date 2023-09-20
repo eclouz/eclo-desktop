@@ -37,8 +37,15 @@ public class ProductService : IProductService
         return false;
     }
 
-    public async Task<List<ProductViewModels>> FilterBYCategories(long userId,string categoryString,int page)
+    public async Task<List<ProductViewModels>> FilterBYCategories(long userId, string categoryString, int min, int max, List<string> subCategoriesName, int page)
     {
+        string subCategoriesString = "";
+        for (int i = 0; i < subCategoriesName.Count; i++)
+        {
+            subCategoriesString += "subCategoriesName=";
+            subCategoriesString += subCategoriesName[i];
+            subCategoriesString += "&";
+        }
         var client = new HttpClient();
         if (subCategoriesString.Length > 0)
         {

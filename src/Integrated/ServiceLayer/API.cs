@@ -32,6 +32,6 @@ public class API
     //Products
 
     //User
-    public static readonly string GET_USER_BY_ID = BASE_URL + "admin/users";
+    public static readonly string GET_USER_BY_ID = BASE_URL + "user/profile";
     //User
 }

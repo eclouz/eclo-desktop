@@ -103,7 +103,7 @@
 
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="Subtotal :" FontSize="16"/>
-                    <TextBlock Text="195.00 USD" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0"/>
+                    <TextBlock x:Name="tbTotalPrice" Text="0.00 so'm" FontWeight="SemiBold" FontSize="16" Margin="30 0 0 0"/>
                 </StackPanel>
             </Grid>
             <Border Grid.Row="2"                    
@@ -143,10 +143,10 @@
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
 
-                    <Button Grid.Column="0"  HorizontalAlignment="Left"  Width="25"  Style="{StaticResource icon}">
+                    <Button BorderThickness="0" Background="{DynamicResource ThirdBackgroundColor}" Grid.Column="0"  HorizontalAlignment="Left"  Width="25"  Style="{StaticResource icon}">
                         <Image Source="/Assets/StaticImages/ShoppingChartImages/mastercard.png"/>
                     </Button>
-                    <Button Grid.Column="1" HorizontalAlignment="Center"  Width="25" Style="{StaticResource icon}" >
+                    <Button BorderThickness="0" Background="{DynamicResource ThirdBackgroundColor}" Grid.Column="1" HorizontalAlignment="Center"  Width="25" Style="{StaticResource icon}" >
                         <Image  Source="/Assets/StaticImages/ShoppingChartImages/visa.png"/>
                     </Button>
 

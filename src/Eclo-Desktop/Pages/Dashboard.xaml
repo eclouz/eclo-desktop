@@ -16,7 +16,7 @@
 
             <StackPanel>
                 <Border Margin="15 10" >
-                    <StackPanel Orientation="Horizontal">
+                    <!--<StackPanel Orientation="Horizontal">
                         <Label Content="Discover more."
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
@@ -26,10 +26,10 @@
                                FontSize="25" FontWeight="SemiBold"
                                Foreground="{DynamicResource TextTertiaryColor}"></Label>
 
-                    </StackPanel>
+                    </StackPanel>-->
 
                 </Border>
-                <WrapPanel  x:Name="MainWP" >
+                <!--<WrapPanel  x:Name="MainWP" >
 
                     -->
                 <!--<WrapPanel>-->
@@ -226,17 +226,17 @@
                 <!--</WrapPanel>-->
                 <!--
 
-                </WrapPanel>
+                </WrapPanel>-->
                 <Border Margin="15 10" >
                     <StackPanel Orientation="Horizontal">
-                        <Label Content="New Arrivals."
+                        <Label Content="New Products."
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
                                Foreground="{DynamicResource SecundaryBackgroundColor}"></Label>
-                        <Label Content="REY backpacks and bags"
+                        <!--<Label Content="REY backpacks and bags"
                                HorizontalContentAlignment="Center"
                                FontSize="25" FontWeight="SemiBold"
-                               Foreground="{DynamicResource TextTertiaryColor}"></Label>
+                               Foreground="{DynamicResource TextTertiaryColor}"></Label>-->
 
 
                     </StackPanel>
@@ -245,7 +245,7 @@
 
                 <Border Background="{DynamicResource PrimaryBackgroundColor}"
                             CornerRadius="25"
-                        Margin="15"
+                        Margin="15,15,15,0"
                         Height="50"
                                 Width="600"  
                             >
@@ -420,10 +420,8 @@
                 <Border Margin="5"
                         Background="{DynamicResource NewItemsBackgroundSomeGrey}"
                         CornerRadius="15">
-                <WrapPanel x:Name="SecondWp"
-                           >
-                    
-                </WrapPanel>
+                    <WrapPanel x:Name="SecondWp">
+                    </WrapPanel>
                 </Border>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
                     <Button  x:Name="btnPervouce"

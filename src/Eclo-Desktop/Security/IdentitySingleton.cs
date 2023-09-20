@@ -1,4 +1,4 @@
-using System;
+using Eclo.Domain.Entities.Categories;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,15 +20,15 @@ public class IdentitySingleton
     public Pagination pagination { get; set; }
     private IdentitySingleton()
     {
-        
+
     }
     public static IdentitySingleton GetInstance()
     {
-        if(_identitySingleton == null)
+        if (_identitySingleton == null)
         {
             _identitySingleton = new IdentitySingleton();
         }
-            return _identitySingleton;
+        return _identitySingleton;
     }
 
 }
