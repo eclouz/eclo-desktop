@@ -1,23 +1,35 @@
 <ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:fa="http://schemas.fontawesome.io/icons/">
+    
+        
     <Style x:Key="bApply" TargetType="Button">
         <Setter Property="Template">
 
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Button}">
-                    <Border x:Name="bApply"                            
+                    <Grid>
+                        <!-- Spinner -->
+                        <fa:ImageAwesome x:Name="loader"
+                                    Icon="Spinner"
+                                    Visibility="Collapsed"
+                                    Spin="True"
+                                    Height="20"
+                                    Width="20" 
+                                    Foreground="#C0DEC3"/>
+                        <Border x:Name="bApply"                            
                             CornerRadius="25"                                   
                             Background="Transparent">
-                        <Label x:Name="smaLbl"                               
+                            <Label x:Name="smaLbl"                               
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center"
                                FontSize="16"
                                Foreground="{DynamicResource ButtonHoverGreyColor}"
                                FontWeight="SemiBold"
                                Content="Apply">
-                        </Label>
+                            </Label>
 
-                    </Border>
+                        </Border>
+                    </Grid>
                     <ControlTemplate.Triggers>
 
                         <!--<Trigger Property="IsMouseOver" Value="True">
