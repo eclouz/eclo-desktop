@@ -1,8 +1,10 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ViewModels.Common;
+using ViewModels.ShoppingCharts;
 
 namespace Eclo_Desktop.Security;
 
@@ -10,7 +12,12 @@ public class IdentitySingleton
 {
     private static IdentitySingleton _identitySingleton;
     //properties 
-    public long UserId { get; set; } 
+
+    public long UserId { get; set; }
+    public double TotalPrice { get; set; }
+    public string Token {get;set; }
+    public IList<ShoppingChartViewModel> ShoppingChartProducts { get; set; }= new List<ShoppingChartViewModel>();
+    public Pagination pagination { get; set; }
     private IdentitySingleton()
     {
         

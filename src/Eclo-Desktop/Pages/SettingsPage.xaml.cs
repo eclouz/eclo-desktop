@@ -37,11 +37,16 @@ namespace Eclo_Desktop.Pages
             InitializeComponent();
             this.refreshDelegate = refreshPageHandlerDelegate;
         }
-
+        public SettingsPage()
+        {
+            InitializeComponent();
+           
+        }
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var identity = IdentitySingleton.GetInstance();
-            var getUserInfo = await userService.GetUserById(identity.UserId);
+
+            var getUserInfo = await userService.GetUserById(identity.Token);
             tbName.Text = getUserInfo?.FirstName;
             tbSecondName.Text = getUserInfo?.LastName;
             tbPassportSerialNumber.Text = getUserInfo?.PassportSerialNumber;
@@ -78,14 +83,54 @@ namespace Eclo_Desktop.Pages
 
             var updateUserInfo = await userService.UserUpdateSettings(userViewModel);
             if(updateUserInfo==true)
+            var loader = btnSaveSettingsChange.Template.FindName("loader", btnSaveSettingsChange) as FontAwesome.WPF.ImageAwesome;
+            loader.Visibility = Visibility.Visible;
+            btnSaveSettingsChange.IsEnabled = false;
+            try
             {
-                MessageBox.Show("Your informations are updated");
-                refreshDelegate();
+                var identity = IdentitySingleton.GetInstance();
+                var getUserInfo = await userService.GetUserById(identity.Token);
+
+                userViewModel.FirstName = tbName.Text;
+                userViewModel.LastName = tbSecondName.Text;
+                userViewModel.PassportSerialNumber = tbPassportSerialNumber.Text;
+                if (DateBirthdp.SelectedDate is not null) { userViewModel.BirthDate = DateBirthdp.SelectedDate.Value; }
+                userViewModel.Region = tbRegion.Text;
+                userViewModel.District = tbDistric.Text;
+                userViewModel.Address = tbAdress.Text;
+                userViewModel.PhoneNumber = getUserInfo.PhoneNumber;
+
+                string image_path = UserImage.ImageSource.ToString();
+                if (!String.IsNullOrEmpty(image_path))
+                {
+                    userViewModel.ImagePath = image_path;
+                }
+
+                var updateUserInfo = await userService.UserUpdateSettings(userViewModel, identity.Token);
+                if (updateUserInfo == true)
+                {
+                    loader.Visibility = Visibility.Collapsed;
+                    btnSaveSettingsChange.IsEnabled = true;
+                    MessageBox.Show("Your informations are updated");
+                    SettingsPage settingsPage = new SettingsPage();
+                    refreshDelegate(settingsPage);
+                }
+                else
+                {
+                    loader.Visibility = Visibility.Collapsed;
+                    btnSaveSettingsChange.IsEnabled = true;
+                    MessageBox.Show("SomeThing wrong Try Again");
+                }
+
             }
-            else
+            catch
             {
+                loader.Visibility = Visibility.Collapsed;
+                btnSaveSettingsChange.IsEnabled = true;
                 MessageBox.Show("SomeThing wrong Try Again");
+
             }
+
 
 
         }

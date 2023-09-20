@@ -4,83 +4,144 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eclo_Desktop.Windows"
+        xmlns:notifications="clr-namespace:Notification.Wpf.Controls;assembly=Notification.Wpf"
         mc:Ignorable="d"
         Height="700" Width="1200"
-         WindowStartupLocation="CenterScreen" WindowStyle="None"
+        WindowStartupLocation="CenterScreen" WindowStyle="None"
         Background="Transparent" AllowsTransparency="True"
         ResizeMode="NoResize">
+
+    <!--begin:: Grid Main-->
     <Grid>
-        <Border CornerRadius="8"
-                >
+
+        <!--begin:: Border Main-->
+        <Border CornerRadius="8">
+            
+            <!--begin:: Login Window Background Image-->
+            <Border.Background>
+                <ImageBrush ImageSource="/Assets/StaticImages/login-background-image.png" Stretch="UniformToFill"/>
+            </Border.Background>
+            <!--end:: Login Window Background Image-->
+
+            <!--begin:: Grid 2-->
             <Grid>
+
+                <!--begin:: Split Grid2-->
                 <Grid.RowDefinitions>
                     <RowDefinition Height="60"/>
                     <RowDefinition Height="*"/>
                 </Grid.RowDefinitions>
-                <StackPanel Grid.Row="0" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,5,10,0" Height="30" Orientation="Horizontal" FlowDirection="RightToLeft" Grid.RowSpan="2">
-                    <Button x:Name="btnClose" Style="{StaticResource IconButtonsStyle}" Content="{DynamicResource close}" Click="btnClose_Click" Tag="IsCloseButton"/>
+                <!--end:: Split Grid2-->
 
-                    <Button x:Name="btnMinimize" Style="{DynamicResource IconButtonsStyle}" Content="{DynamicResource minimize}" Click="btnMinimize_Click"/>
+                <!--begin:: StackPanel 1-->
+                <StackPanel Grid.Row="0" 
+                            HorizontalAlignment="Right" 
+                            VerticalAlignment="Top" 
+                            Margin="0,5,10,0" 
+                            Height="30" 
+                            Orientation="Horizontal" 
+                            FlowDirection="RightToLeft" 
+                            Grid.RowSpan="2">
+
+                    <!--begin:: Close Button-->
+                    <Button x:Name="btnClose" 
+                            Style="{StaticResource IconButtonsStyle}" 
+                            Content="{DynamicResource close}" 
+                            Click="btnClose_Click" 
+                            Tag="IsCloseButton"/>
+                    <!--end:: Close Button-->
+
+                    <!--begin:: Minimize Button-->
+                    <Button x:Name="btnMinimize" 
+                            Style="{DynamicResource IconButtonsStyle}" 
+                            Content="{DynamicResource minimize}" 
+                            Click="btnMinimize_Click"/>
+                    <!--end:: Minimize Button-->
+
                 </StackPanel>
+                <!--end:: StackPanel 1-->
+
+                <!--begin:: Grid 3-->
                 <Grid Grid.Row="1">
+
+                    <!--begin:: Split Grid 3-->
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="*"/>
                         <ColumnDefinition Width="*"/>
                     </Grid.ColumnDefinitions>
+                    <!--end:: Split Grid 3-->
+
+                    <!--begin:: Border 1-->
                     <Border Grid.Column="1"
                             Margin="40 60 210 90">
-                        <StackPanel>
-                            
-                            <Label HorizontalAlignment="Left"
-                            Margin="30 110 0 0"                           
-                           Content="Phone"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource FourthIconColor}"
-                           ></Label>
-                            <Border Height="50"
-                             Width="300"
-                             Margin="0 0 0 0"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                                <TextBox x:Name="tbPhone"                                                
-                             BorderThickness="0"
-                             Margin="10"
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
-                            </Border>
 
+                        <!--begin:: StackPanel 2-->
+                        <StackPanel>
+
+                            <!--begin:: Phone Label-->
                             <Label HorizontalAlignment="Left"
-                            Margin="30 20 0 0"                           
-                           Content="Password"
-                           FontWeight="SemiBold"
-                           Foreground="{DynamicResource FourthIconColor}"
-                           ></Label>
+                                   Margin="30 110 0 0"                           
+                                   Content="Phone"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource FourthIconColor}"/>
+                            <!--end:: Phone Label-->
+
+                            <!--begin:: Border 1.1-->
                             <Border Height="50"
-                             Width="300"
-                             Margin="0 0 0 0"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
-                                <PasswordBox x:Name="tbPassword"                                                
-                             BorderThickness="0"
-                             Margin="10"
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></PasswordBox>
+                                    Width="300"
+                                    Margin="0 0 0 0"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    CornerRadius="10"
+                                    BorderThickness="1">
+
+                                <!--begin:: Phone TextBox-->
+                                <TextBox x:Name="tbPhone"                                                
+                                    BorderThickness="0"
+                                    Margin="10"
+                                    FontSize="16"
+                                    Background="Transparent"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    Foreground="{DynamicResource FourthIconColor}"/>
+                                <!--end:: Phone TextBox-->
+
                             </Border>
-                            
+                            <!--end:: Border 1.1-->
+
+                            <!--begin:: Password Label-->
+                            <Label HorizontalAlignment="Left"
+                                   Margin="30 20 0 0"                           
+                                   Content="Password"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource FourthIconColor}"/>
+                            <!--begin:: Password Label-->
+
+                            <!--begin:: Border 1.2-->
+                            <Border Height="50"
+                                    Width="300"
+                                    Margin="0 0 0 0"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    CornerRadius="10"
+                                    BorderThickness="1">
+
+                                <!--begin:: PasswordBox-->
+                                <PasswordBox x:Name="tbPassword"                                                
+                                    BorderThickness="0"
+                                    Margin="10"
+                                    FontSize="16"
+                                    Background="Transparent"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    Foreground="{DynamicResource FourthIconColor}"/>
+                                <!--end:: PasswordBox-->
+
+                            </Border>
+                            <!--end:: Border 1.2-->
+
+                            <!--begin:: StackPanel 3-->
                             <StackPanel Orientation="Horizontal"
                                         Margin="0 0 0 0"
-                                        Height="100"
-                                        >
+                                        Height="100">
+
+                                <!--begin:: Cansel Button-->
                                 <Button Style="{DynamicResource SaveBtn}"
                                         Content="Cancel"   
                                         Margin="22 30 0 0"
@@ -89,9 +150,11 @@
                                         Background="{DynamicResource btnClose}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}"
                                         x:Name="btnCancel"
-                                        Click="btnCancel_Click"
-                                        >
+                                        Click="btnCancel_Click">
                                 </Button>
+                                <!--end:: Cansel Button-->
+
+                                <!--begin:: Login Button-->
                                 <Button Style="{DynamicResource SaveBtn}"
                                         Content="LogIn"   
                                         Margin="18 30 0 0"
@@ -100,53 +163,87 @@
                                         x:Name="btnSave"
                                         Click="btnSave_Click"
                                         Background="{DynamicResource FourthIconColor}"
-                                        Foreground="{DynamicResource PrimaryBackgroundColor}"
-                                        >
+                                        Foreground="{DynamicResource PrimaryBackgroundColor}">
                                 </Button>
+                                <!--end:: Login Button-->
 
                             </StackPanel>
-
+                            <!--end:: StackPanel 3-->
+                            
+                            <!--begin:: Notification-->
+                            <notifications:NotificationArea x:Name="WindowArea" Position="TopLeft" MaxItems="1"/>
+                            <!--end:: Notification-->
                         </StackPanel>
+                        <!--end:: StackPanel 2-->
+
+                        
+                        
                     </Border>
+                    <!--end:: Border 1-->
+
+                    <!--begin:: Border 2-->
                     <Border Grid.Column="0">
+
+                        <!--begin:: Border 2.1-->
                         <Border Margin="150 80" 
                                 CornerRadius="15"
                                 Background="{DynamicResource RegisterBackgroudnColor}">
+
+                            <!--begin:: StacPanel 4-->
                             <StackPanel>
+
+                                <!--begin:: Border 2.2-->
                                 <Border Width="25"
                                         Margin="0 15 0 0"
                                         Height="25"
                                         BorderBrush="{DynamicResource PrimaryBackgroundColor}"
                                         BorderThickness="3"
-                                        CornerRadius="50"
-                                        >
+                                        CornerRadius="50">
+
+                                    <!--begin:: Border 2.3-->
                                     <Border Background="{DynamicResource RegisterDarkGreenBackgroudnColor}"
                                             CornerRadius="50">
-
                                     </Border>
+                                    <!--end:: Border 2.3-->
+
                                 </Border>
+                                <!--end:: Border 2.2-->
+
+                                <!--begin:: Label Login-->
                                 <Label Content="Login"
                                    Margin="50 50 50 25"
                                    FontSize="35"
                                    HorizontalAlignment="Center"                                   
                                    FontWeight="SemiBold"
-                                   Foreground="{DynamicResource FourthIconColor}"
-                                   ></Label>
+                                   Foreground="{DynamicResource FourthIconColor}">
+                                </Label>
+                                <!--end:: Label Login-->
+
+                                <!--begin:: Label Electron-->
                                 <Label Content=" -   Electron"
                                        FontSize="16"
                                        Foreground="{DynamicResource FourthIconColor}"
                                        Margin="50 0">
                                 </Label>
+                                <!--end:: Label Electron-->
+
+                                <!--begin:: Label Clothes-->
                                 <Label Content=" -   Clothes"
                                        FontSize="16"
                                        Foreground="{DynamicResource FourthIconColor}"
                                        Margin="50 0">
                                 </Label>
+                                <!--end:: Label Clothes-->
+
+                                <!--begin:: Label Shop-->
                                 <Label Content=" -   Shop"
                                        FontSize="16"
                                        Foreground="{DynamicResource FourthIconColor}"
                                        Margin="50 0">
                                 </Label>
+                                <!--end:: Label Shop-->
+
+                                <!--begin:: Registration Button-->
                                 <Button Style="{DynamicResource SaveBtn}"
                                         Content="Registration"   
                                         Margin="0 30 0 0"
@@ -156,18 +253,29 @@
                                         x:Name="btnToLogin"
                                         Click="btnToLogin_Click"
                                         Background="{DynamicResource FourthIconColor}"
-                                        Foreground="{DynamicResource PrimaryBackgroundColor}"
-                                        >
+                                        Foreground="{DynamicResource PrimaryBackgroundColor}">
                                 </Button>
-                            </StackPanel>
-                        </Border>
-                    </Border>
-                </Grid>
-            </Grid>
+                                <!--end:: Registration Button-->
 
-            <Border.Background>
-                <ImageBrush ImageSource="/Assets/StaticImages/wepik-export-202308121039424YR4.png" Stretch="UniformToFill"/>
-            </Border.Background>
+                            </StackPanel>
+                            <!--end:: StacPanel 4-->
+
+                        </Border>
+                        <!--end:: Border 2.1-->
+
+                    </Border>
+                    <!--end:: Border 2-->
+
+                </Grid>
+                <!--end:: Grid 3-->
+
+            </Grid>
+            <!--end:: Grid 2-->
+
         </Border>
+        <!--end:: Border Main-->
+
     </Grid>
+    <!--end:: Grid Main-->
+
 </Window>

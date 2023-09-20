@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Eclo_Desktop.Pages"
+      xmlns:local="clr-namespace:Eclo_Desktop.Pages" xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       Loaded="Page_Loaded_1"
       d:DesignHeight="1000" d:DesignWidth="800"
@@ -403,7 +403,20 @@
                         </Border>
                     </DockPanel>
                 </Border>
-
+                <fa:ImageAwesome
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Margin="100"
+                    x:Name="loader"
+                    Icon="Spinner"
+                    Visibility="Visible"
+                    Spin="True"
+                    Height="200"
+                    Width="200"
+                    Foreground="#C0DEC3"
+                    
+                />
+                
                 <Border Margin="5"
                         Background="{DynamicResource NewItemsBackgroundSomeGrey}"
                         CornerRadius="15">
@@ -412,6 +425,31 @@
                     
                 </WrapPanel>
                 </Border>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button  x:Name="btnPervouce"
+                        Foreground="{StaticResource FourthIconColor}"
+                        Style="{StaticResource SaveBtn}"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"
+                        Content="Pervouce"
+                        BorderThickness="0"
+                        Click="PreviousPage_Click" Margin="5"
+                        Background="{StaticResource ThirdBackgroundColor}"/>
+                    <TextBlock Foreground="{StaticResource FourthIconColor}" x:Name="tbPage" Text="1" VerticalAlignment="Center" FontSize="20"/>
+                    <TextBlock  Foreground="{StaticResource FourthIconColor}" x:Name="tbbackslash" Text="/" VerticalAlignment="Center" FontSize="20"/>
+                    <TextBlock  Foreground="{StaticResource FourthIconColor}" x:Name="tbTotalPage" Text="1" VerticalAlignment="Center" FontSize="20"/>
+                    <Button Style="{StaticResource SaveBtn}"
+                        x:Name="btnNext"
+                        Foreground="{StaticResource FourthIconColor}"
+                        Background="{StaticResource ThirdBackgroundColor}"
+                        Width="80" 
+                        Content="Next"
+                        BorderThickness="0"
+                        Click="NextPage_Click" 
+                        Margin="5" />
+                </StackPanel>
+
+
             </StackPanel>
         </ScrollViewer>
     </Border>

@@ -11,6 +11,7 @@
     <!--default 450 height-->
     <Grid>
         <ScrollViewer>
+            
             <Border Background="{DynamicResource PrimaryBackgroundColor}" 
             CornerRadius="5"
             >

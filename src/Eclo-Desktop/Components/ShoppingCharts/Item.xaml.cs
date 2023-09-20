@@ -39,13 +39,68 @@ namespace Eclo_Desktop.Components.ShoppingCharts
             set { SetValue(TitleProperty, value); }
         }
 
-        public static readonly DependencyProperty TitleProperty = DependencyProperty.Register("Title", typeof(string), typeof(Item));
+        private async void plus_Click(object sender, RoutedEventArgs e)
+        {
+            var identity = IdentitySingleton.GetInstance();
+
+            if (chbSelect.IsChecked == true) 
+            {
+                identity.TotalPrice -= productPrice * int.Parse(tbProductQuantity.Text);
+
+                int productCount = int.Parse(tbProductQuantity.Text);
+                if (productCount < productQuantity)
+                {
+                    productCount += 1;
+                    tbProductQuantity.Text = productCount.ToString();
+                }
+               
+                identity.TotalPrice += productPrice * int.Parse(tbProductQuantity.Text);
+                //Delegatni qiymatlarni berib yuboryapmiz
+                Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, (int)identity.TotalPrice));
+            }
+            else
+            {
+                int productCount = int.Parse(tbProductQuantity.Text);
+                if (productCount < productQuantity)
+                {
+                    productCount += 1;
+                    tbProductQuantity.Text = productCount.ToString();
+                }
+            }
+           
+        }
 
 
         public string Ref
         {
-            get { return (string)GetValue(RefProperty); }
-            set { SetValue(RefProperty, value); }
+            var identity = IdentitySingleton.GetInstance();
+            if (chbSelect.IsChecked == true)
+            {
+                identity.TotalPrice += productPrice * int.Parse(tbProductQuantity.Text); ;
+                int productCount = int.Parse(tbProductQuantity.Text);
+                if (productCount > 1)
+                {
+                    productCount -= 1;
+                    tbProductQuantity.Text = productCount.ToString();
+                }
+
+               
+
+                identity.TotalPrice -= productPrice * int.Parse(tbProductQuantity.Text); ;
+
+                //Delegatga qiymatlarni berib yuboryapmiz
+                Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, int.Parse(tbProductQuantity.Text.ToString())));
+            }
+            else
+            {
+                int productCount = int.Parse(tbProductQuantity.Text);
+                if (productCount > 1)
+                {
+                    productCount -= 1;
+                    tbProductQuantity.Text = productCount.ToString();
+                }
+            }
+           
         }
 
         public static readonly DependencyProperty RefProperty = DependencyProperty.Register("Ref", typeof(string), typeof(Item));

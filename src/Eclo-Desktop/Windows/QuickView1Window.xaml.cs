@@ -159,15 +159,16 @@ namespace Eclo_Desktop.Windows
         {
             if(!isDescripitonPressed)
             {
-                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\minus.png"));
+                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\minus.png"));
                 brDescription2.Visibility = Visibility.Visible;
                 isDescripitonPressed=true;
             }
             else
             {
-                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\add (2).png"));
-                brDescription2.Visibility= Visibility.Collapsed;
-                isDescripitonPressed=false;
+
+                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\add (2).png"));
+                brDescription2.Visibility = Visibility.Collapsed;
+                isDescripitonPressed = false;
             }
         }
         public async void setData(ProductGetViewModel productGetViewModel)

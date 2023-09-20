@@ -31,8 +31,11 @@ namespace Eclo_Desktop.Pages
         {
             MainWP123.Children.Clear();
             var identity = IdentitySingleton.GetInstance();
-            var product = await _productService.GetAllProducts(identity.UserId, 1);
-            foreach (var productItem in product)
+            var result = await _productService.GetAllProducts(identity.UserId, 1); 
+            
+            loader.Visibility = Visibility.Collapsed;
+
+            foreach (var productItem in result.productViewModels)
             {
                 if (productItem.ProductLiked == true)
                 {

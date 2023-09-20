@@ -11,16 +11,19 @@ using System.Text;
 using System.Threading.Tasks;
 using ViewModels;
 using ViewModels.Brands;
+using ViewModels.Common;
 using ViewModels.Products;
 
 namespace Integrated.ServiceLayer.Product.Concrete;
 
 public class ProductService : IProductService
 {
-    public async Task<bool> DeleteLike(long likeId)
+    public async Task<bool> DeleteLike(long likeId, string token)
     {
         var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Delete, API.BASE_URL + $"admin/user/product/likes/{likeId}");
+        var request = new HttpRequestMessage(HttpMethod.Delete, API.BASE_URL + $"user/product/likes/{likeId}");
+        //Add head Autharation token
+        request.Headers.Add("Authorization", $"Bearer {token}");
         request.Headers.Add("phone", "+998902723595");
         var collection = new List<KeyValuePair<string, string>>();
         collection.Add(new("phone", "+998902723595"));
@@ -114,15 +117,24 @@ public class ProductService : IProductService
 
     }
 
-    public async Task<List<ProductViewModels>> GetAllProducts(long id,int page = 1)
+    public async Task<(List<ProductViewModels> productViewModels,Pagination pageData)> GetAllProducts(long id,int page = 1)
     {
         using (var client = new HttpClient())
         {
+            Pagination pagination = new Pagination();
             var response = await client.GetAsync(API.BASE_URL + $"common/products/view/user?userId={id}&page={page}");
             response.EnsureSuccessStatusCode();
+         
 
             if (response.IsSuccessStatusCode)
             {
+                if (response.Headers.TryGetValues("x-pagination", out var headerValues))
+                {
+                    string headerValue = headerValues.FirstOrDefault();
+                    pagination = Newtonsoft.Json.JsonConvert.DeserializeObject<Pagination>(headerValue);
+                    
+                }
+               
                 var responseData = await response.Content.ReadAsStringAsync();
                 IEnumerable<ProductViewModels> readProducts = JsonConvert.DeserializeObject<IEnumerable<ProductViewModels>>(responseData);
                 List<ProductViewModels> productList = new List<ProductViewModels>();
@@ -143,22 +155,23 @@ public class ProductService : IProductService
 
                     }) ;
                 }
-                return productList;
+                return (productViewModels:productList,pageData:pagination);
             }
             else
             {
-                return new List<ProductViewModels>();
+                return (new List<ProductViewModels>(),new Pagination());
             }
         }
 
     }
 
-    public async Task<ProductGetViewModel> GetByIdProducts(long userId,long id)
+    public async Task<ProductGetViewModel> GetByIdProducts(long userId,long id, string token)
     {
         using (var client = new HttpClient())
         {
             
             var request = new Uri(API.BASE_URL + $"common/products/view/user/{id}?userId={userId}");
+
             HttpResponseMessage response1;                                    
             response1 = await client.GetAsync(request);            
             if (response1.IsSuccessStatusCode)
@@ -188,10 +201,13 @@ public class ProductService : IProductService
         }
     }
 
-    public async Task<List<GetUserProductLikes>> getUserProductLikes(int page)
+    public async Task<List<GetUserProductLikes>> getUserProductLikes(int page, string token)
     {
+        
         var client = new HttpClient();
         var request = new HttpRequestMessage(HttpMethod.Get, API.BASE_URL + $"common/user/product/likes?page={page}");
+        //Add head Autharation token
+        request.Headers.Add("Authorization", $"Bearer {token}");
         var response = await client.SendAsync(request);
         if(response.IsSuccessStatusCode) 
         {
@@ -203,10 +219,12 @@ public class ProductService : IProductService
 
     }
 
-    public async Task<bool> UserProductLikeUpdate(long likeId, long userId, long productId, bool isLiked)
+    public async Task<bool> UserProductLikeUpdate(long likeId, long userId, long productId, bool isLiked, string token)
     {
         var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Put, API.BASE_URL + $"admin/user/product/likes/{likeId}");
+        var request = new HttpRequestMessage(HttpMethod.Put, API.BASE_URL + $"user/product/likes/{likeId}");
+        //Add head Autharation token
+        request.Headers.Add("Authorization", $"Bearer {token}");
         request.Headers.Add("UserId", $"{userId}");
         request.Headers.Add("ProductId", $"{productId}");
         request.Headers.Add("IsLiked", $"{isLiked}");
@@ -234,7 +252,7 @@ public class ProductService : IProductService
     public async Task<bool> UserSetLikeTrue(long userId, long productId, bool isLiked = true)
     {
         var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "admin/user/product/likes");
+        var request = new HttpRequestMessage(HttpMethod.Post, API.BASE_URL + "user/product/likes");
         var content = new MultipartFormDataContent();
         content.Add(new StringContent($"{userId}"), "UserId");
         content.Add(new StringContent($"{productId}"), "ProductId");

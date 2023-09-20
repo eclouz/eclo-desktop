@@ -29,7 +29,7 @@ namespace Eclo_Desktop.Components.Dashboards
     public partial class ProductLightClothesUserControl : UserControl
     {
         ProductViewModels productViewModels = new ProductViewModels();
-
+        
         private IProductService _productService;
         //public bool Liked { get; set; } 
         IProductService productService = new ProductService();
@@ -46,43 +46,45 @@ namespace Eclo_Desktop.Components.Dashboards
 
         private async void btnQuickView_Click(object sender, RoutedEventArgs e)
         {
+            string token = IdentitySingleton.GetInstance().Token;
+            
             QuickView1Window quickView1Window = new QuickView1Window();
             var identity = IdentitySingleton.GetInstance();
-            var result = await productService.GetByIdProducts(identity.UserId, productViewModels.Id);            
+            var result = await productService.GetByIdProducts(identity.UserId, productViewModels.Id,token);            
             quickView1Window.setData(result);                            
             quickView1Window.ShowDialog();
         }
 
         //public Func<Task> RefreshDashboard { get ; set; }
-            public delegate void RefreshDelegate();
+        public delegate void RefreshDelegate();
         public RefreshDelegate RefreshPage { get; set; }
         private async void brLike_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //await RefreshDashboard();
-            
+            string token = IdentitySingleton.GetInstance().Token;
             int page = 1;
-            var getUserProductLikesList = await productService.getUserProductLikes(page);
+            var getUserProductLikesList = await productService.getUserProductLikes(page,token);
             var identity = IdentitySingleton.GetInstance();
-            string pathRedLike = "C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png";
-
+            string pathRedLike = "Assets\\StaticImages\\like.png";
+            
             for (int i = 0; i < getUserProductLikesList.Count; i++)
             {
                 if (getUserProductLikesList[i].productId == productViewModels.Id && getUserProductLikesList[i].userId == identity.UserId
                     && getUserProductLikesList[i].isLiked == true)
                 {
                     //Oq like                
-                    brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));
+
+                    brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\love.png", UriKind.Relative));
                     var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id, 
-                        identity.UserId, productViewModels.Id, false);
-                    //var isDelete = await _productService.DeleteLike(productViewModels.likedId);
-                    //productViewModels.ProductLiked = false;
+                        identity.UserId, productViewModels.Id, false,token);
+                    
                     if (likeUpdate == true)
                     {
-                        MessageBox.Show("Removed from cart");
+                        //MessageBox.Show("Removed from cart");
                     }
                     else
                     {
-                        MessageBox.Show("Not Removed from cart. Something wrong 🥱");
+                        //MessageBox.Show("Not Removed from cart. Something wrong 🥱");
                     }
                     break;
                 }
@@ -92,18 +94,17 @@ namespace Eclo_Desktop.Components.Dashboards
                     // Qizil like
                     brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
                     var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id, 
-                        identity.UserId, productViewModels.Id, true);
+                        identity.UserId, productViewModels.Id, true, token);
 
                     var identity2 = IdentitySingleton.GetInstance();
-                    //var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
-                    //productViewModels.ProductLiked = true;
+                    
                     if (likeUpdate == true)
                     {
-                        MessageBox.Show("Successfully saved to savelist");
+                        //MessageBox.Show("Successfully saved to savelist");
                     }
                     else
                     {
-                        MessageBox.Show("Not Saved to cart. Something wrong 🥱");
+                        //MessageBox.Show("Not Saved to cart. Something wrong 🥱");
                     }
                     break;
                 }
@@ -114,16 +115,13 @@ namespace Eclo_Desktop.Components.Dashboards
                     // Qizil like
                     brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
 
-                    //var identity2 = IdentitySingleton.GetInstance();
-                    //var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
-                    //productViewModels.ProductLiked = true;
                     if (likeIt == true)
                     {
-                        MessageBox.Show("Successfully saved to savelist");
+                        //MessageBox.Show("Successfully saved to savelist");
                     }
                     else
                     {
-                        MessageBox.Show("Not Saved to cart. Something wrong 🥱");
+                        //MessageBox.Show("Not Saved to cart. Something wrong 🥱");
                     }
                     break;
                 }
@@ -134,56 +132,18 @@ namespace Eclo_Desktop.Components.Dashboards
                 var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
                 // Qizil like
                 brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
-
-                //var identity2 = IdentitySingleton.GetInstance();
-                //var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
-                //productViewModels.ProductLiked = true;
+               
                 if (likeIt == true)
                 {
-                    MessageBox.Show("Successfully saved to savelist");
+                    //MessageBox.Show("Successfully saved to savelist");
                 }
                 else
                 {
-                    MessageBox.Show("Not Saved to cart. Something wrong 🥱");
+                    //MessageBox.Show("Not Saved to cart. Something wrong 🥱");
                 }
             }
 
             RefreshPage?.Invoke();
-
-
-
-            //if (productViewModels.ProductLiked == true)
-            //{
-            //    //Oq like                
-            //    brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));                
-            //    var isDelete = await _productService.DeleteLike(productViewModels.likedId);
-            //    //productViewModels.ProductLiked = false;
-            //    if (isDelete == true)
-            //    {
-            //        MessageBox.Show("Removed from cart");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Not Removed from cart. Something wrong 🥱");
-            //    }
-            //}
-            //else
-            //{
-            //    // Qizil like
-            //    brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
-
-            //    var identity2 = IdentitySingleton.GetInstance();
-            //    var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, true);
-            //    //productViewModels.ProductLiked = true;
-            //    if (likeIt == true)
-            //    {
-            //        MessageBox.Show("Successfully saved to savelist");
-            //    }
-            //    else
-            //    {
-            //        MessageBox.Show("Not Saved to cart. Something wrong 🥱");
-            //    }
-            //}
 
         }
         public async void setData(ProductViewModels productViewModels)
@@ -202,14 +162,14 @@ namespace Eclo_Desktop.Components.Dashboards
             this.productViewModels.likedId = productViewModels.likedId;
             this.productViewModels.ProductDetail=productViewModels.ProductDetail;
 
-            string pathRedLike = "C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png";
+            string pathRedLike = "Assets\\StaticImages\\like.png";
             if (productViewModels.ProductLiked==true)
             {
                 brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
             }
             else
             {
-                brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));                
+                brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\love.png", UriKind.Relative));                
             }
 
             lblPproductPrice.Content = (productViewModels.ProductPrice).ToString();

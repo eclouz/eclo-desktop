@@ -56,8 +56,21 @@ namespace Eclo_Desktop.Pages
             //await RefreshWithLike();
 
             var identity = IdentitySingleton.GetInstance();
-            SecondWp.Children.Clear();            
-            var products = await _productService.GetAllProducts(identity.UserId, 1);
+            SecondWp.Children.Clear();
+            int page = int.Parse(tbPage.Text);
+            var result = await _productService.GetAllProducts(identity.UserId, page);
+            identity.pagination = result.pageData;
+            if (result.pageData.TotalPages < 2)
+            {
+                tbPage.Visibility=Visibility.Collapsed;
+                tbTotalPage.Visibility=Visibility.Collapsed;
+                tbbackslash.Visibility = Visibility.Collapsed;
+                btnNext.Visibility = Visibility.Collapsed;
+                btnPervouce.Visibility = Visibility.Collapsed;
+            }
+            tbTotalPage.Text = result.pageData.TotalPages.ToString() ;
+            var products = result.productViewModels;
+            loader.Visibility = Visibility.Collapsed;
             foreach ( var product in products )
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
@@ -189,7 +202,10 @@ namespace Eclo_Desktop.Pages
         {
             var identity = IdentitySingleton.GetInstance();
             SecondWp.Children.Clear();
-            var products = await _productService.GetAllProducts(identity.UserId, 1);
+            int page = int.Parse(tbPage.Text);
+            var result = await _productService.GetAllProducts(identity.UserId, page);
+            identity.pagination = result.pageData;
+            var products = result.productViewModels;
             foreach (var product in products)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
@@ -366,6 +382,45 @@ namespace Eclo_Desktop.Pages
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
             }
+        private async void PreviousPage_Click(object sender, RoutedEventArgs e)
+        {
+            var loader_button = btnPervouce.Template.FindName("loader", btnPervouce) as FontAwesome.WPF.ImageAwesome;
+            loader_button!.Visibility = Visibility.Visible;
+            loader.Visibility = Visibility.Visible;
+            btnPervouce.IsEnabled = false;
+            int page = int.Parse(tbPage.Text);
+            if (page > 1)
+            {
+                page -= 1;
+                tbPage.Text=page.ToString();
+                await refreshAsync();
+            }
+            loader.Visibility = Visibility.Collapsed;
+            loader_button.Visibility = Visibility.Collapsed;
+            btnPervouce.IsEnabled = true;
+
+        }
+            
+
+        private async void NextPage_Click(object sender, RoutedEventArgs e)
+        {
+            var loader_button = btnNext.Template.FindName("loader", btnNext) as FontAwesome.WPF.ImageAwesome;
+            loader_button!.Visibility = Visibility.Visible;
+            loader.Visibility = Visibility.Visible;
+
+            btnPervouce.IsEnabled = false;
+            var identity = IdentitySingleton.GetInstance();
+            int page = int.Parse(tbPage.Text);
+            if (page < identity.pagination.TotalPages)
+            {
+                page += 1;
+                tbPage.Text = page.ToString();
+                await refreshAsync();
+            }
+            loader.Visibility = Visibility.Collapsed;
+            loader_button.Visibility = Visibility.Collapsed;
+            btnPervouce.IsEnabled = true;
+
         }
     }
 }
