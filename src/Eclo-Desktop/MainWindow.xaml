@@ -200,10 +200,10 @@
                                        
                                        />
                                 </Grid>
-                                <Border     CornerRadius="5"
+                                <Border CornerRadius="5"
                                     Width="50"                                    
                                     Height="50"   
-                                            Margin="10 0"
+                                    Margin="10 0"
                                     HorizontalAlignment="Right"     
                                     >
                                     <Border.Background>

@@ -74,6 +74,7 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
+            loader.Visibility = Visibility.Collapsed;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -83,6 +84,15 @@ namespace Eclo_Desktop.Pages
 
         private async void bApply_Click(object sender, RoutedEventArgs e)
         {
+            var loaderButtton = bApply.Template.FindName("loader", bApply) as FontAwesome.WPF.ImageAwesome;
+
+            // For the Loader to run
+            loaderButtton!.Visibility = Visibility.Visible;
+
+            //button to disable
+            bApply.IsEnabled = false;
+
+            loader.Visibility = Visibility.Visible;
             if (int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
                 int min = int.Parse(tbMin.Text);
@@ -111,6 +121,13 @@ namespace Eclo_Desktop.Pages
                     wpMens.Children.Add(productLightClothesUserControl);
                 }
             }
+            loader.Visibility = Visibility.Collapsed;
+
+            // For the Loader to stop
+            loaderButtton.Visibility = Visibility.Collapsed;
+
+            // button to enable
+            bApply.IsEnabled = true;
         }
     }
 }

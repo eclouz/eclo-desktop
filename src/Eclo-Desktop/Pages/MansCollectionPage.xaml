@@ -170,21 +170,23 @@
                     </Border>
                 </StackPanel>
 
-                <fa:ImageAwesome
-                    Grid.Row="1"
-                    x:Name="loader"
-                    Icon="Spinner"
-                    Visibility="Visible"
-                    Spin="True"
-                    Height="200"
-                    Width="200"
-                    Foreground="#C0DEC3"
                 
-                />
-                
-                <ScrollViewer Grid.Row="2">
-                    <WrapPanel x:Name="wpMens">
 
+                <ScrollViewer Grid.Row="2">
+                    
+                    <WrapPanel x:Name="wpMens">
+                        <fa:ImageAwesome
+                            VerticalAlignment="Center"
+                            HorizontalAlignment="Center"
+                            Margin="300 80 0 0"
+                            x:Name="loader"
+                            Icon="Spinner"
+                            Visibility="Visible"
+                            Spin="True"
+                            Height="200"
+                            Width="200"
+                            Foreground="#C0DEC3"   
+                        />
                     </WrapPanel>
                 </ScrollViewer>
 

@@ -11,6 +11,16 @@
   <ItemGroup>
     <None Remove="Assets\StaticImages\add %282%29.png" />
     <None Remove="Assets\StaticImages\add-to-cart.png" />
+    <None Remove="Assets\StaticImages\Author\+Ergashev Javohir.jpg" />
+    <None Remove="Assets\StaticImages\Author\Abdulaziz.JPG" />
+    <None Remove="Assets\StaticImages\Author\Davron.jpg" />
+    <None Remove="Assets\StaticImages\Author\github-sign.png" />
+    <None Remove="Assets\StaticImages\Author\linkedin.png" />
+    <None Remove="Assets\StaticImages\Author\Mirshod.jpg" />
+    <None Remove="Assets\StaticImages\Author\programmer %282%29.png" />
+    <None Remove="Assets\StaticImages\Author\star.png" />
+    <None Remove="Assets\StaticImages\Author\telegram.png" />
+    <None Remove="Assets\StaticImages\Author\Ustoz.jpg" />
     <None Remove="Assets\StaticImages\down.png" />
     <None Remove="Assets\StaticImages\eclo-logo %281%29.png" />
     <None Remove="Assets\StaticImages\IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg" />
@@ -62,6 +72,16 @@
   <ItemGroup>
     <Resource Include="Assets\StaticImages\add (2).png" />
     <Resource Include="Assets\StaticImages\add-to-cart.png" />
+    <Resource Include="Assets\StaticImages\Author\+Ergashev Javohir.jpg" />
+    <Resource Include="Assets\StaticImages\Author\Abdulaziz.JPG" />
+    <Resource Include="Assets\StaticImages\Author\Davron.jpg" />
+    <Resource Include="Assets\StaticImages\Author\github-sign.png" />
+    <Resource Include="Assets\StaticImages\Author\linkedin.png" />
+    <Resource Include="Assets\StaticImages\Author\Mirshod.jpg" />
+    <Resource Include="Assets\StaticImages\Author\programmer (2).png" />
+    <Resource Include="Assets\StaticImages\Author\star.png" />
+    <Resource Include="Assets\StaticImages\Author\telegram.png" />
+    <Resource Include="Assets\StaticImages\Author\Ustoz.jpg" />
     <Resource Include="Assets\StaticImages\phone_confirmed_background.png" />
     <Resource Include="Assets\StaticImages\down.png" />
     <Resource Include="Assets\StaticImages\eclo-logo (1).png" />
