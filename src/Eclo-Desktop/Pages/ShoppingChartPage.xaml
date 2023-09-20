@@ -4,7 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Eclo_Desktop.Pages"
-      xmlns:uc="clr-namespace:Eclo_Desktop.Components.ShoppingCharts"
+      xmlns:uc="clr-namespace:Eclo_Desktop.Components.ShoppingCharts" xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="1500" d:DesignWidth="800"
       Title="ShoppingChartPage"
@@ -83,8 +83,22 @@
 
             <ScrollViewer Grid.Row="1" Grid.ColumnSpan="2" Margin="0,0,0,115" Grid.RowSpan="2">
 
-                <!--begin:: Stack Panel 3-->
+               
+                    <!--begin:: Stack Panel 3-->
                 <StackPanel x:Name="sPanelCharts">
+                    <fa:ImageAwesome
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Center"
+                    Margin="100"
+                    x:Name="loader"
+                    Icon="Spinner"
+                    Visibility="Visible"
+                    Spin="True"
+                    Height="200"
+                    Width="200"
+                    Foreground="#C0DEC3"
+                    
+                />
                 </StackPanel>
                 <!--end:: Stack Panel 3-->
 

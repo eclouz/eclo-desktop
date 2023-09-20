@@ -78,6 +78,7 @@ namespace Eclo_Desktop.Pages
                 sPanelCharts.Children.Add(charts);
 
             }
+            loader.Visibility = Visibility.Collapsed;
             
         }
         public async void RefreshPageHandler()

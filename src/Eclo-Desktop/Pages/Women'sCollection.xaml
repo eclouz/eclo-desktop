@@ -3,7 +3,7 @@
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      xmlns:local="clr-namespace:Eclo_Desktop.Pages"
+      xmlns:local="clr-namespace:Eclo_Desktop.Pages" xmlns:fa="http://schemas.fontawesome.io/icons/"
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Loaded="Page_Loaded"
@@ -175,9 +175,22 @@
 
                     </Border>
                 </StackPanel>
+               
                 <ScrollViewer Grid.Row="2">
                     <WrapPanel x:Name="wpWomen">
-
+                        <fa:ImageAwesome
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Margin="300 50 0 0"
+                             x:Name="loader"
+                             Icon="Spinner"
+                             Visibility="Visible"
+                             Spin="True"
+                             Height="200"
+                             Width="200"
+                             Foreground="#C0DEC3"
+                                
+                        />
                     </WrapPanel>
                 </ScrollViewer>
 
