@@ -64,7 +64,7 @@ namespace Eclo_Desktop.Pages
         private async void btnSaveSettingsChange_Click(object sender, RoutedEventArgs e)
         {
             var identity = IdentitySingleton.GetInstance();
-            var getUserInfo = await userService.GetUserById(identity.UserId);
+            var getUserInfo = await userService.GetUserById(identity.UserId, identity.Token);
             
             userViewModel.FirstName = tbName.Text;
             userViewModel.LastName = tbSecondName.Text;
@@ -80,8 +80,8 @@ namespace Eclo_Desktop.Pages
             {
                 userViewModel.ImagePath = image_path;
             }
-
-            var updateUserInfo = await userService.UserUpdateSettings(userViewModel);
+            
+            var updateUserInfo = await userService.UserUpdateSettings(userViewModel,identity.Token);
             if(updateUserInfo==true)
             var loader = btnSaveSettingsChange.Template.FindName("loader", btnSaveSettingsChange) as FontAwesome.WPF.ImageAwesome;
             loader.Visibility = Visibility.Visible;
@@ -134,21 +134,7 @@ namespace Eclo_Desktop.Pages
 
 
         }
-        //private async Task<string> CopyImageAsync(string imgPath, string destinationDirectory)
-        //{
-        //    if (!Directory.Exists(destinationDirectory))
-        //        Directory.CreateDirectory(destinationDirectory);
-
-        //    var imageName = ContentNameMaker.GetImageName(imgPath);
-
-        //    string path = System.IO.Path.Combine(destinationDirectory, imageName);
-
-        //    byte[] image = await File.ReadAllBytesAsync(imgPath);
-
-        //    await File.WriteAllBytesAsync(path, image);
-
-        //    return path;
-        //}
+        
 
         private void updateImage_Click(object sender, RoutedEventArgs e)
         {

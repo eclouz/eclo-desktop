@@ -14,13 +14,13 @@
         
         <!--begin:: Grid Column in Component-->
         <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="230"/>
             <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="150"/>
-            <ColumnDefinition Width="100"/>
             <ColumnDefinition Width="27"/>
             <ColumnDefinition Width="80"/>
-            <ColumnDefinition Width="110"/>
-            <ColumnDefinition Width="50"/>
+            <ColumnDefinition Width="140"/>
+            <ColumnDefinition Width="90"/>
         </Grid.ColumnDefinitions>
         <!--end:: Grid Column in Component-->
         
@@ -61,10 +61,13 @@
         <TextBlock x:Name="tbProductName" Text="Polo Futbolka" Grid.Column="1"  FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" FontFamily="Cascadia Mono"/>
         <TextBlock x:Name="tbDescription" Text="Juda ham zo'r futbolka" Grid.Column="1" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>
 
-        <TextBlock Grid.Column="2" Text="{Binding Path=Color,ElementName=item}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
+        <TextBlock x:Name="tbProductColor" Text="White" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" FontFamily="Cascadia Mono"/>
+        <TextBlock x:Name="tbProductSize" Text="XL" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="12" Margin="0 38 0 0" FontFamily="Cascadia Mono"/>
 
-        <TextBlock Grid.Column="3" Text="{Binding Path=Count,ElementName=item}" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16"/>
-
+        <TextBlock x:Name="tbProductQuantity" Text="1" Grid.Column="3" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" FontFamily="Cascadia Mono"/>
+        <!--begin:: Labels For Product Data-->
+        
+        <!--begin:: Plus and Minus Button-->
         <StackPanel Grid.Column="4" VerticalAlignment="Center" HorizontalAlignment="Left">
             <Button x:Name="plus"
                     Click="plus_Click"
@@ -77,7 +80,11 @@
 
             </Button>
 
-            <Button Style="{StaticResource buttonCounter}" Margin="0 5 0 0">
+            <Button x:Name="minus"
+                    Click="minus_Click"
+                    Style="{StaticResource buttonCounter}" 
+                    Margin="0 5 0 0">
+                
                 <Image Source="/Assets/StaticImages/ShoppingChartImages/low.png" />
 
             </Button>
@@ -112,8 +119,8 @@
                 Grid.Column="6"
                 >
             <Image Source="/Assets/StaticImages/ShoppingChartImages/remove.png" />
-
         </Button>
+        <!--end:: Delete button-->
     </Grid>
     </Border>
 </UserControl>

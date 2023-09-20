@@ -37,7 +37,7 @@
                             Margin="20 0 0 0"
                             CornerRadius="5">
                                 <Border.Background>
-                                    <ImageBrush x:Name="UserImage"
+                                    <ImageBrush x:Name="UserImage" Stretch="UniformToFill"
                                         ImageSource="/Assets/StaticImages/IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg"/>
                                 </Border.Background>
                             </Border>
@@ -241,7 +241,7 @@
                                         x:Name="btnSaveSettingsChange"
                                         Height="50"
                                         Width="310"
-                                        Margin="0 45 0 15"
+                                        Margin="0 50 0 15"
                                                 Click="btnSaveSettingsChange_Click"
                                         >
                                         </Button>
