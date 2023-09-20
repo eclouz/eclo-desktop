@@ -54,6 +54,14 @@ namespace Eclo_Desktop.Pages
             int page = int.Parse(tbPage.Text);
             var result = await _productService.GetAllProducts(identity.UserId, page);
             identity.pagination = result.pageData;
+            if (result.pageData.TotalPages < 2)
+            {
+                tbPage.Visibility=Visibility.Collapsed;
+                tbTotalPage.Visibility=Visibility.Collapsed;
+                tbbackslash.Visibility = Visibility.Collapsed;
+                btnNext.Visibility = Visibility.Collapsed;
+                btnPervouce.Visibility = Visibility.Collapsed;
+            }
             tbTotalPage.Text = result.pageData.TotalPages.ToString() ;
             var products = result.productViewModels;
             loader.Visibility = Visibility.Collapsed;

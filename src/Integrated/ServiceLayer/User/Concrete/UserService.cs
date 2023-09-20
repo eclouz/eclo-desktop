@@ -144,7 +144,7 @@ public class UserService : IUserService
     {
         var client = new HttpClient();
 
-        var request = new HttpRequestMessage(HttpMethod.Put, API.BASE_URL + $"user/profile");
+        var request = new HttpRequestMessage(HttpMethod.Put, API.BASE_URL + $"user/profile/userId");
 
         request.Headers.Add("Authorization", $"Bearer {token}");
         

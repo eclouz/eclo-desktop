@@ -8,8 +8,9 @@
              Margin="0 10 0 0"
              
              >
-    
-        <Grid  Background="#E5E9EA" Margin="0 0 0 0">
+    <Border Background="#E5E9EA"
+            CornerRadius="10">
+        <Grid   Margin="0 0 0 0">
         
         <!--begin:: Grid Column in Component-->
         <Grid.ColumnDefinitions>
@@ -121,4 +122,5 @@
         </Button>
         <!--end:: Delete button-->
     </Grid>
+    </Border>
 </UserControl>
