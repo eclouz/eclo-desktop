@@ -11,11 +11,12 @@
 
     <Grid>
         <ScrollViewer>
-            <WrapPanel x:Name="stAuthor">
+            <WrapPanel x:Name="stAuthor" HorizontalAlignment="Center">
                 <!--begin:: Ustoz-->
                 <Border CornerRadius="15"
                     Margin="25 15 0 0"
-                    Background="{StaticResource ThirdBackgroundColor}" Width="570" Height="260">
+                    Background="{StaticResource ThirdBackgroundColor}" 
+                    Width="470" Height="230">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="210"/>
@@ -24,7 +25,7 @@
 
                         <StackPanel Grid.Column="0">
                             <Border Width="180"
-                        Height="220"
+                        Height="180"
                         Margin="20"
                         CornerRadius="25"
                         
@@ -42,8 +43,8 @@
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
 
                             </Grid.RowDefinitions>
@@ -52,29 +53,31 @@
                             Orientation="Horizontal"
                             >
                                 <TextBlock Foreground="{StaticResource TextSecundaryColor}"
-                               FontSize="30"
-                               Text="O'tkirbek Sobirjonov">
+                                    FontSize="16"
+                                    FontWeight="Bold"
+                                    Text="O'tkirbek Sobirjonov">
 
                                 </TextBlock>
 
                                 <Image 
                         Source="/Assets/StaticImages/Author/star.png" 
                         Stretch="Uniform"
-                        Width="30" Height="40"
-                        Margin="10 0 0 0"/>
+                        Width="15" Height="15"
+                        Margin="10 6 0 0"
+                                    VerticalAlignment="Top"/>
 
                             </StackPanel>
                             <StackPanel Grid.Row="2"
                             Orientation="Horizontal">
                                 <Image Source="/Assets/StaticImages/Author/programmer (2).png" 
                            Stretch="Uniform"
-                           Width="35"
-                           Height="35"
-                           Margin="0 0 7 7"/>
+                           Width="20"
+                           Height="20"
+                           Margin="0 0 7 10"/>
 
 
                                 <TextBlock Foreground="{StaticResource TextFourthColor}"
-                               FontSize="25"
+                               FontSize="14"
                                Text="Project Owner"
                                VerticalAlignment="Top"
                                Margin="0 5">
@@ -82,32 +85,32 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3">
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left"
+                                <TextBlock HorizontalAlignment="Left" Width="230" TextWrapping="Wrap" TextAlignment="Left"
                                Foreground="#A1A5B7"
-                               FontSize="15"
+                               FontSize="12"
                                Text="As the project owner, I leverage my expertise and foster collaboration to drive the success of this  project. Passionate project owner fueling  innovation.">
 
 
                                 </TextBlock>
                                 <StackPanel Orientation="Horizontal">
                                     <Image  Source="/Assets/StaticImages/Author/github-sign.png" 
-                                Width="35"
-                                Height="35"
+                                Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenGitHubLink2"/>
                                     <Image Source="/Assets/StaticImages/Author/linkedin.png"
-                               Width="35"
-                                Height="35"
+                               Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenLinkedInLink2"/>
 
                                     <Image Source="/Assets/StaticImages/Author/telegram.png" 
-                               Width="35"
-                                Height="35"
+                               Width="25"
+                                Height="25"
                                 Margin="0 8 0 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
@@ -127,7 +130,7 @@
                 <!--begin:: Javohir Ergashev-->
                 <Border CornerRadius="15"
                     Margin="25 15 0 0"
-                    Background="{StaticResource ThirdBackgroundColor}" Width="570" Height="260">
+                    Background="{StaticResource ThirdBackgroundColor}" Width="470" Height="230">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="210"/>
@@ -136,14 +139,14 @@
 
                         <StackPanel Grid.Column="0">
                             <Border Width="180"
-                        Height="220"
+                        Height="180"
                         Margin="20"
                         CornerRadius="25"
                         
                        >
                                 <Border.Background>
                                     <ImageBrush ImageSource="\Assets\StaticImages\Author\+Ergashev Javohir.jpg"
-                            Stretch="Uniform" 
+                            Stretch="UniformToFill" 
                             x:Name="brImageProductDark"/>
                                 </Border.Background>
 
@@ -153,8 +156,8 @@
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
 
                             </Grid.RowDefinitions>
@@ -163,7 +166,8 @@
                             Orientation="Horizontal"
                             >
                                 <TextBlock Foreground="{StaticResource TextSecundaryColor}"
-                               FontSize="30"
+                               FontSize="16"
+                                    FontWeight="Bold"
                                Text="Javohir Ergashev">
 
                                 </TextBlock>
@@ -171,21 +175,21 @@
                                 <Image 
                         Source="/Assets/StaticImages/Author/star.png" 
                         Stretch="Uniform"
-                        Width="30" Height="40"
-                        Margin="10 0 0 0"/>
+                         Width="15" Height="15"
+                        Margin="10 6 0 0"/>
 
                             </StackPanel>
                             <StackPanel Grid.Row="2"
                             Orientation="Horizontal">
                                 <Image Source="/Assets/StaticImages/Author/programmer (2).png" 
                            Stretch="Uniform"
-                           Width="35"
-                           Height="35"
-                           Margin="0 0 7 7"/>
+                            Width="20"
+                           Height="20"
+                           Margin="0 0 7 10"/>
 
 
                                 <TextBlock Foreground="{StaticResource TextFourthColor}"
-                               FontSize="25"
+                               FontSize="14"
                                Text=".NET Software Engineer"
                                VerticalAlignment="Top"
                                Margin="0 5">
@@ -193,33 +197,33 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3">
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left"
+                                <TextBlock HorizontalAlignment="Left" Width="230" TextWrapping="Wrap" TextAlignment="Left"
                                Foreground="#A1A5B7"
-                               FontSize="15"
+                               FontSize="12"
                                Text="I am a software engineer who codes, tests, and maintains, software and systems, with a focus on problem-solving, and continuous learning.">
 
 
                                 </TextBlock>
                                 <StackPanel Orientation="Horizontal">
                                     <Image  Source="/Assets/StaticImages/Author/github-sign.png" 
-                                Width="35"
-                                Height="35"
+                                Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenGitHubLink"/>
                                     <Image Source="/Assets/StaticImages/Author/linkedin.png"
-                               Width="35"
-                                Height="35"
+                               Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenLinkedInLink"/>
 
                                     <Image Source="/Assets/StaticImages/Author/telegram.png" 
-                               Width="35"
-                                Height="35"
-                                Margin="0 8 0 0"
+                              Width="25"
+                                Height="25"
+                                Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenTelegramLink"/>
@@ -239,7 +243,7 @@
                 <!--begin:: Abdulaziz-->
                 <Border CornerRadius="15"
                     Margin="25 15 0 0"
-                    Background="{StaticResource ThirdBackgroundColor}" Width="570" Height="260">
+                    Background="{StaticResource ThirdBackgroundColor}"  Width="470" Height="230">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="210"/>
@@ -248,14 +252,14 @@
 
                         <StackPanel Grid.Column="0">
                             <Border Width="180"
-                        Height="220"
+                        Height="180"
                         Margin="20"
                         CornerRadius="25"
                         
                        >
                                 <Border.Background>
                                     <ImageBrush ImageSource="\Assets\StaticImages\Author\Abdulaziz.JPG"
-                            Stretch="Uniform" 
+                            Stretch="UniformToFill" 
                             x:Name="brImageProductDark3"/>
                                 </Border.Background>
 
@@ -265,8 +269,8 @@
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
 
                             </Grid.RowDefinitions>
@@ -275,7 +279,8 @@
                             Orientation="Horizontal"
                             >
                                 <TextBlock Foreground="{StaticResource TextSecundaryColor}"
-                               FontSize="30"
+                               FontSize="16"
+                                    FontWeight="Bold"
                                Text="Abdulaziz Orazbayev">
 
                                 </TextBlock>
@@ -283,21 +288,21 @@
                                 <Image 
                         Source="/Assets/StaticImages/Author/star.png" 
                         Stretch="Uniform"
-                        Width="30" Height="40"
-                        Margin="10 0 0 0"/>
+                        Width="15" Height="15"
+                        Margin="10 6 0 0"/>
 
                             </StackPanel>
                             <StackPanel Grid.Row="2"
                             Orientation="Horizontal">
                                 <Image Source="/Assets/StaticImages/Author/programmer (2).png" 
                            Stretch="Uniform"
-                           Width="35"
-                           Height="35"
-                           Margin="0 0 7 7"/>
+                           Width="20"
+                           Height="20"
+                           Margin="0 0 7 10"/>
 
 
                                 <TextBlock Foreground="{StaticResource TextFourthColor}"
-                               FontSize="25"
+                               FontSize="14"
                                Text=".NET Software Engineer"
                                VerticalAlignment="Top"
                                Margin="0 5">
@@ -305,33 +310,33 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3">
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left"
+                                <TextBlock HorizontalAlignment="Left" Width="230" TextWrapping="Wrap" TextAlignment="Left"
                                Foreground="#A1A5B7"
-                               FontSize="15"
+                               FontSize="12"
                                Text="I am a software engineer who codes, tests, and maintains, software and systems, with a focus on problem-solving, and continuous learning.">
 
 
                                 </TextBlock>
                                 <StackPanel Orientation="Horizontal">
                                     <Image  Source="/Assets/StaticImages/Author/github-sign.png" 
-                                Width="35"
-                                Height="35"
+                                Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenGitHubLink3"/>
                                     <Image Source="/Assets/StaticImages/Author/linkedin.png"
-                               Width="35"
-                                Height="35"
+                               Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenLinkedInLink3"/>
 
                                     <Image Source="/Assets/StaticImages/Author/telegram.png" 
-                               Width="35"
-                                Height="35"
-                                Margin="0 8 0 0"
+                               Width="25"
+                                Height="25"
+                                Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenTelegramLink3"/>
@@ -353,7 +358,7 @@
                 <!--begin:: Hasanboy-->
                 <Border CornerRadius="15"
                     Margin="25 15 0 0"
-                    Background="{StaticResource ThirdBackgroundColor}" Width="570" Height="260">
+                    Background="{StaticResource ThirdBackgroundColor}"  Width="470" Height="230">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="210"/>
@@ -362,14 +367,14 @@
 
                         <StackPanel Grid.Column="0">
                             <Border Width="180"
-                        Height="220"
+                        Height="180"
                         Margin="20"
                         CornerRadius="25"
                         
                        >
                                 <Border.Background>
-                                    <ImageBrush ImageSource="\Assets\StaticImages\Author\+Ergashev Javohir.jpg"
-                            Stretch="Uniform" 
+                                    <ImageBrush ImageSource="\Assets\StaticImages\Author\Hasanboy.jpg"
+                            Stretch="UniformToFill" 
                             x:Name="brImageProductDark4"/>
                                 </Border.Background>
 
@@ -379,17 +384,17 @@
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
-
                             </Grid.RowDefinitions>
 
                             <StackPanel Grid.Row="1"
                             Orientation="Horizontal"
                             >
                                 <TextBlock Foreground="{StaticResource TextSecundaryColor}"
-                               FontSize="30"
+                               FontSize="16"
+                                    FontWeight="Bold"
                                Text="Hasanboy Hamidov">
 
                                 </TextBlock>
@@ -397,21 +402,21 @@
                                 <Image 
                         Source="/Assets/StaticImages/Author/star.png" 
                         Stretch="Uniform"
-                        Width="30" Height="40"
-                        Margin="10 0 0 0"/>
+                         Width="15" Height="15"
+                        Margin="10 6 0 0"/>
 
                             </StackPanel>
                             <StackPanel Grid.Row="2"
                             Orientation="Horizontal">
                                 <Image Source="/Assets/StaticImages/Author/programmer (2).png" 
                            Stretch="Uniform"
-                           Width="35"
-                           Height="35"
-                           Margin="0 0 7 7"/>
+                            Width="20"
+                           Height="20"
+                           Margin="0 0 7 10"/>
 
 
                                 <TextBlock Foreground="{StaticResource TextFourthColor}"
-                               FontSize="25"
+                               FontSize="14"
                                Text=".NET Software Engineer"
                                VerticalAlignment="Top"
                                Margin="0 5">
@@ -419,33 +424,33 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3">
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left"
+                                <TextBlock HorizontalAlignment="Left" Width="230" TextWrapping="Wrap" TextAlignment="Left"
                                Foreground="#A1A5B7"
-                               FontSize="15"
+                               FontSize="12"
                                Text="I am a software engineer who codes, tests, and maintains, software and systems, with a focus on problem-solving, and continuous learning.">
 
 
                                 </TextBlock>
                                 <StackPanel Orientation="Horizontal">
                                     <Image  Source="/Assets/StaticImages/Author/github-sign.png" 
-                                Width="35"
-                                Height="35"
+                               Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenGitHubLink4"/>
                                     <Image Source="/Assets/StaticImages/Author/linkedin.png"
-                               Width="35"
-                                Height="35"
+                                Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenLinkedInLink4"/>
 
                                     <Image Source="/Assets/StaticImages/Author/telegram.png" 
-                                Width="35"
-                                Height="35"
-                                Margin="0 8 0 0"
+                                Width="25"
+                                Height="25"
+                                Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenTelegramLink4"/>
@@ -464,7 +469,7 @@
                 <!--begin:: Sherzod-->
                 <Border CornerRadius="15"
                     Margin="25 15 0 0"
-                    Background="{StaticResource ThirdBackgroundColor}" Width="570" Height="260">
+                    Background="{StaticResource ThirdBackgroundColor}"  Width="470" Height="230">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="210"/>
@@ -473,14 +478,14 @@
 
                         <StackPanel Grid.Column="0">
                             <Border Width="180"
-                        Height="220"
+                        Height="180"
                         Margin="20"
                         CornerRadius="25"
                         
                        >
                                 <Border.Background>
-                                    <ImageBrush ImageSource="\Assets\StaticImages\Author\+Ergashev Javohir.jpg"
-                            Stretch="Uniform" 
+                                    <ImageBrush ImageSource="\Assets\StaticImages\Author\Sherzod.jpg"
+                            Stretch="UniformToFill" 
                             x:Name="brImageProductDark5"/>
                                 </Border.Background>
 
@@ -490,8 +495,8 @@
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
 
                             </Grid.RowDefinitions>
@@ -500,7 +505,8 @@
                             Orientation="Horizontal"
                             >
                                 <TextBlock Foreground="{StaticResource TextSecundaryColor}"
-                               FontSize="30"
+                               FontSize="16"
+                                    FontWeight="Bold"
                                Text="Sherzod Yuldashev">
 
                                 </TextBlock>
@@ -508,21 +514,21 @@
                                 <Image 
                         Source="/Assets/StaticImages/Author/star.png" 
                         Stretch="Uniform"
-                        Width="30" Height="40"
-                        Margin="10 0 0 0"/>
+                        Width="15" Height="15"
+                        Margin="10 6 0 0"/>
 
                             </StackPanel>
                             <StackPanel Grid.Row="2"
                             Orientation="Horizontal">
                                 <Image Source="/Assets/StaticImages/Author/programmer (2).png" 
                            Stretch="Uniform"
-                           Width="35"
-                           Height="35"
-                           Margin="0 0 7 7"/>
+                           Width="20"
+                           Height="20"
+                           Margin="0 0 7 10"/>
 
 
                                 <TextBlock Foreground="{StaticResource TextFourthColor}"
-                               FontSize="25"
+                               FontSize="14"
                                Text=".NET Software Engineer"
                                VerticalAlignment="Top"
                                Margin="0 5">
@@ -530,33 +536,33 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3">
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left"
+                                <TextBlock HorizontalAlignment="Left" Width="230" TextWrapping="Wrap" TextAlignment="Left"
                                Foreground="#A1A5B7"
-                               FontSize="15"
+                               FontSize="12"
                                Text="I am a software engineer who codes, tests, and maintains, software and systems, with a focus on problem-solving, and continuous learning.">
 
 
                                 </TextBlock>
                                 <StackPanel Orientation="Horizontal">
                                     <Image  Source="/Assets/StaticImages/Author/github-sign.png" 
-                                Width="35"
-                                Height="35"
+                                Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenGitHubLink5"/>
                                     <Image Source="/Assets/StaticImages/Author/linkedin.png"
-                               Width="35"
-                                Height="35"
+                               Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenLinkedInLink5"/>
 
                                     <Image Source="/Assets/StaticImages/Author/telegram.png" 
-                                Width="35"
-                                Height="35"
-                                Margin="0 8 0 0"
+                               Width="25"
+                                Height="25"
+                                Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenTelegramLink5"/>
@@ -577,7 +583,7 @@
                 
                 <Border CornerRadius="15"
                     Margin="25 15 0 0"
-                    Background="{StaticResource ThirdBackgroundColor}" Width="570" Height="260">
+                    Background="{StaticResource ThirdBackgroundColor}" Width="470" Height="230">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="210"/>
@@ -586,7 +592,7 @@
 
                         <StackPanel Grid.Column="0">
                             <Border Width="180"
-                        Height="220"
+                        Height="180"
                         Margin="20"
                         CornerRadius="25"
                         
@@ -603,8 +609,8 @@
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
 
                             </Grid.RowDefinitions>
@@ -613,7 +619,8 @@
                             Orientation="Horizontal"
                             >
                                 <TextBlock Foreground="{StaticResource TextSecundaryColor}"
-                               FontSize="30"
+                                FontSize="16"
+                                    FontWeight="Bold"
                                Text="Mirshod Rajabboyev">
 
                                 </TextBlock>
@@ -621,21 +628,21 @@
                                 <Image 
                         Source="/Assets/StaticImages/Author/star.png" 
                         Stretch="Uniform"
-                        Width="30" Height="40"
-                        Margin="10 0 0 0"/>
+                        Width="15" Height="15"
+                        Margin="10 6 0 0"/>
 
                             </StackPanel>
                             <StackPanel Grid.Row="2"
                             Orientation="Horizontal">
                                 <Image Source="/Assets/StaticImages/Author/programmer (2).png" 
                            Stretch="Uniform"
-                           Width="35"
-                           Height="35"
-                           Margin="0 0 7 7"/>
+                           Width="20"
+                           Height="20"
+                           Margin="0 0 7 10"/>
 
 
                                 <TextBlock Foreground="{StaticResource TextFourthColor}"
-                               FontSize="25"
+                               FontSize="14"
                                Text=".NET Software Engineer"
                                VerticalAlignment="Top"
                                Margin="0 5">
@@ -643,33 +650,33 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3">
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left"
+                                <TextBlock HorizontalAlignment="Left" Width="230" TextWrapping="Wrap" TextAlignment="Left"
                                Foreground="#A1A5B7"
-                               FontSize="15"
+                               FontSize="12"
                                Text="I am a software engineer who codes, tests, and maintains, software and systems, with a focus on problem-solving, and continuous learning.">
 
 
                                 </TextBlock>
                                 <StackPanel Orientation="Horizontal">
                                     <Image  Source="/Assets/StaticImages/Author/github-sign.png" 
-                                Width="35"
-                                Height="35"
+                                Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenGitHubLink6"/>
                                     <Image Source="/Assets/StaticImages/Author/linkedin.png"
-                               Width="35"
-                                Height="35"
+                               Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenLinkedInLink6"/>
 
                                     <Image Source="/Assets/StaticImages/Author/telegram.png" 
-                                Width="35"
-                                Height="35"
-                                Margin="0 8 0 0"
+                                Width="25"
+                                Height="25"
+                                Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenTelegramLink6"/>
@@ -689,7 +696,7 @@
 
                 <Border CornerRadius="15"
                     Margin="25 15 0 0"
-                    Background="{StaticResource ThirdBackgroundColor}" Width="570" Height="260">
+                    Background="{StaticResource ThirdBackgroundColor}"  Width="470" Height="230">
                     <Grid>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="210"/>
@@ -698,7 +705,7 @@
 
                         <StackPanel Grid.Column="0">
                             <Border Width="180"
-                        Height="220"
+                        Height="180"
                         Margin="20"
                         CornerRadius="25"
                         
@@ -715,8 +722,8 @@
                         <Grid Grid.Column="1">
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="20"/>
-                                <RowDefinition Height="50"/>
-                                <RowDefinition Height="50"/>
+                                <RowDefinition Height="24"/>
+                                <RowDefinition Height="40"/>
                                 <RowDefinition Height="*"/>
 
                             </Grid.RowDefinitions>
@@ -725,7 +732,8 @@
                             Orientation="Horizontal"
                             >
                                 <TextBlock Foreground="{StaticResource TextSecundaryColor}"
-                               FontSize="30"
+                               FontSize="16"
+                                    FontWeight="Bold"
                                Text="Sabirbayev Davranbek">
 
                                 </TextBlock>
@@ -733,21 +741,21 @@
                                 <Image 
                         Source="/Assets/StaticImages/Author/star.png" 
                         Stretch="Uniform"
-                        Width="30" Height="40"
-                        Margin="10 0 0 0"/>
+                        Width="15" Height="15"
+                        Margin="10 6 0 0"/>
 
                             </StackPanel>
                             <StackPanel Grid.Row="2"
                             Orientation="Horizontal">
                                 <Image Source="/Assets/StaticImages/Author/programmer (2).png" 
                            Stretch="Uniform"
-                           Width="35"
-                           Height="35"
-                           Margin="0 0 7 7"/>
+                            Width="20"
+                           Height="20"
+                           Margin="0 0 7 10"/>
 
 
                                 <TextBlock Foreground="{StaticResource TextFourthColor}"
-                               FontSize="25"
+                               FontSize="14"
                                Text="React and Next developer"
                                VerticalAlignment="Top"
                                Margin="0 5">
@@ -755,33 +763,33 @@
                                 </TextBlock>
                             </StackPanel>
                             <StackPanel Orientation="Vertical" Grid.Row="3">
-                                <TextBlock TextWrapping="Wrap" TextAlignment="Left"
+                                <TextBlock HorizontalAlignment="Left" Width="230" TextWrapping="Wrap" TextAlignment="Left"
                                Foreground="#A1A5B7"
-                               FontSize="15"
+                               FontSize="12"
                                Text="I am a software engineer who codes, tests, and maintains, software and systems, with a focus on problem-solving, and continuous learning.">
 
 
                                 </TextBlock>
                                 <StackPanel Orientation="Horizontal">
                                     <Image  Source="/Assets/StaticImages/Author/github-sign.png" 
-                                Width="35"
-                                Height="35"
+                                Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenGitHubLink7"/>
                                     <Image Source="/Assets/StaticImages/Author/linkedin.png"
-                               Width="35"
-                                Height="35"
+                                Width="25"
+                                Height="25"
                                 Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenLinkedInLink7"/>
 
                                     <Image Source="/Assets/StaticImages/Author/telegram.png" 
-                                Width="35"
-                                Height="35"
-                                Margin="0 8 0 0"
+                                Width="25"
+                                Height="25"
+                                Margin="0 8 8 0"
                                 Stretch="Uniform"
                                 Cursor="Hand"
                                 MouseLeftButtonDown="OpenTelegramLink7"/>

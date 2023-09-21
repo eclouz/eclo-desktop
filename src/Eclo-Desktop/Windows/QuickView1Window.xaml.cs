@@ -3,6 +3,7 @@ using Eclo_Desktop.Components.Products;
 using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
+using Notification.Wpf;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -289,11 +290,15 @@ namespace Eclo_Desktop.Windows
                 var List = identity.ShoppingChartProducts;
                 List.Add(shoppingChartViewModel);
                 identity.ShoppingChartProducts = List;
-                MessageBox.Show("Product save Save");
+                //For Save product ShoppingChart Success
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Success!", "Save product ShoppingChart", NotificationType.Success);
             }
             else
             {
-                MessageBox.Show("Erorr!");
+                //For Save product ShoppingChart Warning
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning);
             }
 
 

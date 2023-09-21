@@ -71,20 +71,21 @@
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                 <Border Height="50"
-                             Width="310"
-                             Margin="0 0 0 0"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
+                                    Width="310"
+                                    Margin="0 0 0 0"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    CornerRadius="10"
+                                    BorderThickness="1">
                                     <TextBox x:Name="tbName"                                                
-                             BorderThickness="0"
-                             Margin="10"
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
+                                         BorderThickness="0"
+                                         Margin="10"
+                                         MaxLength="25"
+                                         FontSize="16"
+                                         Background="Transparent"
+                                         BorderBrush="{DynamicResource TextTertiaryColor}"
+                                         Foreground="{DynamicResource FourthIconColor}">
+                                        
+                                    </TextBox>
                                 </Border>
                                     </StackPanel>
                                     <StackPanel Width="350">
@@ -101,14 +102,15 @@
                              CornerRadius="10"
                              BorderThickness="1"
                              >
-                                    <TextBox x:Name="tbSecondName"                                                
-                             BorderThickness="0"
-                             Margin="10"
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
+                                    <TextBox x:Name="tbSecondName"                                                                             
+                                             MaxLength="25"
+                                             BorderThickness="0"
+                                             Margin="10"
+                                             FontSize="16"
+                                             Background="Transparent"
+                                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                                             Foreground="{DynamicResource FourthIconColor}">                                      
+                                    </TextBox>
                                 </Border>
                                     </StackPanel>
                                     <StackPanel Width="350">
@@ -119,20 +121,21 @@
                            Foreground="{DynamicResource FourthIconColor}"
                            ></Label>
                                 <Border Height="50"
-                             Width="310"
-                             Margin="0 0 0 0"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             CornerRadius="10"
-                             BorderThickness="1"
-                             >
+                                    Width="310"
+                                    Margin="0 0 0 0"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    CornerRadius="10"
+                                    BorderThickness="1">
                                     <TextBox x:Name="tbPassportSerialNumber"                                                
-                             BorderThickness="0"
-                             Margin="10"
-                             FontSize="16"
-                             Background="Transparent"
-                             BorderBrush="{DynamicResource TextTertiaryColor}"
-                             Foreground="{DynamicResource FourthIconColor}"
-                             ></TextBox>
+                                        BorderThickness="0"
+                                        MaxLength="9"
+                                        Margin="10"
+                                        FontSize="16"
+                                        Background="Transparent"
+                                        BorderBrush="{DynamicResource TextTertiaryColor}"
+                                        Foreground="{DynamicResource FourthIconColor}"
+                                        >                                       
+                                    </TextBox>
                                 </Border>
                                     </StackPanel>
                                     <StackPanel Width="350">
@@ -175,7 +178,8 @@
                              CornerRadius="10"
                              BorderThickness="1"
                              >
-                                    <TextBox x:Name="tbRegion"                                                
+                                    <TextBox x:Name="tbRegion"  
+                                             MaxLength="25"
                              BorderThickness="0"
                              Margin="10"
                              FontSize="16"
@@ -199,7 +203,8 @@
                              CornerRadius="10"
                              BorderThickness="1"
                              >
-                                    <TextBox x:Name="tbDistric"                                                
+                                    <TextBox x:Name="tbDistric"
+                                             MaxLength="35"
                              BorderThickness="0"
                              Margin="10"
                              FontSize="16"
@@ -223,7 +228,8 @@
                              CornerRadius="10"
                              BorderThickness="1"
                              >
-                                    <TextBox x:Name="tbAdress"                                                
+                                    <TextBox x:Name="tbAdress"   
+                                             MaxLength="50"
                              BorderThickness="0"
                              Margin="10"
                              FontSize="16"

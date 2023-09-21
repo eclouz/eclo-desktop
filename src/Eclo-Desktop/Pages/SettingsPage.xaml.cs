@@ -3,23 +3,11 @@ using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using Microsoft.Win32;
+using Notification.Wpf;
 using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Ink;
-using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Eclo_Desktop.Pages
 {
@@ -75,7 +63,7 @@ namespace Eclo_Desktop.Pages
                 userViewModel.PhoneNumber = getUserInfo.PhoneNumber;
 
                 string image_path = UserImage.ImageSource.ToString();
-                
+
                 if (!String.IsNullOrEmpty(image_path))
                 {
                     userViewModel.ImagePath = image_path;
@@ -86,7 +74,11 @@ namespace Eclo_Desktop.Pages
                 {
                     loader.Visibility = Visibility.Collapsed;
                     btnSaveSettingsChange.IsEnabled = true;
-                    MessageBox.Show("Your informations are updated");
+
+                    //For Notification Update Successful
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Successful!", "Update account", NotificationType.Success);
+
                     SettingsPage settingsPage = new SettingsPage(refreshDelegate);
                     refreshDelegate(settingsPage);
                 }
@@ -94,14 +86,19 @@ namespace Eclo_Desktop.Pages
                 {
                     loader.Visibility = Visibility.Collapsed;
                     btnSaveSettingsChange.IsEnabled = true;
-                    MessageBox.Show("SomeThing wrong Try Again");
+                    //For Notification Update Warning
+                    var notificationManager = new NotificationManager();
+                    notificationManager.Show("Warning!", "Please try again", NotificationType.Warning);
                 }
             }
             catch
             {
                 loader.Visibility = Visibility.Collapsed;
                 btnSaveSettingsChange.IsEnabled = true;
-                MessageBox.Show("SomeThing wrong Try Again");
+
+                //For Notification Update Warning
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning);
             }
         }
 
@@ -114,11 +111,6 @@ namespace Eclo_Desktop.Pages
                 UserImage.ImageSource = new BitmapImage(new Uri(imgpath, UriKind.Relative));
             }
 
-        }
-
-        private void btnSaveSecuritySettingsChange_Click(object sender, RoutedEventArgs e)
-        {
-            MessageBox.Show("This Service is Currently in work Please wait");
         }
     }
 }

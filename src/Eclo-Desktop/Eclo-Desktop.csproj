@@ -15,9 +15,11 @@
     <None Remove="Assets\StaticImages\Author\Abdulaziz.JPG" />
     <None Remove="Assets\StaticImages\Author\Davron.jpg" />
     <None Remove="Assets\StaticImages\Author\github-sign.png" />
+    <None Remove="Assets\StaticImages\Author\Hasanboy.jpg" />
     <None Remove="Assets\StaticImages\Author\linkedin.png" />
     <None Remove="Assets\StaticImages\Author\Mirshod.jpg" />
     <None Remove="Assets\StaticImages\Author\programmer %282%29.png" />
+    <None Remove="Assets\StaticImages\Author\Sherzod.jpg" />
     <None Remove="Assets\StaticImages\Author\star.png" />
     <None Remove="Assets\StaticImages\Author\telegram.png" />
     <None Remove="Assets\StaticImages\Author\Ustoz.jpg" />
@@ -76,9 +78,11 @@
     <Resource Include="Assets\StaticImages\Author\Abdulaziz.JPG" />
     <Resource Include="Assets\StaticImages\Author\Davron.jpg" />
     <Resource Include="Assets\StaticImages\Author\github-sign.png" />
+    <Resource Include="Assets\StaticImages\Author\Hasanboy.jpg" />
     <Resource Include="Assets\StaticImages\Author\linkedin.png" />
     <Resource Include="Assets\StaticImages\Author\Mirshod.jpg" />
     <Resource Include="Assets\StaticImages\Author\programmer (2).png" />
+    <Resource Include="Assets\StaticImages\Author\Sherzod.jpg" />
     <Resource Include="Assets\StaticImages\Author\star.png" />
     <Resource Include="Assets\StaticImages\Author\telegram.png" />
     <Resource Include="Assets\StaticImages\Author\Ustoz.jpg" />
