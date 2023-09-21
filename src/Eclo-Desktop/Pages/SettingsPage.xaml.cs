@@ -37,11 +37,6 @@ namespace Eclo_Desktop.Pages
             InitializeComponent();
             this.refreshDelegate = refreshPageHandlerDelegate;
         }
-        public SettingsPage()
-        {
-            InitializeComponent();
-
-        }
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
             var identity = IdentitySingleton.GetInstance();
@@ -80,6 +75,7 @@ namespace Eclo_Desktop.Pages
                 userViewModel.PhoneNumber = getUserInfo.PhoneNumber;
 
                 string image_path = UserImage.ImageSource.ToString();
+                
                 if (!String.IsNullOrEmpty(image_path))
                 {
                     userViewModel.ImagePath = image_path;
@@ -91,7 +87,7 @@ namespace Eclo_Desktop.Pages
                     loader.Visibility = Visibility.Collapsed;
                     btnSaveSettingsChange.IsEnabled = true;
                     MessageBox.Show("Your informations are updated");
-                    SettingsPage settingsPage = new SettingsPage();
+                    SettingsPage settingsPage = new SettingsPage(refreshDelegate);
                     refreshDelegate(settingsPage);
                 }
                 else
@@ -100,20 +96,14 @@ namespace Eclo_Desktop.Pages
                     btnSaveSettingsChange.IsEnabled = true;
                     MessageBox.Show("SomeThing wrong Try Again");
                 }
-
             }
             catch
             {
                 loader.Visibility = Visibility.Collapsed;
                 btnSaveSettingsChange.IsEnabled = true;
                 MessageBox.Show("SomeThing wrong Try Again");
-
             }
-
-
-
         }
-
 
         private void updateImage_Click(object sender, RoutedEventArgs e)
         {
