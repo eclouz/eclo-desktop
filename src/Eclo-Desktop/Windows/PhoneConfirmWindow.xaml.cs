@@ -110,7 +110,7 @@ namespace Eclo_Desktop.Windows
 
                     // For Notification Success
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Success!", "Success register", NotificationType.Success);
+                    notificationManager.Show("Success!", "Success register", NotificationType.Success, RowsCountWhenTrim: 2);
 
                     //For get Singleton data
                     var identity = IdentitySingleton.GetInstance();
@@ -149,7 +149,7 @@ namespace Eclo_Desktop.Windows
 
                     // For Notification Warning!
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", "Code Wrong", NotificationType.Warning);
+                    notificationManager.Show("Warning!", "Code Wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
                 }
             }
             else
@@ -162,7 +162,7 @@ namespace Eclo_Desktop.Windows
 
                 // For Notification Warning
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Code Wrong", NotificationType.Warning);
+                notificationManager.Show("Warning!", "Code Wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
         }
     }

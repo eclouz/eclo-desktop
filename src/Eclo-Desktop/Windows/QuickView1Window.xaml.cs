@@ -5,6 +5,7 @@ using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
 using Notification.Wpf;
+using Notification.Wpf.Controls;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -299,7 +300,7 @@ namespace Eclo_Desktop.Windows
 
                 //For Save product ShoppingChart Success
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Success!", "Save product ShoppingChart", NotificationType.Success);
+                notificationManager.Show("Success!", "Save product ShoppingChart", NotificationType.Success, RowsCountWhenTrim: 2);
 
                 _upateShoppingChartCount();    
 
@@ -308,7 +309,7 @@ namespace Eclo_Desktop.Windows
             {
                 //For Save product ShoppingChart Warning
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning);
+                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning,RowsCountWhenTrim:2);
             }
 
 

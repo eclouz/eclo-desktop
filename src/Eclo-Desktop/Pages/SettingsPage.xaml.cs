@@ -77,7 +77,7 @@ namespace Eclo_Desktop.Pages
 
                     //For Notification Update Successful
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Successful!", "Update account", NotificationType.Success);
+                    notificationManager.Show("Successful!", "Update account", NotificationType.Success, RowsCountWhenTrim: 2);
 
                     SettingsPage settingsPage = new SettingsPage(refreshDelegate);
                     refreshDelegate(settingsPage);
@@ -88,7 +88,7 @@ namespace Eclo_Desktop.Pages
                     btnSaveSettingsChange.IsEnabled = true;
                     //For Notification Update Warning
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", "Please try again", NotificationType.Warning);
+                    notificationManager.Show("Warning!", "Please try again", NotificationType.Warning, RowsCountWhenTrim: 2);
                 }
             }
             catch
@@ -98,7 +98,7 @@ namespace Eclo_Desktop.Pages
 
                 //For Notification Update Warning
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning);
+                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
         }
 
