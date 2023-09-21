@@ -1,4 +1,5 @@
 ﻿using Eclo_Desktop.Security;
+using Integrated.ServiceLayer;
 using System;
 using System.Linq;
 using System.Windows;
@@ -60,7 +61,7 @@ namespace Eclo_Desktop.Components.ShoppingCharts
             tbProductQuantity.Text = shoppingChartView.ItemCount.ToString();
             tbProductSize.Text = shoppingChartView.ProductSize.ToString();
             tbQuantity.Text = "Quantity: " + shoppingChartView.ProductQuantity.ToString();
-            string imageUrl = "https://localhost:7190/" + shoppingChartView.ProductImage;
+            string imageUrl = API.BASE_URL_IMAGE + shoppingChartView.ProductImage;
             Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
             imageProduct.ImageSource = new BitmapImage(imageUri);
             productQuantity = shoppingChartView.ProductQuantity;

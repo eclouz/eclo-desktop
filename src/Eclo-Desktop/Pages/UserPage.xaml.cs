@@ -1,4 +1,5 @@
 using Eclo_Desktop.Security;
+using Integrated.ServiceLayer;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using System;
@@ -39,7 +40,7 @@ namespace Eclo_Desktop.Pages
             var result = await _userService.GetUserById(identity.Token);
 
 
-            string imageUrl = "https://localhost:7190/" + result.ImagePath;
+            string imageUrl = API.BASE_URL_IMAGE + result.ImagePath;
             Uri uri = new Uri(imageUrl, UriKind.Absolute);            
             brProfileImage.ImageSource = new BitmapImage(uri);
 

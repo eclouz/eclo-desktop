@@ -1,6 +1,7 @@
 ﻿using Eclo_Desktop.Components.Products;
 using Eclo_Desktop.Security;
 using Eclo_Desktop.Windows;
+using Integrated.ServiceLayer;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
 using System;
@@ -156,7 +157,7 @@ namespace Eclo_Desktop.Components.Dashboards
             foreach ( var i in productViewModels.ProductDetail)
             {
                 lblClotheColorDescription.Content = i.Color;
-                string imageUrl = "https://localhost:7190/" + i.ImagePath;
+                string imageUrl = API.BASE_URL_IMAGE + i.ImagePath;
                 Uri imageUri = new Uri(imageUrl, UriKind.Absolute);                
                 imgProduct.ImageSource = new BitmapImage(imageUri);
             }
@@ -191,7 +192,7 @@ namespace Eclo_Desktop.Components.Dashboards
                 }
                 countItem++;
                 SmallProductPicturesUserControl smallProductPicturesUserControl = new SmallProductPicturesUserControl();
-                string imageUrl = "https://localhost:7190/" + item.ImagePath;
+                string imageUrl = API.BASE_URL_IMAGE + item.ImagePath;
                 Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
                 smallProductPicturesUserControl.setData(item.Color,imageUri);
                 smallProductPicturesUserControl.SetDataToComponent = setDataToComponent;

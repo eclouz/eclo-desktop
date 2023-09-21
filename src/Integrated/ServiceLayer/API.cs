@@ -8,11 +8,13 @@ using System.Threading.Tasks;
 
 namespace Integrated.ServiceLayer;
 
-public class API
+public static class API
 {
     //Base Url
     public static readonly string BASE_URL = "https://localhost:7190/api/";
-    
+
+    public static readonly string BASE_URL_IMAGE = "https://localhost:7190/";
+
     //Login Register Confirm Password URLs
     public static readonly string CREATE_USER = BASE_URL + "auth/register";
     public static readonly string SEND_CODE_REGISTER = BASE_URL + "auth/register/send-code";
