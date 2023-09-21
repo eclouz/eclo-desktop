@@ -65,7 +65,7 @@
                                          Margin="10,0,0,0" 
                                          Foreground="#323B4B" 
                                          BorderThickness="0" 
-                                         Background="#FFE9E9E9" 
+                                         Background="#F1F1F1" 
                                          FontSize="16" 
                                          Width="70" 
                                          FontWeight="SemiBold" 
@@ -93,7 +93,7 @@
                                          Margin="5,0,0,0" 
                                          Foreground="#323B4B" 
                                          BorderThickness="0" 
-                                         Background="#FFE9E9E9" 
+                                         Background="#F1F1F1" 
                                          FontSize="16" 
                                          FontWeight="SemiBold" 
                                          HorizontalAlignment="Left" 
@@ -120,13 +120,13 @@
                                 BorderThickness="2">
                             <DockPanel>
                                 <Grid>
-                                    <Label Content="v"
-                                           FontWeight="SemiBold"
-                                           FontSize="10"
-                                           Foreground="#323B4B"
+                                        <Image  Source="\Assets\StaticImages\angle-small-down.png"
                                            HorizontalAlignment="Right"
-                                           VerticalAlignment="Center" Margin="0,0,5,0"/>
-                                    <Label Content="Categories"
+                                           VerticalAlignment="Center"
+                                                Margin="0,5,15,0"
+                                                Height="20"
+                                                Width="15"/>
+                                        <Label Content="Categories"
                                            FontWeight="SemiBold"
                                            FontSize="16"
                                            Foreground="#323B4B"

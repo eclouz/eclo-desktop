@@ -12,6 +12,7 @@
     <None Remove="Assets\StaticImages\649931-removebg-preview.png" />
     <None Remove="Assets\StaticImages\add %282%29.png" />
     <None Remove="Assets\StaticImages\add-to-cart.png" />
+    <None Remove="Assets\StaticImages\angle-small-down.png" />
     <None Remove="Assets\StaticImages\Author\+Ergashev Javohir.jpg" />
     <None Remove="Assets\StaticImages\Author\Abdulaziz.JPG" />
     <None Remove="Assets\StaticImages\Author\Davron.jpg" />
@@ -76,6 +77,7 @@
     <Resource Include="Assets\StaticImages\649931-removebg-preview.png" />
     <Resource Include="Assets\StaticImages\add (2).png" />
     <Resource Include="Assets\StaticImages\add-to-cart.png" />
+    <Resource Include="Assets\StaticImages\angle-small-down.png" />
     <Resource Include="Assets\StaticImages\Author\+Ergashev Javohir.jpg" />
     <Resource Include="Assets\StaticImages\Author\Abdulaziz.JPG" />
     <Resource Include="Assets\StaticImages\Author\Davron.jpg" />
