@@ -160,6 +160,7 @@ namespace Eclo_Desktop.Components.Dashboards
                 string imageUrl = API.BASE_URL_IMAGE + i.ImagePath;
                 Uri imageUri = new Uri(imageUrl, UriKind.Absolute);                
                 imgProduct.ImageSource = new BitmapImage(imageUri);
+                
             }
             //viewModel.Id = productViewModels.Id;
             this.productViewModels.Id = productViewModels.Id;
@@ -197,6 +198,7 @@ namespace Eclo_Desktop.Components.Dashboards
                 smallProductPicturesUserControl.setData(item.Color,imageUri);
                 smallProductPicturesUserControl.SetDataToComponent = setDataToComponent;
                 SPLittlePictures.Children.Add(smallProductPicturesUserControl);
+                loader.Visibility = Visibility.Collapsed;
             }
 
         }
@@ -204,6 +206,7 @@ namespace Eclo_Desktop.Components.Dashboards
         {
             lblClotheColorDescription.Content = colorName;
             imgProduct.ImageSource = new BitmapImage(imageUri);
+           
 
         }
     }

@@ -38,6 +38,7 @@ namespace Eclo_Desktop.Pages
             string imageUrl = API.BASE_URL_IMAGE + getUserInfo?.ImagePath;
             Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
             UserImage.ImageSource = new BitmapImage(imageUri);
+            loader.Visibility=Visibility.Collapsed;
             tbRegion.Text = getUserInfo?.Region;
             tbDistric.Text = getUserInfo?.District;
             tbAdress.Text = getUserInfo?.Address;

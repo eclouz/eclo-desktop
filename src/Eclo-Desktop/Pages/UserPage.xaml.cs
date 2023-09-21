@@ -43,6 +43,7 @@ namespace Eclo_Desktop.Pages
             string imageUrl = API.BASE_URL_IMAGE + result.ImagePath;
             Uri uri = new Uri(imageUrl, UriKind.Absolute);            
             brProfileImage.ImageSource = new BitmapImage(uri);
+            loader.Visibility=Visibility.Collapsed;
 
             lblName.Content = result.FirstName;
             lblSecondName.Content = result.LastName;

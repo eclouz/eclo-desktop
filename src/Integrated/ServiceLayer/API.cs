@@ -10,6 +10,12 @@ namespace Integrated.ServiceLayer;
 
 public static class API
 {
+
+    //Base Url
+    //public static readonly string BASE_URL = "http://165.22.242.204:89/api/";
+
+    //public static readonly string BASE_URL_IMAGE = "http://165.22.242.204:89/";
+
     //Base Url
     public static readonly string BASE_URL = "https://localhost:7190/api/";
 

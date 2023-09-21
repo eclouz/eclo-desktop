@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Eclo_Desktop.Components.Dashboards"
+             xmlns:local="clr-namespace:Eclo_Desktop.Components.Dashboards" xmlns:fa="http://schemas.fontawesome.io/icons/"
              mc:Ignorable="d" 
              Width="250"
              Loaded="UserControl_Loaded"
@@ -108,6 +108,19 @@
                 VerticalAlignment="Top"
                 Margin="0 10"
                 x:Name="ImageBorder">
+            <fa:ImageAwesome
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Margin="0"
+                x:Name="loader"
+                Icon="Spinner"
+                Visibility="Visible"
+                Spin="True"
+                Height="100"
+                Width="100"
+                Foreground="#909CAB"
+                />
+
             <Border.Background>
                 <!--ImageSource="/Assets/StaticImages/MenuBarPicture.png"-->
                 <ImageBrush 
