@@ -98,13 +98,13 @@ namespace Eclo_Desktop.Windows
 
                         //For Notification Send Code Warning
                         var notificationManager = new NotificationManager();
-                        notificationManager.Show("Error!", "Something Error not send code", NotificationType.Error);
+                        notificationManager.Show("Error!", "Something Error not send code", NotificationType.Error, RowsCountWhenTrim: 2);
                     }
                     else
                     {
                         //For Notification Send Code Successful
                         var notificationManager = new NotificationManager();
-                        notificationManager.Show("Successful!", "Send code your phone number", NotificationType.Success);
+                        notificationManager.Show("Successful!", "Send code your phone number", NotificationType.Success, RowsCountWhenTrim: 2);
 
                         // For PhoneConfirWindow give phone_number
                         PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
@@ -132,7 +132,7 @@ namespace Eclo_Desktop.Windows
                     btnSave.IsEnabled = true;
 
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Error!", "Something Error", NotificationType.Error);
+                    notificationManager.Show("Error!", "Something Error", NotificationType.Error, RowsCountWhenTrim: 2);
                 }
             }
             else if (!count.Contains("n"))
@@ -144,7 +144,7 @@ namespace Eclo_Desktop.Windows
                 btnSave.IsEnabled = true;
 
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Name wrong", NotificationType.Warning);
+                notificationManager.Show("Warning!", "Name wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
             else if (!count.Contains("f"))
             {
@@ -155,7 +155,7 @@ namespace Eclo_Desktop.Windows
                 btnSave.IsEnabled = true;
 
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Surname wrong", NotificationType.Warning);
+                notificationManager.Show("Warning!", "Surname wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
 
             else if (!count.Contains("p"))
@@ -167,7 +167,7 @@ namespace Eclo_Desktop.Windows
                 btnSave.IsEnabled = true;
 
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Password wrong", NotificationType.Warning);
+                notificationManager.Show("Warning!", "Password wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
             else if (!count.Contains("t"))
             {
@@ -178,7 +178,7 @@ namespace Eclo_Desktop.Windows
                 btnSave.IsEnabled = true;
 
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Phone number wrong", NotificationType.Warning);
+                notificationManager.Show("Warning!", "Phone number wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
             else
             {
@@ -189,7 +189,7 @@ namespace Eclo_Desktop.Windows
                 btnSave.IsEnabled = true;
 
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "You have filled in the lines incorrectly", NotificationType.Warning);
+                notificationManager.Show("Warning!", "You have filled in the lines incorrectly", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
         }
 
