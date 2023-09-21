@@ -4,7 +4,9 @@ using Eclo_Desktop.Utilities;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using Notification.Wpf;
+using System;
 using System.IdentityModel.Tokens.Jwt;
+using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -115,6 +117,19 @@ namespace Eclo_Desktop.Windows
                 {
                     //Save Singleton Token
                     identity.Token = response.token;
+
+                    try
+                    {
+                        using (StreamWriter writer = new StreamWriter("token.txt"))
+                        {
+                            writer.WriteLine(response.token);
+                        }
+                        
+                    }
+                    catch (Exception ex)
+                    {
+
+                    }
 
                     // begin:: Tokendan ID ni yechib olish
                     var tokenInfo = DecodeJwtToken.DecodeToken(response.token);
