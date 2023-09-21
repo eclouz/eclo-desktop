@@ -57,7 +57,7 @@
 
                                 <StackPanel Grid.Column="0">
 
-                                    <Border Height="350"
+                                    <Border Height="400"
                                             Width="370"
                                             CornerRadius="15"
                                             HorizontalAlignment="Left"
@@ -65,7 +65,7 @@
                                         <Border.Background>
                                             <ImageBrush
                                         x:Name="imageQuickview"
-                                        Stretch="UniformToFill"
+                                        
                                         ImageSource="/assets/staticimages/Krossovka.jpg"
                                         />
                                         </Border.Background>

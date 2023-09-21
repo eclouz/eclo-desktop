@@ -31,13 +31,17 @@ namespace Eclo_Desktop.Components.Dashboards
         ProductViewModels productViewModels = new ProductViewModels();
         
         private IProductService _productService;
+        public UpdateShoppingChartCountDelegate _upateShoppingChartCount;
+
         //public bool Liked { get; set; } 
         IProductService productService = new ProductService();
-        public ProductLightClothesUserControl()
+        public ProductLightClothesUserControl(UpdateShoppingChartCountDelegate updateShoppingChartCount)
         {
             InitializeComponent();
             this._productService = new ProductService();
+            this._upateShoppingChartCount = updateShoppingChartCount;
         }
+       
 
         private void btnAddToBag_Click(object sender, RoutedEventArgs e)
         {
@@ -48,7 +52,7 @@ namespace Eclo_Desktop.Components.Dashboards
         {
             string token = IdentitySingleton.GetInstance().Token;
             
-            QuickView1Window quickView1Window = new QuickView1Window();
+            QuickView1Window quickView1Window = new QuickView1Window(_upateShoppingChartCount);
             var identity = IdentitySingleton.GetInstance();
             var result = await productService.GetByIdProducts(identity.UserId, productViewModels.Id,token);            
             quickView1Window.setData(result);                            
