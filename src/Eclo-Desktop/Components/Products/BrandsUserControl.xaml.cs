@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Integrated.ServiceLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,7 +29,7 @@ namespace Eclo_Desktop.Components.Products
         }
         public void setData(MensBrandsViewModels mensBrandsViewModels)
         {
-            string imageUrl = "https://localhost:7190/" + mensBrandsViewModels.BrandIconPath;
+            string imageUrl = API.BASE_URL_IMAGE + mensBrandsViewModels.BrandIconPath;
             Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
             ImgBrands.ImageSource = new BitmapImage(imageUri);
         }

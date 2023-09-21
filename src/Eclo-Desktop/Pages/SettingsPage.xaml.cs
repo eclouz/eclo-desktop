@@ -1,5 +1,6 @@
 ﻿using Eclo.DataAccess.ViewModels.Users;
 using Eclo_Desktop.Security;
+using Integrated.ServiceLayer;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using Microsoft.Win32;
@@ -34,7 +35,7 @@ namespace Eclo_Desktop.Pages
             tbPassportSerialNumber.Text = getUserInfo?.PassportSerialNumber;
             //if (DateBirthdp.SelectedDate is not null) { getUserInfo.BirthDate = DateBirthdp.SelectedDate.Value; }
 
-            string imageUrl = "https://localhost:7190/" + getUserInfo?.ImagePath;
+            string imageUrl = API.BASE_URL_IMAGE + getUserInfo?.ImagePath;
             Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
             UserImage.ImageSource = new BitmapImage(imageUri);
             tbRegion.Text = getUserInfo?.Region;

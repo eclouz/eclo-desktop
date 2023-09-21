@@ -2,6 +2,7 @@
 using Eclo_Desktop.Components.Products;
 using Eclo_Desktop.Pages;
 using Eclo_Desktop.Security;
+using Integrated.ServiceLayer;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
 using Notification.Wpf;
@@ -187,7 +188,7 @@ namespace Eclo_Desktop.Windows
                 lblColor.Content = productDetail.Color;
 
                 //Product Main Image
-                string imageUrl = "https://localhost:7190/" + productDetail.ImagePath;
+                string imageUrl = API.BASE_URL_IMAGE + productDetail.ImagePath;
                 Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
                 imageQuickview.ImageSource = new BitmapImage(imageUri);
 
@@ -196,7 +197,7 @@ namespace Eclo_Desktop.Windows
 
                 foreach (var item in productDetail.ProductDetailFashions)
                 {
-                    string extraUrl = "https://localhost:7190/" + item.ImagePath;
+                    string extraUrl = API.BASE_URL_IMAGE + item.ImagePath;
                     Uri extraImageUri = new Uri(extraUrl, UriKind.Absolute);
                     ExtraImages.Add(extraImageUri);
                 }

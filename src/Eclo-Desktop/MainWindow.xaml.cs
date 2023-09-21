@@ -3,6 +3,7 @@ using Eclo_Desktop.Pages;
 using Eclo_Desktop.Security;
 using Eclo_Desktop.Themes;
 using Eclo_Desktop.Windows;
+using Integrated.ServiceLayer;
 using Integrated.ServiceLayer.Categories;
 using Integrated.ServiceLayer.Categories.Concrete;
 using Integrated.ServiceLayer.Product;
@@ -57,7 +58,7 @@ namespace Eclo_Desktop
             lblUserName.Content = result.FirstName;
             lblCountry.Content = result.Region;
 
-            string imageUrl = "https://localhost:7190/" + result.ImagePath;
+            string imageUrl = API.BASE_URL_IMAGE + result.ImagePath;
             Uri uri = new Uri(imageUrl, UriKind.Absolute);
             brUserImage.ImageSource = new BitmapImage(uri);
 
