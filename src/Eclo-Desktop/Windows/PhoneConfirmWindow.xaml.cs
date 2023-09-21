@@ -93,6 +93,7 @@ namespace Eclo_Desktop.Windows
         // For Confirm Button
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
+            Regex rx_code = new Regex(@"^[0-9]{5,5}$");
             // We can get an object from the loader inside the Login button
             var loader = btnConfirm.Template.FindName("loader", btnConfirm) as FontAwesome.WPF.ImageAwesome;
 
@@ -101,7 +102,7 @@ namespace Eclo_Desktop.Windows
 
             // button to disable
             btnConfirm.IsEnabled = false;
-            if (tb1.Text.Length > 0 & tb1.Text.Length < 6 )
+            if (rx_code.IsMatch( tb1.Text) )
             {                
                 verifyRegisterDto.Code = int.Parse(tb1.Text);
                 var response = await userService.VerifyRegister(verifyRegisterDto);
@@ -162,7 +163,7 @@ namespace Eclo_Desktop.Windows
 
                 // For Notification Warning
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Code Wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
+                notificationManager.Show("Warning!", "Code must be a 5-digit number", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
         }
     }
