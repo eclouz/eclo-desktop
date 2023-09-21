@@ -151,7 +151,12 @@ public class UserService : IUserService
         var content = new MultipartFormDataContent();
         content.Add(new StringContent($"{dto.FirstName}"), "FirstName");
         content.Add(new StringContent($"{dto.LastName}"), "LastName");
-        content.Add(new StreamContent(File.OpenRead($"{dto.ImagePath}")), "ImagePath", $"{dto.ImagePath}");
+        
+        if (!dto.ImagePath.Contains("/avatars/"))
+        {
+            content.Add(new StreamContent(File.OpenRead($"{dto.ImagePath}")), "ImagePath", $"{dto.ImagePath}");
+        }
+        
         content.Add(new StringContent($"{dto.PhoneNumber}"), "PhoneNumber");
         content.Add(new StringContent($"{dto.PassportSerialNumber}"), "PassportSerialNumber");
         content.Add(new StringContent($"{dto.BirthDate}"), "BirthDate");

@@ -59,6 +59,7 @@ namespace Eclo_Desktop
             Uri uri = new Uri(imageUrl, UriKind.Absolute);
             brUserImage.ImageSource = new BitmapImage(uri);
 
+
             //Dashboard dashboard = new Dashboard();
             PageNavigator.Content = page;
         }
