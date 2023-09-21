@@ -108,7 +108,8 @@
                                              Padding="0"
                                              Background="Transparent"
                                              BorderBrush="{DynamicResource TextTertiaryColor}"
-                                             Foreground="{DynamicResource FourthIconColor}" >
+                                             Foreground="{DynamicResource FourthIconColor}" 
+                                             >
                                     </TextBox>
                                     <!--end:: TextBox Code-->
                                     

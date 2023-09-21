@@ -1,22 +1,9 @@
 using Dtos.Auth;
-using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using Notification.Wpf;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Text.RegularExpressions;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Eclo_Desktop.Windows
 {
@@ -32,9 +19,9 @@ namespace Eclo_Desktop.Windows
         public RegisterWindow()
         {
             InitializeComponent();
-            
-        }            
-        
+
+        }
+
         // Button Close
         private void btnClose_Click(object sender, RoutedEventArgs e)
         {
@@ -76,7 +63,7 @@ namespace Eclo_Desktop.Windows
             string count = "";
 
             // For check TextBox 
-            if(rx_phone.IsMatch(tbPhone.Text)) { count+="t";  }
+            if (rx_phone.IsMatch(tbPhone.Text)) { count += "t"; }
             if (rx_password.IsMatch(tbPassword.Password.ToString())) { count += "p"; }
             if (rx_name.IsMatch(tbSecondName.Text)) { count += "f"; }
             if (rx_name.IsMatch(tbName.Text)) { count += "n"; }
@@ -118,7 +105,7 @@ namespace Eclo_Desktop.Windows
                         //For Notification Send Code Successful
                         var notificationManager = new NotificationManager();
                         notificationManager.Show("Successful!", "Send code your phone number", NotificationType.Success);
-                        
+
                         // For PhoneConfirWindow give phone_number
                         PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
                         phoneConfirmWindow.GetPhone(tbPhone.Text.ToString());
@@ -170,7 +157,7 @@ namespace Eclo_Desktop.Windows
                 var notificationManager = new NotificationManager();
                 notificationManager.Show("Warning!", "Surname wrong", NotificationType.Warning);
             }
-           
+
             else if (!count.Contains("p"))
             {
                 // For the Loader to stop
@@ -192,8 +179,8 @@ namespace Eclo_Desktop.Windows
 
                 var notificationManager = new NotificationManager();
                 notificationManager.Show("Warning!", "Phone number wrong", NotificationType.Warning);
-            }   
-            else  
+            }
+            else
             {
                 // For the Loader to stop
                 loader.Visibility = Visibility.Collapsed;

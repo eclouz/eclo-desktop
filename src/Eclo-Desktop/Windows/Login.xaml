@@ -101,7 +101,8 @@
                                     FontSize="16"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
-                                    Foreground="{DynamicResource FourthIconColor}"/>
+                                    Foreground="{DynamicResource FourthIconColor}"
+                                    MaxLength="13"/>
                                 <!--end:: Phone TextBox-->
 
                             </Border>
@@ -130,7 +131,8 @@
                                     FontSize="16"
                                     Background="Transparent"
                                     BorderBrush="{DynamicResource TextTertiaryColor}"
-                                    Foreground="{DynamicResource FourthIconColor}"/>
+                                    Foreground="{DynamicResource FourthIconColor}"
+                                    MaxLength="20"/>
                                 <!--end:: PasswordBox-->
 
                             </Border>
