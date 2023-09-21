@@ -30,13 +30,15 @@ namespace Eclo_Desktop.Pages
     {
         private readonly IBrandService _brandService;
         private readonly IProductService _productService;
+        private readonly UpdateShoppingChartCountDelegate _updateShoppingChartCount;
 
         public bool clicked { get; set; } = false;
-        public MansCollectionPage()
+        public MansCollectionPage(UpdateShoppingChartCountDelegate updateShoppingChartCount)
         {
             InitializeComponent();
             this._brandService = new BrandService();
             this._productService = new ProductService();
+            this._updateShoppingChartCount = updateShoppingChartCount;
         }
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)
@@ -61,7 +63,7 @@ namespace Eclo_Desktop.Pages
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 wpMens.Children.Add(productLightClothesUserControl);
             }
@@ -79,7 +81,7 @@ namespace Eclo_Desktop.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new ProductsPage());
+            NavigationService?.Navigate(new ProductsPage(_updateShoppingChartCount));
         }
 
         private async void bApply_Click(object sender, RoutedEventArgs e)
@@ -116,7 +118,7 @@ namespace Eclo_Desktop.Pages
                 wpMens.Children.Clear();
                 for (int i = 0; i < mensCategoryProducts.Count; i++)
                 {
-                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                     productLightClothesUserControl.setData(mensCategoryProducts[i]);
                     wpMens.Children.Add(productLightClothesUserControl);
                 }

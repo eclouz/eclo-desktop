@@ -15,10 +15,14 @@ namespace Eclo_Desktop.Pages
     {
 
         private readonly IProductService _productService;
-        public SaveListPage()
+        private readonly UpdateShoppingChartCountDelegate _updateShoppingChartCount;
+
+        public SaveListPage(UpdateShoppingChartCountDelegate updateShoppingChartCount)
         {
             InitializeComponent();
             this._productService = new ProductService();
+            this._updateShoppingChartCount = updateShoppingChartCount;
+        
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -39,7 +43,7 @@ namespace Eclo_Desktop.Pages
             {
                 if (productItem.ProductLiked == true)
                 {
-                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                     productLightClothesUserControl.setData(productItem);
                     MainWP123.Children.Add(productLightClothesUserControl);
                     productLightClothesUserControl.RefreshPage = RefreshPageHandler;

@@ -25,10 +25,14 @@ namespace Eclo_Desktop.Pages
     public partial class Kid_sCollection : Page
     {
         private readonly IProductService _productService;
-        public Kid_sCollection()
+        private readonly UpdateShoppingChartCountDelegate _updateShoppingChartCount;
+
+        public Kid_sCollection(UpdateShoppingChartCountDelegate updateShoppingChart)
         {
             InitializeComponent();
             this._productService = new ProductService();
+            this._updateShoppingChartCount = updateShoppingChart;
+        
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -47,7 +51,7 @@ namespace Eclo_Desktop.Pages
             for (int i = 0; i < kidsCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(kidsCategoryProducts[i].SubCategory[0].Name);
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                 productLightClothesUserControl.setData(kidsCategoryProducts[i]);
                 wpKids.Children.Add(productLightClothesUserControl);
             }
@@ -64,7 +68,7 @@ namespace Eclo_Desktop.Pages
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new ProductsPage());
+            NavigationService?.Navigate(new ProductsPage(_updateShoppingChartCount));
         }
 
         private async void bApply_Click(object sender, RoutedEventArgs e)
@@ -92,7 +96,7 @@ namespace Eclo_Desktop.Pages
                 wpKids.Children.Clear();
                 for (int i = 0; i < kidsCategoryProducts.Count; i++)
                 {
-                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                     productLightClothesUserControl.setData(kidsCategoryProducts[i]);
                     wpKids.Children.Add(productLightClothesUserControl);
                 }

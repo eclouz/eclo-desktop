@@ -32,7 +32,15 @@ namespace Eclo_Desktop.Pages
     {
         private readonly IProductService _productService;
         private readonly ISubCategoryService _subCategoryService;
+        public readonly UpdateShoppingChartCountDelegate _upateShoppingChartCount;
 
+        public Dashboard(UpdateShoppingChartCountDelegate updateShoppingChartCount)
+        {
+            InitializeComponent();
+            this._productService = new ProductService();
+            this._subCategoryService = new SubCategoryService();
+            this._upateShoppingChartCount = updateShoppingChartCount;
+        }
         public Dashboard()
         {
             InitializeComponent();
@@ -40,7 +48,7 @@ namespace Eclo_Desktop.Pages
             this._subCategoryService = new SubCategoryService();
         }
 
-       
+
         //public async Task setDataForDashboard()
         //{
         //    await refreshAsync();
@@ -49,7 +57,7 @@ namespace Eclo_Desktop.Pages
         //{
         //    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
         //    productLightClothesUserControl.RefreshDashboard = refreshAsync;
-            
+
         //}
         public async Task refreshAsync()
         {
@@ -73,7 +81,7 @@ namespace Eclo_Desktop.Pages
             loader.Visibility = Visibility.Collapsed;
             foreach ( var product in products )
             {
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                 productLightClothesUserControl.setData(product);
                 SecondWp.Children.Add(productLightClothesUserControl);
                 productLightClothesUserControl.RefreshPage = RefreshPageHandler;
@@ -119,7 +127,7 @@ namespace Eclo_Desktop.Pages
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 SecondWp.Children.Add(productLightClothesUserControl);
             }
@@ -151,7 +159,7 @@ namespace Eclo_Desktop.Pages
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 SecondWp.Children.Add(productLightClothesUserControl);
             }
@@ -183,7 +191,7 @@ namespace Eclo_Desktop.Pages
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 SecondWp.Children.Add(productLightClothesUserControl);
             }
@@ -208,7 +216,7 @@ namespace Eclo_Desktop.Pages
             var products = result.productViewModels;
             foreach (var product in products)
             {
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                 productLightClothesUserControl.setData(product);
                 SecondWp.Children.Add(productLightClothesUserControl);
             }
@@ -231,12 +239,12 @@ namespace Eclo_Desktop.Pages
 
         private void btnShowMeAll_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new MansCollectionPage());
+            NavigationService?.Navigate(new MansCollectionPage(_upateShoppingChartCount));
         }
 
         private void btnShowMeAll2_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new MansCollectionPage());
+            NavigationService?.Navigate(new MansCollectionPage(_upateShoppingChartCount));
         }
 
         private void btnShowMeAll3_Click(object sender, RoutedEventArgs e)
@@ -291,7 +299,7 @@ namespace Eclo_Desktop.Pages
                 SecondWp.Children.Clear();
                 for (int i = 0; i < allCategoryProducts.Count; i++)
                 {
-                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                     productLightClothesUserControl.setData(allCategoryProducts[i]);
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
@@ -319,7 +327,7 @@ namespace Eclo_Desktop.Pages
                 SecondWp.Children.Clear();
                 for (int i = 0; i < mensCategoryProducts.Count; i++)
                 {
-                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                     productLightClothesUserControl.setData(mensCategoryProducts[i]);
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
@@ -348,7 +356,7 @@ namespace Eclo_Desktop.Pages
                 SecondWp.Children.Clear();
                 for (int i = 0; i < mensCategoryProducts.Count; i++)
                 {
-                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                     productLightClothesUserControl.setData(mensCategoryProducts[i]);
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
@@ -377,7 +385,7 @@ namespace Eclo_Desktop.Pages
                 SecondWp.Children.Clear();
                 for (int i = 0; i < mensCategoryProducts.Count; i++)
                 {
-                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                     productLightClothesUserControl.setData(mensCategoryProducts[i]);
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }

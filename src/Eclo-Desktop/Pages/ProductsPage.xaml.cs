@@ -26,13 +26,15 @@ namespace Eclo_Desktop.Pages
     public partial class ProductsPage : Page
     {
         private readonly IProductService _productService;
-        MansCollectionPage mansCollectionPage = new MansCollectionPage();
-        Women_sCollection women_SCollection = new Women_sCollection();
-        Kid_sCollection kid_SCollection=new Kid_sCollection();
-        public ProductsPage()
+        public readonly UpdateShoppingChartCountDelegate _updateShoppingChartCount;
+        //MansCollectionPage mansCollectionPage = new MansCollectionPage();
+        //Women_sCollection women_SCollection = new Women_sCollection();
+        //Kid_sCollection kid_SCollection=new Kid_sCollection();
+        public ProductsPage(UpdateShoppingChartCountDelegate updateShoppingChartCount)
         {
             InitializeComponent();
             this._productService = new ProductService();
+            this._updateShoppingChartCount = updateShoppingChartCount;
 
         }
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -44,8 +46,8 @@ namespace Eclo_Desktop.Pages
 
         private async void MensCategoryBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new MansCollectionPage());
-            MansCollectionPage mansCollectionPage = new MansCollectionPage();
+            NavigationService?.Navigate(new MansCollectionPage(_updateShoppingChartCount));
+            MansCollectionPage mansCollectionPage = new MansCollectionPage(_updateShoppingChartCount);
             mansCollectionPage.tbMin.Text = "2000";
             mansCollectionPage.tbMax.Text = "7500000";
             int min = int.Parse(mansCollectionPage.tbMin.Text);
@@ -61,7 +63,7 @@ namespace Eclo_Desktop.Pages
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 mansCollectionPage.wpMens.Children.Add(productLightClothesUserControl);
             }
@@ -87,8 +89,8 @@ namespace Eclo_Desktop.Pages
 
         private async void WomensCategoryBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new Women_sCollection());
-            Women_sCollection women_SCollection = new Women_sCollection();
+            NavigationService?.Navigate(new Women_sCollection(_updateShoppingChartCount));
+            Women_sCollection women_SCollection = new Women_sCollection(_updateShoppingChartCount);
             women_SCollection.tbMin.Text = "2000";
             women_SCollection.tbMax.Text = "7500000";
             int min = int.Parse(women_SCollection.tbMin.Text);
@@ -104,7 +106,7 @@ namespace Eclo_Desktop.Pages
             for (int i = 0; i < womensCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(womensCategoryProducts[i].SubCategory[0].Name);
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                 productLightClothesUserControl.setData(womensCategoryProducts[i]);
                 women_SCollection.wpWomen.Children.Add(productLightClothesUserControl);
             }
@@ -121,7 +123,7 @@ namespace Eclo_Desktop.Pages
 
         private void KidsCategoryBtn_Click(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new Kid_sCollection());
+            NavigationService?.Navigate(new Kid_sCollection(_updateShoppingChartCount));
         }
     }
 }
