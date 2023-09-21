@@ -88,63 +88,8 @@ namespace Eclo_Desktop
         }
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            IdentitySingleton identitySingleton = IdentitySingleton.GetInstance();
-            string filePath = "token.txt"; // Tekshirish kerak bo'lgan fayl nomi
-            FileInfo fileInfo = new FileInfo(filePath);
-            if (identitySingleton.Token == null)
-            {
-                if (fileInfo.Exists && fileInfo.Length > 0)
-                {
-                    try
-                    {
-                        using (StreamReader reader = new StreamReader(filePath))
-                        {
-                            string token = await reader.ReadLineAsync();
-                            identitySingleton.Token = token;
-
-                            // begin:: Tokendan ID ni yechib olish
-                            var tokenInfo = DecodeJwtToken.DecodeToken(token);
-
-                            if (tokenInfo.success)
-                            {
-                                var jwtToken = tokenInfo.token as JwtSecurityToken;
-
-                                // Get User id
-                                identitySingleton.UserId = int.Parse(jwtToken.Claims.First(claim => claim.Type == "Id").Value);
-                            }
-                            //end:: Tokendan ID ni yechib olish
-                        }
-                        Dashboard dashboard = new Dashboard(updateShoppingChartCount);
-                        await refreshAsync(dashboard);
-                    }
-                    catch (Exception ex)
-                    {
-                        this.Hide();
-                        LoginWindow loginWindow = new LoginWindow();
-                        loginWindow.Show();
-                    }
-                }
-                else if (fileInfo.Exists && fileInfo.Length == 0)
-                {
-                    this.Hide();
-                    LoginWindow loginWindow = new LoginWindow();
-                    loginWindow.Show();
-                }
-                else
-                {
-                    this.Hide();
-                    LoginWindow loginWindow = new LoginWindow();
-                    loginWindow.Show();
-                }
-            }
-            else
-            {
                 Dashboard dashboard = new Dashboard(updateShoppingChartCount);
-                await refreshAsync(dashboard);
-            }
-            
-            
-
+                await refreshAsync(dashboard);           
         }
 
         private async void rbDashboard_Click(object sender, RoutedEventArgs e)

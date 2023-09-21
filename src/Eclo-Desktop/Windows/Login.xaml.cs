@@ -118,19 +118,6 @@ namespace Eclo_Desktop.Windows
                     //Save Singleton Token
                     identity.Token = response.token;
 
-                    try
-                    {
-                        using (StreamWriter writer = new StreamWriter("token.txt"))
-                        {
-                            writer.WriteLine(response.token);
-                        }
-                        
-                    }
-                    catch (Exception ex)
-                    {
-
-                    }
-
                     // begin:: Tokendan ID ni yechib olish
                     var tokenInfo = DecodeJwtToken.DecodeToken(response.token);
 
