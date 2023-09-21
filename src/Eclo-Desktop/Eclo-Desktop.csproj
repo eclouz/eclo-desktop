@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\StaticImages\649931-removebg-preview.png" />
     <None Remove="Assets\StaticImages\add %282%29.png" />
     <None Remove="Assets\StaticImages\add-to-cart.png" />
     <None Remove="Assets\StaticImages\Author\+Ergashev Javohir.jpg" />
@@ -72,6 +73,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\StaticImages\649931-removebg-preview.png" />
     <Resource Include="Assets\StaticImages\add (2).png" />
     <Resource Include="Assets\StaticImages\add-to-cart.png" />
     <Resource Include="Assets\StaticImages\Author\+Ergashev Javohir.jpg" />

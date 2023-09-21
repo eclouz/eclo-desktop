@@ -19,13 +19,16 @@ namespace Eclo_Desktop.Components.ShoppingCharts
         private double productPrice;
         private UpdateTotalPriceDelegate updatePriceDelgate;
         private RefreshShoppingChart refreshPage;
+        private UpdateShoppingChartCountDelegate _updateShoppingChartCount;
 
-        public Item(UpdateTotalPriceDelegate updateTotalPriceDelegate, RefreshShoppingChart refreshShoppingChart)
+        public Item(UpdateTotalPriceDelegate updateTotalPriceDelegate, RefreshShoppingChart refreshShoppingChart,UpdateShoppingChartCountDelegate updateShoppingChartCount)
         {
             InitializeComponent();
             //Fieldga konstruktor orqali kirib kelayotgan delegat olayabmiz
             this.updatePriceDelgate = updateTotalPriceDelegate;
             this.refreshPage = refreshShoppingChart;
+            this._updateShoppingChartCount = updateShoppingChartCount;
+        
         }
 
        
@@ -44,6 +47,7 @@ namespace Eclo_Desktop.Components.ShoppingCharts
                 //Delegatga qiymatlarni berib yuboryapmiz
                 Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, int.Parse(tbProductQuantity.Text.ToString())));
             }
+            _updateShoppingChartCount();
             refreshPage();
 
         }

@@ -26,12 +26,16 @@ namespace Eclo_Desktop.Pages
     public partial class Women_sCollection : Page
     {
         private readonly IProductService _productService;
+        private readonly UpdateShoppingChartCountDelegate _updateShoppingChartCount;
+
         List<ProductViewModels> roductViewModelsList { get ; set; }
 
-        public Women_sCollection()
+        public Women_sCollection(UpdateShoppingChartCountDelegate updateShoppingChart)
         {
             InitializeComponent();
             this._productService = new ProductService();
+            this._updateShoppingChartCount = updateShoppingChart;
+        
         }
 
         public async Task refreshAsync()
@@ -51,7 +55,7 @@ namespace Eclo_Desktop.Pages
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 wpWomen.Children.Add(productLightClothesUserControl);
             }
@@ -85,7 +89,7 @@ namespace Eclo_Desktop.Pages
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
-                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 wpWomen.Children.Add(productLightClothesUserControl);
             }
@@ -103,7 +107,7 @@ namespace Eclo_Desktop.Pages
         
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            NavigationService?.Navigate(new ProductsPage());
+            NavigationService?.Navigate(new ProductsPage(_updateShoppingChartCount));
         }
 
         private async void bApply_Click(object sender, RoutedEventArgs e)
@@ -132,7 +136,7 @@ namespace Eclo_Desktop.Pages
                 wpWomen.Children.Clear();
                 for (int i = 0; i < womensCategoryProducts.Count; i++)
                 {
-                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl();
+                    ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                     productLightClothesUserControl.setData(womensCategoryProducts[i]);
                     wpWomen.Children.Add(productLightClothesUserControl);
                 }

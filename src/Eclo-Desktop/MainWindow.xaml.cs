@@ -25,6 +25,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using static Eclo_Desktop.Components.Dashboards.ProductLightClothesUserControl;
+using static Eclo_Desktop.Pages.ShoppingChartPage;
 
 namespace Eclo_Desktop
 {
@@ -32,20 +33,21 @@ namespace Eclo_Desktop
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public delegate void RefreshPageHandlerDelegate(Page page);
-
+    public delegate void UpdateShoppingChartCountDelegate();
     public partial class MainWindow : Window
     {
         private readonly ISubCategoryService _subCategoryService;
         private readonly IUserService _userService;
 
         private readonly RefreshPageHandlerDelegate refreshDelegate;
-
+        public UpdateShoppingChartCountDelegate updateShoppingChartCount;
         public MainWindow()
         {
             InitializeComponent();
             this._userService = new UserService();
             this._subCategoryService = new SubCategoryService();
             refreshDelegate = RefreshPageHandler;
+            updateShoppingChartCount = UpdateShoppingChart;
         }
         public async  Task refreshAsync(Page page)
         {
@@ -68,17 +70,29 @@ namespace Eclo_Desktop
             await refreshAsync(page);
         }
 
+        public async void UpdateShoppingChart()
+        {
+            lbCount.Text = IdentitySingleton.GetInstance().ShoppingChartProducts.Count.ToString();
+            if (int.Parse(lbCount.Text) == 0)
+            {
+                basketCount.Visibility = Visibility.Collapsed;
+            }
+            else
+            {
+                basketCount.Visibility = Visibility.Visible;
+            }
+        }
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(updateShoppingChartCount);
             await refreshAsync(dashboard);
-
             
+
         }
 
         private async void rbDashboard_Click(object sender, RoutedEventArgs e)
         {
-            Dashboard dashboard = new Dashboard();
+            Dashboard dashboard = new Dashboard(updateShoppingChartCount);
             PageNavigator.Content = dashboard;
             //PageNavigator.Navigate(new Uri("Men.xaml", UriKind.Relative));
             dashboard.cbSubCategories.Items.Clear();
@@ -96,7 +110,7 @@ namespace Eclo_Desktop
 
         private void rbProducts_Click(object sender, RoutedEventArgs e)
         {
-            ProductsPage page = new ProductsPage();
+            ProductsPage page = new ProductsPage(updateShoppingChartCount);
             PageNavigator.Content = page;
         }
 
@@ -150,7 +164,7 @@ namespace Eclo_Desktop
 
         private void rbSaveLists_Click(object sender, RoutedEventArgs e)
         {
-            SaveListPage saveListPage   = new SaveListPage();
+            SaveListPage saveListPage   = new SaveListPage(updateShoppingChartCount);
             PageNavigator.Content = saveListPage;
         }
 
@@ -169,8 +183,8 @@ namespace Eclo_Desktop
 
         private async void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            Dashboard dashboard = new Dashboard();
-            await refreshAsync(dashboard);
+            //Dashboard dashboard = new Dashboard(updateShoppingChartCount);
+            //await refreshAsync(dashboard);
         }
 
        
@@ -179,7 +193,7 @@ namespace Eclo_Desktop
 
         private void btShoppingChart(object sender, RoutedEventArgs e)
         {
-            ShoppingChartPage shoppingChartPage = new ShoppingChartPage();
+            ShoppingChartPage shoppingChartPage = new ShoppingChartPage(updateShoppingChartCount);
             PageNavigator.Content = shoppingChartPage;
         }
     }

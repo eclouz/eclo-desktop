@@ -1,5 +1,6 @@
 ﻿using Dtos.Product;
 using Eclo_Desktop.Components.Products;
+using Eclo_Desktop.Pages;
 using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
@@ -13,6 +14,7 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using ViewModels.Products;
 using ViewModels.ShoppingCharts;
+using static Eclo_Desktop.Components.Dashboards.ProductLightClothesUserControl;
 
 namespace Eclo_Desktop.Windows
 {
@@ -26,9 +28,13 @@ namespace Eclo_Desktop.Windows
         private string imagePath { get; set; }
         private bool liked { get; set; } = false;
         int count = 0;
-        public QuickView1Window()
+        public UpdateShoppingChartCountDelegate _upateShoppingChartCount;
+
+        public QuickView1Window(UpdateShoppingChartCountDelegate updateShoppingChartCount)
         {
             InitializeComponent();
+            this._upateShoppingChartCount = updateShoppingChartCount;
+
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -152,14 +158,14 @@ namespace Eclo_Desktop.Windows
         {
             if (!isDescripitonPressed)
             {
-                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\minus.png"));
+                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\minus.png", UriKind.Relative));
                 brDescription2.Visibility = Visibility.Visible;
                 isDescripitonPressed = true;
             }
             else
             {
 
-                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\add (2).png"));
+                brPlusForDescription.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\add (2).png", UriKind.Relative));
                 brDescription2.Visibility = Visibility.Collapsed;
                 isDescripitonPressed = false;
             }
@@ -290,9 +296,13 @@ namespace Eclo_Desktop.Windows
                 var List = identity.ShoppingChartProducts;
                 List.Add(shoppingChartViewModel);
                 identity.ShoppingChartProducts = List;
+
                 //For Save product ShoppingChart Success
                 var notificationManager = new NotificationManager();
                 notificationManager.Show("Success!", "Save product ShoppingChart", NotificationType.Success);
+
+                _upateShoppingChartCount();    
+
             }
             else
             {
