@@ -10,7 +10,6 @@
              Height="450"
              Margin="15">
     <Grid>
-
         <Border Background="Transparent"
                 x:Name="MainBorder"
                 >
@@ -151,5 +150,6 @@
                                 Style="{DynamicResource NewItemsComponentsButton}"
                                 Content="Quick view">
         </Button>
+        
     </Grid>
 </UserControl>

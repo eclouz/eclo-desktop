@@ -198,7 +198,7 @@ public class ProductService : IProductService
                 i.likedId = readProducts.likedId;
                 i.ProductLiked = readProducts.ProductLiked;
                 i.ProductComments = readProducts.ProductComments;
-                
+                i.Id = readProducts.Id;
                 return i;
             }
             else

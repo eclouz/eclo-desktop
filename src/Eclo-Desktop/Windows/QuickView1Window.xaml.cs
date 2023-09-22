@@ -1,12 +1,13 @@
-﻿using Dtos.Product;
+﻿using Dtos.Comment;
+using Dtos.Product;
 using Eclo_Desktop.Components.Products;
-using Eclo_Desktop.Pages;
 using Eclo_Desktop.Security;
 using Integrated.ServiceLayer;
+using Integrated.ServiceLayer.Comments;
+using Integrated.ServiceLayer.Comments.Concrete;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
 using Notification.Wpf;
-using Notification.Wpf.Controls;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -16,7 +17,6 @@ using System.Windows.Input;
 using System.Windows.Media.Imaging;
 using ViewModels.Products;
 using ViewModels.ShoppingCharts;
-using static Eclo_Desktop.Components.Dashboards.ProductLightClothesUserControl;
 
 namespace Eclo_Desktop.Windows
 {
@@ -27,16 +27,19 @@ namespace Eclo_Desktop.Windows
     {
         private bool isDescripitonPressed { get; set; } = false;
         IProductService productService = new ProductService();
+        private ICommentService _commentService;
         private string imagePath { get; set; }
         private bool liked { get; set; } = false;
         int count = 0;
+        private long productId { get; set; }
         public UpdateShoppingChartCountDelegate _upateShoppingChartCount;
+        public long productGetViewId;
 
         public QuickView1Window(UpdateShoppingChartCountDelegate updateShoppingChartCount)
         {
             InitializeComponent();
             this._upateShoppingChartCount = updateShoppingChartCount;
-
+            this._commentService = new CommentService();
         }
 
         private void Border_MouseDown(object sender, MouseButtonEventArgs e)
@@ -67,10 +70,8 @@ namespace Eclo_Desktop.Windows
         {
             lblReviewCount2.Content = lblReviewCount.Content;
 
-
-
         }
-
+        //        tbComment
         public List<ProductGetSizeDto> productGetSizeListForPublish { get; set; }
         public async Task setDataToMainImage(string image, List<Uri> extraPictures, List<ProductGetSizeDto> sizeList, string color)
         {
@@ -136,7 +137,7 @@ namespace Eclo_Desktop.Windows
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
             int productCount = int.Parse(lblItemCount.Text);
-            if (productCount >1)
+            if (productCount > 1)
             {
                 productCount -= 1;
                 lblItemCount.Text = productCount.ToString();
@@ -144,15 +145,15 @@ namespace Eclo_Desktop.Windows
 
         }
 
-        private  void btnPlus_Click(object sender, RoutedEventArgs e)
+        private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             int productCount = int.Parse(lblItemCount.Text);
-            if (productCount < int.Parse(lblQuantity.Content.ToString())) 
+            if (productCount < int.Parse(lblQuantity.Content.ToString()))
             {
                 productCount += 1;
-                lblItemCount.Text =productCount.ToString();
+                lblItemCount.Text = productCount.ToString();
             }
-            
+
 
         }
 
@@ -172,11 +173,12 @@ namespace Eclo_Desktop.Windows
                 isDescripitonPressed = false;
             }
         }
-        public  void setData(ProductGetViewModel productGetViewModel)
+        public void setData(ProductGetViewModel productGetViewModel,long Id)
         {
+            productGetViewId = Id;
             // Thisvariable for counting reviews
             int countComments = 0;
-
+            productId = productGetViewModel.Id;
             //Product Name
             lblProductName.Content = productGetViewModel.ProductName;
 
@@ -246,12 +248,31 @@ namespace Eclo_Desktop.Windows
                 reviewsUserControl.setData(i.UserId, i.Comment, (i.CreatedAt).ToString());
                 ReviewsWp.Children.Add(reviewsUserControl);
             }
+
+
             lblReviewCount2.Content = countComments.ToString();
             lblReviewCount.Content = lblReviewCount2.Content;
             lblPrice.Content = (productGetViewModel.ProductPrice).ToString();
             tbDescription.Text = (productGetViewModel.ProductDescription).ToString();
 
+        }
+        public async void refreshCommentAsync()
+        {
+            string token = IdentitySingleton.GetInstance().Token;
 
+            QuickView1Window quickView1Window = new QuickView1Window(_upateShoppingChartCount);
+            var identity = IdentitySingleton.GetInstance();
+            var result = await productService.GetByIdProducts(identity.UserId, productGetViewId, token);
+
+            // comments
+            foreach (var i in result.ProductComments)
+            {
+                ReviewsUserControl reviewsUserControl = new ReviewsUserControl();
+                reviewsUserControl.setData(i.UserId, i.Comment, (i.CreatedAt).ToString());
+                ReviewsWp.Children.Add(reviewsUserControl);
+            }
+
+            lblReviewCount.Content = lblReviewCount2.Content;
         }
 
         private void tbComment_TextChanged(object sender, TextChangedEventArgs e)
@@ -267,9 +288,22 @@ namespace Eclo_Desktop.Windows
 
         }
 
-        private void brSendComment_MouseDown(object sender, MouseButtonEventArgs e)
+        private async void brSendComment_MouseDown(object sender, MouseButtonEventArgs e)
         {
+            var identity = IdentitySingleton.GetInstance();
+            CommentDto commentDto = new CommentDto()
+            {
+                ProductId = productId,
+                UserId = identity.UserId,
+                Comment = tbComment.Text.ToString(),
+                IsEdited = true
+            };
 
+
+            // For register Send request 
+            bool response = await _commentService.CreateComment(commentDto, identity.Token);
+
+            refreshCommentAsync();
         }
 
         private void btAddCart(object sender, RoutedEventArgs e)
@@ -281,11 +315,11 @@ namespace Eclo_Desktop.Windows
                 ShoppingChartViewModel shoppingChartViewModel = new ShoppingChartViewModel()
                 {
 
-                    Id=newGuid.ToString(),
+                    Id = newGuid.ToString(),
                     ProductName = lblProductName.Content.ToString()!,
                     ProductColor = lblColor.Content.ToString()!,
                     ProductSize = lblSize.Content.ToString()!,
-                    ProductQuantity=int.Parse(lblQuantity.Content.ToString()!),
+                    ProductQuantity = int.Parse(lblQuantity.Content.ToString()!),
                     ItemCount = int.Parse(lblItemCount.Text!),
                     ProductDescription = tbDescription.Text.ToString(),
                     ProductPrice = double.Parse(lblPrice.Content.ToString()!),
@@ -303,14 +337,14 @@ namespace Eclo_Desktop.Windows
                 var notificationManager = new NotificationManager();
                 notificationManager.Show("Success!", "Save product ShoppingChart", NotificationType.Success, RowsCountWhenTrim: 2);
 
-                _upateShoppingChartCount();    
+                _upateShoppingChartCount();
 
             }
             else
             {
                 //For Save product ShoppingChart Warning
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning,RowsCountWhenTrim:2);
+                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
 
 
