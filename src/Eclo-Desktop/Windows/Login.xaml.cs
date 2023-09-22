@@ -98,50 +98,67 @@ namespace Eclo_Desktop.Windows
 
             // Password Validation
             if (rx_password.IsMatch(tbPassword.Password.ToString())) { count += 2; }
+            
 
             if (count == 3)
             {
-                // Login Dto
-                LoginDto loginDto = new LoginDto()
+                try
                 {
-                    PhoneNumber = tbPhone.Text,
-                    Password = tbPassword.Password
-                };
-
-                // For login Send request 
-                var response = await userService.Login(loginDto);
-
-                if (response.result == true)
-                {
-                    //Save Singleton Token
-                    identity.Token = response.token;
-
-                    // begin:: Tokendan ID ni yechib olish
-                    var tokenInfo = DecodeJwtToken.DecodeToken(response.token);
-
-                    if (tokenInfo.success)
+                    // Login Dto
+                    LoginDto loginDto = new LoginDto()
                     {
-                        var jwtToken = tokenInfo.token as JwtSecurityToken;
+                        PhoneNumber = tbPhone.Text,
+                        Password = tbPassword.Password
+                    };
 
-                        // Get User id
-                        identity.UserId = int.Parse(jwtToken.Claims.First(claim => claim.Type == "Id").Value);
+                    // For login Send request 
+                    var response = await userService.Login(loginDto);
+
+                    if (response.result == true)
+                    {
+                        //Save Singleton Token
+                        identity.Token = response.token;
+
+                        // begin:: Tokendan ID ni yechib olish
+                        var tokenInfo = DecodeJwtToken.DecodeToken(response.token);
+
+                        if (tokenInfo.success)
+                        {
+                            var jwtToken = tokenInfo.token as JwtSecurityToken;
+
+                            // Get User id
+                            identity.UserId = int.Parse(jwtToken.Claims.First(claim => claim.Type == "Id").Value);
+                        }
+                        //end:: Tokendan ID ni yechib olish
+
+                        // For the Loader to stop
+                        loader.Visibility = Visibility.Collapsed;
+
+                        // button to enable
+                        btnSave.IsEnabled = true;
+
+                        // For Login Window Hide
+                        this.Hide();
+
+                        //For Main Window Show
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.ShowDialog();
                     }
-                    //end:: Tokendan ID ni yechib olish
+                    else
+                    {
+                        // For the Loader to stop
+                        loader.Visibility = Visibility.Collapsed;
 
-                    // For the Loader to stop
-                    loader.Visibility = Visibility.Collapsed;
+                        // button to enable
+                        btnSave.IsEnabled = true;
 
-                    // button to enable
-                    btnSave.IsEnabled = true;
+                        // For Phone Number Error Notification
+                        var notificationManager = new NotificationManager();
+                        notificationManager.Show("Warning!", "User not found", NotificationType.Warning, "WindowArea");
 
-                    // For Login Window Hide
-                    this.Hide();
-
-                    //For Main Window Show
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.ShowDialog();
+                    }
                 }
-                else
+                catch
                 {
                     // For the Loader to stop
                     loader.Visibility = Visibility.Collapsed;
@@ -151,8 +168,7 @@ namespace Eclo_Desktop.Windows
 
                     // For Phone Number Error Notification
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", "User not found", NotificationType.Warning, "WindowArea");
-
+                    notificationManager.Show("Warning!", "Connection Error", NotificationType.Warning, "WindowArea");
                 }
             }
             else if (count == 2)
