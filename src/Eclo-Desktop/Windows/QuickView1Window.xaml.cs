@@ -290,20 +290,31 @@ namespace Eclo_Desktop.Windows
 
         private async void brSendComment_MouseDown(object sender, MouseButtonEventArgs e)
         {
-            var identity = IdentitySingleton.GetInstance();
-            CommentDto commentDto = new CommentDto()
+            if (tbComment.Text.Length > 0 && tbComment.Text != null)
             {
-                ProductId = productId,
-                UserId = identity.UserId,
-                Comment = tbComment.Text.ToString(),
-                IsEdited = true
-            };
+                brSendComment.IsEnabled = false;
+                var identity = IdentitySingleton.GetInstance();
+                CommentDto commentDto = new CommentDto()
+                {
+                    ProductId = productId,
+                    UserId = identity.UserId,
+                    Comment = tbComment.Text.ToString(),
+                    IsEdited = true
+                };
 
 
-            // For register Send request 
-            bool response = await _commentService.CreateComment(commentDto, identity.Token);
-
-            refreshCommentAsync();
+                // For register Send request 
+                bool response = await _commentService.CreateComment(commentDto, identity.Token);
+                brSendComment.IsEnabled = true;
+                tbComment.Text = "";
+                refreshCommentAsync();
+            }
+            else
+            {
+                // For Comment Error Notification
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", "Comment not empty", NotificationType.Warning);
+            }
         }
 
         private void btAddCart(object sender, RoutedEventArgs e)
