@@ -3,9 +3,11 @@ using Eclo_Desktop.Security;
 using Integrated.ServiceLayer;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
+using Integrated.Validation;
 using Microsoft.Win32;
 using Notification.Wpf;
 using System;
+using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -19,6 +21,7 @@ namespace Eclo_Desktop.Pages
     {
         IUserService userService = new UserService();
         UserViewModel userViewModel = new UserViewModel();
+        ValidationAttribute validationAttribute = new ValidationAttribute();
         private RefreshPageHandlerDelegate refreshDelegate;
 
         public SettingsPage(RefreshPageHandlerDelegate refreshPageHandlerDelegate)
@@ -47,60 +50,119 @@ namespace Eclo_Desktop.Pages
         }
         private async void btnSaveSettingsChange_Click(object sender, RoutedEventArgs e)
         {
+
+            DateTime? selectedDate = DateBirthdp.SelectedDate;
             var loader = btnSaveSettingsChange.Template.FindName("loader", btnSaveSettingsChange) as FontAwesome.WPF.ImageAwesome;
             loader.Visibility = Visibility.Visible;
             btnSaveSettingsChange.IsEnabled = false;
-            try
+            if (validationAttribute.IsValidName(tbName.Text).isSuccessful == false)
             {
-                var identity = IdentitySingleton.GetInstance();
-                var getUserInfo = await userService.GetUserById(identity.Token);
-
-                userViewModel.FirstName = tbName.Text;
-                userViewModel.LastName = tbSecondName.Text;
-                userViewModel.PassportSerialNumber = tbPassportSerialNumber.Text;
-                if (DateBirthdp.SelectedDate is not null) { userViewModel.BirthDate = DateBirthdp.SelectedDate.Value; }
-                userViewModel.Region = tbRegion.Text;
-                userViewModel.District = tbDistric.Text;
-                userViewModel.Address = tbAdress.Text;
-                userViewModel.PhoneNumber = getUserInfo.PhoneNumber;
-
-                string image_path = UserImage.ImageSource.ToString();
-
-                if (!String.IsNullOrEmpty(image_path))
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", validationAttribute.IsValidName(tbName.Text).Message, NotificationType.Warning);
+                loader.Visibility = Visibility.Collapsed;
+                btnSaveSettingsChange.IsEnabled = true;
+            }
+            else if (validationAttribute.IsValidSurname(tbSecondName.Text).isSuccessful == false)
+            {
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", validationAttribute.IsValidSurname(tbSecondName.Text).Message, NotificationType.Warning);
+                loader.Visibility = Visibility.Collapsed;
+                btnSaveSettingsChange.IsEnabled = true;
+            }
+            else if (validationAttribute.IsValidPassport(tbPassportSerialNumber.Text).isSuccessful == false)
+            {
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", validationAttribute.IsValidPassport(tbPassportSerialNumber.Text).Message, NotificationType.Warning);
+                loader.Visibility = Visibility.Collapsed;
+                btnSaveSettingsChange.IsEnabled = true;
+            }
+            if (selectedDate != null)
+            {
+                if (validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).isSuccessful == false)
                 {
-                    userViewModel.ImagePath = image_path;
-                }
-
-                var updateUserInfo = await userService.UserUpdateSettings(userViewModel, identity.Token);
-                if (updateUserInfo == true)
-                {
-                    loader.Visibility = Visibility.Collapsed;
-                    btnSaveSettingsChange.IsEnabled = true;
-
-                    //For Notification Update Successful
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Successful!", "Update account", NotificationType.Success, RowsCountWhenTrim: 2);
-
-                    SettingsPage settingsPage = new SettingsPage(refreshDelegate);
-                    refreshDelegate(settingsPage);
+                    notificationManager.Show("Warning!", validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).Message, NotificationType.Warning);
+                    loader.Visibility = Visibility.Collapsed;
+                    btnSaveSettingsChange.IsEnabled = true;
                 }
-                else
+            }
+            
+           
+            else if (validationAttribute.IsValidRegion(tbRegion.Text).isSuccessful == false)
+            {
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", validationAttribute.IsValidRegion(tbRegion.Text).Message, NotificationType.Warning);
+                loader.Visibility = Visibility.Collapsed;
+                btnSaveSettingsChange.IsEnabled = true;
+            }
+            else if (validationAttribute.IsValidDistrict(tbDistric.Text).isSuccessful == false)
+            {
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", validationAttribute.IsValidDistrict(tbDistric.Text).Message, NotificationType.Warning);
+                loader.Visibility = Visibility.Collapsed;
+                btnSaveSettingsChange.IsEnabled = true;
+            }
+            else if (validationAttribute.IsValidAdress(tbAdress.Text).isSuccessful == false)
+            {
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", validationAttribute.IsValidAdress(tbAdress.Text).Message, NotificationType.Warning);
+                loader.Visibility = Visibility.Collapsed;
+                btnSaveSettingsChange.IsEnabled = true;
+            }
+            else
+            {
+                try
+                {
+                    var identity = IdentitySingleton.GetInstance();
+                    var getUserInfo = await userService.GetUserById(identity.Token);
+
+                    userViewModel.FirstName = tbName.Text;
+                    userViewModel.LastName = tbSecondName.Text;
+                    userViewModel.PassportSerialNumber = tbPassportSerialNumber.Text;
+                    if (DateBirthdp.SelectedDate is not null) { userViewModel.BirthDate = DateBirthdp.SelectedDate.Value; }
+                    userViewModel.Region = tbRegion.Text;
+                    userViewModel.District = tbDistric.Text;
+                    userViewModel.Address = tbAdress.Text;
+                    userViewModel.PhoneNumber = getUserInfo.PhoneNumber;
+
+                    string image_path = UserImage.ImageSource.ToString();
+
+                    if (!String.IsNullOrEmpty(image_path))
+                    {
+                        userViewModel.ImagePath = image_path;
+                    }
+
+                    var updateUserInfo = await userService.UserUpdateSettings(userViewModel, identity.Token);
+                    if (updateUserInfo == true)
+                    {
+                        loader.Visibility = Visibility.Collapsed;
+                        btnSaveSettingsChange.IsEnabled = true;
+
+                        //For Notification Update Successful
+                        var notificationManager = new NotificationManager();
+                        notificationManager.Show("Successful!", "Update account", NotificationType.Success, RowsCountWhenTrim: 2);
+
+                        SettingsPage settingsPage = new SettingsPage(refreshDelegate);
+                        refreshDelegate(settingsPage);
+                    }
+                    else
+                    {
+                        loader.Visibility = Visibility.Collapsed;
+                        btnSaveSettingsChange.IsEnabled = true;
+                        //For Notification Update Warning
+                        var notificationManager = new NotificationManager();
+                        notificationManager.Show("Warning!", "Please try again", NotificationType.Warning, RowsCountWhenTrim: 2);
+                    }
+                }
+                catch
                 {
                     loader.Visibility = Visibility.Collapsed;
                     btnSaveSettingsChange.IsEnabled = true;
+
                     //For Notification Update Warning
                     var notificationManager = new NotificationManager();
                     notificationManager.Show("Warning!", "Please try again", NotificationType.Warning, RowsCountWhenTrim: 2);
                 }
-            }
-            catch
-            {
-                loader.Visibility = Visibility.Collapsed;
-                btnSaveSettingsChange.IsEnabled = true;
-
-                //For Notification Update Warning
-                var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
         }
 
@@ -114,5 +176,6 @@ namespace Eclo_Desktop.Pages
             }
 
         }
+       
     }
 }
