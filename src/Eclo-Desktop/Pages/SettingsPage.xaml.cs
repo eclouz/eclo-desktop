@@ -76,7 +76,7 @@ namespace Eclo_Desktop.Pages
                 loader.Visibility = Visibility.Collapsed;
                 btnSaveSettingsChange.IsEnabled = true;
             }
-            if (selectedDate != null)
+            else if (selectedDate != null)
             {
                 if (validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).isSuccessful == false)
                 {
