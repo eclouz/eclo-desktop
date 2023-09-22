@@ -47,7 +47,7 @@
                      CornerRadius="5">
                 <Border.Background>
                     <ImageBrush
-                        Stretch="UniformToFill"
+                        Stretch="Uniform"
                         x:Name="imageProduct">
                         
                     </ImageBrush>
@@ -60,7 +60,7 @@
        
         <!--begin:: Labels For Product Data-->
         <TextBlock x:Name="tbProductName" Text="Polo Futbolka" Grid.Column="1"  FontWeight="SemiBold" FontSize="16" VerticalAlignment="Center" FontFamily="Cascadia Mono"/>
-        <TextBlock x:Name="tbDescription" Text="Juda ham zo'r futbolka" Grid.Column="1" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 0 0"/>
+        <TextBlock x:Name="tbDescription" Text="Juda ham zo'r futbolka" Grid.Column="1" Foreground="#909090" FontSize="11" VerticalAlignment="Center" Margin="0 38 10 0"/>
 
         <TextBlock x:Name="tbProductColor" Text="White" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="16" FontFamily="Cascadia Mono"/>
         <TextBlock x:Name="tbProductSize" Text="XL" Grid.Column="2" VerticalAlignment="Center" FontWeight="SemiBold" FontSize="12" Margin="0 38 0 0" FontFamily="Cascadia Mono"/>

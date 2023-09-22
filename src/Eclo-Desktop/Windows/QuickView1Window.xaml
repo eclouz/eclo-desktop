@@ -66,7 +66,7 @@
                                             <ImageBrush
                                         x:Name="imageQuickview"
                                         
-                                        ImageSource="/assets/staticimages/Krossovka.jpg"
+                                        ImageSource="/assets/staticimages/Krossovka.jpg" Stretch="Uniform"
                                         />
                                         </Border.Background>
                                     </Border>
@@ -78,7 +78,7 @@
                                         CornerRadius="15">
                                             <Border.Background>
                                                 <ImageBrush
-                                                Stretch="UniformToFill"
+                                                Stretch="Uniform"
                                                 x:Name="imageQuickview2"
                                                 ImageSource="/assets/staticimages/Krossovka.jpg"/>
                                             </Border.Background>
@@ -90,7 +90,7 @@
                                         CornerRadius="15">
                                             <Border.Background>
                                                 <ImageBrush
-                                                Stretch="UniformToFill"
+                                                Stretch="Uniform"
                                                 x:Name="imageQuickview3"
                                                 ImageSource="/assets/staticimages/Krossovka.jpg"/>
                                             </Border.Background>
@@ -426,6 +426,11 @@
                                 Margin="15"
                                 x:Name="ReviewsWp">
                         </StackPanel>
+                        <!--<ScrollViewer Grid.Row="2">-->
+                            <WrapPanel x:Name="wpComments">
+                            
+                        </WrapPanel>
+                        <!--</ScrollViewer>-->
                     </StackPanel>
                 </ScrollViewer>
             </Grid>

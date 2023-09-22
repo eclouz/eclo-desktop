@@ -56,7 +56,7 @@ namespace Eclo_Desktop.Components.Dashboards
             QuickView1Window quickView1Window = new QuickView1Window(_upateShoppingChartCount);
             var identity = IdentitySingleton.GetInstance();
             var result = await productService.GetByIdProducts(identity.UserId, productViewModels.Id,token);            
-            quickView1Window.setData(result);                            
+            quickView1Window.setData(result, productViewModels.Id);                            
             quickView1Window.ShowDialog();
         }
 
