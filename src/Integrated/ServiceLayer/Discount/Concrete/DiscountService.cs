@@ -1,11 +1,5 @@
 ﻿using Eclo.Domain.Entities.Discounts;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics.CodeAnalysis;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Integrated.ServiceLayer.IDiscountService.Concrete;
 
@@ -14,7 +8,7 @@ public class DiscountService : IDiscountService
     public async Task<List<Discount>> GetAllDiscounts(int page)
     {
         var client = new HttpClient();
-        var request = new HttpRequestMessage(HttpMethod.Get, API.BASE_URL+$"common/discounts?page={page}");
+        var request = new HttpRequestMessage(HttpMethod.Get, API.BASE_URL + $"common/discounts?page={page}");
         request.Headers.Add("UserId", "");
         request.Headers.Add("ProductId", "");
         request.Headers.Add("IsLiked", "");

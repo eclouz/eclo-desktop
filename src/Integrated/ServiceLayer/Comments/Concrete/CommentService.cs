@@ -1,12 +1,4 @@
-﻿using Dtos.Auth;
-using Dtos.Comment;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Dtos.Comment;
 
 namespace Integrated.ServiceLayer.Comments.Concrete;
 
@@ -36,7 +28,7 @@ public class CommentService : ICommentService
                 string responseRead = await response.Content.ReadAsStringAsync();
                 //var responsJson = JsonConvert.DeserializeObject<RegisterCheckDto>(responseRead);
 
-                return  true;
+                return true;
             }
 
             return false;

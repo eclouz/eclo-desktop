@@ -1,6 +1,5 @@
 ﻿
 using Eclo.Domain.Entities.Categories;
-using Eclo.Domain.Entities.Discounts;
 
 namespace Integrated.ServiceLayer.Categories;
 

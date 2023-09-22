@@ -1,25 +1,13 @@
 ﻿using Eclo_Desktop.Components.Dashboards;
-using Eclo_Desktop.Components.Products;
 using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.Brand;
 using Integrated.ServiceLayer.Brand.Concrete;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using ViewModels.Brands;
 
 namespace Eclo_Desktop.Pages
 {
@@ -43,7 +31,7 @@ namespace Eclo_Desktop.Pages
 
         private void RadioButton_Click(object sender, RoutedEventArgs e)
         {
-        
+
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -91,6 +79,7 @@ namespace Eclo_Desktop.Pages
             // For the Loader to run
             loaderButtton!.Visibility = Visibility.Visible;
 
+
             //button to disable
             bApply.IsEnabled = false;
 
@@ -133,4 +122,3 @@ namespace Eclo_Desktop.Pages
         }
     }
 }
-    

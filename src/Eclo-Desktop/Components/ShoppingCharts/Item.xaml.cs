@@ -22,28 +22,28 @@ namespace Eclo_Desktop.Components.ShoppingCharts
         private RefreshShoppingChart refreshPage;
         private UpdateShoppingChartCountDelegate _updateShoppingChartCount;
 
-        public Item(UpdateTotalPriceDelegate updateTotalPriceDelegate, RefreshShoppingChart refreshShoppingChart,UpdateShoppingChartCountDelegate updateShoppingChartCount)
+        public Item(UpdateTotalPriceDelegate updateTotalPriceDelegate, RefreshShoppingChart refreshShoppingChart, UpdateShoppingChartCountDelegate updateShoppingChartCount)
         {
             InitializeComponent();
             //Fieldga konstruktor orqali kirib kelayotgan delegat olayabmiz
             this.updatePriceDelgate = updateTotalPriceDelegate;
             this.refreshPage = refreshShoppingChart;
             this._updateShoppingChartCount = updateShoppingChartCount;
-        
+
         }
 
-       
+
 
         private async void btProductDelete(object sender, RoutedEventArgs e)
         {
             IdentitySingleton identity = IdentitySingleton.GetInstance();
             var products = identity.ShoppingChartProducts;
-            identity.ShoppingChartProducts= products.Where(x => x.Id != Id).ToList();
+            identity.ShoppingChartProducts = products.Where(x => x.Id != Id).ToList();
             if (chbSelect.IsChecked == true)
             {
                 int productCount = int.Parse(tbProductQuantity.Text);
 
-                identity.TotalPrice -= productPrice*productCount;
+                identity.TotalPrice -= productPrice * productCount;
 
                 //Delegatga qiymatlarni berib yuboryapmiz
                 Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, int.Parse(tbProductQuantity.Text.ToString())));
@@ -87,7 +87,7 @@ namespace Eclo_Desktop.Components.ShoppingCharts
                     Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, (int)identity.TotalPrice));
                 }
 
-               
+
             }
             else
             {
@@ -118,7 +118,7 @@ namespace Eclo_Desktop.Components.ShoppingCharts
                     Dispatcher.Invoke(() => updatePriceDelgate(identity.TotalPrice, int.Parse(tbProductQuantity.Text.ToString())));
                 }
             }
-                
+
             else
             {
                 int productCount = int.Parse(tbProductQuantity.Text);

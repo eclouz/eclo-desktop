@@ -173,7 +173,7 @@ namespace Eclo_Desktop.Windows
                 isDescripitonPressed = false;
             }
         }
-        public void setData(ProductGetViewModel productGetViewModel,long Id)
+        public void setData(ProductGetViewModel productGetViewModel, long Id)
         {
             productGetViewId = Id;
             // Thisvariable for counting reviews

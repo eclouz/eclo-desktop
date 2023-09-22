@@ -5,21 +5,11 @@ using Integrated.ServiceLayer;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Numerics;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using ViewModels.Brands;
 using ViewModels.Products;
 
 namespace Eclo_Desktop.Components.Dashboards
@@ -30,7 +20,7 @@ namespace Eclo_Desktop.Components.Dashboards
     public partial class ProductLightClothesUserControl : UserControl
     {
         ProductViewModels productViewModels = new ProductViewModels();
-        
+
         private IProductService _productService;
         public UpdateShoppingChartCountDelegate _upateShoppingChartCount;
 
@@ -42,7 +32,7 @@ namespace Eclo_Desktop.Components.Dashboards
             this._productService = new ProductService();
             this._upateShoppingChartCount = updateShoppingChartCount;
         }
-       
+
 
         private void btnAddToBag_Click(object sender, RoutedEventArgs e)
         {
@@ -52,11 +42,11 @@ namespace Eclo_Desktop.Components.Dashboards
         private async void btnQuickView_Click(object sender, RoutedEventArgs e)
         {
             string token = IdentitySingleton.GetInstance().Token;
-            
+
             QuickView1Window quickView1Window = new QuickView1Window(_upateShoppingChartCount);
             var identity = IdentitySingleton.GetInstance();
-            var result = await productService.GetByIdProducts(identity.UserId, productViewModels.Id,token);            
-            quickView1Window.setData(result, productViewModels.Id);                            
+            var result = await productService.GetByIdProducts(identity.UserId, productViewModels.Id, token);
+            quickView1Window.setData(result, productViewModels.Id);
             quickView1Window.ShowDialog();
         }
 
@@ -68,10 +58,10 @@ namespace Eclo_Desktop.Components.Dashboards
             //await RefreshDashboard();
             string token = IdentitySingleton.GetInstance().Token;
             int page = 1;
-            var getUserProductLikesList = await productService.getUserProductLikes(page,token);
+            var getUserProductLikesList = await productService.getUserProductLikes(page, token);
             var identity = IdentitySingleton.GetInstance();
             string pathRedLike = "Assets\\StaticImages\\like.png";
-            
+
             for (int i = 0; i < getUserProductLikesList.Count; i++)
             {
                 if (getUserProductLikesList[i].productId == productViewModels.Id && getUserProductLikesList[i].userId == identity.UserId
@@ -80,9 +70,9 @@ namespace Eclo_Desktop.Components.Dashboards
                     //Oq like                
 
                     brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\love.png", UriKind.Relative));
-                    var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id, 
-                        identity.UserId, productViewModels.Id, false,token);
-                    
+                    var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id,
+                        identity.UserId, productViewModels.Id, false, token);
+
                     if (likeUpdate == true)
                     {
                         //MessageBox.Show("Removed from cart");
@@ -98,11 +88,11 @@ namespace Eclo_Desktop.Components.Dashboards
                 {
                     // Qizil like
                     brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
-                    var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id, 
+                    var likeUpdate = await productService.UserProductLikeUpdate(getUserProductLikesList[i].Id,
                         identity.UserId, productViewModels.Id, true, token);
 
                     var identity2 = IdentitySingleton.GetInstance();
-                    
+
                     if (likeUpdate == true)
                     {
                         //MessageBox.Show("Successfully saved to savelist");
@@ -113,7 +103,7 @@ namespace Eclo_Desktop.Components.Dashboards
                     }
                     break;
                 }
-                if(i == getUserProductLikesList.Count-1)
+                if (i == getUserProductLikesList.Count - 1)
                 {
                     var identity2 = IdentitySingleton.GetInstance();
                     var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, identity2.Token, true);
@@ -131,13 +121,13 @@ namespace Eclo_Desktop.Components.Dashboards
                     break;
                 }
             }
-            if (getUserProductLikesList.Count==0)
+            if (getUserProductLikesList.Count == 0)
             {
                 var identity2 = IdentitySingleton.GetInstance();
-                var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id,identity2.Token, true);
+                var likeIt = await _productService.UserSetLikeTrue(identity2.UserId, productViewModels.Id, identity2.Token, true);
                 // Qizil like
                 brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
-               
+
                 if (likeIt == true)
                 {
                     //MessageBox.Show("Successfully saved to savelist");
@@ -152,34 +142,34 @@ namespace Eclo_Desktop.Components.Dashboards
 
         }
         public async void setData(ProductViewModels productViewModels)
-        {            
-            lblClotheName.Content = productViewModels.ProductName;            
-            foreach ( var i in productViewModels.ProductDetail)
+        {
+            lblClotheName.Content = productViewModels.ProductName;
+            foreach (var i in productViewModels.ProductDetail)
             {
                 lblClotheColorDescription.Content = i.Color;
                 string imageUrl = API.BASE_URL_IMAGE + i.ImagePath;
-                Uri imageUri = new Uri(imageUrl, UriKind.Absolute);                
+                Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
                 imgProduct.ImageSource = new BitmapImage(imageUri);
-                
+
             }
             //viewModel.Id = productViewModels.Id;
             this.productViewModels.Id = productViewModels.Id;
             this.productViewModels.ProductLiked = productViewModels.ProductLiked;
             this.productViewModels.likedId = productViewModels.likedId;
-            this.productViewModels.ProductDetail=productViewModels.ProductDetail;
+            this.productViewModels.ProductDetail = productViewModels.ProductDetail;
 
             string pathRedLike = "Assets\\StaticImages\\like.png";
-            if (productViewModels.ProductLiked==true)
+            if (productViewModels.ProductLiked == true)
             {
                 brLike.ImageSource = new BitmapImage(new System.Uri(pathRedLike, UriKind.Relative));
             }
             else
             {
-                brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\love.png", UriKind.Relative));                
+                brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\love.png", UriKind.Relative));
             }
 
             lblPproductPrice.Content = (productViewModels.ProductPrice).ToString();
-            loader.Visibility = Visibility.Collapsed;     
+
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
@@ -187,7 +177,7 @@ namespace Eclo_Desktop.Components.Dashboards
             int countItem = 0;
             foreach (var item in this.productViewModels.ProductDetail)
             {
-                if (countItem == 5) 
+                if (countItem == 5)
                 {
                     break;
                 }
@@ -195,18 +185,18 @@ namespace Eclo_Desktop.Components.Dashboards
                 SmallProductPicturesUserControl smallProductPicturesUserControl = new SmallProductPicturesUserControl();
                 string imageUrl = API.BASE_URL_IMAGE + item.ImagePath;
                 Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
-                smallProductPicturesUserControl.setData(item.Color,imageUri);
+                smallProductPicturesUserControl.setData(item.Color, imageUri);
                 smallProductPicturesUserControl.SetDataToComponent = setDataToComponent;
                 SPLittlePictures.Children.Add(smallProductPicturesUserControl);
                 loader.Visibility = Visibility.Collapsed;
             }
 
         }
-        public async Task setDataToComponent(string colorName,Uri imageUri)
+        public async Task setDataToComponent(string colorName, Uri imageUri)
         {
             lblClotheColorDescription.Content = colorName;
             imgProduct.ImageSource = new BitmapImage(imageUri);
-           
+
 
         }
     }

@@ -1,8 +1,4 @@
-using Eclo.Domain.Entities.Categories;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ViewModels.Common;
 using ViewModels.ShoppingCharts;
 
@@ -15,8 +11,8 @@ public class IdentitySingleton
 
     public long UserId { get; set; }
     public double TotalPrice { get; set; }
-    public string Token {get;set; }
-    public IList<ShoppingChartViewModel> ShoppingChartProducts { get; set; }= new List<ShoppingChartViewModel>();
+    public string Token { get; set; }
+    public IList<ShoppingChartViewModel> ShoppingChartProducts { get; set; } = new List<ShoppingChartViewModel>();
     public Pagination pagination { get; set; }
     private IdentitySingleton()
     {

@@ -6,8 +6,15 @@
     <RootNamespace>Eclo_Desktop</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
-    <ApplicationIcon>Без названия (1) (1).ico</ApplicationIcon>
+    <ApplicationIcon>Assets\MainIcon\eclo.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Assets\Gifs\**" />
+    <EmbeddedResource Remove="Assets\Gifs\**" />
+    <None Remove="Assets\Gifs\**" />
+    <Page Remove="Assets\Gifs\**" />
+  </ItemGroup>
 
   <ItemGroup>
     <None Remove="Assets\StaticImages\649931-removebg-preview.png" />
@@ -28,20 +35,16 @@
     <None Remove="Assets\StaticImages\Author\Ustoz.jpg" />
     <None Remove="Assets\StaticImages\down.png" />
     <None Remove="Assets\StaticImages\eclo-logo %281%29.png" />
-    <None Remove="Assets\StaticImages\IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg" />
     <None Remove="Assets\StaticImages\Krossovka.jpg" />
     <None Remove="Assets\StaticImages\left.png" />
     <None Remove="Assets\StaticImages\like.png" />
     <None Remove="Assets\StaticImages\login-background-image.png" />
     <None Remove="Assets\StaticImages\love.png" />
     <None Remove="Assets\StaticImages\MensCategory.png" />
-    <None Remove="Assets\StaticImages\MenuBarPicture.png" />
     <None Remove="Assets\StaticImages\minus.png" />
     <None Remove="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
     <None Remove="Assets\StaticImages\phone_confirmed_background.png" />
-    <None Remove="Assets\StaticImages\Remove-bg.ai_1691401602416.png" />
     <None Remove="Assets\StaticImages\right.png" />
-    <None Remove="Assets\StaticImages\shopping-bag.png" />
     <None Remove="Assets\StaticImages\ShoppingChartImages\add.png" />
     <None Remove="Assets\StaticImages\ShoppingChartImages\close.png" />
     <None Remove="Assets\StaticImages\ShoppingChartImages\credit.png" />
@@ -51,18 +54,12 @@
     <None Remove="Assets\StaticImages\ShoppingChartImages\mini.png" />
     <None Remove="Assets\StaticImages\ShoppingChartImages\remove.png" />
     <None Remove="Assets\StaticImages\ShoppingChartImages\visa.png" />
+    <None Remove="Assets\StaticImages\StaticUserImage.jpg" />
     <None Remove="Assets\StaticImages\wepik-export-20230809182056drVe.png" />
-    <None Remove="Assets\StaticImages\[removal.ai]_6a713f68-27ba-4cf7-a0a8-9f43b6e7c142-wepik-export-20230807092915h2d0.png" />
-    <None Remove="Assets\StaticImages\[removal.ai]_9fcdf641-cb5c-485b-8842-1f3e4966d719-wepik-export-20230807093931wumk.png" />
-    <None Remove="Assets\StaticImages\[removal.ai]_f0ccacee-32d1-43c9-b368-d06d84fd2f88-wepik-export-20230807093818pkou.png" />
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="Без названия (1) (1).ico" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Assets\Gifs\" />
+    <Content Include="Assets\MainIcon\eclo.ico" />
   </ItemGroup>
 
   <ItemGroup>
@@ -98,18 +95,15 @@
     <Resource Include="Assets\StaticImages\phone_confirmed_background.png" />
     <Resource Include="Assets\StaticImages\down.png" />
     <Resource Include="Assets\StaticImages\eclo-logo (1).png" />
-    <Resource Include="Assets\StaticImages\IMG_991e036e-f2ae-4547-9b10-a99520e2ecc8.jpg" />
+    <Resource Include="Assets\StaticImages\StaticUserImage.jpg" />
     <Resource Include="Assets\StaticImages\Krossovka.jpg" />
     <Resource Include="Assets\StaticImages\left.png" />
     <Resource Include="Assets\StaticImages\like.png" />
     <Resource Include="Assets\StaticImages\love.png" />
     <Resource Include="Assets\StaticImages\MensCategory.png" />
-    <Resource Include="Assets\StaticImages\MenuBarPicture.png" />
     <Resource Include="Assets\StaticImages\minus.png" />
     <Resource Include="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
-    <Resource Include="Assets\StaticImages\Remove-bg.ai_1691401602416.png" />
     <Resource Include="Assets\StaticImages\right.png" />
-    <Resource Include="Assets\StaticImages\shopping-bag.png" />
     <Resource Include="Assets\StaticImages\ShoppingChartImages\add.png" />
     <Resource Include="Assets\StaticImages\ShoppingChartImages\close.png" />
     <Resource Include="Assets\StaticImages\ShoppingChartImages\credit.png" />
@@ -121,9 +115,6 @@
     <Resource Include="Assets\StaticImages\ShoppingChartImages\visa.png" />
     <Resource Include="Assets\StaticImages\wepik-export-20230809182056drVe.png" />
     <Resource Include="Assets\StaticImages\login-background-image.png" />
-    <Resource Include="Assets\StaticImages\[removal.ai]_6a713f68-27ba-4cf7-a0a8-9f43b6e7c142-wepik-export-20230807092915h2d0.png" />
-    <Resource Include="Assets\StaticImages\[removal.ai]_9fcdf641-cb5c-485b-8842-1f3e4966d719-wepik-export-20230807093931wumk.png" />
-    <Resource Include="Assets\StaticImages\[removal.ai]_f0ccacee-32d1-43c9-b368-d06d84fd2f88-wepik-export-20230807093818pkou.png" />
   </ItemGroup>
 
 </Project>

@@ -1,5 +1,4 @@
-﻿using Dtos.Auth;
-using Dtos.Comment;
+﻿using Dtos.Comment;
 
 namespace Integrated.ServiceLayer.Comments;
 

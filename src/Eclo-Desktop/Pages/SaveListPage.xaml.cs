@@ -22,7 +22,7 @@ namespace Eclo_Desktop.Pages
             InitializeComponent();
             this._productService = new ProductService();
             this._updateShoppingChartCount = updateShoppingChartCount;
-        
+
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -35,8 +35,8 @@ namespace Eclo_Desktop.Pages
         {
             MainWP123.Children.Clear();
             var identity = IdentitySingleton.GetInstance();
-            var result = await _productService.GetAllProducts(identity.UserId, 1); 
-            
+            var result = await _productService.GetAllProducts(identity.UserId, 1);
+
             loader.Visibility = Visibility.Collapsed;
 
             foreach (var productItem in result.productViewModels)
@@ -49,7 +49,7 @@ namespace Eclo_Desktop.Pages
                     productLightClothesUserControl.RefreshPage = RefreshPageHandler;
                 }
             }
-          
+
         }
         private async void RefreshPageHandler()
         {

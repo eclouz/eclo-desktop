@@ -1,22 +1,12 @@
 ﻿using Eclo_Desktop.Components.Dashboards;
-using Integrated.ServiceLayer.Product.Concrete;
+using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.Product;
-using System;
+using Integrated.ServiceLayer.Product.Concrete;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using Eclo_Desktop.Security;
 
 namespace Eclo_Desktop.Pages
 {
@@ -80,7 +70,7 @@ namespace Eclo_Desktop.Pages
         }
         public async Task refreshAsync()
         {
-            
+
         }
         private async void RefreshPageHandler()
         {

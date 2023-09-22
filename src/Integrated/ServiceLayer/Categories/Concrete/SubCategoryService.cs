@@ -1,6 +1,5 @@
 ﻿
 using Eclo.Domain.Entities.Categories;
-using Eclo.Domain.Entities.Discounts;
 using Newtonsoft.Json;
 
 namespace Integrated.ServiceLayer.Categories.Concrete;

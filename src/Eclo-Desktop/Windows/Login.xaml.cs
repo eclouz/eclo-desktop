@@ -4,9 +4,7 @@ using Eclo_Desktop.Utilities;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using Notification.Wpf;
-using System;
 using System.IdentityModel.Tokens.Jwt;
-using System.IO;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -23,7 +21,7 @@ namespace Eclo_Desktop.Windows
 
         //For get Singleton data
         IdentitySingleton identity = IdentitySingleton.GetInstance();
-        
+
         // Konstruktor
         public LoginWindow()
         {
@@ -51,11 +49,11 @@ namespace Eclo_Desktop.Windows
         }
 
         // Button Registration
-        private  void btnToLogin_Click(object sender, RoutedEventArgs e)
+        private void btnToLogin_Click(object sender, RoutedEventArgs e)
         {
             // We can get an object from the loader inside the Registration button
             var loader = btnToLogin.Template.FindName("loader", btnToLogin) as FontAwesome.WPF.ImageAwesome;
-            
+
             // For the Loader to run
             loader!.Visibility = Visibility.Visible;
 
@@ -64,14 +62,14 @@ namespace Eclo_Desktop.Windows
 
             // For Login Window Hide
             this.Hide();
-            
+
             // For Open Register Window
             RegisterWindow regiterWindow = new RegisterWindow();
             regiterWindow.ShowDialog();
 
             // For the Loader to stop
             loader.Visibility = Visibility.Collapsed;
-            
+
             // button to enable
             btnSave.IsEnabled = true;
         }
@@ -82,10 +80,10 @@ namespace Eclo_Desktop.Windows
             //For textbox
             Regex rx_phone = new Regex(@"^[\+][0-9]{3}?[0-9]{9}$");
             Regex rx_password = new Regex(@"^(?=.*?[A-Z])(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$ %^&*-]).{8,}$");
-            
+
             // We can get an object from the loader inside the Login button
             var loader = btnSave.Template.FindName("loader", btnSave) as FontAwesome.WPF.ImageAwesome;
-            
+
             // For the Loader to run
             loader!.Visibility = Visibility.Visible;
 
@@ -96,10 +94,10 @@ namespace Eclo_Desktop.Windows
             int count = 0;
 
             // PhoneNumber Validation
-            if (rx_phone.IsMatch(tbPhone.Text)) { count+=1; }
+            if (rx_phone.IsMatch(tbPhone.Text)) { count += 1; }
 
             // Password Validation
-            if (rx_password.IsMatch(tbPassword.Password.ToString())) { count+=2; }
+            if (rx_password.IsMatch(tbPassword.Password.ToString())) { count += 2; }
 
             if (count == 3)
             {
@@ -179,7 +177,7 @@ namespace Eclo_Desktop.Windows
 
                 // For Phone Number Error Notification
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Password wrong", NotificationType.Warning,"WindowArea");
+                notificationManager.Show("Warning!", "Password wrong", NotificationType.Warning, "WindowArea");
             }
 
             else
@@ -192,7 +190,7 @@ namespace Eclo_Desktop.Windows
 
                 // For Phone Number Error Notification
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Phone number and password wrong", NotificationType.Warning,"WindowArea");
+                notificationManager.Show("Warning!", "Phone number and password wrong", NotificationType.Warning, "WindowArea");
 
 
             }
