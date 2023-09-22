@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace Eclo.Domain.Entities.Admins;
+﻿namespace Eclo.Domain.Entities.Admins;
 
 public class Admin : Human
 {

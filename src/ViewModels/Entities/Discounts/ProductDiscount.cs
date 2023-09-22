@@ -11,6 +11,6 @@ public class ProductDiscount : Discount
     public DateTime StartAt { get; set; }
 
     public DateTime EndAt { get; set; }
-    
+
     public string ProductDescription { get; set; } = String.Empty;
 }

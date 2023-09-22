@@ -2,20 +2,11 @@
 using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using ViewModels.Products;
 
 namespace Eclo_Desktop.Pages
@@ -28,18 +19,19 @@ namespace Eclo_Desktop.Pages
         private readonly IProductService _productService;
         private readonly UpdateShoppingChartCountDelegate _updateShoppingChartCount;
 
-        List<ProductViewModels> roductViewModelsList { get ; set; }
+        List<ProductViewModels> roductViewModelsList { get; set; }
 
         public Women_sCollection(UpdateShoppingChartCountDelegate updateShoppingChart)
         {
             InitializeComponent();
             this._productService = new ProductService();
             this._updateShoppingChartCount = updateShoppingChart;
-        
+
         }
 
         public async Task refreshAsync()
         {
+            loader.Visibility = Visibility.Visible;
             tbMin.Text = "2000";
             tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
@@ -104,7 +96,7 @@ namespace Eclo_Desktop.Pages
             }
             loader.Visibility = Visibility.Collapsed;
         }
-        
+
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             NavigationService?.Navigate(new ProductsPage(_updateShoppingChartCount));
@@ -113,6 +105,16 @@ namespace Eclo_Desktop.Pages
         private async void bApply_Click(object sender, RoutedEventArgs e)
         {
             loader.Visibility = Visibility.Visible;
+
+            var loaderButtton = bApply.Template.FindName("loader", bApply) as FontAwesome.WPF.ImageAwesome;
+
+            // For the Loader to run
+            loaderButtton!.Visibility = Visibility.Visible;
+
+
+            //button to disable
+            bApply.IsEnabled = false;
+
             if (int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
                 int min = int.Parse(tbMin.Text);
@@ -141,6 +143,12 @@ namespace Eclo_Desktop.Pages
                     wpWomen.Children.Add(productLightClothesUserControl);
                 }
             }
+            // For the Loader to stop
+            loaderButtton.Visibility = Visibility.Collapsed;
+
+            // button to enable
+            bApply.IsEnabled = true;
+
             loader.Visibility = Visibility.Collapsed;
         }
     }

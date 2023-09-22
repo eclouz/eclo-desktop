@@ -1,10 +1,6 @@
 using Dtos.Auth;
 using Eclo.DataAccess.ViewModels.Users;
 using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Numerics;
-using System.Security.AccessControl;
-using System.Text;
 
 namespace Integrated.ServiceLayer.User.Concrete;
 
@@ -151,12 +147,12 @@ public class UserService : IUserService
         var content = new MultipartFormDataContent();
         content.Add(new StringContent($"{dto.FirstName}"), "FirstName");
         content.Add(new StringContent($"{dto.LastName}"), "LastName");
-        
+
         if (!dto.ImagePath.Contains("/avatars/"))
         {
             content.Add(new StreamContent(File.OpenRead($"{dto.ImagePath}")), "ImagePath", $"{dto.ImagePath}");
         }
-        
+
         content.Add(new StringContent($"{dto.PhoneNumber}"), "PhoneNumber");
         content.Add(new StringContent($"{dto.PassportSerialNumber}"), "PassportSerialNumber");
         content.Add(new StringContent($"{dto.BirthDate}"), "BirthDate");

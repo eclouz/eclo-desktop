@@ -1,27 +1,15 @@
-﻿using Eclo.Domain.Entities.Categories;
-using Eclo.Domain.Entities.Products;
-using Eclo.Domain.Entities.Users;
-using Eclo_Desktop.Components.Dashboards;
+﻿using Eclo_Desktop.Components.Dashboards;
 using Eclo_Desktop.Security;
-using Eclo_Desktop.Utilities;
 using Integrated.ServiceLayer.Categories;
 using Integrated.ServiceLayer.Categories.Concrete;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Eclo_Desktop.Pages
 {
@@ -63,6 +51,8 @@ namespace Eclo_Desktop.Pages
         {
             //await RefreshWithLike();
 
+            loader.Visibility = Visibility.Visible;
+
             var identity = IdentitySingleton.GetInstance();
             SecondWp.Children.Clear();
             int page = int.Parse(tbPage.Text);
@@ -70,57 +60,59 @@ namespace Eclo_Desktop.Pages
             identity.pagination = result.pageData;
             if (result.pageData.TotalPages < 2)
             {
-                tbPage.Visibility=Visibility.Collapsed;
-                tbTotalPage.Visibility=Visibility.Collapsed;
+                tbPage.Visibility = Visibility.Collapsed;
+                tbTotalPage.Visibility = Visibility.Collapsed;
                 tbbackslash.Visibility = Visibility.Collapsed;
                 btnNext.Visibility = Visibility.Collapsed;
                 btnPervouce.Visibility = Visibility.Collapsed;
             }
-            tbTotalPage.Text = result.pageData.TotalPages.ToString() ;
+            tbTotalPage.Text = result.pageData.TotalPages.ToString();
             var products = result.productViewModels;
             loader.Visibility = Visibility.Collapsed;
-            foreach ( var product in products )
+            foreach (var product in products)
             {
                 ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                 productLightClothesUserControl.setData(product);
                 SecondWp.Children.Add(productLightClothesUserControl);
                 productLightClothesUserControl.RefreshPage = RefreshPageHandler;
             }
-            
+
             cbSubCategories.Items.Clear();
             var subCategories = await _subCategoryService.GetAllSubCategories(1);
-            
+
             List<string> subCategoryName = new List<string>();
             for (int i = 0; i < subCategories.Count; i++)
             {
                 subCategoryName.Add(subCategories[i].Name);
             }
-            
+
             subCategoryName = subCategoryName.Distinct().ToList();
-            
+
             for (int i = 0; i < subCategoryName.Count; i++)
             {
                 CheckBox checkBox = new CheckBox();
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
+            loader.Visibility = Visibility.Collapsed;
         }
         private async void RefreshPageHandler()
         {
             await refreshAsync();
         }
-        
+
         private async void rbMens_Click_1(object sender, RoutedEventArgs e)
         {
+            loader.Visibility = Visibility.Visible;
             tbMin.Text = "2000";
             tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
             int max = int.Parse(tbMax.Text);
-           
+
             List<string> subCategoryName = new List<string>();
-            
+
             var identity = IdentitySingleton.GetInstance();
-            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId , "Men", min, max, subCategoryName, 1);
+            var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", min, max, subCategoryName, 1);
 
             SecondWp.Children.Clear();
 
@@ -140,10 +132,12 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
+            loader.Visibility = Visibility.Collapsed;
         }
 
         private async void rbWomens_Click(object sender, RoutedEventArgs e)
         {
+            loader.Visibility = Visibility.Visible;
             tbMin.Text = "2000";
             tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
@@ -172,10 +166,12 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
+            loader.Visibility = Visibility.Collapsed;
         }
 
         private async void rbKids_Click(object sender, RoutedEventArgs e)
         {
+            loader.Visibility = Visibility.Visible;
             tbMin.Text = "2000";
             tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
@@ -204,10 +200,12 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
+            loader.Visibility=Visibility.Collapsed;
         }
 
         private async void rbAll_Click(object sender, RoutedEventArgs e)
         {
+            loader.Visibility = Visibility.Visible;
             var identity = IdentitySingleton.GetInstance();
             SecondWp.Children.Clear();
             int page = int.Parse(tbPage.Text);
@@ -235,6 +233,7 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
+            loader.Visibility = Visibility.Collapsed;
         }
 
         private void btnShowMeAll_Click(object sender, RoutedEventArgs e)
@@ -276,6 +275,14 @@ namespace Eclo_Desktop.Pages
 
         private async void bApply_Click(object sender, RoutedEventArgs e)
         {
+            loader.Visibility = Visibility.Visible;
+            var loaderButtton = bApply.Template.FindName("loader", bApply) as FontAwesome.WPF.ImageAwesome;
+
+            // For the Loader to run
+            loaderButtton!.Visibility = Visibility.Visible;
+            //button to disable
+            bApply.IsEnabled = false;
+
             if (rbAll.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
                 int min = int.Parse(tbMin.Text);
@@ -390,6 +397,12 @@ namespace Eclo_Desktop.Pages
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
             }
+            loader.Visibility = Visibility.Collapsed;
+            // For the Loader to stop
+            loaderButtton.Visibility = Visibility.Collapsed;
+
+            // button to enable
+            bApply.IsEnabled = true;
         }
         private async void PreviousPage_Click(object sender, RoutedEventArgs e)
         {
@@ -401,7 +414,7 @@ namespace Eclo_Desktop.Pages
             if (page > 1)
             {
                 page -= 1;
-                tbPage.Text=page.ToString();
+                tbPage.Text = page.ToString();
                 await refreshAsync();
             }
             loader.Visibility = Visibility.Collapsed;
@@ -409,7 +422,7 @@ namespace Eclo_Desktop.Pages
             btnPervouce.IsEnabled = true;
 
         }
-            
+
 
         private async void NextPage_Click(object sender, RoutedEventArgs e)
         {

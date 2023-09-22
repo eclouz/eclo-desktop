@@ -1,17 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Eclo_Desktop.Components.Dashboards
 {
@@ -40,8 +31,8 @@ namespace Eclo_Desktop.Components.Dashboards
         {
             if (!Liked)
             {
-                    brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\like.png", UriKind.Relative));
-                    Liked = true;
+                brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\like.png", UriKind.Relative));
+                Liked = true;
             }
             else
             {

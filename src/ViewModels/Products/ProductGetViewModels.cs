@@ -1,8 +1,8 @@
-﻿using Eclo.Domain.Entities.Brands;
+﻿using Eclo.Domain.Entities;
+using Eclo.Domain.Entities.Brands;
 using Eclo.Domain.Entities.Categories;
 using Eclo.Domain.Entities.Discounts;
 using Eclo.Domain.Entities.Products;
-using Eclo.Domain.Entities;
 
 namespace ViewModels.Products;
 

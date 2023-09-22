@@ -1,35 +1,16 @@
-using Eclo.Domain.Entities.Categories;
 using Eclo_Desktop.Pages;
 using Eclo_Desktop.Security;
-using Eclo_Desktop.Themes;
-using Eclo_Desktop.Utilities;
-using Eclo_Desktop.Windows;
 using Integrated.ServiceLayer;
 using Integrated.ServiceLayer.Categories;
 using Integrated.ServiceLayer.Categories.Concrete;
-using Integrated.ServiceLayer.Product;
-using Integrated.ServiceLayer.Product.Concrete;
 using Integrated.ServiceLayer.User;
 using Integrated.ServiceLayer.User.Concrete;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.IdentityModel.Tokens.Jwt;
-using System.IO;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static Eclo_Desktop.Components.Dashboards.ProductLightClothesUserControl;
-using static Eclo_Desktop.Pages.ShoppingChartPage;
 
 namespace Eclo_Desktop
 {
@@ -53,7 +34,7 @@ namespace Eclo_Desktop
             refreshDelegate = RefreshPageHandler;
             updateShoppingChartCount = UpdateShoppingChart;
         }
-        public async  Task refreshAsync(Page page)
+        public async Task refreshAsync(Page page)
         {
             var identity = IdentitySingleton.GetInstance();
             var result = await _userService.GetUserById(identity.Token);
@@ -65,7 +46,6 @@ namespace Eclo_Desktop
             Uri uri = new Uri(imageUrl, UriKind.Absolute);
             brUserImage.ImageSource = new BitmapImage(uri);
 
-
             //Dashboard dashboard = new Dashboard();
             PageNavigator.Content = page;
         }
@@ -74,7 +54,8 @@ namespace Eclo_Desktop
             await refreshAsync(page);
         }
 
-        public async void UpdateShoppingChart()
+        // For Update ShoppingChart Icon new Order
+        public void UpdateShoppingChart()
         {
             lbCount.Text = IdentitySingleton.GetInstance().ShoppingChartProducts.Count.ToString();
             if (int.Parse(lbCount.Text) == 0)
@@ -88,8 +69,8 @@ namespace Eclo_Desktop
         }
         private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-                Dashboard dashboard = new Dashboard(updateShoppingChartCount);
-                await refreshAsync(dashboard);           
+            Dashboard dashboard = new Dashboard(updateShoppingChartCount);
+            await refreshAsync(dashboard);
         }
 
         private async void rbDashboard_Click(object sender, RoutedEventArgs e)
@@ -134,21 +115,9 @@ namespace Eclo_Desktop
             PageNavigator.Content = aboutUsPage;
         }
 
-        //private void rbFaq_Click(object sender, RoutedEventArgs e)
-        //{
-
-        //}
-
-       /* private void rbHelp_Click(object sender, RoutedEventArgs e)
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            HelpPage helpPage = new HelpPage();
-            PageNavigator.Content = helpPage;
-        }
-*/
-        
-        private async void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Application.Current.Shutdown();            
+            Application.Current.Shutdown();
         }
 
         private void btnRestore_Click(object sender, RoutedEventArgs e)
@@ -166,7 +135,7 @@ namespace Eclo_Desktop
 
         private void rbSaveLists_Click(object sender, RoutedEventArgs e)
         {
-            SaveListPage saveListPage   = new SaveListPage(updateShoppingChartCount);
+            SaveListPage saveListPage = new SaveListPage(updateShoppingChartCount);
             PageNavigator.Content = saveListPage;
         }
 
@@ -183,16 +152,11 @@ namespace Eclo_Desktop
             //}
         }
 
-        private async void Border_MouseDown(object sender, MouseButtonEventArgs e)
+        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
         {
             //Dashboard dashboard = new Dashboard(updateShoppingChartCount);
             //await refreshAsync(dashboard);
         }
-
-       
-
-        
-
         private void btShoppingChart(object sender, RoutedEventArgs e)
         {
             ShoppingChartPage shoppingChartPage = new ShoppingChartPage(updateShoppingChartCount);

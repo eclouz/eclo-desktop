@@ -7,7 +7,6 @@ using Integrated.Validation;
 using Microsoft.Win32;
 using Notification.Wpf;
 using System;
-using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media.Imaging;
@@ -41,7 +40,7 @@ namespace Eclo_Desktop.Pages
             string imageUrl = API.BASE_URL_IMAGE + getUserInfo?.ImagePath;
             Uri imageUri = new Uri(imageUrl, UriKind.Absolute);
             UserImage.ImageSource = new BitmapImage(imageUri);
-            loader.Visibility=Visibility.Collapsed;
+            loader.Visibility = Visibility.Collapsed;
             tbRegion.Text = getUserInfo?.Region;
             tbDistric.Text = getUserInfo?.District;
             tbAdress.Text = getUserInfo?.Address;
@@ -55,6 +54,7 @@ namespace Eclo_Desktop.Pages
             var loader = btnSaveSettingsChange.Template.FindName("loader", btnSaveSettingsChange) as FontAwesome.WPF.ImageAwesome;
             loader.Visibility = Visibility.Visible;
             btnSaveSettingsChange.IsEnabled = false;
+
             if (validationAttribute.IsValidName(tbName.Text).isSuccessful == false)
             {
                 var notificationManager = new NotificationManager();
@@ -76,18 +76,17 @@ namespace Eclo_Desktop.Pages
                 loader.Visibility = Visibility.Collapsed;
                 btnSaveSettingsChange.IsEnabled = true;
             }
-            //else if (selectedDate != null)
+            //else if (selectedDate.HasValue && validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).isSuccessful == false)
             //{
-            //    if (validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).isSuccessful == false)
-            //    {
-            //        var notificationManager = new NotificationManager();
-            //        notificationManager.Show("Warning!", validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).Message, NotificationType.Warning);
-            //        loader.Visibility = Visibility.Collapsed;
-            //        btnSaveSettingsChange.IsEnabled = true;
-            //    }
+            //    var notificationManager = new NotificationManager();
+            //    notificationManager.Show("Warning!", validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).Message, NotificationType.Warning);
+            //    loader.Visibility = Visibility.Collapsed;
+            //    btnSaveSettingsChange.IsEnabled = true;
             //}
-            
-           
+
+
+
+
             else if (validationAttribute.IsValidRegion(tbRegion.Text).isSuccessful == false)
             {
                 var notificationManager = new NotificationManager();
@@ -176,6 +175,6 @@ namespace Eclo_Desktop.Pages
             }
 
         }
-       
+
     }
 }

@@ -1,16 +1,11 @@
 ﻿using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ViewModels.Brands;
 
 namespace Integrated.ServiceLayer.Brand.Concrete;
 
 public class BrandService : IBrandService
 {
-    public async Task<IList<MensBrandsViewModels>> GetAllBrands(int page=1)
+    public async Task<IList<MensBrandsViewModels>> GetAllBrands(int page = 1)
     {
 
         using (var client = new HttpClient())
@@ -46,6 +41,6 @@ public class BrandService : IBrandService
             }
 
         }
-        }
     }
+}
 

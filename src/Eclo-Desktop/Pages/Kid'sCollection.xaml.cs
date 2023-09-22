@@ -2,20 +2,10 @@
 using Eclo_Desktop.Security;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace Eclo_Desktop.Pages
 {
@@ -32,7 +22,7 @@ namespace Eclo_Desktop.Pages
             InitializeComponent();
             this._productService = new ProductService();
             this._updateShoppingChartCount = updateShoppingChart;
-        
+
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
@@ -64,6 +54,8 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
+
+            loader.Visibility = Visibility.Collapsed;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -73,6 +65,17 @@ namespace Eclo_Desktop.Pages
 
         private async void bApply_Click(object sender, RoutedEventArgs e)
         {
+            loader.Visibility = Visibility.Visible;
+
+            var loaderButtton = bApply.Template.FindName("loader", bApply) as FontAwesome.WPF.ImageAwesome;
+
+            // For the Loader to run
+            loaderButtton!.Visibility = Visibility.Visible;
+
+
+            //button to disable
+            bApply.IsEnabled = false;
+
             if (int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
                 int min = int.Parse(tbMin.Text);
@@ -101,6 +104,13 @@ namespace Eclo_Desktop.Pages
                     wpKids.Children.Add(productLightClothesUserControl);
                 }
             }
+            // For the Loader to stop
+            loaderButtton.Visibility = Visibility.Collapsed;
+
+            // button to enable
+            bApply.IsEnabled = true;
+
+            loader.Visibility = Visibility.Collapsed;
         }
     }
 }
