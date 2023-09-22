@@ -76,16 +76,16 @@ namespace Eclo_Desktop.Pages
                 loader.Visibility = Visibility.Collapsed;
                 btnSaveSettingsChange.IsEnabled = true;
             }
-            if (selectedDate != null)
-            {
-                if (validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).isSuccessful == false)
-                {
-                    var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).Message, NotificationType.Warning);
-                    loader.Visibility = Visibility.Collapsed;
-                    btnSaveSettingsChange.IsEnabled = true;
-                }
-            }
+            //else if (selectedDate != null)
+            //{
+            //    if (validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).isSuccessful == false)
+            //    {
+            //        var notificationManager = new NotificationManager();
+            //        notificationManager.Show("Warning!", validationAttribute.IsValidDate(selectedDate.Value.ToString("dd/MM/yyyy")).Message, NotificationType.Warning);
+            //        loader.Visibility = Visibility.Collapsed;
+            //        btnSaveSettingsChange.IsEnabled = true;
+            //    }
+            //}
             
            
             else if (validationAttribute.IsValidRegion(tbRegion.Text).isSuccessful == false)
