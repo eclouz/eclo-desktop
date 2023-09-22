@@ -6,6 +6,7 @@
     <RootNamespace>Eclo_Desktop</RootNamespace>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
+    <ApplicationIcon>Без названия (1) (1).ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
@@ -54,6 +55,10 @@
     <None Remove="Assets\StaticImages\[removal.ai]_6a713f68-27ba-4cf7-a0a8-9f43b6e7c142-wepik-export-20230807092915h2d0.png" />
     <None Remove="Assets\StaticImages\[removal.ai]_9fcdf641-cb5c-485b-8842-1f3e4966d719-wepik-export-20230807093931wumk.png" />
     <None Remove="Assets\StaticImages\[removal.ai]_f0ccacee-32d1-43c9-b368-d06d84fd2f88-wepik-export-20230807093818pkou.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Без названия (1) (1).ico" />
   </ItemGroup>
 
   <ItemGroup>

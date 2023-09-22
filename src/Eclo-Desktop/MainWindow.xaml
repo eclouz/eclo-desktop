@@ -102,12 +102,12 @@
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbFaq_Click"
                                          />-->
-                                <RadioButton x:Name="rbHelp"
+                                <!--<RadioButton x:Name="rbHelp"
                                          Content="Help"
                                              Tag="{DynamicResource HelpIcon}"
                                          Style="{DynamicResource MenuButton}"
                                          Click="rbHelp_Click"
-                                         />
+                                         />-->
                             </StackPanel>
                         
                             <!--<Grid Margin="190 610 0 0">

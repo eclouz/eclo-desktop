@@ -139,12 +139,12 @@ namespace Eclo_Desktop
 
         //}
 
-        private void rbHelp_Click(object sender, RoutedEventArgs e)
+       /* private void rbHelp_Click(object sender, RoutedEventArgs e)
         {
             HelpPage helpPage = new HelpPage();
             PageNavigator.Content = helpPage;
         }
-
+*/
         
         private async void btnClose_Click(object sender, RoutedEventArgs e)
         {
