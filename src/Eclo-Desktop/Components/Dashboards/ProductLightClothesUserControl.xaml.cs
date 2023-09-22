@@ -179,7 +179,7 @@ namespace Eclo_Desktop.Components.Dashboards
             }
 
             lblPproductPrice.Content = (productViewModels.ProductPrice).ToString();
-                   
+            loader.Visibility = Visibility.Collapsed;     
         }
 
         private void UserControl_Loaded(object sender, RoutedEventArgs e)
