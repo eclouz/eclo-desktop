@@ -148,7 +148,7 @@ public class UserService : IUserService
         content.Add(new StringContent($"{dto.FirstName}"), "FirstName");
         content.Add(new StringContent($"{dto.LastName}"), "LastName");
 
-        if (!dto.ImagePath.Contains("/avatars/"))
+        if (!dto.ImagePath.Contains("/Avatars/"))
         {
             content.Add(new StreamContent(File.OpenRead($"{dto.ImagePath}")), "ImagePath", $"{dto.ImagePath}");
         }

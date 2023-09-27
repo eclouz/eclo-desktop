@@ -143,6 +143,7 @@ namespace Eclo_Desktop.Components.Dashboards
         }
         public async void setData(ProductViewModels productViewModels)
         {
+            loader.Visibility = Visibility.Visible;
             lblClotheName.Content = productViewModels.ProductName;
             foreach (var i in productViewModels.ProductDetail)
             {
@@ -152,6 +153,7 @@ namespace Eclo_Desktop.Components.Dashboards
                 imgProduct.ImageSource = new BitmapImage(imageUri);
 
             }
+            loader.Visibility = Visibility.Collapsed;
             //viewModel.Id = productViewModels.Id;
             this.productViewModels.Id = productViewModels.Id;
             this.productViewModels.ProductLiked = productViewModels.ProductLiked;

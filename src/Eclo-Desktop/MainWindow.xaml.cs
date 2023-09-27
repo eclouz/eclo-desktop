@@ -45,6 +45,7 @@ namespace Eclo_Desktop
             string imageUrl = API.BASE_URL_IMAGE + result.ImagePath;
             Uri uri = new Uri(imageUrl, UriKind.Absolute);
             brUserImage.ImageSource = new BitmapImage(uri);
+            loaderUserImage.Visibility = Visibility.Collapsed;
 
             //Dashboard dashboard = new Dashboard();
             PageNavigator.Content = page;

@@ -31,7 +31,7 @@ namespace Eclo_Desktop.Pages
 
         public async Task refreshAsync()
         {
-            loader.Visibility = Visibility.Visible;
+          
             tbMin.Text = "2000";
             tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
@@ -42,8 +42,9 @@ namespace Eclo_Desktop.Pages
             var identity = IdentitySingleton.GetInstance();
             var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Women", min, max, subCategoryName, 1);
 
-            wpWomen.Children.Clear();
 
+            wpWomen.Children.Clear();
+            loader.Visibility = Visibility.Visible;
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
                 subCategoryName.Add(mensCategoryProducts[i].SubCategory[0].Name);
@@ -51,6 +52,7 @@ namespace Eclo_Desktop.Pages
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 wpWomen.Children.Add(productLightClothesUserControl);
             }
+            loader.Visibility = Visibility.Collapsed;
             subCategoryName = subCategoryName.Distinct().ToList();
 
             cbSubCategories.Items.Clear();
@@ -60,7 +62,7 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
-            loader.Visibility = Visibility.Collapsed;
+            
 
         }
 
@@ -85,6 +87,7 @@ namespace Eclo_Desktop.Pages
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 wpWomen.Children.Add(productLightClothesUserControl);
             }
+            loader.Visibility = Visibility.Collapsed;
             subCategoryName = subCategoryName.Distinct().ToList();
 
             cbSubCategories.Items.Clear();
@@ -94,7 +97,7 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
-            loader.Visibility = Visibility.Collapsed;
+           
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
@@ -104,7 +107,7 @@ namespace Eclo_Desktop.Pages
 
         private async void bApply_Click(object sender, RoutedEventArgs e)
         {
-            loader.Visibility = Visibility.Visible;
+           
 
             var loaderButtton = bApply.Template.FindName("loader", bApply) as FontAwesome.WPF.ImageAwesome;
 
@@ -136,12 +139,15 @@ namespace Eclo_Desktop.Pages
 
 
                 wpWomen.Children.Clear();
+                loader.Visibility = Visibility.Visible;
+
                 for (int i = 0; i < womensCategoryProducts.Count; i++)
                 {
                     ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                     productLightClothesUserControl.setData(womensCategoryProducts[i]);
                     wpWomen.Children.Add(productLightClothesUserControl);
                 }
+                loader.Visibility = Visibility.Collapsed;
             }
             // For the Loader to stop
             loaderButtton.Visibility = Visibility.Collapsed;

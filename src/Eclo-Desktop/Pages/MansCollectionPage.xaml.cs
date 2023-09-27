@@ -83,7 +83,7 @@ namespace Eclo_Desktop.Pages
             //button to disable
             bApply.IsEnabled = false;
 
-            loader.Visibility = Visibility.Visible;
+          
             if (int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
                 int min = int.Parse(tbMin.Text);
@@ -98,19 +98,21 @@ namespace Eclo_Desktop.Pages
                         subCategoryName.Add(checkbox.Content.ToString());
                     }
                 }
-
+                wpMens.Children.Clear();
+                loader.Visibility = Visibility.Visible;
                 var identity = IdentitySingleton.GetInstance();
                 var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", min, max, subCategoryName, 1);
 
 
 
-                wpMens.Children.Clear();
+
                 for (int i = 0; i < mensCategoryProducts.Count; i++)
                 {
                     ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_updateShoppingChartCount);
                     productLightClothesUserControl.setData(mensCategoryProducts[i]);
                     wpMens.Children.Add(productLightClothesUserControl);
                 }
+                loader.Visibility = Visibility.Collapsed;
             }
             loader.Visibility = Visibility.Collapsed;
 
