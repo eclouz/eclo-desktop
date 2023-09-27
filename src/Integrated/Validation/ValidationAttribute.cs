@@ -18,7 +18,7 @@ public class ValidationAttribute
     {
         if (name is null) return (false, "Name can not be null!");
 
-        Regex regex = new Regex(@"^[a-z,A-Z]{3,25}$");
+        Regex regex = new Regex(@"^[a-z_',A-Z_']{3,25}$");
         if (regex.Match(name.ToString()!).Success)
             return (true, " ");
 
@@ -28,7 +28,7 @@ public class ValidationAttribute
     {
         if (name is null) return (false, "Surname can not be null!");
 
-        Regex regex = new Regex(@"^[a-z,A-Z]{3,25}$");
+        Regex regex = new Regex(@"^[a-z_',A-Z_']{3,25}$");
         if (regex.Match(name.ToString()!).Success)
             return (true, " ");
 

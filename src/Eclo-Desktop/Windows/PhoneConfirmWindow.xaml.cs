@@ -84,52 +84,64 @@ namespace Eclo_Desktop.Windows
         // For Confirm Button
         private async void Button_Click(object sender, RoutedEventArgs e)
         {
-            Regex rx_code = new Regex(@"^[0-9]{5,5}$");
-            // We can get an object from the loader inside the Login button
-            var loader = btnConfirm.Template.FindName("loader", btnConfirm) as FontAwesome.WPF.ImageAwesome;
-
-            // For the Loader to run
-            loader!.Visibility = Visibility.Visible;
-
-            // button to disable
-            btnConfirm.IsEnabled = false;
-            if (rx_code.IsMatch(tb1.Text))
+            try
             {
-                verifyRegisterDto.Code = int.Parse(tb1.Text);
-                var response = await userService.VerifyRegister(verifyRegisterDto);
-                if (response.result == true)
+                Regex rx_code = new Regex(@"^[0-9]{5,5}$");
+                // We can get an object from the loader inside the Login button
+                var loader = btnConfirm.Template.FindName("loader", btnConfirm) as FontAwesome.WPF.ImageAwesome;
+
+                // For the Loader to run
+                loader!.Visibility = Visibility.Visible;
+
+                // button to disable
+                btnConfirm.IsEnabled = false;
+                if (rx_code.IsMatch(tb1.Text))
                 {
-
-                    // For Notification Success
-                    var notificationManager = new NotificationManager();
-                    notificationManager.Show("Success!", "Success register", NotificationType.Success, RowsCountWhenTrim: 2);
-
-                    //For get Singleton data
-                    var identity = IdentitySingleton.GetInstance();
-                    // Save Singleton Token
-                    identity.Token = response.token;
-
-                    // begin:: Tokendan ID ni yechib olish
-                    var tokenInfo = DecodeJwtToken.DecodeToken(response.token);
-
-                    if (tokenInfo.success)
+                    verifyRegisterDto.Code = int.Parse(tb1.Text);
+                    var response = await userService.VerifyRegister(verifyRegisterDto);
+                    if (response.token.Length>0)
                     {
-                        var jwtToken = tokenInfo.token as JwtSecurityToken;
+                        // For Notification Success
+                        var notificationManager = new NotificationManager();
+                        notificationManager.Show("Success!", "Success register", NotificationType.Success, RowsCountWhenTrim: 2);
 
-                        // Get User id
-                        identity.UserId = int.Parse(jwtToken.Claims.First(claim => claim.Type == "Id").Value);
+                        //For get Singleton data
+                        var identity = IdentitySingleton.GetInstance();
+                        // Save Singleton Token
+                        identity.Token = response.token;
+
+                        // begin:: Tokendan ID ni yechib olish
+                        var tokenInfo = DecodeJwtToken.DecodeToken(response.token);
+
+                        if (tokenInfo.success)
+                        {
+                            var jwtToken = tokenInfo.token as JwtSecurityToken;
+
+                            // Get User id
+                            identity.UserId = int.Parse(jwtToken.Claims.First(claim => claim.Type == "Id").Value);
+                        }
+                        // end:: Tokendan ID ni yechib olish
+
+                        _timer.Stop();
+                        // For Close PhoneConfirm Window
+                        this.Close();
+
+                        // For Show Main Window
+                        MainWindow mainWindow = new MainWindow();
+                        mainWindow.ShowDialog();
                     }
-                    // end:: Tokendan ID ni yechib olish
+                    else
+                    {
+                        // For the Loader to stop
+                        loader.Visibility = Visibility.Collapsed;
 
-                    _timer.Stop();
-                    // For Close PhoneConfirm Window
-                    this.Close();
+                        // button to enable
+                        btnConfirm.IsEnabled = true;
 
-                    // For Show Main Window
-                    MainWindow mainWindow = new MainWindow();
-                    mainWindow.ShowDialog();
-
-
+                        // For Notification Warning!
+                        var notificationManager = new NotificationManager();
+                        notificationManager.Show("Warning!", "Code Wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
+                    }
                 }
                 else
                 {
@@ -139,22 +151,20 @@ namespace Eclo_Desktop.Windows
                     // button to enable
                     btnConfirm.IsEnabled = true;
 
-                    // For Notification Warning!
+                    // For Notification Warning
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", "Code Wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
+                    notificationManager.Show("Warning!", "Code must be a 5-digit number", NotificationType.Warning, RowsCountWhenTrim: 2);
                 }
             }
-            else
+            catch
             {
-                // For the Loader to stop
-                loader.Visibility = Visibility.Collapsed;
-
+ 
                 // button to enable
                 btnConfirm.IsEnabled = true;
 
-                // For Notification Warning
+                //Notification 
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Code must be a 5-digit number", NotificationType.Warning, RowsCountWhenTrim: 2);
+                notificationManager.Show("Warning!", "Connection Error", NotificationType.Warning, RowsCountWhenTrim: 2);
             }
         }
     }

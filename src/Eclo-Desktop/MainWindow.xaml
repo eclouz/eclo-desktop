@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Eclo_Desktop"
-        xmlns:svg="http://schemas.abtsoftware.co.uk/2020/xaml/svg"
-      mc:Ignorable="d" Name="home"
+        xmlns:svg="http://schemas.abtsoftware.co.uk/2020/xaml/svg" xmlns:fa="http://schemas.fontawesome.io/icons/"
+        mc:Ignorable="d" Name="home"
         Loaded="Window_Loaded"
         Title="MainWindow" Height="700" Width="1200"
         WindowStartupLocation="CenterScreen" WindowStyle="None"
@@ -199,7 +199,7 @@
                                         <RowDefinition Height="35"/>
                                         <RowDefinition Height="*"/>
                                     </Grid.RowDefinitions>
-
+                                    
                                     <Label Grid.Row="0"
                                    Margin="10 15 10 0"
                                            FontSize="16"
@@ -226,6 +226,19 @@
                                     Margin="10 0"
                                     HorizontalAlignment="Right"     
                                     >
+                                    <fa:ImageAwesome
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        Margin="0"
+                                        x:Name="loaderUserImage"
+                                        Icon="Spinner"
+                                        Visibility="Visible"
+                                        Spin="True"
+                                        Height="50"
+                                        Width="50"
+                                        Foreground="#C0DEC3"
+                    
+                                    />
                                     <Border.Background>
                                         <ImageBrush Stretch="UniformToFill" x:Name="brUserImage" ImageSource="/Assets/StaticImages/StaticUserImage.jpg"/>
                                     </Border.Background>

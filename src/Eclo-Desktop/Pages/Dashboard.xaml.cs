@@ -103,7 +103,7 @@ namespace Eclo_Desktop.Pages
 
         private async void rbMens_Click_1(object sender, RoutedEventArgs e)
         {
-            loader.Visibility = Visibility.Visible;
+            
             tbMin.Text = "2000";
             tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
@@ -111,10 +111,13 @@ namespace Eclo_Desktop.Pages
 
             List<string> subCategoryName = new List<string>();
 
+            SecondWp.Children.Clear();
+            loader.Visibility = Visibility.Visible;
+
             var identity = IdentitySingleton.GetInstance();
             var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", min, max, subCategoryName, 1);
-
-            SecondWp.Children.Clear();
+            
+           
 
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
@@ -123,6 +126,8 @@ namespace Eclo_Desktop.Pages
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 SecondWp.Children.Add(productLightClothesUserControl);
             }
+            loader.Visibility = Visibility.Collapsed;
+
             subCategoryName = subCategoryName.Distinct().ToList();
 
             cbSubCategories.Items.Clear();
@@ -132,23 +137,24 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
-            loader.Visibility = Visibility.Collapsed;
+            
         }
 
         private async void rbWomens_Click(object sender, RoutedEventArgs e)
         {
-            loader.Visibility = Visibility.Visible;
+            
             tbMin.Text = "2000";
             tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
             int max = int.Parse(tbMax.Text);
 
             List<string> subCategoryName = new List<string>();
-
+            SecondWp.Children.Clear();
+            loader.Visibility = Visibility.Visible;
             var identity = IdentitySingleton.GetInstance();
             var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Women", min, max, subCategoryName, 1);
-
-            SecondWp.Children.Clear();
+            
+            
 
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
@@ -157,6 +163,7 @@ namespace Eclo_Desktop.Pages
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 SecondWp.Children.Add(productLightClothesUserControl);
             }
+            loader.Visibility = Visibility.Collapsed;
             subCategoryName = subCategoryName.Distinct().ToList();
 
             cbSubCategories.Items.Clear();
@@ -166,23 +173,24 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
-            loader.Visibility = Visibility.Collapsed;
+           
         }
 
         private async void rbKids_Click(object sender, RoutedEventArgs e)
         {
-            loader.Visibility = Visibility.Visible;
+            
             tbMin.Text = "2000";
             tbMax.Text = "7500000";
             int min = int.Parse(tbMin.Text);
             int max = int.Parse(tbMax.Text);
 
             List<string> subCategoryName = new List<string>();
-
+            SecondWp.Children.Clear();
+            loader.Visibility = Visibility.Visible;
             var identity = IdentitySingleton.GetInstance();
             var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Kids", min, max, subCategoryName, 1);
-
-            SecondWp.Children.Clear();
+            
+           
 
             for (int i = 0; i < mensCategoryProducts.Count; i++)
             {
@@ -191,6 +199,8 @@ namespace Eclo_Desktop.Pages
                 productLightClothesUserControl.setData(mensCategoryProducts[i]);
                 SecondWp.Children.Add(productLightClothesUserControl);
             }
+            loader.Visibility = Visibility.Collapsed;
+
             subCategoryName = subCategoryName.Distinct().ToList();
 
             cbSubCategories.Items.Clear();
@@ -200,14 +210,14 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
-            loader.Visibility=Visibility.Collapsed;
         }
 
         private async void rbAll_Click(object sender, RoutedEventArgs e)
         {
+            SecondWp.Children.Clear();
             loader.Visibility = Visibility.Visible;
             var identity = IdentitySingleton.GetInstance();
-            SecondWp.Children.Clear();
+           
             int page = int.Parse(tbPage.Text);
             var result = await _productService.GetAllProducts(identity.UserId, page);
             identity.pagination = result.pageData;
@@ -218,6 +228,7 @@ namespace Eclo_Desktop.Pages
                 productLightClothesUserControl.setData(product);
                 SecondWp.Children.Add(productLightClothesUserControl);
             }
+            loader.Visibility = Visibility.Collapsed;
 
             cbSubCategories.Items.Clear();
             var subCategories = await _subCategoryService.GetAllSubCategories(1);
@@ -233,7 +244,7 @@ namespace Eclo_Desktop.Pages
                 checkBox.Content = subCategoryName[i];
                 cbSubCategories.Items.Add(checkBox);
             }
-            loader.Visibility = Visibility.Collapsed;
+            
         }
 
         private void btnShowMeAll_Click(object sender, RoutedEventArgs e)
@@ -297,19 +308,19 @@ namespace Eclo_Desktop.Pages
                         subCategoryName.Add(checkbox.Content.ToString());
                     }
                 }
-
+                SecondWp.Children.Clear();
+                loader.Visibility = Visibility.Visible;
                 var identity = IdentitySingleton.GetInstance();
                 var allCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "All", min, max, subCategoryName, 1);
+              
 
-
-
-                SecondWp.Children.Clear();
                 for (int i = 0; i < allCategoryProducts.Count; i++)
                 {
                     ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                     productLightClothesUserControl.setData(allCategoryProducts[i]);
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
+                loader.Visibility = Visibility.Collapsed;
             }
             else if (rbMens.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
@@ -325,19 +336,18 @@ namespace Eclo_Desktop.Pages
                         subCategoryName.Add(checkbox.Content.ToString());
                     }
                 }
-
+                SecondWp.Children.Clear();
+                loader.Visibility = Visibility.Visible;
                 var identity = IdentitySingleton.GetInstance();
                 var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Men", min, max, subCategoryName, 1);
-
-
-
-                SecondWp.Children.Clear();
+              
                 for (int i = 0; i < mensCategoryProducts.Count; i++)
                 {
                     ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                     productLightClothesUserControl.setData(mensCategoryProducts[i]);
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
+                loader.Visibility = Visibility.Collapsed;
             }
             else if (rbWomens.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
@@ -355,18 +365,19 @@ namespace Eclo_Desktop.Pages
                     }
                 }
 
+                SecondWp.Children.Clear();
+                loader.Visibility = Visibility.Visible;
                 var identity = IdentitySingleton.GetInstance();
                 var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Women", min, max, subCategoryName, 1);
 
 
-
-                SecondWp.Children.Clear();
                 for (int i = 0; i < mensCategoryProducts.Count; i++)
                 {
                     ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                     productLightClothesUserControl.setData(mensCategoryProducts[i]);
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
+                loader.Visibility = Visibility.Collapsed;
             }
             else if (rbKids.IsChecked == true && int.Parse(tbMin.Text) <= int.Parse(tbMax.Text))
             {
@@ -384,18 +395,18 @@ namespace Eclo_Desktop.Pages
                     }
                 }
 
+                SecondWp.Children.Clear();
+                loader.Visibility = Visibility.Visible;
                 var identity = IdentitySingleton.GetInstance();
                 var mensCategoryProducts = await _productService.FilterBYCategories(identity.UserId, "Kids", min, max, subCategoryName, 1);
 
-
-
-                SecondWp.Children.Clear();
                 for (int i = 0; i < mensCategoryProducts.Count; i++)
                 {
                     ProductLightClothesUserControl productLightClothesUserControl = new ProductLightClothesUserControl(_upateShoppingChartCount);
                     productLightClothesUserControl.setData(mensCategoryProducts[i]);
                     SecondWp.Children.Add(productLightClothesUserControl);
                 }
+                loader.Visibility = Visibility.Collapsed;
             }
             loader.Visibility = Visibility.Collapsed;
             // For the Loader to stop
