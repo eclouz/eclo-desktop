@@ -4,14 +4,14 @@ public static class API
 {
 
     ////Base Url
-    //public static readonly string BASE_URL = "http://68.183.181.125:89/api/";
+    public static readonly string BASE_URL = "http://68.183.181.125:89/api/";
 
-    //public static readonly string BASE_URL_IMAGE = "http://68.183.181.125:89/";
+    public static readonly string BASE_URL_IMAGE = "http://68.183.181.125:89/";
 
     ////Base Url
-    public static readonly string BASE_URL = "https://localhost:7190/api/";
+    //public static readonly string BASE_URL = "https://localhost:7190/api/";
 
-    public static readonly string BASE_URL_IMAGE = "https://localhost:7190/";
+    //public static readonly string BASE_URL_IMAGE = "https://localhost:7190/";
 
     //Login Register Confirm Password URLs
     public static readonly string CREATE_USER = BASE_URL + "auth/register";
