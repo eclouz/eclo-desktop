@@ -71,9 +71,12 @@
                     </Grid.ColumnDefinitions>
                     <!--end:: Split Grid 3-->
 
-                    <!--begin:: Border 1-->
-                    <Border Grid.Column="1"
-                            Margin="40 60 210 90">
+                    <!--begin:: Login Border 1-->
+                    <Border x:Name="LoginRightBorder"
+                            Grid.Column="1"
+                            Margin="40 60 210 90"
+                            Visibility="Visible"
+                            >
 
                         <!--begin:: StackPanel 2-->
                         <StackPanel>
@@ -95,7 +98,7 @@
                                     BorderThickness="1">
 
                                 <!--begin:: Phone TextBox-->
-                                <TextBox x:Name="tbPhone"                                                
+                                <TextBox x:Name="tbLoginPhone"                                                
                                     BorderThickness="0"
                                     Margin="10"
                                     FontSize="16"
@@ -125,7 +128,7 @@
                                     BorderThickness="1">
 
                                 <!--begin:: PasswordBox-->
-                                <PasswordBox x:Name="tbPassword"                                                
+                                <PasswordBox x:Name="tbLoginPassword"                                                
                                     BorderThickness="0"
                                     Margin="10"
                                     FontSize="16"
@@ -151,8 +154,8 @@
                                         Width="145"                                    
                                         Background="{DynamicResource btnClose}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}"
-                                        x:Name="btnCancel"
-                                        Click="btnCancel_Click">
+                                        x:Name="btnLoginCancel"
+                                        Click="btnLoginCancel_Click">
                                 </Button>
                                 <!--end:: Cansel Button-->
 
@@ -162,8 +165,8 @@
                                         Margin="18 30 0 0"
                                         Height="50"
                                         Width="145"                                                             
-                                        x:Name="btnSave"
-                                        Click="btnSave_Click"
+                                        x:Name="btnLogin"
+                                        Click="btnLogin_Click"
                                         Background="{DynamicResource FourthIconColor}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}">
                                 </Button>
@@ -175,16 +178,199 @@
                             <!--begin:: Notification-->
                             <notifications:NotificationArea x:Name="WindowArea" Position="TopLeft" MaxItems="1"/>
                             <!--end:: Notification-->
+                            
+                        </StackPanel>
+                        <!--end:: StackPanel 2-->                        
+                        
+                    </Border>
+                    <!--end:: Login Border 1-->
+
+                    <!--begin:: Register Border 1-->
+                    <Border x:Name="RegisterRightBorder"
+                            Grid.Column="1"
+                            Margin="40 60 210 70"
+                            Visibility="Collapsed"
+                            >
+
+                        <!--begin:: StackPanel 2-->
+                        <StackPanel>
+                            <!--begin:: Label Name-->
+                            <Label HorizontalAlignment="Left"
+                                   Margin="30 20 0 0"
+                                   FontSize="16"
+                                   Content="Name"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource FourthIconColor}">
+                            </Label>
+                            <!--end:: Label Name-->
+
+                            <!--begin:: Border 1.1-->
+                            <Border Height="50"
+                                    Width="300"
+                                    Margin="0 0 0 0"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    CornerRadius="10"
+                                    BorderThickness="1">
+
+                                <!--begin:: TextBox Name-->
+                                <TextBox x:Name="tbRegisterName"
+                                         MaxLength="32"
+                                         BorderThickness="0"
+                                         Margin="10"
+                                         FontSize="16"
+                                         Background="Transparent"
+                                         BorderBrush="{DynamicResource TextTertiaryColor}"
+                                         Foreground="{DynamicResource FourthIconColor}">
+                                </TextBox>
+                                <!--end:: TextBox Name-->
+
+                            </Border>
+                            <!--end:: Border 1.1-->
+
+                            <!--begin:: Label Surname-->
+                            <Label HorizontalAlignment="Left"
+                                   Margin="30 20 0 0"
+                                   Content="Surname"
+                                   FontWeight="SemiBold"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource FourthIconColor}">
+                            </Label>
+                            <!--end:: Label Surname-->
+
+                            <!--begin:: Border 1.2-->
+                            <Border Height="50"
+                                    Width="300"
+                                    Margin="0 0 0 0"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    CornerRadius="10"
+                                    BorderThickness="1">
+
+                                <!--begin:: TextBox Surname-->
+                                <TextBox x:Name="tbRegisterSecondName"
+                                         BorderThickness="0"
+                                         Margin="10"
+                                         MaxLength="32"
+                                         FontSize="16"
+                                         Background="Transparent"
+                                         BorderBrush="{DynamicResource TextTertiaryColor}"
+                                         Foreground="{DynamicResource FourthIconColor}">
+                                </TextBox>
+                                <!--end:: TextBox Surname-->
+
+                            </Border>
+                            <!--end:: Border 1.2-->
+
+                            <!--begin:: Label Password-->
+                            <Label HorizontalAlignment="Left"
+                                   Margin="30 20 0 0"
+                                   Content="Password"
+                                   FontWeight="SemiBold"
+                                   FontSize="16"
+                                   Foreground="{DynamicResource FourthIconColor}">
+                            </Label>
+                            <!--end:: Label Password-->
+
+                            <!--begin:: Border 1.3-->
+                            <Border Height="50"
+                                    Width="300"
+                                    Margin="0 0 0 0"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    CornerRadius="10"
+                                    BorderThickness="1">
+
+                                <!--begin:: TextBox Password-->
+                                <PasswordBox x:Name="tbRegisterPassword"
+                                             BorderThickness="0"
+                                             Margin="10"
+                                             MaxLength="20"
+                                             FontSize="16"
+                                             Background="Transparent"
+                                             BorderBrush="{DynamicResource TextTertiaryColor}"
+                                             Foreground="{DynamicResource FourthIconColor}">
+                                </PasswordBox>
+                                <!--end:: TextBox Password-->
+
+                            </Border>
+                            <!--end:: Border 1.3-->
+
+                            <!--begin:: Label Phone-->
+                            <Label HorizontalAlignment="Left"
+                                   Margin="30 20 0 0"
+                                   Content="Phone"
+                                   FontSize="16"
+                                   FontWeight="SemiBold"
+                                   Foreground="{DynamicResource FourthIconColor}">
+                            </Label>
+                            <!--end:: Label Phone-->
+
+                            <!--begin:: Border 1.4-->
+                            <Border Height="50"
+                                    Width="300"
+                                    Margin="0 0 0 0"
+                                    BorderBrush="{DynamicResource TextTertiaryColor}"
+                                    CornerRadius="10"
+                                    BorderThickness="1">
+
+                                <!--begin: TextBox Phone-->
+                                <TextBox x:Name="tbRegisterPhone"
+                                         BorderThickness="0"
+                                         Margin="10"
+                                         FontSize="16"
+                                         MaxLength="13"
+                                         Background="Transparent"
+                                         BorderBrush="{DynamicResource TextTertiaryColor}"
+                                         Foreground="{DynamicResource FourthIconColor}">
+                                </TextBox>
+                                <!--end:: TextBox Phone-->
+
+                            </Border>
+                            <!--end:: Border 1.4-->
+
+                            <!--begin:: StackPanel 3-->
+                            <StackPanel Orientation="Horizontal"
+                                        Margin="0 0 0 0"
+                                        Height="100">
+
+                                <!--begin:: Button Cancel-->
+                                <Button Style="{DynamicResource SaveBtn}"
+                                        Content="Cancel"
+                                        Margin="22 30 0 0"
+                                        Height="50"
+                                        Width="145"
+                                        Background="{DynamicResource btnClose}"
+                                        Foreground="{DynamicResource PrimaryBackgroundColor}"
+                                        x:Name="btnRegisterCancel"
+                                        Click="btnRegisterCancel_Click">
+                                </Button>
+                                <!--end:: Button Cancel-->
+
+                                <!--begin:: Button Register-->
+                                <Button Style="{DynamicResource SaveBtn}"
+                                        Content="Register"
+                                        Margin="18 30 0 0"
+                                        Height="50"
+                                        Width="145"
+                                        x:Name="btnRegister"
+                                        Click="btnRegister_Click"
+                                        Background="{DynamicResource FourthIconColor}"
+                                        Foreground="{DynamicResource PrimaryBackgroundColor}">
+                                </Button>
+                                <!--end:: Button Register-->
+
+                            </StackPanel>
+                            <!--end:: StackPanel 3-->
+
                         </StackPanel>
                         <!--end:: StackPanel 2-->
 
-                        
-                        
                     </Border>
-                    <!--end:: Border 1-->
+                    <!--end:: Register Border 1-->
 
-                    <!--begin:: Border 2-->
-                    <Border Grid.Column="0">
+                    
+                    <!--begin:: Login Border Left-->
+                    <Border Grid.Column="0"
+                            x:Name="LoginLeftBorder"
+                            Visibility="Visible">
 
                         <!--begin:: Border 2.1-->
                         <Border Margin="150 80" 
@@ -252,8 +438,8 @@
                                         Height="50"
                                         Width="200"                                                             
                                         HorizontalAlignment="Center"
-                                        x:Name="btnToLogin"
-                                        Click="btnToLogin_Click"
+                                        x:Name="btnToRegister"
+                                        Click="btnToRegister_Click"
                                         Background="{DynamicResource FourthIconColor}"
                                         Foreground="{DynamicResource PrimaryBackgroundColor}">
                                 </Button>
@@ -266,7 +452,95 @@
                         <!--end:: Border 2.1-->
 
                     </Border>
+                    <!--end:: Login Border Left-->
+
+                    <!--begin:: Register Border Left -->
+                    <Border x:Name="RegisterLeftBorder"
+                            Grid.Column="0"
+                            Visibility="Collapsed">
+
+                        <!--begin:: Border 2.1-->
+                        <Border Margin="150 80"
+                                CornerRadius="15"
+                                Background="{DynamicResource RegisterBackgroudnColor}">
+
+                            <!--begin:: StackPanel 4-->
+                            <StackPanel>
+
+                                <!--begin:: Border 2.2-->
+                                <Border Width="25"
+                                        Margin="0 15 0 0"
+                                        Height="25"
+                                        BorderBrush="{DynamicResource PrimaryBackgroundColor}"
+                                        BorderThickness="3"
+                                        CornerRadius="50">
+
+                                    <!--begin:: Border 2.3-->
+                                    <Border Background="{DynamicResource RegisterDarkGreenBackgroudnColor}"
+                                            CornerRadius="50">
+                                    </Border>
+                                    <!--end:: Border 2.3-->
+
+                                </Border>
+                                <!--end:: Border 2.2-->
+
+                                <!--begin:: Label registration-->
+                                <Label Content="Registration"
+                                       Margin="50 50 50 25"
+                                       FontSize="35"
+                                       HorizontalAlignment="Center"
+                                       FontWeight="SemiBold"
+                                       Foreground="{DynamicResource FourthIconColor}">
+                                </Label>
+                                <!--end:: Label registration-->
+
+                                <!--begin:: Label Electron-->
+                                <Label Content=" -   Electron"
+                                       FontSize="16"
+                                       Foreground="{DynamicResource FourthIconColor}"
+                                       Margin="50 0">
+                                </Label>
+                                <!--end:: Label Electron-->
+
+                                <!--begin:: Label Clothes-->
+                                <Label Content=" -   Clothes"
+                                       FontSize="16"
+                                       Foreground="{DynamicResource FourthIconColor}"
+                                       Margin="50 0">
+                                </Label>
+                                <!--end:: Label Clothes-->
+
+                                <!--begin:: Label Shop-->
+                                <Label Content=" -   Shop"
+                                       FontSize="16"
+                                       Foreground="{DynamicResource FourthIconColor}"
+                                       Margin="50 0">
+                                </Label>
+                                <!--end:: Label Shop-->
+
+                                <!--begin:: Button Login-->
+                                <Button Style="{DynamicResource SaveBtn}"
+                                        Content="Login"
+                                        Margin="0 30 0 0"
+                                        Height="50"
+                                        Width="200"
+                                        HorizontalAlignment="Center"
+                                        x:Name="btnToLogin"
+                                        Click="btnToLogin_Click"
+                                        Background="{DynamicResource FourthIconColor}"
+                                        Foreground="{DynamicResource PrimaryBackgroundColor}">
+                                </Button>
+                                <!--end:: Button Login-->
+
+                            </StackPanel>
+                            <!--begin:: StackPanel 4-->
+
+                        </Border>
+                        <!--end:: Border 2.1-->
+
+                    </Border>
                     <!--end:: Border 2-->
+
 
                 </Grid>
                 <!--end:: Grid 3-->

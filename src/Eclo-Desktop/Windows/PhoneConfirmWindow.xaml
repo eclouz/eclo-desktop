@@ -19,7 +19,8 @@
             <!--begin:: Background Main Border-->
             <Border.Background>
                 <ImageBrush ImageSource="/Assets/StaticImages/phone_confirmed_background.png"
-                 Stretch="UniformToFill"/>
+                 Stretch="UniformToFill" Opacity="0.8"/>
+                
             </Border.Background>
             <!--begin:: Background Main Border-->
             
