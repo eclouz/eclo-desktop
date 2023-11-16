@@ -5,7 +5,7 @@ namespace Integrated.ServiceLayer.User;
 
 public interface IUserService
 {
-    Task<bool> CreateUser(RegisterDto registerDto);
+    Task<(bool result, string result_text)> CreateUser(RegisterDto registerDto);
     Task<bool> SendCodeRegister(string phone);
     Task<(bool result, string token)> VerifyRegister(VerifyRegisterDto verifyRegisterDto);
     Task<(bool result, string token)> Login(LoginDto loginDto);
