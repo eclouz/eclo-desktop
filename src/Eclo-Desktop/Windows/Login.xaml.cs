@@ -240,13 +240,13 @@ namespace Eclo_Desktop.Windows
 
                             //For Notification Send Code Warning
                             var notificationManager = new NotificationManager();
-                            notificationManager.Show("Error!", "Something Error not send code", NotificationType.Error, RowsCountWhenTrim: 2);
+                            notificationManager.Show("Error!", "Something Error not send code", NotificationType.Error, "WindowAreaRegister");
                         }
                         else
                         {
                             //For Notification Send Code Successful
                             var notificationManager = new NotificationManager();
-                            notificationManager.Show("Successful!", "Send code your phone number", NotificationType.Success, RowsCountWhenTrim: 2);
+                            notificationManager.Show("Successful!", "Send code your phone number", NotificationType.Success, "WindowAreaRegister");
 
                             // For PhoneConfirWindow give phone_number
                             PhoneConfirmWindow phoneConfirmWindow = new PhoneConfirmWindow();
@@ -274,7 +274,7 @@ namespace Eclo_Desktop.Windows
                         btnRegister.IsEnabled = true;
 
                         var notificationManager = new NotificationManager();
-                        notificationManager.Show(response.result_text, NotificationType.Warning, RowsCountWhenTrim: 2);
+                        notificationManager.Show(response.result_text, NotificationType.Warning, "WindowAreaRegister");
                     }
                 }
                 else if (!count.Contains("n"))
@@ -286,7 +286,7 @@ namespace Eclo_Desktop.Windows
                     btnRegister.IsEnabled = true;
 
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", "Name wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
+                    notificationManager.Show("Warning!", "Name wrong", NotificationType.Warning, "WindowAreaRegister");
                 }
                 else if (!count.Contains("f"))
                 {
@@ -297,7 +297,7 @@ namespace Eclo_Desktop.Windows
                     btnRegister.IsEnabled = true;
 
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", "Surname wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
+                    notificationManager.Show("Warning!", "Surname wrong", NotificationType.Warning, "WindowAreaRegister");
                 }
 
                 else if (!count.Contains("p"))
@@ -309,7 +309,7 @@ namespace Eclo_Desktop.Windows
                     btnRegister.IsEnabled = true;
 
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", "Password wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
+                    notificationManager.Show("Warning!", "Password wrong", NotificationType.Warning, "WindowAreaRegister");
                 }
                 else if (!count.Contains("t"))
                 {
@@ -320,7 +320,7 @@ namespace Eclo_Desktop.Windows
                     btnRegister.IsEnabled = true;
 
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", "Phone number wrong", NotificationType.Warning, RowsCountWhenTrim: 2);
+                    notificationManager.Show("Warning!", "Phone number wrong", NotificationType.Warning, "WindowAreaRegister");
                 }
                 else
                 {
@@ -331,7 +331,7 @@ namespace Eclo_Desktop.Windows
                     btnRegister.IsEnabled = true;
 
                     var notificationManager = new NotificationManager();
-                    notificationManager.Show("Warning!", "You have filled in the lines incorrectly", NotificationType.Warning, RowsCountWhenTrim: 2);
+                    notificationManager.Show("Warning!", "You have filled in the lines incorrectly", NotificationType.Warning, "WindowAreaRegister");
                 }
             }
             catch
@@ -341,7 +341,7 @@ namespace Eclo_Desktop.Windows
                 btnRegister.IsEnabled = true;
 
                 var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Connection Error", NotificationType.Warning, RowsCountWhenTrim: 2);
+                notificationManager.Show("Warning!", "Connection Error", NotificationType.Warning, "WindowAreaRegister");
             }
 
         }
