@@ -2,11 +2,15 @@
 
 public static class API
 {
+    ////Base Url
+    public static readonly string BASE_URL = "http://165.22.110.111:8080/api/";
+
+    public static readonly string BASE_URL_IMAGE = "http://165.22.110.111:8080/";
 
     ////Base Url
-    public static readonly string BASE_URL = "http://68.183.181.125:89/api/";
+    //public static readonly string BASE_URL = "http://68.183.181.125:89/api/";
 
-    public static readonly string BASE_URL_IMAGE = "http://68.183.181.125:89/";
+    //public static readonly string BASE_URL_IMAGE = "http://68.183.181.125:89/";
 
     ////Base Url
     //public static readonly string BASE_URL = "https://localhost:7190/api/";
