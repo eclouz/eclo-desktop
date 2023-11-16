@@ -222,10 +222,10 @@ namespace Eclo_Desktop.Windows
                     };
 
                     // For register Send request 
-                    bool response = await userService.CreateUser(registerDto);
+                    var response = await userService.CreateUser(registerDto);
 
 
-                    if (response == true)
+                    if (response.result == true)
                     {
                         // For Send Code Register
                         bool res_send_code = await userService.SendCodeRegister(tbRegisterPhone.Text.ToString());
@@ -274,7 +274,7 @@ namespace Eclo_Desktop.Windows
                         btnRegister.IsEnabled = true;
 
                         var notificationManager = new NotificationManager();
-                        notificationManager.Show("Warning", "Something Error", NotificationType.Warning, RowsCountWhenTrim: 2);
+                        notificationManager.Show(response.result_text, NotificationType.Warning, RowsCountWhenTrim: 2);
                     }
                 }
                 else if (!count.Contains("n"))

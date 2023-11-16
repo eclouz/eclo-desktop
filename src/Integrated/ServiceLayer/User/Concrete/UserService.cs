@@ -1,12 +1,14 @@
 using Dtos.Auth;
 using Eclo.DataAccess.ViewModels.Users;
 using Newtonsoft.Json;
+using ViewModels.Users;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace Integrated.ServiceLayer.User.Concrete;
 
 public class UserService : IUserService
 {
-    public async Task<bool> CreateUser(RegisterDto registerDto)
+    public async Task<(bool result, string result_text)> CreateUser(RegisterDto registerDto)
     {
         using (var client = new HttpClient())
         {
@@ -29,10 +31,13 @@ public class UserService : IUserService
                 string responseRead = await response.Content.ReadAsStringAsync();
                 var responsJson = JsonConvert.DeserializeObject<RegisterCheckDto>(responseRead);
 
-                return responsJson.Result == true;
+                return (result: responsJson.Result, result_text: responseRead);
             }
 
-            return false;
+            string text = await response.Content.ReadAsStringAsync();
+            var resJson = JsonConvert.DeserializeObject<RegisterResponseViewModel>(text);
+
+            return (result: false, result_text: resJson!.ErrorMessage);
         }
     }
 
