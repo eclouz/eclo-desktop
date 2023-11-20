@@ -5,10 +5,12 @@ using Integrated.ServiceLayer;
 using Integrated.ServiceLayer.Product;
 using Integrated.ServiceLayer.Product.Concrete;
 using System;
+using System.Globalization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using ViewModels.Products;
 
@@ -160,6 +162,13 @@ namespace Eclo_Desktop.Components.Dashboards
             this.productViewModels.likedId = productViewModels.likedId;
             this.productViewModels.ProductDetail = productViewModels.ProductDetail;
 
+            //Make Price Format
+            var numformat = new NumberFormatInfo
+            {
+                NumberGroupSeparator = " ",
+                NumberGroupSizes = new int[] { 3 },
+                NumberDecimalDigits = 0
+            };
             string pathRedLike = "Assets\\StaticImages\\like.png";
             if (productViewModels.ProductLiked == true)
             {
@@ -169,8 +178,21 @@ namespace Eclo_Desktop.Components.Dashboards
             {
                 brLike.ImageSource = new BitmapImage(new System.Uri("Assets\\StaticImages\\love.png", UriKind.Relative));
             }
+            if (productViewModels.ProductDiscount.Count > 0)
+            {
+                tbproductPriceRed.Visibility = Visibility.Visible;
+                tbproductPriceRed.Text= (productViewModels.ProductPrice).ToString("N", numformat) + " so'm";
 
-            lblPproductPrice.Content = (productViewModels.ProductPrice).ToString();
+                var discount = productViewModels.ProductDiscount[productViewModels.ProductDiscount.Count-1];
+                var value = productViewModels.ProductPrice-((productViewModels.ProductPrice / 100) * discount);
+
+                tbProductPriceGreen.Text=value.ToString("N", numformat)+" so'm";
+                
+            }
+            else
+            {
+                tbProductPriceGreen.Text = (productViewModels.ProductPrice).ToString("N", numformat)+" so'm";
+            }
 
         }
 
