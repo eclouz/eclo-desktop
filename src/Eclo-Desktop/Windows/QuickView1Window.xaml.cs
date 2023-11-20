@@ -29,11 +29,10 @@ namespace Eclo_Desktop.Windows
         IProductService productService = new ProductService();
         private ICommentService _commentService;
         private string imagePath { get; set; }
-        private bool liked { get; set; } = false;
-        int count = 0;
         private long productId { get; set; }
         public UpdateShoppingChartCountDelegate _upateShoppingChartCount;
         public long productGetViewId;
+        public List<ProductGetSizeDto> productGetSizeListForPublish { get; set; }
 
         public QuickView1Window(UpdateShoppingChartCountDelegate updateShoppingChartCount)
         {
@@ -42,98 +41,22 @@ namespace Eclo_Desktop.Windows
             this._commentService = new CommentService();
         }
 
-        private void Border_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            //if(liked==false)
-            //{
-            //    brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\like.png", UriKind.Relative));
-            //    liked = true;
-            //}
-            //else
-            //{
-            //    brLike.ImageSource = new BitmapImage(new System.Uri("C:\\Users\\hasan\\OneDrive\\Рабочий стол\\Current_Working_Project\\eclo-desktop\\src\\Eclo-Desktop\\Assets\\StaticImages\\love.png", UriKind.Relative));
-            //    liked = false;
-            //}
-        }
-
-        private void btnMinimize_Click(object sender, RoutedEventArgs e)
-        {
-            WindowState = WindowState.Minimized;
-        }
-
-        private void btnClose_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-        }
-
+        //Start======Window Loaded========================================================================================================== 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             lblReviewCount2.Content = lblReviewCount.Content;
 
         }
-        //        tbComment
-        public List<ProductGetSizeDto> productGetSizeListForPublish { get; set; }
-        public async Task setDataToMainImage(string image, List<Uri> extraPictures, List<ProductGetSizeDto> sizeList, string color)
+        //End======Window Loaded==========================================================================================================       
+
+        //Start======Close Button========================================================================================================== 
+        private void btnClose_Click(object sender, RoutedEventArgs e)
         {
-            productGetSizeListForPublish = sizeList;
-            lblColor.Content = color;
-            Uri imageUri = new Uri(image, UriKind.Absolute);
-            imageQuickview.ImageSource = new BitmapImage(imageUri);
-            if (extraPictures.Count == 0)
-            {
-                imageQuickview2.ImageSource = new BitmapImage(imageUri);
-                imageQuickview3.ImageSource = new BitmapImage(imageUri);
-            }
-            if (extraPictures.Count > 0)
-            {
-                if (extraPictures.Count > 1)
-                {
-                    imageQuickview2.ImageSource = new BitmapImage(extraPictures[1]);
-                    imageQuickview3.ImageSource = new BitmapImage(extraPictures[0]);
-
-                }
-                if (extraPictures.Count == 1)
-                {
-                    imageQuickview3.ImageSource = new BitmapImage(extraPictures[0]);
-                    imageQuickview2.ImageSource = new BitmapImage(imageUri);
-                }
-            }
-            // Getting Size to Window
-            await refreshSizeAsync();
+            this.Close();
         }
-        public async Task setDataToMainImage2(ProductGetSizeDto dto)
-        {
-            lblQuantity.Content = dto.quantity.ToString();
-            lblSize.Content = dto.Size.ToString();
-        }
-        public async Task refreshSizeAsync()
-        {
-            wpProductSizes.Children.Clear();
-            foreach (var sizes in productGetSizeListForPublish)
-            {
-                SizeUserControl sizeUserControl = new SizeUserControl();
-                sizeUserControl.setData(sizes);
-                wpProductSizes.Children.Add(sizeUserControl);
-                sizeUserControl.ProductGetSize = setDataToMainImage2;
+        //End======Close Button========================================================================================================== 
 
-            }
-
-
-
-        }
-
-        private void LeftBorder_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-        private void RightBorder_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-
-        }
-
-
-
+        //Start===========Buttons Minus and Plus===========================================================================================================
         private void btnMinus_Click(object sender, RoutedEventArgs e)
         {
             int productCount = int.Parse(lblItemCount.Text);
@@ -142,21 +65,19 @@ namespace Eclo_Desktop.Windows
                 productCount -= 1;
                 lblItemCount.Text = productCount.ToString();
             }
-
         }
-
         private void btnPlus_Click(object sender, RoutedEventArgs e)
         {
             int productCount = int.Parse(lblItemCount.Text);
-            if (productCount < int.Parse(lblQuantity.Content.ToString()))
+            if (productCount < int.Parse(lblQuantity.Content.ToString()!))
             {
                 productCount += 1;
                 lblItemCount.Text = productCount.ToString();
             }
-
-
         }
+        //End===========Buttons Minus and Plus==============================================================================================================
 
+        //Start======Description Border Mouse Down========================================================================================================== 
         private void brDescription_MouseDown(object sender, MouseButtonEventArgs e)
         {
             if (!isDescripitonPressed)
@@ -173,10 +94,104 @@ namespace Eclo_Desktop.Windows
                 isDescripitonPressed = false;
             }
         }
+        //End======Description Border Mouse Down========================================================================================================== 
+
+        //Start======Comment TextBox TextCHanged========================================================================================================== 
+        private void tbComment_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (tbComment.Text.Length > 0)
+            {
+                brSendComment.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                brSendComment.Visibility = Visibility.Collapsed;
+            }
+
+        }
+        //End======Comment TextBox TextCHanged========================================================================================================== 
+
+        //Start======Comment Send Comment MouseDown========================================================================================================== 
+        private async void brSendComment_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            if (tbComment.Text.Length > 0 && tbComment.Text != null)
+            {
+                brSendComment.IsEnabled = false;
+                var identity = IdentitySingleton.GetInstance();
+                CommentDto commentDto = new CommentDto()
+                {
+                    ProductId = productId,
+                    UserId = identity.UserId,
+                    Comment = tbComment.Text.ToString(),
+                    IsEdited = true
+                };
+
+
+                // For register Send request 
+                bool response = await _commentService.CreateComment(commentDto, identity.Token);
+                brSendComment.IsEnabled = true;
+                tbComment.Text = "";
+                refreshCommentAsync();
+            }
+            else
+            {
+                // For Comment Error Notification
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", "Comment not empty", NotificationType.Warning);
+            }
+        }
+        //End======Comment Send Comment MouseDown========================================================================================================== 
+
+        //Start======AddCart  Button========================================================================================================== 
+        private void btAddCart(object sender, RoutedEventArgs e)
+        {
+            if (lblProductName.Content != null && lblColor.Content != null && lblSize.Content != null && lblItemCount.Text != null
+                && tbDescription.Text != null && lblPrice.Content != null && imagePath != null)
+            {
+                Guid newGuid = Guid.NewGuid();
+                ShoppingChartViewModel shoppingChartViewModel = new ShoppingChartViewModel()
+                {
+
+                    Id = newGuid.ToString(),
+                    ProductName = lblProductName.Content.ToString()!,
+                    ProductColor = lblColor.Content.ToString()!,
+                    ProductSize = lblSize.Content.ToString()!,
+                    ProductQuantity = int.Parse(lblQuantity.Content.ToString()!),
+                    ItemCount = int.Parse(lblItemCount.Text!),
+                    ProductDescription = tbDescription.Text.ToString(),
+                    ProductPrice = double.Parse(lblPrice.Content.ToString()!),
+                    ProductImage = imagePath,
+                    ProductDiscount = 10,
+
+                };
+                var identity = IdentitySingleton.GetInstance();
+
+                var List = identity.ShoppingChartProducts;
+                List.Add(shoppingChartViewModel);
+                identity.ShoppingChartProducts = List;
+
+                //For Save product ShoppingChart Success
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Success!", "Save product ShoppingChart", NotificationType.Success, RowsCountWhenTrim: 2);
+
+                _upateShoppingChartCount();
+
+            }
+            else
+            {
+                //For Save product ShoppingChart Warning
+                var notificationManager = new NotificationManager();
+                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning, RowsCountWhenTrim: 2);
+            }
+
+
+        }
+        //End======AddCart  Button========================================================================================================== 
+
         public void setData(ProductGetViewModel productGetViewModel, long Id)
         {
             productGetViewId = Id;
-            // Thisvariable for counting reviews
+            // This variable for counting reviews
             int countComments = 0;
             productId = productGetViewModel.Id;
             //Product Name
@@ -274,91 +289,51 @@ namespace Eclo_Desktop.Windows
 
             lblReviewCount.Content = lblReviewCount2.Content;
         }
-
-        private void tbComment_TextChanged(object sender, TextChangedEventArgs e)
+        public async Task setDataToMainImage(string image, List<Uri> extraPictures, List<ProductGetSizeDto> sizeList, string color)
         {
-            if (tbComment.Text.Length > 0)
+            productGetSizeListForPublish = sizeList;
+            lblColor.Content = color;
+            Uri imageUri = new Uri(image, UriKind.Absolute);
+            imageQuickview.ImageSource = new BitmapImage(imageUri);
+            if (extraPictures.Count == 0)
             {
-                brSendComment.Visibility = Visibility.Visible;
+                imageQuickview2.ImageSource = new BitmapImage(imageUri);
+                imageQuickview3.ImageSource = new BitmapImage(imageUri);
             }
-            else
+            if (extraPictures.Count > 0)
             {
-                brSendComment.Visibility = Visibility.Collapsed;
-            }
-
-        }
-
-        private async void brSendComment_MouseDown(object sender, MouseButtonEventArgs e)
-        {
-            if (tbComment.Text.Length > 0 && tbComment.Text != null)
-            {
-                brSendComment.IsEnabled = false;
-                var identity = IdentitySingleton.GetInstance();
-                CommentDto commentDto = new CommentDto()
+                if (extraPictures.Count > 1)
                 {
-                    ProductId = productId,
-                    UserId = identity.UserId,
-                    Comment = tbComment.Text.ToString(),
-                    IsEdited = true
-                };
+                    imageQuickview2.ImageSource = new BitmapImage(extraPictures[1]);
+                    imageQuickview3.ImageSource = new BitmapImage(extraPictures[0]);
 
-
-                // For register Send request 
-                bool response = await _commentService.CreateComment(commentDto, identity.Token);
-                brSendComment.IsEnabled = true;
-                tbComment.Text = "";
-                refreshCommentAsync();
-            }
-            else
-            {
-                // For Comment Error Notification
-                var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Comment not empty", NotificationType.Warning);
-            }
-        }
-
-        private void btAddCart(object sender, RoutedEventArgs e)
-        {
-            if (lblProductName.Content != null && lblColor.Content != null && lblSize.Content != null && lblItemCount.Text != null
-                && tbDescription.Text != null && lblPrice.Content != null && imagePath != null)
-            {
-                Guid newGuid = Guid.NewGuid();
-                ShoppingChartViewModel shoppingChartViewModel = new ShoppingChartViewModel()
+                }
+                if (extraPictures.Count == 1)
                 {
-
-                    Id = newGuid.ToString(),
-                    ProductName = lblProductName.Content.ToString()!,
-                    ProductColor = lblColor.Content.ToString()!,
-                    ProductSize = lblSize.Content.ToString()!,
-                    ProductQuantity = int.Parse(lblQuantity.Content.ToString()!),
-                    ItemCount = int.Parse(lblItemCount.Text!),
-                    ProductDescription = tbDescription.Text.ToString(),
-                    ProductPrice = double.Parse(lblPrice.Content.ToString()!),
-                    ProductImage = imagePath,
-                    ProductDiscount = 10,
-
-                };
-                var identity = IdentitySingleton.GetInstance();
-
-                var List = identity.ShoppingChartProducts;
-                List.Add(shoppingChartViewModel);
-                identity.ShoppingChartProducts = List;
-
-                //For Save product ShoppingChart Success
-                var notificationManager = new NotificationManager();
-                notificationManager.Show("Success!", "Save product ShoppingChart", NotificationType.Success, RowsCountWhenTrim: 2);
-
-                _upateShoppingChartCount();
-
+                    imageQuickview3.ImageSource = new BitmapImage(extraPictures[0]);
+                    imageQuickview2.ImageSource = new BitmapImage(imageUri);
+                }
             }
-            else
+            // Getting Size to Window
+            await refreshSizeAsync();
+        }
+        public async Task setDataToMainImage2(ProductGetSizeDto dto)
+        {
+            lblQuantity.Content = dto.quantity.ToString();
+            lblSize.Content = dto.Size.ToString();
+        }
+        public async Task refreshSizeAsync()
+        {
+            wpProductSizes.Children.Clear();
+            foreach (var sizes in productGetSizeListForPublish)
             {
-                //For Save product ShoppingChart Warning
-                var notificationManager = new NotificationManager();
-                notificationManager.Show("Warning!", "Please try again", NotificationType.Warning, RowsCountWhenTrim: 2);
+                SizeUserControl sizeUserControl = new SizeUserControl();
+                sizeUserControl.setData(sizes);
+                wpProductSizes.Children.Add(sizeUserControl);
+                sizeUserControl.ProductGetSize = setDataToMainImage2;
             }
-
 
         }
+
     }
 }
