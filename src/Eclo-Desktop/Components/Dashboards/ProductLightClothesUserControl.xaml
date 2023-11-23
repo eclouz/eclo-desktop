@@ -1,45 +1,39 @@
 ﻿<UserControl x:Class="Eclo_Desktop.Components.Dashboards.ProductLightClothesUserControl"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:Eclo_Desktop.Components.Dashboards" xmlns:fa="http://schemas.fontawesome.io/icons/"
-             mc:Ignorable="d" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:Eclo_Desktop.Components.Dashboards"
+             xmlns:fa="http://schemas.fontawesome.io/icons/"
+             mc:Ignorable="d"
              Width="250"
              Loaded="UserControl_Loaded"
              Height="450"
              Margin="15">
     <Grid>
+        <!--begin::Main Border-->
         <Border Background="Transparent"
-                x:Name="MainBorder"
-                >
-            
+                x:Name="MainBorder">
+            <!--begin:: Main Stack Panel-->
             <StackPanel>
-                <Border Width="250"                        
-                        Height="280"    
+                <!--begin::Border 1-->
+                <Border Width="250"
+                        Height="280"
                         x:Name="myBorder"
                         CornerRadius="15"
-                        Background="{DynamicResource NetItemsBackgroundColor}"
-                        >
-
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*"/>
-                        </Grid.ColumnDefinitions>
-
-
-                    </Grid>
-
+                        Background="{DynamicResource NetItemsBackgroundColor}">
                 </Border>
-                <StackPanel Orientation="Horizontal"                            
-                            Height="50"                            
-                            Width="200"                            
+                <!--end::Border 1-->
+                
+                <StackPanel Orientation="Horizontal"
+                            Height="50"
+                            Width="200"
                             Margin="0 5"
                             x:Name="SPLittlePictures">
-                    
-                   
+
+
                 </StackPanel>
-                <Label Content="Polo T-Shirt" 
+                <Label Content="Polo T-Shirt"
                        x:Name="lblClotheName"
                        Foreground="{DynamicResource FourthIconColor}"
                        FontWeight="SemiBold"
@@ -53,61 +47,9 @@
                        FontSize="16"
                        Foreground="{DynamicResource TextTertiaryColor}">
                 </Label>
-                <!--
-                <StackPanel Height="30"
-                            Margin="20 0"
-                            Orientation="Horizontal"
-                            >
-                    <Border Name="brRed"
-                            Height="25"
-                            Width="55"
-                            Margin="0 0 20 0"
-                            BorderThickness="2"
-                            CornerRadius="8"
-                            BorderBrush="Red"
-                            Visibility="Collapsed">
-                        <TextBlock HorizontalAlignment="Center"
-                               VerticalAlignment="Center"
-                               x:Name="tbproductPriceRed"
-                               Text="$99.98"
-                               Margin="1"
-                               FontSize="12"
-                               Padding="0"     
-                               Foreground="{DynamicResource PriceBorderForeColor}">
-
-                            <TextBlock.TextDecorations>
-                                <TextDecoration Location="Strikethrough">
-                                    <TextDecoration.Pen>
-                                        <Pen Brush="Red"/>
-                                    </TextDecoration.Pen>
-                                </TextDecoration>
-                            </TextBlock.TextDecorations>
-
-                        </TextBlock>
-                    </Border>
-                    <Border x:Name="brGreen"
-                            Height="25"
-                            Width="55"
-                            Margin="0 0 0 0"
-                            BorderThickness="2"
-                            CornerRadius="8"
-                            BorderBrush="{DynamicResource PriceBorderForeColor}">
-                        <TextBlock HorizontalAlignment="Center"
-                                   VerticalAlignment="Center"
-                                   x:Name="tbProductPriceGreen"
-                                   Text="$99.98"
-                                   Margin="1"
-                                   FontSize="12"
-                                   Padding="0"
-                                   Foreground="{DynamicResource PriceBorderForeColor}">
-                        </TextBlock>
-                    </Border>
-                </StackPanel>
-                +++++++++++++++++++++++++++++++++++++++-->
-                <StackPanel
-                    Height="45"
-                    Margin="20 0 40 0"
-                    Orientation="Vertical">
+                <StackPanel Height="45"
+                            Margin="20 0 40 0"
+                            Orientation="Vertical">
 
                     <TextBlock HorizontalAlignment="Left"
                                x:Name="tbproductPriceRed"
@@ -139,35 +81,36 @@
                     </TextBlock>
 
                 </StackPanel>
+                    
             </StackPanel>
-
+            <!--end:: Main Stack Panel-->
         </Border>
+        <!--end:: Main Border-->
+        
+        <!--begin:: Border 1 ga Elementlar-->
         <Border Width="200"
                 Height="260"
                 VerticalAlignment="Top"
                 Margin="0 10"
                 x:Name="ImageBorder">
-            <fa:ImageAwesome
-                VerticalAlignment="Center"
-                HorizontalAlignment="Center"
-                Margin="0"
-                x:Name="loader"
-                Icon="Spinner"
-                Visibility="Visible"
-                Spin="True"
-                Height="100"
-                Width="100"
-                Foreground="#909CAB"
-                />
+            <fa:ImageAwesome VerticalAlignment="Center"
+                             HorizontalAlignment="Center"
+                             Margin="0"
+                             x:Name="loader"
+                             Icon="Spinner"
+                             Visibility="Visible"
+                             Spin="True"
+                             Height="100"
+                             Width="100"
+                             Foreground="#909CAB" />
 
             <Border.Background>
                 <!--ImageSource="/Assets/StaticImages/MenuBarPicture.png"-->
-                <ImageBrush 
-                            x:Name="imgProduct"
-                            Stretch="Uniform"/>
+                <ImageBrush x:Name="imgProduct"
+                            Stretch="Uniform" />
             </Border.Background>
         </Border>
-        <Border Width="35"
+        <!--<Border Width="35"
                 Height="35"
                 VerticalAlignment="Top"
                 HorizontalAlignment="Right"
@@ -175,21 +118,28 @@
                 x:Name="LikeBorder"
                 Background="{DynamicResource PrimaryBackgroundColor}"
                 CornerRadius="20">
-            <Border Margin="5"  
+            <Border Margin="5"
                     MouseDown="brLike_MouseDown">
                 <Border.Background>
-                    <ImageBrush x:Name="brLike" ImageSource="/assets/staticimages/love.png"
-                                />
+                    <ImageBrush x:Name="brLike"
+                                ImageSource="/assets/staticimages/love.png" />
                 </Border.Background>
             </Border>
-        </Border>
+        </Border>-->
+        <Button x:Name="btLike"
+                Style="{DynamicResource likeButtonStyle}"
+                Tag="White"
+                Content="#323B4B"
+                Click="btLike_Click">
+        </Button>
+
         <Button x:Name="btnQuickView"
                 Margin="0 0 0 180"
-                                Click="btnQuickView_Click"
-                                Grid.Column="0"                                
-                                Style="{DynamicResource NewItemsComponentsButton}"
-                                Content="Quick view">
+                Click="btnQuickView_Click"
+                Grid.Column="0"
+                Style="{DynamicResource NewItemsComponentsButton}"
+                Content="Quick view">
         </Button>
-        
+        <!--end:: Border 1 ga Elementlar-->
     </Grid>
 </UserControl>

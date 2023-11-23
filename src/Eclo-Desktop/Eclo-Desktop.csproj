@@ -37,9 +37,7 @@
     <None Remove="Assets\StaticImages\eclo-logo %281%29.png" />
     <None Remove="Assets\StaticImages\Krossovka.jpg" />
     <None Remove="Assets\StaticImages\left.png" />
-    <None Remove="Assets\StaticImages\like.png" />
     <None Remove="Assets\StaticImages\login-background-image.png" />
-    <None Remove="Assets\StaticImages\love.png" />
     <None Remove="Assets\StaticImages\MensCategory.png" />
     <None Remove="Assets\StaticImages\minus.png" />
     <None Remove="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
@@ -98,8 +96,6 @@
     <Resource Include="Assets\StaticImages\StaticUserImage.jpg" />
     <Resource Include="Assets\StaticImages\Krossovka.jpg" />
     <Resource Include="Assets\StaticImages\left.png" />
-    <Resource Include="Assets\StaticImages\like.png" />
-    <Resource Include="Assets\StaticImages\love.png" />
     <Resource Include="Assets\StaticImages\MensCategory.png" />
     <Resource Include="Assets\StaticImages\minus.png" />
     <Resource Include="Assets\StaticImages\pexels-victoria-rain-1620760.jpg" />
