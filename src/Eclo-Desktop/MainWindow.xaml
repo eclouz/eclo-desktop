@@ -252,7 +252,7 @@
                     </StackPanel>
 
                     <Frame Grid.Row="2"
-                       Name="PageNavigator"
+                       x:Name="PageNavigator"
                        Margin="20 15"
                        NavigationUIVisibility="Hidden">
                         
